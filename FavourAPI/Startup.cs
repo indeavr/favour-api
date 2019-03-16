@@ -17,6 +17,7 @@ using System.Text;
 using FavourAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using AutoMapper;
 
 namespace FavourAPI
 {
@@ -48,6 +49,21 @@ namespace FavourAPI
             })
             .AddJwtBearer(x =>
             {
+                x.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var userId = int.Parse(context.Principal.Identity.Name);
+                        var user = userService.GetById(userId);
+                        if (user == null)
+                        {
+                            // return unauthorized if user no longer exists
+                            context.Fail("Unauthorized");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
@@ -87,6 +103,7 @@ namespace FavourAPI
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
+
             app.UseMvc();
         }
     }
