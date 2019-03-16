@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace FavourAPI
 {
@@ -19,7 +20,7 @@ namespace FavourAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            
+
         }
 
         public IConfiguration Configuration { get; }
@@ -31,7 +32,7 @@ namespace FavourAPI
 
             var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
             services.AddDbContext<WorkFavourDbContext>
-                (options => options.UseSqlServer(connection));
+            (options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

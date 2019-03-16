@@ -14,7 +14,12 @@ namespace FavourAPI.Controllers
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
-        { 
+        {
+            var dbContext = new WorkFavourDbContext(new DbContextOptions<WorkFavourDbContext>());
+
+            dbContext.Users.Add(new User("stefi", "stahotnasi"));
+            dbContext.SaveChanges();
+
             return new string[] { "value1", "value2" };
         }
 
