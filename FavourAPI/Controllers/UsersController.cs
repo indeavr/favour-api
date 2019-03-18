@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using FavourAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +27,7 @@ namespace FavourAPI
         private IMapper mapper;
         private readonly AppSettings appSettings;
 
-        public UsersController([FromServices] IUserService userService, IOptions<AppSettings> appSettings)
+        public UsersController([FromServices] IUserService userService,  IMapper mapper, IOptions<AppSettings> appSettings)
         {
             this.userService = userService;
             this.mapper = mapper;

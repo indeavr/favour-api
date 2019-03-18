@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FavourAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,30 +15,5 @@ namespace FavourAPI
         public DbSet<User> Users { get; set; }
     }
 
-    public class User
-    {
-        public User()
-        {
-
-        }
-
-        public User(string email, string password)
-        {
-            this.Email = email;
-            this.Password = password;
-        }
-
-        [Key]
-        public string Id { get; set; }
-
-        public string Email { get; set; }
-
-        public string Password { get; set; }
-
-        public byte[] PasswordHash { get; set; }
-
-        public byte[] PasswordSalt { get; set; }
-
-        public string Token { get; set; }
-    }
+    
 }

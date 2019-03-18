@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FavourAPI.ApiModels;
+using FavourAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
