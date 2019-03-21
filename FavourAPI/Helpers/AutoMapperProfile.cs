@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FavourAPI.ApiModels;
+using FavourAPI.Dtos;
 using FavourAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace FavourAPI.Helpers
         {
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+            CreateMap<JobProvider, JobProviderDto>();
+            CreateMap<JobProviderDto, JobProvider>();
         }
     }
 }

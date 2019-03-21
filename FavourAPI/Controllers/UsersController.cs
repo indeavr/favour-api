@@ -27,7 +27,7 @@ namespace FavourAPI
         private IMapper mapper;
         private readonly AppSettings appSettings;
 
-        public UsersController([FromServices] IUserService userService,  IMapper mapper, IOptions<AppSettings> appSettings)
+        public UsersController([FromServices] IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)
         {
             this.userService = userService;
             this.mapper = mapper;
@@ -63,7 +63,7 @@ namespace FavourAPI
         //    return result.Token;
         //}
 
-   
+
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]UserDto userDto)

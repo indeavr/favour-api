@@ -80,6 +80,8 @@ namespace FavourAPI
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IJobProviderService, JobProviderService>();
+
 
             var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
             services.AddDbContext<WorkFavourDbContext>

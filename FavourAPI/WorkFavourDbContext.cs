@@ -13,7 +13,9 @@ namespace FavourAPI
         public WorkFavourDbContext(DbContextOptions<WorkFavourDbContext> options)
             : base(options) { }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<JobProvider> JobProviders { get; set; }
     }
 
-    
+
 }

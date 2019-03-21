@@ -31,5 +31,7 @@ namespace FavourAPI.Models
         public byte[] PasswordSalt { get; set; }
 
         public string Token { get; set; }
+
+        public virtual JobProvider JobProvider { get; set; }
     }
 }
