@@ -58,7 +58,7 @@ namespace FavourAPI.Services
             return this.dbContext.Users;
         }
 
-        public User GetById(int id)
+        public User GetById(string id)
         {
             return this.dbContext.Users.Find(id);
         }

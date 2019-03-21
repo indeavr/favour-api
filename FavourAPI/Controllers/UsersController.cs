@@ -18,7 +18,7 @@ using FavourAPI.Models;
 
 namespace FavourAPI
 {
-    [Authorize]
+    [Authorize]     
     [ApiController]
     [Route("[controller]")]
     public class UsersController : Controller
@@ -35,9 +35,13 @@ namespace FavourAPI
         }
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var headers = Request.Headers;
+
+            return new UnauthorizedResult();
+
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/<controller>/5
@@ -116,16 +120,16 @@ namespace FavourAPI
             }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = this.userService.GetAll();
-            var userDtos = this.mapper.Map<IList<UserDto>>(users);
-            return Ok(userDtos);
-        }
+        //[HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    var users = this.userService.GetAll();
+        //    var userDtos = this.mapper.Map<IList<UserDto>>(users);
+        //    return Ok(userDtos);
+        //}
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(string id)
         {
             var user = this.userService.GetById(id);
             var userDto = this.mapper.Map<UserDto>(user);
