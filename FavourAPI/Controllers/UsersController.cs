@@ -96,7 +96,8 @@ namespace FavourAPI
             {
                 Id = user.Id,
                 Email = user.Email,
-                Token = tokenString
+                Token = tokenString,
+                CanProceedAfterLogin = user.CanProceedAfterLogin
             });
         }
 
