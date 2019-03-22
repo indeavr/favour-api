@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FavourAPI.Controllers
 {
@@ -15,7 +16,11 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get([FromServices] WorkFavourDbContext myService)
         {
-            return new string[] { "value1", "value2" };
+            var headers = Request.Headers;
+
+            return new UnauthorizedResult();
+
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
