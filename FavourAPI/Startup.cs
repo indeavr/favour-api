@@ -80,6 +80,8 @@ namespace FavourAPI
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICompanyProviderService, CompanyProviderService>();
+            services.AddScoped<IPersonProviderService, PersonProviderService>();
 
 
             var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
