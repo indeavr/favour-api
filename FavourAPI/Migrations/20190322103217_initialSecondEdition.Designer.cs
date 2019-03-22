@@ -4,14 +4,16 @@ using FavourAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190322103217_initialSecondEdition")]
+    partial class initialSecondEdition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,8 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Models.CompanyProvider", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
@@ -178,6 +181,8 @@ namespace FavourAPI.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CompanyProviderId");
+
                     b.Property<string>("Email");
 
                     b.Property<string>("Password");
@@ -190,15 +195,9 @@ namespace FavourAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
-                });
+                    b.HasIndex("CompanyProviderId");
 
-            modelBuilder.Entity("FavourAPI.Models.CompanyProvider", b =>
-                {
-                    b.HasOne("FavourAPI.Models.User", "User")
-                        .WithOne("CompanyProvider")
-                        .HasForeignKey("FavourAPI.Models.CompanyProvider", "Id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Email", b =>
@@ -265,6 +264,13 @@ namespace FavourAPI.Migrations
                     b.HasOne("FavourAPI.Models.Position", "Position")
                         .WithMany("Skills")
                         .HasForeignKey("PositionId");
+                });
+
+            modelBuilder.Entity("FavourAPI.Models.User", b =>
+                {
+                    b.HasOne("FavourAPI.Models.CompanyProvider", "CompanyProvider")
+                        .WithMany()
+                        .HasForeignKey("CompanyProviderId");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,14 +4,16 @@ using FavourAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190322104523_removedCompanyProvider")]
+    partial class removedCompanyProvider
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,7 @@ namespace FavourAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompanyProviders");
+                    b.ToTable("CompanyProvider");
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Email", b =>

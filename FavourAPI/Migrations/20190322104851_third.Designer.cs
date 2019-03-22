@@ -4,14 +4,16 @@ using FavourAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190322104851_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,8 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Models.CompanyProvider", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
@@ -35,7 +38,7 @@ namespace FavourAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompanyProviders");
+                    b.ToTable("CompanyProvider");
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Email", b =>
@@ -191,14 +194,6 @@ namespace FavourAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("FavourAPI.Models.CompanyProvider", b =>
-                {
-                    b.HasOne("FavourAPI.Models.User", "User")
-                        .WithOne("CompanyProvider")
-                        .HasForeignKey("FavourAPI.Models.CompanyProvider", "Id")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Email", b =>

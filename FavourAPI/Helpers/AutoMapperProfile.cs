@@ -15,9 +15,6 @@ namespace FavourAPI.Helpers
         {
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
-
-            CreateMap<JobProvider, JobProviderDto>();
-            CreateMap<JobProviderDto, JobProvider>();
         }
     }
 }

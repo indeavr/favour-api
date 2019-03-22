@@ -32,6 +32,8 @@ namespace FavourAPI.Models
 
         public string Token { get; set; }
 
-        public virtual JobProvider JobProvider { get; set; }
+        public virtual PersonProvider PersonProvider { get; set; }
+
+        public virtual CompanyProvider CompanyProvider { get; set; }
     }
 }

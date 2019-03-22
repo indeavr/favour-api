@@ -4,14 +4,16 @@ using FavourAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190322104653_removedCompanyProviderFromUser")]
+    partial class removedCompanyProviderFromUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,8 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Models.CompanyProvider", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
@@ -33,9 +36,13 @@ namespace FavourAPI.Migrations
 
                     b.Property<byte[]>("Picture");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
-                    b.ToTable("CompanyProviders");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CompanyProvider");
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Email", b =>
@@ -196,9 +203,8 @@ namespace FavourAPI.Migrations
             modelBuilder.Entity("FavourAPI.Models.CompanyProvider", b =>
                 {
                     b.HasOne("FavourAPI.Models.User", "User")
-                        .WithOne("CompanyProvider")
-                        .HasForeignKey("FavourAPI.Models.CompanyProvider", "Id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Email", b =>
