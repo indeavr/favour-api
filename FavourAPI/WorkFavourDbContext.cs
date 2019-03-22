@@ -1,4 +1,5 @@
 ﻿using FavourAPI.Models;
+using FavourAPI.Models.enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,21 @@ namespace FavourAPI
         public DbSet<Email> Emails { get; set; }
 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+
+        public DbSet<Consumer> Consumers { get; set; }
+
+        public DbSet<JobOffer> JobOffers { get; set; }
+
+        public DbSet<Application> Applications { get; set; }
+
+        public DbSet<Period> Periods { get; set; }
+
+        public DbSet<SexDb> Sexes { get; set; }
+
+        public DbSet<JobOfferStateDb> JobOfferStates { get; set; }
+
+        public DbSet<ApplicationStateDb> ApplicationStates { get; set; }
+
     }
 
 

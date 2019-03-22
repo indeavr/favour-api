@@ -11,6 +11,8 @@ namespace FavourAPI.Models
 
         public string Name { get; set; }
 
-        public virtual Position Position { get; set; }
+        public virtual Position Position { get; set; } 
+
+        public virtual Consumer Consumer { get; set; }
     }
 }
