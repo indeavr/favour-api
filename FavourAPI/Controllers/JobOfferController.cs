@@ -13,14 +13,20 @@ namespace FavourAPI.Controllers
     [ApiController]
     public class JobOfferController : ControllerBase
     {
-        private readonly IJobOfferService jobOfferService;
-
-        public JobOfferController([FromServices] IJobOfferService service)
+        private readonly IOfferService offerService;
+        public JobOfferController([FromServices] IOfferService offerService)
         {
-            this.jobOfferService = service;
+            this.offerService = offerService;
         }
 
-        [HttpGet]
+        [HttpPut]
+        public ActionResult AddOffer([FromQuery]string userId, [FromBody] JobOfferDto companyProvider)
+        {
+            this.offerService.AddJobOffer(companyProvider);
+            return Ok();
+        }
+		
+		[HttpGet]
         public ActionResult<JobOfferDto> Get()
         {
             var jobList = jobOfferService.

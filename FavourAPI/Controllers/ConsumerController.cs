@@ -25,10 +25,10 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public ActionResult<ConsumerDto> GetConsumer([FromQuery] string userId)
         {
-            var consumer = this.consumerService.GetById(userId);
+            // var consumer = this.consumerService.GetById(userId);
             return Ok(new
             {
-                consumer = consumer
+                //consumer = consumer
             });
         }
 

@@ -13,7 +13,7 @@ namespace FavourAPI.Dtos
 
         public PositionDto[] TargetedPositions { get; set; }
 
-        public DateTime FoundedYear { get; set; }
+        public long FoundedYear { get; set; }
 
         public byte[] Picture { get; set; }
 
