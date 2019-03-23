@@ -82,6 +82,7 @@ namespace FavourAPI
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyProviderService, CompanyProviderService>();
             services.AddScoped<IPersonProviderService, PersonProviderService>();
+            services.AddScoped<IConsumerService, ConsumerService>();
 
 
             var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
