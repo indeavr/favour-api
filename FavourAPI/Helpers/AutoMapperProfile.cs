@@ -23,7 +23,6 @@ namespace FavourAPI.Helpers
             CreateMap<PersonProvider, PersonProviderDto>();
             CreateMap<PersonProviderDto, PersonProvider>();
 
-<<<<<<< HEAD
             CreateMap<OfficeDto, Office>();
             CreateMap<Office, OfficeDto>();
 
@@ -42,11 +41,12 @@ namespace FavourAPI.Helpers
             CreateMap<Position, PositionDto>();
             CreateMap<PositionDto, Position>();
 
-
-=======
             CreateMap<Consumer, ConsumerDto>();
             CreateMap<ConsumerDto, Consumer>();
->>>>>>> develop
+
+            CreateMap<JobOffer, JobOfferDto>();
+            CreateMap<JobOfferDto, JobOffer>();
+
         }
     }
 }
