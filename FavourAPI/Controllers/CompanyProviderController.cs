@@ -19,14 +19,14 @@ namespace FavourAPI.Controllers
             this.companyProviderService = cps;
         }
 
-        [HttpGet("{userId}")]
-        public ActionResult<CompanyProvider> GetCompanyProvider(string userId)
+        [HttpGet]
+        public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery]string userId)
         {
             return Ok(this.companyProviderService.GetProvider(userId));
         }
 
-        [HttpPut("{userId}")]
-        public ActionResult AddCompanyProvider(string userId, [FromBody] CompanyProviderDto companyProvider)
+        [HttpPut]
+        public ActionResult AddCompanyProvider([FromQuery]string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             this.companyProviderService.AddCompanyProvider(userId, companyProvider);
             return Ok();
