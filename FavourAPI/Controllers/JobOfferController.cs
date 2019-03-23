@@ -25,12 +25,15 @@ namespace FavourAPI.Controllers
             this.offerService.AddJobOffer(companyProvider);
             return Ok();
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public ActionResult<JobOfferDto> Get()
         {
-            var jobList = jobOfferService.
-            return Ok();
+            var jobList = offerService.GetAllOffers();
+            return Ok(new
+            {
+                jobs = jobList
+            });
         }
     }
 }

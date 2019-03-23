@@ -7,5 +7,6 @@ namespace FavourAPI.Dtos
 {
     public class JobOfferDto
     {
+
     }
 }

@@ -26,5 +26,12 @@ namespace FavourAPI.Services
             this.dbContext.JobOffers.Add(dbOffer);
             this.dbContext.SaveChanges();
         }
+
+        public List<JobOfferDto> GetAllOffers()
+        {
+            var offers = dbContext.JobOffers.ToList();
+
+            return offers.Select(o => mapper.Map<JobOfferDto>(o)).ToList();
+        }
     }
 }
