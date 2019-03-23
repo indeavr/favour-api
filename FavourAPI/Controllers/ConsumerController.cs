@@ -28,7 +28,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> AddConsumer([FromQuery]string userId, ConsumerDto consumer)
+        public ActionResult<bool> AddConsumer([FromQuery]string userId,[FromBody] ConsumerDto consumer)
         {
             bool canProceed = this.consumerService.AddOrUpdateConsumer(userId, consumer);
             return Ok(new

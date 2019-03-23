@@ -25,10 +25,13 @@ namespace FavourAPI.Services
             var currentUserInfo = this.dbContext.Consumers.SingleOrDefault((c) => c.Id == userId);
 
             var dbConsumer = mapper.Map<Consumer>(consumerData);
+            dbConsumer.Id = userId;
             //if (currentUserInfo == null)
             //{
-                dbContext.Consumers.Add(dbConsumer);
-                return CheckForLoginProceedPermission(dbConsumer);
+            dbContext.Consumers.Add(dbConsumer);
+
+            dbContext.SaveChanges();
+            return CheckForLoginProceedPermission(dbConsumer);
             //}
         }
 

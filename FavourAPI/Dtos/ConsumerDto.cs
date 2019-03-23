@@ -12,14 +12,16 @@ namespace FavourAPI.Dtos
 
         public string LastName { get; set; }
 
-        public SexDb Sex { get; set; }
+        //public SexDb Sex { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public ICollection<JobOffer> Offers { get; set; }
+        public string Location { get; set; }
 
-        public ICollection<Skill> Skills { get; set; }
+        public List<JobOffer> Offers { get; set; }
 
-        public byte[] CV { get; set; }
+        public List<Skill> Skills { get; set; }
+
+        //public byte[] CV { get; set; }
     }
 }
