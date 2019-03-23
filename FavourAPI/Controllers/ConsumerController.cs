@@ -22,13 +22,18 @@ namespace FavourAPI.Controllers
             this.consumerService = service;
         }
 
-        public ActionResult<ConsumerDto> GetConsumer()
+        [HttpGet]
+        public ActionResult<ConsumerDto> GetConsumer([FromQuery] string userId)
         {
-            return Ok();
+            var consumer = this.consumerService.GetById(userId);
+            return Ok(new
+            {
+                consumer = consumer
+            });
         }
 
         [HttpPost]
-        public ActionResult<bool> AddConsumer([FromQuery]string userId,[FromBody] ConsumerDto consumer)
+        public ActionResult<bool> AddConsumer([FromQuery]string userId, [FromBody] ConsumerDto consumer)
         {
             bool canProceed = this.consumerService.AddOrUpdateConsumer(userId, consumer);
             return Ok(new

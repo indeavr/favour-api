@@ -22,17 +22,28 @@ namespace FavourAPI.Services
         // Add for now
         public bool AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
         {
-            var currentUserInfo = this.dbContext.Consumers.SingleOrDefault((c) => c.Id == userId);
+            var currentUserInfo = GetConsumer(userId);
 
             var dbConsumer = mapper.Map<Consumer>(consumerData);
             dbConsumer.Id = userId;
-            //if (currentUserInfo == null)
-            //{
+
+            var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == userId);
+            currentUser.CanProceedAfterLogin = true;
+
             dbContext.Consumers.Add(dbConsumer);
 
             dbContext.SaveChanges();
             return CheckForLoginProceedPermission(dbConsumer);
-            //}
+        }
+
+        public Consumer GetById(string userId)  
+        {
+            return GetConsumer(userId);
+        }
+
+        private Consumer GetConsumer(string userId)
+        {
+            return dbContext.Consumers.SingleOrDefault(c => c.Id == userId);
         }
 
         public bool CheckForLoginProceedPermission(Consumer consumer)
