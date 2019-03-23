@@ -21,6 +21,9 @@ namespace FavourAPI.Helpers
 
             CreateMap<PersonProvider, PersonProviderDto>();
             CreateMap<PersonProviderDto, PersonProvider>();
+
+            CreateMap<Consumer, ConsumerDto>();
+            CreateMap<ConsumerDto, Consumer>();
         }
     }
 }
