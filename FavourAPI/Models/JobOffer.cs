@@ -22,7 +22,7 @@ namespace FavourAPI.Models
 
         public User User { get; set; }
 
-        public decimal Money { get; set; }
+        public double Money { get; set; }
 
         public ICollection<Application> Applications { get; set; }
 
