@@ -16,9 +16,11 @@ namespace FavourAPI.Controllers
     public class CompanyProviderController : ControllerBase
     {
         private readonly ICompanyProviderService companyProviderService;
-        public CompanyProviderController([FromServices] ICompanyProviderService cps)
+        private readonly IUserService userService;
+        public CompanyProviderController([FromServices] ICompanyProviderService cps, [FromServices] IUserService userService)
         {
             this.companyProviderService = cps;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -31,6 +33,7 @@ namespace FavourAPI.Controllers
         public ActionResult AddCompanyProvider([FromQuery]string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             this.companyProviderService.AddCompanyProvider(userId, companyProvider);
+            this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
             return Ok();
         }
     }
