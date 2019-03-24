@@ -47,6 +47,10 @@ namespace FavourAPI.Helpers
             CreateMap<JobOffer, JobOfferDto>();
             CreateMap<JobOfferDto, JobOffer>();
 
+            CreateMap<PermissionMy, PermissionsMyDto>();
+            CreateMap<PermissionsMyDto, PermissionMy>();
+
+
             CreateMap<PeriodDto, Period>()
                 .ForMember(dto => dto.EndDate, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.EndDate)))
                 .ForMember(dto => dto.EndHour, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.EndTime)))

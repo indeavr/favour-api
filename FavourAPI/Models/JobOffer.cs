@@ -14,21 +14,21 @@ namespace FavourAPI.Models
 
         public string Description { get; set; }
 
-        public ICollection<Period> Periods { get; set; }
+        public virtual ICollection<Period> Periods { get; set; }
 
         public string Location { get; set; }
 
         public DateTime TimePosted { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public double Money { get; set; }
 
-        public ICollection<Application> Applications { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
 
-        public ICollection<Skill> RequiredSkills { get; set; }
+        public virtual  ICollection<Skill> RequiredSkills { get; set; }
 
-        public JobOfferStateDb State { get; set; }
+        public virtual JobOfferStateDb State { get; set; }
 
         public virtual Consumer Consumer { get; set; }
 

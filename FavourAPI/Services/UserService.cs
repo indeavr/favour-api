@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -38,13 +39,13 @@ namespace FavourAPI.Services
 
         }
 
-        public User Authenticate(string email, string password)
+        public UserDto Authenticate(string email, string password)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 return null;
 
             var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
-
+            // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
             if (user == null)
                 return null;
@@ -54,7 +55,7 @@ namespace FavourAPI.Services
                 return null;
 
             // authentication successful
-            return user;
+            return mapper.Map<UserDto>(user);
         }
 
         public IEnumerable<User> GetAll()
@@ -63,12 +64,12 @@ namespace FavourAPI.Services
             return this.dbContext.Users;
         }
 
-        public User GetById(string id)
+        public UserDto GetById(string id)
         {
-            return this.dbContext.Users.Find(id);
+            return mapper.Map<UserDto>(this.dbContext.Users.Find(id));
         }
 
-        public User Create(UserDto userDto, string password)
+        public UserDto Create(UserDto userDto, string password)
         {
             var user = this.mapper.Map<User>(userDto);
 
@@ -92,7 +93,7 @@ namespace FavourAPI.Services
             this.dbContext.Users.Add(user);
             this.dbContext.SaveChanges();
 
-            return user;
+            return mapper.Map<UserDto>(user);
         }
 
         public void Update(User userParam, string password = null)

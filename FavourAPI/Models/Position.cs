@@ -13,6 +13,6 @@ namespace FavourAPI.Models
 
         public virtual Industry Industry { get; set; }
 
-        public ICollection<Skill> Skills { get; set; }
+        public virtual ICollection<Skill> Skills { get; set; }
     }
 }

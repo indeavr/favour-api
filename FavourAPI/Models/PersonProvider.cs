@@ -23,8 +23,8 @@ namespace FavourAPI.Models
 
         public virtual User User { get; set; }
 
-        public ICollection<Email> Emails { get; set; }
+        public virtual ICollection<Email> Emails { get; set; }
 
-        public ICollection<PhoneNumber> PhoneNumbers { get; set; }
+        public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
     }
 }

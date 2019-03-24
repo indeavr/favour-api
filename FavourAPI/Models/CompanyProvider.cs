@@ -13,9 +13,9 @@ namespace FavourAPI.Models
 
         public string Name { get; set; }
 
-        public ICollection<Industry> Industries { get; set; }
+        public virtual ICollection<Industry> Industries { get; set; }
 
-        public ICollection<Position> TargetedPositions { get; set; }
+        public virtual ICollection<Position> TargetedPositions { get; set; }
 
         public DateTime FoundedYear { get; set; }
 
@@ -25,7 +25,7 @@ namespace FavourAPI.Models
 
         public int NumberOfEmployees { get; set; }
 
-        public ICollection<Office> Offices { get; set; }
+        public virtual ICollection<Office> Offices { get; set; }
 
         public virtual User User { get; set; }
     }

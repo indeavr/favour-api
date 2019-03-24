@@ -13,11 +13,11 @@ namespace FavourAPI.Models
 
         public string Location { get; set; }
 
-        public ICollection<Email> Emails { get; set; }
+        public virtual ICollection<Email> Emails { get; set; }
 
-        public ICollection<PhoneNumber> PhoneNumbers { get; set; }
+        public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
 
-        public ICollection<Industry> Industries { get; set; }
+        public virtual ICollection<Industry> Industries { get; set; }
 
         public virtual CompanyProvider CompanyProvider { get; set; }
     }

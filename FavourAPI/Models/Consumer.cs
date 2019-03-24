@@ -15,13 +15,13 @@ namespace FavourAPI.Models
 
         public string LastName { get; set; }
 
-        public SexDb Sex { get; set; }
+        public virtual SexDb Sex { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public ICollection<JobOffer> Offers { get; set; }
+        public virtual ICollection<JobOffer> Offers { get; set; }
 
-        public ICollection<Skill> Skills { get; set; }
+        public virtual ICollection<Skill> Skills { get; set; }
 
         public virtual User User { get; set; }
 

@@ -9,11 +9,11 @@ namespace FavourAPI
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
+        UserDto Authenticate(string username, string password);
         IEnumerable<User> GetAll();
-        User GetById(string id);
+        UserDto GetById(string id);
         void UpdatePermissions(string userId, Action<PermissionMy> updater);
-        User Create(UserDto userDto, string password);
+        UserDto Create(UserDto userDto, string password);
         void Update(User user, string password = null);
         void Delete(int id);
     }

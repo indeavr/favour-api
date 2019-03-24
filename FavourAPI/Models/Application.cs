@@ -13,10 +13,10 @@ namespace FavourAPI.Models
 
         public DateTime Time { get; set; }
 
-        public JobOffer JobOffer { get; set; }
+        public virtual JobOffer JobOffer { get; set; }
 
-        public Consumer Consumer { get; set; }
+        public virtual Consumer Consumer { get; set; }
 
-        public ApplicationStateDb State { get; set; }
+        public virtual ApplicationStateDb State { get; set; }
     }
 }
