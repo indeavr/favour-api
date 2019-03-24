@@ -78,6 +78,8 @@ namespace FavourAPI.Services
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
+            user.Permissions = new Permissions();
+
             this.dbContext.Users.Add(user);
             this.dbContext.SaveChanges();
 
@@ -123,6 +125,15 @@ namespace FavourAPI.Services
                 this.dbContext.Users.Remove(user);
                 this.dbContext.SaveChanges();
             }
+        }
+
+        public void UpdatePermissions(string userId, Action<Permissions> updater)
+        {
+            var permission = this.dbContext.Permissions.Single(p => p.Id == userId);
+
+            updater.Invoke(permission);
+
+            this.dbContext.SaveChanges();
         }
 
         // private helper methods

@@ -11,7 +11,7 @@ namespace FavourAPI
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
         User GetById(string id);
-
+        void UpdatePermissions(string userId, Action<Permissions> updater);
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
