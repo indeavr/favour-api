@@ -1,4 +1,6 @@
-﻿using FavourAPI.Helpers;
+﻿using AutoMapper;
+using FavourAPI.ApiModels;
+using FavourAPI.Helpers;
 using FavourAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -19,11 +21,14 @@ namespace FavourAPI.Services
 
         private readonly AppSettings _appSettings;
         private readonly WorkFavourDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public UserService(IOptions<AppSettings> appSettings, [FromServices] WorkFavourDbContext workFavourDbContext)
+        public UserService(IOptions<AppSettings> appSettings, [FromServices] WorkFavourDbContext workFavourDbContext, IMapper mapper)
         {
             _appSettings = appSettings.Value;
             this.dbContext = workFavourDbContext;
+            this.mapper = mapper;
+
         }
 
         public void Add(User user)
@@ -63,8 +68,10 @@ namespace FavourAPI.Services
             return this.dbContext.Users.Find(id);
         }
 
-        public User Create(User user, string password)
+        public User Create(UserDto userDto, string password)
         {
+            var user = this.mapper.Map<User>(userDto);
+
             // validation
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
@@ -77,8 +84,10 @@ namespace FavourAPI.Services
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+            user.PermissionMy = new PermissionMy();
 
-            user.Permissions = new Permissions();
+            //user.PermissionMy = new PermissionMy();
+            //dbContext.PermissionMys.Add(new PermissionMy() { User = user });
 
             this.dbContext.Users.Add(user);
             this.dbContext.SaveChanges();
@@ -127,9 +136,9 @@ namespace FavourAPI.Services
             }
         }
 
-        public void UpdatePermissions(string userId, Action<Permissions> updater)
+        public void UpdatePermissions(string userId, Action<PermissionMy> updater)
         {
-            var permission = this.dbContext.Permissions.Single(p => p.Id == userId);
+            var permission = this.dbContext.PermissionMys.Single(p => p.Id == userId);
 
             updater.Invoke(permission);
 

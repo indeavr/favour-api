@@ -21,7 +21,7 @@ namespace FavourAPI.Models
 
         [Key]
         public string Id { get; set; }
-
+       
         public string Email { get; set; }
 
         public string Password { get; set; }
@@ -36,6 +36,6 @@ namespace FavourAPI.Models
 
         public virtual CompanyProvider CompanyProvider { get; set; }
 
-        public Permissions Permissions { get; set; }
+        public virtual PermissionMy PermissionMy { get; set; }
     }
 }

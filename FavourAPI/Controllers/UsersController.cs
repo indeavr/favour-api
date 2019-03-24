@@ -97,7 +97,7 @@ namespace FavourAPI
                 Id = user.Id,
                 Email = user.Email,
                 Token = tokenString,
-                Permissions = user.Permissions
+                Permissions = user.PermissionMy
             });
         }
 
@@ -105,13 +105,10 @@ namespace FavourAPI
         [HttpPost("register")]
         public IActionResult Register([FromBody]UserDto userDto)
         {
-            // map dto to entity
-            var user = this.mapper.Map<User>(userDto);
-
             try
             {
                 // save 
-                this.userService.Create(user, userDto.Password);
+                this.userService.Create(userDto, userDto.Password);
                 return Ok();
             }
             catch (AppException ex)

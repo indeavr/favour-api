@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Models
 {
-    public class Permissions
+    public class PermissionMy
     {
         [ForeignKey("User")]
         public string Id { get; set; }
@@ -16,5 +16,7 @@ namespace FavourAPI.Models
         public bool HasSufficientInfoProvider { get; set; }
 
         public bool CanApplyConsumer { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

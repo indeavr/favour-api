@@ -199,10 +199,9 @@ namespace FavourAPI.Migrations
                     b.ToTable("Periods");
                 });
 
-            modelBuilder.Entity("FavourAPI.Models.Permissions", b =>
+            modelBuilder.Entity("FavourAPI.Models.PermissionMy", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("Id");
 
                     b.Property<bool>("CanApplyConsumer");
 
@@ -212,7 +211,7 @@ namespace FavourAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Permissions");
+                    b.ToTable("PermissionMys");
                 });
 
             modelBuilder.Entity("FavourAPI.Models.PersonProvider", b =>
@@ -323,13 +322,9 @@ namespace FavourAPI.Migrations
 
                     b.Property<byte[]>("PasswordSalt");
 
-                    b.Property<string>("PermissionsId");
-
                     b.Property<string>("Token");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PermissionsId");
 
                     b.ToTable("Users");
                 });
@@ -440,6 +435,14 @@ namespace FavourAPI.Migrations
                         .HasForeignKey("JobOfferId");
                 });
 
+            modelBuilder.Entity("FavourAPI.Models.PermissionMy", b =>
+                {
+                    b.HasOne("FavourAPI.Models.User", "User")
+                        .WithOne("PermissionMy")
+                        .HasForeignKey("FavourAPI.Models.PermissionMy", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("FavourAPI.Models.PersonProvider", b =>
                 {
                     b.HasOne("FavourAPI.Models.User", "User")
@@ -483,13 +486,6 @@ namespace FavourAPI.Migrations
                     b.HasOne("FavourAPI.Models.Position", "Position")
                         .WithMany("Skills")
                         .HasForeignKey("PositionId");
-                });
-
-            modelBuilder.Entity("FavourAPI.Models.User", b =>
-                {
-                    b.HasOne("FavourAPI.Models.Permissions", "Permissions")
-                        .WithMany()
-                        .HasForeignKey("PermissionsId");
                 });
 #pragma warning restore 612, 618
         }
