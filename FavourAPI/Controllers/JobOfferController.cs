@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Controllers
 {
-    [Route("[controller]")]
     [Authorize]
+    [Route("[controller]")]
     [ApiController]
     public class JobOfferController : ControllerBase
     {
@@ -24,6 +24,14 @@ namespace FavourAPI.Controllers
         {
             this.offerService.AddJobOffer(companyProvider);
             return Ok();
+        }
+
+        [HttpGet]
+        public ActionResult<List<JobOfferDto>> Get()
+        {
+            var jobList = offerService.GetAllOffers();
+
+            return Ok(jobList);
         }
     }
 }

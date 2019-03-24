@@ -36,6 +36,6 @@ namespace FavourAPI.Models
 
         public virtual CompanyProvider CompanyProvider { get; set; }
 
-        public bool CanProceedAfterLogin { get; set; }
+        public Permissions Permissions { get; set; }
     }
 }

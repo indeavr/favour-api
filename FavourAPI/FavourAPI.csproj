@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IJobOfferService.cs" />
     <Compile Remove="Models\Job.cs" />
     <Compile Remove="Models\JobOfferState.cs" />
   </ItemGroup>
