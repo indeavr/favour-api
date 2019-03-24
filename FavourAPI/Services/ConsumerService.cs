@@ -50,5 +50,6 @@ namespace FavourAPI.Services
         {
             return consumer.FirstName != null && consumer.LastName != null && consumer.PhoneNumber != null;
         }
+      
     }
 }

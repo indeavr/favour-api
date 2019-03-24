@@ -13,8 +13,6 @@ namespace FavourAPI
 
         Consumer GetById(string userId);
 
-        Consumer GetConsumer(string userId);
-
         bool CheckForLoginProceedPermission(Consumer consumer);
     }
 }
