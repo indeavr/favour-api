@@ -27,13 +27,11 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<JobOfferDto> Get()
+        public ActionResult<List<JobOfferDto>> Get()
         {
             var jobList = offerService.GetAllOffers();
-            return Ok(new
-            {
-                jobs = jobList
-            });
+
+            return Ok(jobList);
         }
     }
 }
