@@ -28,7 +28,7 @@ namespace FavourAPI.Services
             dbConsumer.Id = userId;
 
             var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == userId);
-            currentUser.CanProceedAfterLogin = true;
+            currentUser.Permissions.HasSufficientInfoConsumer = true;
 
             dbContext.Consumers.Add(dbConsumer);
 
