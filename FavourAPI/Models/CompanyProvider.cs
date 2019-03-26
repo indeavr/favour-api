@@ -28,5 +28,7 @@ namespace FavourAPI.Models
         public virtual ICollection<Office> Offices { get; set; }
 
         public virtual User User { get; set; }
+
+        public virtual ICollection<JobOffer> Offers {get; set; }
     }
 }

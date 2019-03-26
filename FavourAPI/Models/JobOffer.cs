@@ -33,7 +33,5 @@ namespace FavourAPI.Models
         public virtual Consumer Consumer { get; set; }
 
         public string Review { get; set; }
-
-        // tags
     }
 }

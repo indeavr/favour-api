@@ -8,7 +8,7 @@ namespace FavourAPI
 {
     public interface IOfferService
     {
-        void AddJobOffer(JobOfferDto jobOffer);
+        void AddJobOffer(string userId, JobOfferDto jobOffer);
 
         List<JobOfferDto> GetAllOffers();
     }
