@@ -88,7 +88,8 @@ namespace FavourAPI
 
             var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
             services.AddDbContext<WorkFavourDbContext>
-            (options => options.UseLazyLoadingProxies().UseSqlServer(connection));
+            (options => 
+            options.UseLazyLoadingProxies().UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,7 +16,18 @@ namespace FavourAPI
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
+
+            modelBuilder.Entity<IndustryPosition>().HasKey(ip => new { ip.IndustryId, ip.PositionId });
+            modelBuilder.Entity<PositionSkills>().HasKey(ps => new { ps.SkillId, ps.PositionId });
+            modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
+
+            /* Hack
+            * In indexMagic 5 migration we make the time posted column a clustedred index
+            * If you want to change any relations for JobOffer you have to add them there
+            */
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -52,6 +63,12 @@ namespace FavourAPI
         public DbSet<ApplicationStateDb> ApplicationStates { get; set; }
 
         public DbSet<PermissionMy> PermissionMys { get; set; }
+
+        public DbSet<PositionSkills> PositionSkills { get; set; }
+
+        public DbSet<IndustryPosition> IndustryPositions { get; set; }
+
+        public DbSet<OfficeIndustry> OfficeIndustries { get; set; }
 
     }
 

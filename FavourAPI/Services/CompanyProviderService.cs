@@ -19,13 +19,15 @@ namespace FavourAPI.Services
             this.dbContext = dbContext;
         }
 
-        public void AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
+        public CompanyProviderDto AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
         {
             var dbModel = mapper.Map<CompanyProvider>(companyProvider);
             dbModel.Id = userId;
 
             this.dbContext.CompanyProviders.Add(dbModel);
             this.dbContext.SaveChanges();
+
+            return mapper.Map<CompanyProviderDto>(dbModel);
         }
 
         public CompanyProviderDto GetProvider(string userId)
