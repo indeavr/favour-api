@@ -17,7 +17,7 @@ namespace FavourAPI.Models
 
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
 
-        public virtual ICollection<Industry> Industries { get; set; }
+        public virtual IList<OfficeIndustry> OfficeIndustries { get; set; }
 
         public virtual CompanyProvider CompanyProvider { get; set; }
     }

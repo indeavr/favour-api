@@ -7,6 +7,8 @@ namespace FavourAPI.Dtos
 {
     public class CompanyProviderDto
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public IndustryDto[] Industries { get; set; }

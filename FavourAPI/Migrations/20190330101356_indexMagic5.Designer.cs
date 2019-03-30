@@ -4,14 +4,16 @@ using FavourAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190330101356_indexMagic5")]
+    partial class indexMagic5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,22 +64,6 @@ namespace FavourAPI.Migrations
                     b.ToTable("CompanyProviders");
                 });
 
-            modelBuilder.Entity("FavourAPI.Models.CompletionResult", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConsumerId");
-
-                    b.Property<string>("Review");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConsumerId");
-
-                    b.ToTable("Results");
-                });
-
             modelBuilder.Entity("FavourAPI.Models.Consumer", b =>
                 {
                     b.Property<string>("Id");
@@ -87,8 +73,6 @@ namespace FavourAPI.Migrations
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
-
-                    b.Property<string>("Location");
 
                     b.Property<string>("PhoneNumber");
 
@@ -157,8 +141,6 @@ namespace FavourAPI.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CompanyProviderId");
-
                     b.Property<string>("ConsumerId");
 
                     b.Property<string>("Description");
@@ -167,7 +149,7 @@ namespace FavourAPI.Migrations
 
                     b.Property<double>("Money");
 
-                    b.Property<string>("ResultId");
+                    b.Property<string>("Review");
 
                     b.Property<string>("StateValue");
 
@@ -179,11 +161,7 @@ namespace FavourAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyProviderId");
-
                     b.HasIndex("ConsumerId");
-
-                    b.HasIndex("ResultId");
 
                     b.HasIndex("StateValue");
 
@@ -427,13 +405,6 @@ namespace FavourAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FavourAPI.Models.CompletionResult", b =>
-                {
-                    b.HasOne("FavourAPI.Models.Consumer", "Consumer")
-                        .WithMany()
-                        .HasForeignKey("ConsumerId");
-                });
-
             modelBuilder.Entity("FavourAPI.Models.Consumer", b =>
                 {
                     b.HasOne("FavourAPI.Models.User", "User")
@@ -479,17 +450,9 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Models.JobOffer", b =>
                 {
-                    b.HasOne("FavourAPI.Models.CompanyProvider")
-                        .WithMany("Offers")
-                        .HasForeignKey("CompanyProviderId");
-
-                    b.HasOne("FavourAPI.Models.Consumer")
+                    b.HasOne("FavourAPI.Models.Consumer", "Consumer")
                         .WithMany("Offers")
                         .HasForeignKey("ConsumerId");
-
-                    b.HasOne("FavourAPI.Models.CompletionResult", "Result")
-                        .WithMany()
-                        .HasForeignKey("ResultId");
 
                     b.HasOne("FavourAPI.Models.enums.JobOfferStateDb", "State")
                         .WithMany()

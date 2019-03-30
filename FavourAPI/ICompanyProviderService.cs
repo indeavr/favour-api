@@ -11,6 +11,6 @@ namespace FavourAPI
     {
         CompanyProviderDto GetProvider(string userId);
 
-        void AddCompanyProvider(string userId, CompanyProviderDto companyProvider);
+        CompanyProviderDto AddCompanyProvider(string userId, CompanyProviderDto companyProvider);
     }
 }

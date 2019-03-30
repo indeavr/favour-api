@@ -11,8 +11,8 @@ namespace FavourAPI.Models
 
         public string Name { get; set; }
 
-        public virtual Industry Industry { get; set; }
+        public virtual IList<IndustryPosition> IndustryPositions { get; set; }
 
-        public virtual ICollection<Skill> Skills { get; set; }
+        public virtual IList<PositionSkills> PositionSkills { get; set; }
     }
 }

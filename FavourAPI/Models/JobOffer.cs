@@ -1,6 +1,8 @@
 ﻿using FavourAPI.Models.enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,7 +28,7 @@ namespace FavourAPI.Models
 
         public virtual ICollection<Application> Applications { get; set; }
 
-        public virtual  ICollection<Skill> RequiredSkills { get; set; }
+        public virtual ICollection<Skill> RequiredSkills { get; set; }
 
         public virtual JobOfferStateDb State { get; set; }
         
