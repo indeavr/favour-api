@@ -31,6 +31,7 @@ namespace FavourAPI.Controllers
         {
             var jobList = offerService.GetAllOffers();
 
+
             return Ok(jobList);
         }
     }

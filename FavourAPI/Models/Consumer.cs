@@ -19,6 +19,8 @@ namespace FavourAPI.Models
 
         public string PhoneNumber { get; set; }
 
+        public string Location { get; set; }
+
         public virtual ICollection<JobOffer> Offers { get; set; }
 
         public virtual ICollection<Skill> Skills { get; set; }

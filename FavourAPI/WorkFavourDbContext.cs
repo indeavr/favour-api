@@ -53,6 +53,8 @@ namespace FavourAPI
 
         public DbSet<PermissionMy> PermissionMys { get; set; }
 
+        public DbSet<CompletionResult> Results { get; set; }
+
     }
 
 

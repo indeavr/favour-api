@@ -34,6 +34,8 @@ namespace FavourAPI.Services
         {
             var offers = dbContext.JobOffers.ToList();
 
+            // mahni neshta ot job modela- . inache se polzva samo DTO-to 
+
             return offers.Select(o => mapper.Map<JobOfferDto>(o)).ToList();
         }
     }

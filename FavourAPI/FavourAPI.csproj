@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Remove="IJobOfferService.cs" />
     <Compile Remove="Migrations\20190324095754_permissions.Designer.cs" />
+    <Compile Remove="Models\CompletetionResult.cs" />
     <Compile Remove="Models\Job.cs" />
     <Compile Remove="Models\JobOfferState.cs" />
   </ItemGroup>

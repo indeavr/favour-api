@@ -29,9 +29,7 @@ namespace FavourAPI.Models
         public virtual  ICollection<Skill> RequiredSkills { get; set; }
 
         public virtual JobOfferStateDb State { get; set; }
-
-        public virtual Consumer Consumer { get; set; }
-
-        public string Review { get; set; }
+        
+        public virtual CompletionResult Result { get;set; }
     }
 }
