@@ -30,7 +30,7 @@ namespace FavourAPI.Controllers
         public ActionResult<List<JobOfferDto>> Get()
         {
             var jobList = offerService.GetAllOffers();
-
+            
 
             return Ok(jobList);
         }
