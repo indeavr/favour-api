@@ -22,6 +22,9 @@ namespace FavourAPI.Models
 
         public DateTime TimePosted { get; set; }
 
+        //[ForeignKey("User")]
+        //public string ProviderId {get; set;}
+
         public virtual CompanyProvider Provider { get; set; }
 
         public double Money { get; set; }

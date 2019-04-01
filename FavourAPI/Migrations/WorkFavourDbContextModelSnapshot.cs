@@ -186,6 +186,458 @@ namespace FavourAPI.Migrations
                     b.HasIndex("StateValue");
 
                     b.ToTable("JobOffers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "101011",
+                            Description = "Nasa Hacker101012",
+                            Location = "Sofia",
+                            Money = 101012.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101012"
+                        },
+                        new
+                        {
+                            Id = "101012",
+                            Description = "Nasa Hacker101013",
+                            Location = "Sofia",
+                            Money = 101013.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101013"
+                        },
+                        new
+                        {
+                            Id = "101013",
+                            Description = "Nasa Hacker101014",
+                            Location = "Sofia",
+                            Money = 101014.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101014"
+                        },
+                        new
+                        {
+                            Id = "101014",
+                            Description = "Nasa Hacker101015",
+                            Location = "Sofia",
+                            Money = 101015.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101015"
+                        },
+                        new
+                        {
+                            Id = "101015",
+                            Description = "Nasa Hacker101016",
+                            Location = "Sofia",
+                            Money = 101016.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101016"
+                        },
+                        new
+                        {
+                            Id = "101016",
+                            Description = "Nasa Hacker101017",
+                            Location = "Sofia",
+                            Money = 101017.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101017"
+                        },
+                        new
+                        {
+                            Id = "101017",
+                            Description = "Nasa Hacker101018",
+                            Location = "Sofia",
+                            Money = 101018.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101018"
+                        },
+                        new
+                        {
+                            Id = "101018",
+                            Description = "Nasa Hacker101019",
+                            Location = "Sofia",
+                            Money = 101019.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101019"
+                        },
+                        new
+                        {
+                            Id = "101019",
+                            Description = "Nasa Hacker101020",
+                            Location = "Sofia",
+                            Money = 101020.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101020"
+                        },
+                        new
+                        {
+                            Id = "101020",
+                            Description = "Nasa Hacker101021",
+                            Location = "Sofia",
+                            Money = 101021.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101021"
+                        },
+                        new
+                        {
+                            Id = "101021",
+                            Description = "Nasa Hacker101022",
+                            Location = "Sofia",
+                            Money = 101022.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101022"
+                        },
+                        new
+                        {
+                            Id = "101022",
+                            Description = "Nasa Hacker101023",
+                            Location = "Sofia",
+                            Money = 101023.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101023"
+                        },
+                        new
+                        {
+                            Id = "101023",
+                            Description = "Nasa Hacker101024",
+                            Location = "Sofia",
+                            Money = 101024.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101024"
+                        },
+                        new
+                        {
+                            Id = "101024",
+                            Description = "Nasa Hacker101025",
+                            Location = "Sofia",
+                            Money = 101025.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101025"
+                        },
+                        new
+                        {
+                            Id = "101025",
+                            Description = "Nasa Hacker101026",
+                            Location = "Sofia",
+                            Money = 101026.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101026"
+                        },
+                        new
+                        {
+                            Id = "101026",
+                            Description = "Nasa Hacker101027",
+                            Location = "Sofia",
+                            Money = 101027.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101027"
+                        },
+                        new
+                        {
+                            Id = "101027",
+                            Description = "Nasa Hacker101028",
+                            Location = "Sofia",
+                            Money = 101028.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101028"
+                        },
+                        new
+                        {
+                            Id = "101028",
+                            Description = "Nasa Hacker101029",
+                            Location = "Sofia",
+                            Money = 101029.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101029"
+                        },
+                        new
+                        {
+                            Id = "101029",
+                            Description = "Nasa Hacker101030",
+                            Location = "Sofia",
+                            Money = 101030.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101030"
+                        },
+                        new
+                        {
+                            Id = "101030",
+                            Description = "Nasa Hacker101031",
+                            Location = "Sofia",
+                            Money = 101031.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101031"
+                        },
+                        new
+                        {
+                            Id = "101031",
+                            Description = "Nasa Hacker101032",
+                            Location = "Sofia",
+                            Money = 101032.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101032"
+                        },
+                        new
+                        {
+                            Id = "101032",
+                            Description = "Nasa Hacker101033",
+                            Location = "Sofia",
+                            Money = 101033.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101033"
+                        },
+                        new
+                        {
+                            Id = "101033",
+                            Description = "Nasa Hacker101034",
+                            Location = "Sofia",
+                            Money = 101034.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101034"
+                        },
+                        new
+                        {
+                            Id = "101034",
+                            Description = "Nasa Hacker101035",
+                            Location = "Sofia",
+                            Money = 101035.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101035"
+                        },
+                        new
+                        {
+                            Id = "101035",
+                            Description = "Nasa Hacker101036",
+                            Location = "Sofia",
+                            Money = 101036.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101036"
+                        },
+                        new
+                        {
+                            Id = "101036",
+                            Description = "Nasa Hacker101037",
+                            Location = "Sofia",
+                            Money = 101037.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101037"
+                        },
+                        new
+                        {
+                            Id = "101037",
+                            Description = "Nasa Hacker101038",
+                            Location = "Sofia",
+                            Money = 101038.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101038"
+                        },
+                        new
+                        {
+                            Id = "101038",
+                            Description = "Nasa Hacker101039",
+                            Location = "Sofia",
+                            Money = 101039.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101039"
+                        },
+                        new
+                        {
+                            Id = "101039",
+                            Description = "Nasa Hacker101040",
+                            Location = "Sofia",
+                            Money = 101040.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101040"
+                        },
+                        new
+                        {
+                            Id = "101040",
+                            Description = "Nasa Hacker101041",
+                            Location = "Sofia",
+                            Money = 101041.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101041"
+                        },
+                        new
+                        {
+                            Id = "101041",
+                            Description = "Nasa Hacker101042",
+                            Location = "Sofia",
+                            Money = 101042.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101042"
+                        },
+                        new
+                        {
+                            Id = "101042",
+                            Description = "Nasa Hacker101043",
+                            Location = "Sofia",
+                            Money = 101043.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101043"
+                        },
+                        new
+                        {
+                            Id = "101043",
+                            Description = "Nasa Hacker101044",
+                            Location = "Sofia",
+                            Money = 101044.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101044"
+                        },
+                        new
+                        {
+                            Id = "101044",
+                            Description = "Nasa Hacker101045",
+                            Location = "Sofia",
+                            Money = 101045.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101045"
+                        },
+                        new
+                        {
+                            Id = "101045",
+                            Description = "Nasa Hacker101046",
+                            Location = "Sofia",
+                            Money = 101046.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101046"
+                        },
+                        new
+                        {
+                            Id = "101046",
+                            Description = "Nasa Hacker101047",
+                            Location = "Sofia",
+                            Money = 101047.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101047"
+                        },
+                        new
+                        {
+                            Id = "101047",
+                            Description = "Nasa Hacker101048",
+                            Location = "Sofia",
+                            Money = 101048.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101048"
+                        },
+                        new
+                        {
+                            Id = "101048",
+                            Description = "Nasa Hacker101049",
+                            Location = "Sofia",
+                            Money = 101049.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101049"
+                        },
+                        new
+                        {
+                            Id = "101049",
+                            Description = "Nasa Hacker101050",
+                            Location = "Sofia",
+                            Money = 101050.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101050"
+                        },
+                        new
+                        {
+                            Id = "101050",
+                            Description = "Nasa Hacker101051",
+                            Location = "Sofia",
+                            Money = 101051.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101051"
+                        },
+                        new
+                        {
+                            Id = "101051",
+                            Description = "Nasa Hacker101052",
+                            Location = "Sofia",
+                            Money = 101052.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101052"
+                        },
+                        new
+                        {
+                            Id = "101052",
+                            Description = "Nasa Hacker101053",
+                            Location = "Sofia",
+                            Money = 101053.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101053"
+                        },
+                        new
+                        {
+                            Id = "101053",
+                            Description = "Nasa Hacker101054",
+                            Location = "Sofia",
+                            Money = 101054.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101054"
+                        },
+                        new
+                        {
+                            Id = "101054",
+                            Description = "Nasa Hacker101055",
+                            Location = "Sofia",
+                            Money = 101055.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101055"
+                        },
+                        new
+                        {
+                            Id = "101055",
+                            Description = "Nasa Hacker101056",
+                            Location = "Sofia",
+                            Money = 101056.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101056"
+                        },
+                        new
+                        {
+                            Id = "101056",
+                            Description = "Nasa Hacker101057",
+                            Location = "Sofia",
+                            Money = 101057.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101057"
+                        },
+                        new
+                        {
+                            Id = "101057",
+                            Description = "Nasa Hacker101058",
+                            Location = "Sofia",
+                            Money = 101058.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101058"
+                        },
+                        new
+                        {
+                            Id = "101058",
+                            Description = "Nasa Hacker101059",
+                            Location = "Sofia",
+                            Money = 101059.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101059"
+                        },
+                        new
+                        {
+                            Id = "101059",
+                            Description = "Nasa Hacker101060",
+                            Location = "Sofia",
+                            Money = 101060.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101060"
+                        },
+                        new
+                        {
+                            Id = "101060",
+                            Description = "Nasa Hacker101061",
+                            Location = "Sofia",
+                            Money = 101061.0,
+                            TimePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Nasa Hacker101061"
+                        });
                 });
 
             modelBuilder.Entity("FavourAPI.Models.Office", b =>

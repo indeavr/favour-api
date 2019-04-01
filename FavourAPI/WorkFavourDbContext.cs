@@ -23,6 +23,27 @@ namespace FavourAPI
             modelBuilder.Entity<PositionSkills>().HasKey(ps => new { ps.SkillId, ps.PositionId });
             modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
 
+            //modelBuilder.Entity<CompanyProvider>().HasData(new CompanyProvider()
+            //{
+            //    Id = "68b67c4b-bc66-4d31-b672-47a8d55f6145",
+            //    Name = "Dao",
+            //});
+
+            //int count = 101011;
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    modelBuilder.Entity<JobOffer>().HasData(new JobOffer
+            //    {
+            //        Id = count++.ToString(),
+            //        Title = "Nasa Hacker" + count,
+            //        Description = "Nasa Hacker" + count,
+            //        Money = count,
+            //        TimePosted = new DateTime(),
+            //        Location = "Sofia",
+                    
+            //    });
+            //}
+
             /* Hack
             * In indexMagic 5 migration we make the time posted column a clustedred index
             * If you want to change any relations for JobOffer you have to add them there
@@ -64,7 +85,7 @@ namespace FavourAPI
 
         public DbSet<PermissionMy> PermissionMys { get; set; }
 
-		public DbSet<CompletionResult> Results { get; set; }
+        public DbSet<CompletionResult> Results { get; set; }
 
         public DbSet<PositionSkills> PositionSkills { get; set; }
 

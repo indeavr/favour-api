@@ -17,6 +17,8 @@ namespace FavourAPI.Dtos
 
         public double Salary { get; set; }
 
+        public long TimePosted { get; set; }
+
         public PeriodDto[] Periods { get; set; }
 
         public CompanyProviderDto Provider { get; set; }

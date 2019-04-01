@@ -27,12 +27,18 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<JobOfferDto>> Get()
+        public ActionResult<List<JobOfferDto>> Get(
+            [FromQuery]string userId,
+            [FromQuery]string currentPosition,
+            [FromQuery]string chunkSize,
+            [FromQuery]long accessTime)
         {
             var jobList = offerService.GetAllOffers();
-            
+            // Sort first
 
-            return Ok(jobList);
+            var chunk = jobList.Skip(int.Parse(currentPosition)).Take(int.Parse(chunkSize)).ToList();
+
+            return Ok(chunk);
         }
     }
 }
