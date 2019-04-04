@@ -11,5 +11,7 @@ namespace FavourAPI
         void AddJobOffer(string userId, JobOfferDto jobOffer);
 
         List<JobOfferDto> GetAllOffers();
+
+        void AddApplication(string consumerId, string jobOfferId, ApplicationDto application);
     }
 }

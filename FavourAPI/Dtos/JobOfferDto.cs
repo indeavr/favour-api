@@ -15,12 +15,14 @@ namespace FavourAPI.Dtos
 
         public string Location { get; set; }
 
-        public double Salary { get; set; }
+        public double Money { get; set; }
 
         public long TimePosted { get; set; }
 
-        public PeriodDto[] Periods { get; set; }
+        public List<PeriodDto> Periods { get; set; }
 
         public CompanyProviderDto Provider { get; set; }
+
+        public List<SkillDto> RequiredSkills { get; set; }
     }
 }

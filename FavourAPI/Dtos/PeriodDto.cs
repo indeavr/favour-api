@@ -13,8 +13,8 @@ namespace FavourAPI.Dtos
 
         public long EndDate { get; set; }
 
-        public long StartTime { get; set; }
+        public long StartHour { get; set; }
 
-        public long EndTime { get; set; }
+        public long EndHour { get; set; }
     }
 }

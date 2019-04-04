@@ -15,6 +15,8 @@ namespace FavourAPI.Models
 
         public DateTime Time { get; set; }
 
+        public string Message { get; set; }
+
         public virtual JobOffer JobOffer { get; set; }
 
         public virtual Consumer Consumer { get; set; }
