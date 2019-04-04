@@ -45,6 +45,20 @@ namespace FavourAPI
                 Value = nameof(JobOfferState.Ongoing)
             });
 
+
+            modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
+            {
+                Value = nameof(ApplicationState.Pending)
+            });
+            modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
+            {
+                Value = nameof(ApplicationState.Accepted)
+            });
+            modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
+            {
+                Value = nameof(ApplicationState.Rejected)
+            });
+
             //modelBuilder.Entity<Skill>().HasData(new CompanyProvider()
             //{
             //    Id = "8bfc8f4b-050b-41af-a7a2-b15eeb6e0f2e",

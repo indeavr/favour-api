@@ -58,6 +58,10 @@ namespace FavourAPI.Services
             var jobOffer = this.dbContext.JobOffers.SingleOrDefault(job => job.Id == jobOfferId);
 
             application.Consumer = consumer;
+            application.State = new ApplicationStateDb()
+            {
+                Value = nameof(ApplicationState.Pending)
+            };
 
             jobOffer.Applications.Add(application);
 
