@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using FavourAPI.Dtos;
+using FavourAPI.Models;
 
 namespace FavourAPI.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ConsumerController : ControllerBase
@@ -26,6 +27,22 @@ namespace FavourAPI.Controllers
         public ActionResult<ConsumerDto> GetConsumer([FromQuery] string userId)
         {
             // var consumer = this.consumerService.GetById(userId);
+            //this.consumerService.AddOrUpdateConsumer("user123", new ConsumerDto()
+            //{
+            //    FirstName = "gosho",
+            //    LastName = "peshov",
+            //    Location = "sofia",
+            //    Sex = new Models.SexDb() { Value = nameof(Sex.Male) },
+            //    PhoneNumber ="1234",
+            //    Skills =  new List<Skill>()
+            //    {
+            //        new Skill()
+            //        {
+            //            Id="skill1",
+            //            Name = "Qm",
+            //        }
+            //    }
+            //});
             return Ok(new
             {
                 //consumer = consumer

@@ -18,7 +18,7 @@ using FavourAPI.Models;
 
 namespace FavourAPI
 {
-    [Authorize]     
+    // [Authorize]     
     [ApiController]
     [Route("[controller]")]
     public class UsersController : Controller
@@ -38,7 +38,7 @@ namespace FavourAPI
         public ActionResult<IEnumerable<string>> Get()
         {
             var headers = Request.Headers;
-
+            this.userService.Create(new UserDto() { Id = "user123", Email = "abv@abv", Password = "abv" }, "abv");
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };

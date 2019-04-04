@@ -20,7 +20,7 @@ namespace FavourAPI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("seed")]
         public ActionResult SeedOffer()
         {
             var periods = new List<PeriodDto>()
@@ -59,12 +59,12 @@ namespace FavourAPI.Controllers
                 RequiredSkills = requiredSkills
             };
 
-            this.offerService.AddJobOffer("123user", jobOffer);
+            this.offerService.AddJobOffer("user123", jobOffer);
             return Ok();
         }
 
         [AllowAnonymous]
-        [HttpGet("/application")]
+        [HttpGet("application")]
         public ActionResult SeedApplication()
         {
             var jobOfferId = "jobOffer123";

@@ -26,6 +26,37 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery]string userId)
         {
+            this.companyProviderService.AddCompanyProvider("user123", new CompanyProviderDto()
+            {
+                Id = "user123",
+                Description = "neshto si",
+                FoundedYear = new DateTime().Ticks,
+                Name = "Macuranka",
+                NumberOfEmployees = 100,
+                Offices = new OfficeDto[]
+                {
+                    new OfficeDto(){
+                        Id="office1",
+                        Name="MyOffice",
+                        Location="Sofia",
+                        Industries = new IndustryDto[]
+                        {
+                            new IndustryDto()
+                            {
+                                Name = "BaiGoshoIndustriqta"
+                            }
+                        }
+                    }
+                    
+                },
+                Industries =  new IndustryDto[]
+                {
+                    new IndustryDto()
+                    {
+                        Name="PetHeaven"
+                    }
+                }
+            });
             return Ok(this.companyProviderService.GetProvider(userId));
         }
 

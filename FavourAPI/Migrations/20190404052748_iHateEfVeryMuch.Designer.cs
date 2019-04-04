@@ -4,14 +4,16 @@ using FavourAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190404052748_iHateEfVeryMuch")]
+    partial class iHateEfVeryMuch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,8 +29,6 @@ namespace FavourAPI.Migrations
                     b.Property<string>("ConsumerId");
 
                     b.Property<string>("JobOfferId");
-
-                    b.Property<string>("Message");
 
                     b.Property<string>("StateValue");
 

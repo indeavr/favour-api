@@ -41,8 +41,10 @@ namespace FavourAPI.Helpers
             CreateMap<Position, PositionDto>();
             CreateMap<PositionDto, Position>();
 
-            CreateMap<Consumer, ConsumerDto>();
-            CreateMap<ConsumerDto, Consumer>();
+            CreateMap<Consumer, ConsumerDto>()
+                .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number));
+            CreateMap<ConsumerDto, Consumer>().
+                ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }));
 
             CreateMap<JobOffer, JobOfferDto>();
             CreateMap<JobOfferDto, JobOffer>();
@@ -50,18 +52,20 @@ namespace FavourAPI.Helpers
             CreateMap<PermissionMy, PermissionsMyDto>();
             CreateMap<PermissionsMyDto, PermissionMy>();
 
-
             CreateMap<PeriodDto, Period>()
                 .ForMember(dto => dto.EndDate, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.EndDate)))
-                .ForMember(dto => dto.EndHour, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.EndTime)))
+                .ForMember(dto => dto.EndHour, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.EndHour)))
                 .ForMember(dto => dto.StartDate, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.StartDate)))
-                .ForMember(dto => dto.StartHour, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.StartTime)));
+                .ForMember(dto => dto.StartHour, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.StartHour)));
 
             CreateMap<Period, PeriodDto>()
                 .ForMember(dto => dto.EndDate, opt => opt.MapFrom(pdb => pdb.EndDate.Millisecond))
-                .ForMember(dto => dto.EndTime, opt => opt.MapFrom(pdb => pdb.EndHour.Millisecond))
+                .ForMember(dto => dto.EndHour, opt => opt.MapFrom(pdb => pdb.EndHour.Millisecond))
                 .ForMember(dto => dto.StartDate, opt => opt.MapFrom(pdb => pdb.StartDate.Millisecond))
-                .ForMember(dto => dto.StartTime, opt => opt.MapFrom(pdb => pdb.StartHour.Millisecond));
+                .ForMember(dto => dto.StartHour, opt => opt.MapFrom(pdb => pdb.StartHour.Millisecond));
+
+            CreateMap<ApplicationDto, Application>();
+            CreateMap<Application, ApplicationDto>();
 
         }
     }

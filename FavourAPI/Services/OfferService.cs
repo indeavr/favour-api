@@ -52,7 +52,7 @@ namespace FavourAPI.Services
 
         public void AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
         {
-            var application = Mapper.Map<Application>(applicationDto);
+            var application = mapper.Map<Application>(applicationDto);
 
             var consumer = this.dbContext.Consumers.SingleOrDefault(c => c.Id == consumerId);
             var jobOffer = this.dbContext.JobOffers.SingleOrDefault(job => job.Id == jobOfferId);

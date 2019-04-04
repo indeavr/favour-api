@@ -27,6 +27,12 @@ namespace FavourAPI.Services
             var dbConsumer = mapper.Map<Consumer>(consumerData);
             dbConsumer.Id = userId;
 
+            var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
+            if (phoneNumberDb != null)
+            {
+                dbConsumer.PhoneNumber = phoneNumberDb;
+            }
+
             var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == userId);
             currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
