@@ -35,6 +35,18 @@ namespace FavourAPI.Controllers
                 }
             };
 
+            var requiredSkills = new List<SkillDto>()
+            {
+                new SkillDto()
+                {
+                    Name = "Da pliushti",
+                },
+                 new SkillDto()
+                {
+                    Name = "Da pulni",
+                }
+            };
+
             var jobOffer = new JobOfferDto()
             {
                 Id = "jobOffer123",
@@ -44,7 +56,7 @@ namespace FavourAPI.Controllers
                 Title = "Anakondioto",
                 TimePosted = 20123100000,
                 Periods = periods,
-
+                RequiredSkills = requiredSkills
             };
 
             this.offerService.AddJobOffer("123user", jobOffer);
