@@ -19,5 +19,7 @@ namespace FavourAPI.Models.enums
     {
         [Key]
         public string Value { get; set; }
+
+        public virtual ICollection<JobOffer> JobOffers { get; set; }
     }
 }

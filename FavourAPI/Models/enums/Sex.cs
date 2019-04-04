@@ -19,5 +19,11 @@ namespace FavourAPI.Models
     {
         [Key]
         public string Value { get; set; }
+
+        public virtual ICollection<Consumer> Consumers { get; set; }
+
+        //public virtual ICollection<CompanyProvider> Providers { get; set; }
+
+        //public virtual ICollection<Consumer> Consumer { get; set; }
     }
 }

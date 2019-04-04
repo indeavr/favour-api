@@ -36,18 +36,26 @@ namespace FavourAPI
 
             var user = new User()
             {
-                Id="43",
+                Id = "consumer",
                 Email = "gosho",
                 Password = "dasds"
             };
 
             var sex = new SexDb()
             {
-                Value = Sex.Slave.ToString()
+                Value = Sex.Slave.ToString(),
+                Consumers = new List<Consumer>()
+                {
+                    new Consumer()
+                    {
+                        Id = "consumer"
+                    }
+                }
             };
 
             var pn = new PhoneNumber()
             {
+                Id = "phone",
                 Label = "Tilifon",
                 Number = "1219412"
             };
@@ -56,87 +64,102 @@ namespace FavourAPI
 
             skills.Add(new Skill()
             {
+                Id = "skill",
                 Name = "Gucha",
             });
 
             var offerState = new JobOfferStateDb()
             {
-                Value = JobOfferState.Available.ToString()
+                Value = JobOfferState.Available.ToString(),
+                JobOffers = new List<JobOffer>()
+                {
+                    new JobOffer()
+                    {
+                        Id = "jobOffer"
+                    }
+                }
+            };
+
+            var jobOffer = new JobOffer()
+            {
+                Id = "jobOffer",
+                Description = "adsadass",
+                Location = "Sofia",
+                Money = 3000,
+                Title = "Anakondioto",
+                TimePosted = new DateTime(),
+                
             };
 
             var periods = new List<Period>()
             {
                 new Period()
                 {
+                    Id= "period",
                     StartDate =new DateTime(),
                     EndDate=new DateTime(),
                     StartHour =new DateTime(),
                     EndHour =new DateTime(),
+                    JobOffer =  jobOffer
                 }
+            };
+
+            var consumer = new Consumer()
+            {
+                Id = "consumer",
+                FirstName = "Dao",
+                LastName = "KOt",
+                Location = "Sofia",
+                // Offers = offers,
             };
 
             var applicationState = new ApplicationStateDb()
             {
                 Value = ApplicationState.Pending.ToString(),
-            };
-            var applicationState2 = new ApplicationStateDb()
-            {
-                Value = ApplicationState.Accepted.ToString(),
-            };
-            var applicationState3 = new ApplicationStateDb()
-            {
-                Value = ApplicationState.Rejected.ToString(),
+                Applications = new List<Application>()
+                {
+                    new Application()
+                    {
+                        Id = "application",
+                    }
+                }
             };
 
-            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState);
-            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState2);
-            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState3);
+            var applic = new Application()
+            {
+                Id = "application",
+                Time = new DateTime(),
+            };
 
             var applications = new List<Application>()
             {
-                new Application()
-                {
-                    Time = new DateTime(),
-                    State = applicationState,
-                }
+               applic
             };
+
+
             var offers = new List<JobOffer>()
             {
-                new JobOffer()
-                {
-                    Description = "adsadass",
-                    Location = "Sofia",
-                    Money = 3000,
-                    State = offerState,
-                    Title = "Anakondioto",
-                    TimePosted = new DateTime(),
-                    Periods = periods,
-                    RequiredSkills = skills,
-                    Applications = applications,
-                }
+                jobOffer
             };
+
 
             modelBuilder.Entity<SexDb>().HasData(sex);
             modelBuilder.Entity<PhoneNumber>().HasData(pn);
             modelBuilder.Entity<Skill>().HasData(skills);
-            modelBuilder.Entity<Application>().HasData(applications);
+
+            modelBuilder.Entity<Consumer>().HasData(consumer);
+
+
             modelBuilder.Entity<JobOfferStateDb>().HasData(offerState);
-            modelBuilder.Entity<Period>().HasData(periods);
+
+            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState);
+            modelBuilder.Entity<Application>().HasData(applications);
+
             modelBuilder.Entity<JobOffer>().HasData(offers);
+            modelBuilder.Entity<Period>().HasData(periods);
 
 
-            modelBuilder.Entity<Consumer>().HasData(new Consumer()
-            {
-                Id = "43",
-                FirstName = "Dao",
-                LastName = "KOt",
-                Sex = sex,
-                Location = "Sofia",
-                PhoneNumber = pn,
-                Skills = skills,
-                // Offers = offers,
-                Applications = applications
-            });
+
 
             //modelBuilder.Entity<CompanyProvider>().HasData(new CompanyProvider()
             //{

@@ -16,5 +16,7 @@ namespace FavourAPI.Models
         public DateTime StartHour { get; set; }
 
         public DateTime EndHour { get; set; }
+
+        public virtual JobOffer JobOffer { get; set; }
     }
 }
