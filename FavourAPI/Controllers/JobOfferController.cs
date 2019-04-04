@@ -37,7 +37,7 @@ namespace FavourAPI.Controllers
             var jobList = offerService.GetAllOffers();
             // Sort first
 
-            var chunk = jobList.Skip(int.Parse(currentPosition)).Take(int.Parse(chunkSize)).ToList);
+            var chunk = jobList.Skip(int.Parse(currentPosition)).Take(int.Parse(chunkSize)).ToList();
 
             return Ok(chunk);
         }

@@ -16,12 +16,127 @@ namespace FavourAPI
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
 
             modelBuilder.Entity<IndustryPosition>().HasKey(ip => new { ip.IndustryId, ip.PositionId });
             modelBuilder.Entity<PositionSkills>().HasKey(ps => new { ps.SkillId, ps.PositionId });
             modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
+            modelBuilder.Entity<ConsumerJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
+
+            //modelBuilder.Entity<Skill>().HasData(new CompanyProvider()
+            //{
+            //    Id = "8bfc8f4b-050b-41af-a7a2-b15eeb6e0f2e",
+            //    Name = "Dao",
+            //    Description = "KOt",
+            //    FoundedYear = new DateTime(),
+            //    NumberOfEmployees = 100,
+            //    //Industries = 
+
+            //});
+
+            var user = new User()
+            {
+                Id="43",
+                Email = "gosho",
+                Password = "dasds"
+            };
+
+            var sex = new SexDb()
+            {
+                Value = Sex.Slave.ToString()
+            };
+
+            var pn = new PhoneNumber()
+            {
+                Label = "Tilifon",
+                Number = "1219412"
+            };
+
+            var skills = new List<Skill>();
+
+            skills.Add(new Skill()
+            {
+                Name = "Gucha",
+            });
+
+            var offerState = new JobOfferStateDb()
+            {
+                Value = JobOfferState.Available.ToString()
+            };
+
+            var periods = new List<Period>()
+            {
+                new Period()
+                {
+                    StartDate =new DateTime(),
+                    EndDate=new DateTime(),
+                    StartHour =new DateTime(),
+                    EndHour =new DateTime(),
+                }
+            };
+
+            var applicationState = new ApplicationStateDb()
+            {
+                Value = ApplicationState.Pending.ToString(),
+            };
+            var applicationState2 = new ApplicationStateDb()
+            {
+                Value = ApplicationState.Accepted.ToString(),
+            };
+            var applicationState3 = new ApplicationStateDb()
+            {
+                Value = ApplicationState.Rejected.ToString(),
+            };
+
+            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState);
+            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState2);
+            modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState3);
+
+            var applications = new List<Application>()
+            {
+                new Application()
+                {
+                    Time = new DateTime(),
+                    State = applicationState,
+                }
+            };
+            var offers = new List<JobOffer>()
+            {
+                new JobOffer()
+                {
+                    Description = "adsadass",
+                    Location = "Sofia",
+                    Money = 3000,
+                    State = offerState,
+                    Title = "Anakondioto",
+                    TimePosted = new DateTime(),
+                    Periods = periods,
+                    RequiredSkills = skills,
+                    Applications = applications,
+                }
+            };
+
+            modelBuilder.Entity<SexDb>().HasData(sex);
+            modelBuilder.Entity<PhoneNumber>().HasData(pn);
+            modelBuilder.Entity<Skill>().HasData(skills);
+            modelBuilder.Entity<Application>().HasData(applications);
+            modelBuilder.Entity<JobOfferStateDb>().HasData(offerState);
+            modelBuilder.Entity<Period>().HasData(periods);
+            modelBuilder.Entity<JobOffer>().HasData(offers);
+
+
+            modelBuilder.Entity<Consumer>().HasData(new Consumer()
+            {
+                Id = "43",
+                FirstName = "Dao",
+                LastName = "KOt",
+                Sex = sex,
+                Location = "Sofia",
+                PhoneNumber = pn,
+                Skills = skills,
+                // Offers = offers,
+                Applications = applications
+            });
 
             //modelBuilder.Entity<CompanyProvider>().HasData(new CompanyProvider()
             //{
@@ -40,7 +155,7 @@ namespace FavourAPI
             //        Money = count,
             //        TimePosted = new DateTime(),
             //        Location = "Sofia",
-                    
+
             //    });
             //}
 
