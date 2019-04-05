@@ -37,6 +37,7 @@ namespace FavourAPI.Models
         
         public virtual CompletionResult Result { get;set; }
 
-        public virtual ICollection<ConsumerJobOffer> Consumers { get; set; }
+        public virtual ICollection<ConsumerJobOffer> ConsumerJobOffers { get; set; }
     }
 }
+        

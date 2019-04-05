@@ -14,5 +14,7 @@ namespace FavourAPI
         Consumer GetById(string userId);
 
         bool CheckForLoginProceedPermission(Consumer consumer);
+
+        void SaveJobOffer(string userId, string jobOfferId);
     }
 }

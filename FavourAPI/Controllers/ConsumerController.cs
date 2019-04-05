@@ -59,5 +59,12 @@ namespace FavourAPI.Controllers
                 HasSufficientInfo = canProceed
             });
         }
+        [HttpPost("save")]
+        public ActionResult SaveJobOffer([FromQuery]string userId, [FromQuery]string jobOfferId)
+        {
+            this.consumerService.SaveJobOffer(userId, jobOfferId);
+
+            return Ok();
+        }
     }
 }

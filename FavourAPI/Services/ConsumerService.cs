@@ -56,6 +56,17 @@ namespace FavourAPI.Services
         {
             return consumer.FirstName != null && consumer.LastName != null && consumer.PhoneNumber != null;
         }
-      
+
+        public void SaveJobOffer(string userId, string jobOfferId)
+        {
+            this.dbContext.ConsumerJobOffers.Add(new ConsumerJobOffer()
+            {
+                JobOfferId = jobOfferId,
+                ConsumerId = userId
+            });
+
+            this.dbContext.SaveChanges();
+        }
+
     }
 }

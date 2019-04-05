@@ -267,6 +267,7 @@ namespace FavourAPI
 
         public DbSet<OfficeIndustry> OfficeIndustries { get; set; }
 
+        public DbSet<ConsumerJobOffer> ConsumerJobOffers { get; set; }
     }
 
 

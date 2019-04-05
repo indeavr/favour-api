@@ -23,8 +23,6 @@ namespace FavourAPI.Models
 
         public virtual ICollection<Skill> Skills { get; set; }
 
-        public virtual ICollection<ConsumerJobOffer> JobOffers { get; set; }
-
         public virtual ICollection<Application> Applications { get; set; }
 
         public virtual User User { get; set; }
@@ -32,6 +30,8 @@ namespace FavourAPI.Models
         public byte[] CV { get; set; }
 
         public virtual ICollection<CompletionResult> CompletedJobs { get; set; }
+
+        public virtual ICollection<ConsumerJobOffer> ConsumerJobOffers { get; set; }
 
         //public ICollection<byte[]> Photos { get; set; }
     }
