@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,5 +21,8 @@ namespace FavourAPI.Models
         public virtual IList<OfficeIndustry> OfficeIndustries { get; set; }
 
         public virtual CompanyProvider CompanyProvider { get; set; }
+
+        [NotMapped]
+        public ICollection<Industry> Industries { get; set; }
     }
 }

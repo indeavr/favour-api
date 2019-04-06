@@ -12,10 +12,12 @@ namespace FavourAPI.Services
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly IOfficeService officeService;
 
-        public CompanyProviderService(WorkFavourDbContext dbContext, IMapper mapper)
+        public CompanyProviderService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService)
         {
             this.mapper = mapper;
+            this.officeService = officeService;
             this.dbContext = dbContext;
         }
 
@@ -27,14 +29,27 @@ namespace FavourAPI.Services
             this.dbContext.CompanyProviders.Add(dbModel);
             this.dbContext.SaveChanges();
 
+
+            foreach (var office in dbModel.Offices)
+            {
+                this.officeService.AddIndustriesForOffice(office);
+            }
+
             return mapper.Map<CompanyProviderDto>(dbModel);
         }
 
         public CompanyProviderDto GetProvider(string userId)
         {
             var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userId);
-
-            return this.mapper.Map<CompanyProviderDto>(provider);
+            var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
+            providerDto.Offices = providerDto.Offices.Select(o =>
+             {
+                 o.Industries = this.dbContext.OfficeIndustries
+                 .Where(oi => oi.OfficeId == o.Id)
+                 .Select(oi => mapper.Map<IndustryDto>(oi.Industry)).ToArray();
+                 return o;
+             }).ToArray();
+            return providerDto;
         }
     }
 }

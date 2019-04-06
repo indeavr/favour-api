@@ -17,10 +17,16 @@ namespace FavourAPI.Controllers
     {
         private readonly ICompanyProviderService companyProviderService;
         private readonly IUserService userService;
-        public CompanyProviderController([FromServices] ICompanyProviderService cps, [FromServices] IUserService userService)
+        private readonly IOfficeService officeService;
+
+        public CompanyProviderController(
+            [FromServices] ICompanyProviderService cps,
+            [FromServices] IUserService userService,
+            [FromServices] IOfficeService officeService)
         {
             this.companyProviderService = cps;
             this.userService = userService;
+            this.officeService = officeService;
         }
 
         [HttpGet]
@@ -47,9 +53,9 @@ namespace FavourAPI.Controllers
                             }
                         }
                     }
-                    
+
                 },
-                Industries =  new IndustryDto[]
+                Industries = new IndustryDto[]
                 {
                     new IndustryDto()
                     {
@@ -65,6 +71,23 @@ namespace FavourAPI.Controllers
         {
             this.companyProviderService.AddCompanyProvider(userId, companyProvider);
             this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
+            var companyProviderResult = this.companyProviderService.GetProvider(userId);
+
+            return Ok(companyProviderResult);
+        }
+
+        [HttpGet("office")]
+        public ActionResult<OfficeDto> GetOffices([FromQuery]string userId)
+        {
+            var offices = this.officeService.GetOffices();
+            return Ok(offices);
+        }
+
+        [HttpPut("office")]
+        public ActionResult AddOffice([FromQuery] string userId, [FromBody] OfficeDto office)
+        {
+            this.officeService.AddOffice(userId, office);
+
             return Ok();
         }
     }

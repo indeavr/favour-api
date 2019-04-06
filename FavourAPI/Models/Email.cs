@@ -9,6 +9,6 @@ namespace FavourAPI.Models
     {
         public string Id { get; set; }
         public string Label { get; set; }
-        public string EmailAdress { get; set; }
+        public string EmailAddress { get; set; }
     }
 }

@@ -84,11 +84,12 @@ namespace FavourAPI
             services.AddScoped<IPersonProviderService, PersonProviderService>();
             services.AddScoped<IConsumerService, ConsumerService>();
             services.AddScoped<IOfferService, OfferService>();
+            services.AddScoped<IOfficeService, OfficeService>();
 
 
             var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
             services.AddDbContext<WorkFavourDbContext>
-            (options => 
+            (options =>
             options.UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
             );
         }
