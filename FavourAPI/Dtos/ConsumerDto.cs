@@ -16,7 +16,7 @@ namespace FavourAPI.Dtos
 
         public string Location { get; set; }
 
-        public SexDb Sex { get; set; }
+        public string Sex { get; set; }
 
         public List<Skill> Skills { get; set; }
 
