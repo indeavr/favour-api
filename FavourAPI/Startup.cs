@@ -44,38 +44,43 @@ namespace FavourAPI
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            services.AddAuthentication(x =>
+
+            string domain = $"https://{Configuration["Auth0:Domain"]}";
+
+            //var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services.AddAuthentication(opt =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer(options =>
             {
-                x.Events = new JwtBearerEvents
-                {
-                    OnTokenValidated = context =>
-                    {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                        var userId = context.Principal.Identity.Name;
-                        var user = userService.GetById(userId);
-                        if (user == null)
-                        {
-                            // return unauthorized if user no longer exists
-                            context.Fail("Unauthorized");
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
+                options.Authority = domain;
+                //options.Events = new JwtBearerEvents
+                //{
+                //    OnTokenValidated = context =>
+                //    {
+                //        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                //        var userId = context.Principal.Identity.Name;
+                //        var user = userService.GetById(userId);
+                //        if (user == null)
+                //        {
+                //            // return unauthorized if user no longer exists
+                //            context.Fail("Unauthorized");
+                //        }
+                //        return Task.CompletedTask;
+                //    }
+                //};
+                //x.RequireHttpsMetadata = false;
+                //x.SaveToken = true;
+                //x.TokenValidationParameters = new TokenValidationParameters
+                //{
+                //    ValidateIssuerSigningKey = true,
+                //    IssuerSigningKey = new SymmetricSecurityKey(key),
+                //    ValidateIssuer = false,
+                //    ValidateAudience = false
+                //};
             });
 
             // configure DI for application services
