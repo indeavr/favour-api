@@ -52,6 +52,8 @@ namespace FavourAPI
             })
             .AddJwtBearer(x =>
             {
+                //x.Authority = "https://workfavour.eu.auth0.com/";
+                //x.Audience = "https://localhost:44334";
                 x.Events = new JwtBearerEvents
                 {
                     OnTokenValidated = context =>
