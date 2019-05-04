@@ -81,6 +81,7 @@ namespace FavourAPI
                 //    ValidateIssuer = false,
                 //    ValidateAudience = false
                 //};
+
             });
 
             // configure DI for application services

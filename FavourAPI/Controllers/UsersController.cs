@@ -18,7 +18,7 @@ using FavourAPI.Models;
 
 namespace FavourAPI
 {
-    // [Authorize]     
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UsersController : Controller
@@ -97,7 +97,8 @@ namespace FavourAPI
                 Id = user.Id,
                 Email = user.Email,
                 Token = tokenString,
-                Permissions = user.PermissionMy
+                Permissions = user.PermissionMy,
+                ExpiresAt = DateTime.Now + TimeSpan.FromTicks(TimeSpan.TicksPerHour)
             });
         }
 
@@ -116,6 +117,30 @@ namespace FavourAPI
                 // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [HttpGet("refresh")]
+        public IActionResult Refresh([FromQuery] string oldToken, [FromQuery] string userId)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, userId)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            return Ok(new
+            {
+                Token = tokenString,
+                ExpiresAt = DateTime.Now + TimeSpan.FromTicks(TimeSpan.TicksPerHour)
+            });
         }
 
         //[HttpGet]
