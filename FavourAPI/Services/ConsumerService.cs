@@ -42,9 +42,10 @@ namespace FavourAPI.Services
             return CheckForLoginProceedPermission(dbConsumer);
         }
 
-        public Consumer GetById(string userId)  
+        public ConsumerDto GetById(string userId)
         {
-            return GetConsumer(userId);
+            var dto = this.mapper.Map<ConsumerDto>(GetConsumer(userId));
+            return dto;
         }
 
         private Consumer GetConsumer(string userId)

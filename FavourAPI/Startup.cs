@@ -47,40 +47,39 @@ namespace FavourAPI
 
             string domain = $"https://{Configuration["Auth0:Domain"]}";
 
-            //var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(options =>
+            .AddJwtBearer(x =>
             {
-                options.Authority = domain;
-                //options.Events = new JwtBearerEvents
-                //{
-                //    OnTokenValidated = context =>
-                //    {
-                //        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                //        var userId = context.Principal.Identity.Name;
-                //        var user = userService.GetById(userId);
-                //        if (user == null)
-                //        {
-                //            // return unauthorized if user no longer exists
-                //            context.Fail("Unauthorized");
-                //        }
-                //        return Task.CompletedTask;
-                //    }
-                //};
-                //x.RequireHttpsMetadata = false;
-                //x.SaveToken = true;
-                //x.TokenValidationParameters = new TokenValidationParameters
-                //{
-                //    ValidateIssuerSigningKey = true,
-                //    IssuerSigningKey = new SymmetricSecurityKey(key),
-                //    ValidateIssuer = false,
-                //    ValidateAudience = false
-                //};
+                x.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var userId = context.Principal.Identity.Name;
+                        var user = userService.GetById(userId);
+                        if (user == null)
+                        {
+                            // return unauthorized if user no longer exists
+                            context.Fail("Unauthorized");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
 
             });
 

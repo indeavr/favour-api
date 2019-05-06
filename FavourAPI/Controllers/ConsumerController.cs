@@ -11,7 +11,7 @@ using FavourAPI.Models;
 
 namespace FavourAPI.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ConsumerController : ControllerBase
@@ -26,15 +26,15 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public ActionResult<ConsumerDto> GetConsumer([FromQuery] string userId)
         {
-            // var consumer = this.consumerService.GetById(userId);
+            var consumer = this.consumerService.GetById(userId);
             //this.consumerService.AddOrUpdateConsumer("user123", new ConsumerDto()
             //{
             //    FirstName = "gosho",
             //    LastName = "peshov",
             //    Location = "sofia",
             //    Sex = new Models.SexDb() { Value = nameof(Sex.Male) },
-            //    PhoneNumber ="1234",
-            //    Skills =  new List<Skill>()
+            //    PhoneNumber = "1234",
+            //    Skills = new List<Skill>()
             //    {
             //        new Skill()
             //        {
@@ -43,10 +43,7 @@ namespace FavourAPI.Controllers
             //        }
             //    }
             //});
-            return Ok(new
-            {
-                //consumer = consumer
-            });
+            return Ok(consumer);
         }
 
         [HttpPost]
