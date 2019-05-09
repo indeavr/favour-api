@@ -42,9 +42,18 @@ namespace FavourAPI.Helpers
             CreateMap<PositionDto, Position>();
 
             CreateMap<Consumer, ConsumerDto>()
-                .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number));
-            CreateMap<ConsumerDto, Consumer>().
-                ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }));
+                .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number))
+                .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value));
+
+            Func<ConsumerDto, Consumer, object> transform = (cdto, _) =>
+              {
+                  Enum.Parse<Sex>(cdto.Sex);
+                  return new SexDb() { Value = cdto.Sex };
+              };
+
+            CreateMap<ConsumerDto, Consumer>()
+                .ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }))
+                .ForMember(c => c.Sex, opt => opt.MapFrom(transform));
 
             CreateMap<JobOffer, JobOfferDto>();
             CreateMap<JobOfferDto, JobOffer>();

@@ -25,6 +25,8 @@ namespace FavourAPI.Services
             var currentUserInfo = GetConsumer(userId);
 
             var dbConsumer = mapper.Map<Consumer>(consumerData);
+            var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
+            dbConsumer.Sex = correctSexDb;
             dbConsumer.Id = userId;
 
             var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
@@ -42,9 +44,10 @@ namespace FavourAPI.Services
             return CheckForLoginProceedPermission(dbConsumer);
         }
 
-        public Consumer GetById(string userId)  
+        public ConsumerDto GetById(string userId)
         {
-            return GetConsumer(userId);
+            var dto = this.mapper.Map<ConsumerDto>(GetConsumer(userId));
+            return dto;
         }
 
         private Consumer GetConsumer(string userId)

@@ -11,7 +11,7 @@ namespace FavourAPI
     {
         bool AddOrUpdateConsumer(string userId, ConsumerDto consumerData);
 
-        Consumer GetById(string userId);
+        ConsumerDto GetById(string userId);
 
         bool CheckForLoginProceedPermission(Consumer consumer);
 
