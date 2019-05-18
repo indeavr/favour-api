@@ -94,7 +94,7 @@ namespace FavourAPI
             // return basic user info (without password) and token to store client side
             return Ok(new
             {
-                Id = user.Id,
+                UserId = user.Id,
                 Email = user.Email,
                 Token = tokenString,
                 Permissions = user.PermissionMy,
