@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using FavourAPI.ApiModels;
-using FavourAPI.Helpers;
-using FavourAPI.Models;
+using FavourAPI.Data;
+using FavourAPI.Data.Models;
+using FavourAPI.Services.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -20,13 +19,11 @@ namespace FavourAPI.Services
     {
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
 
-        private readonly AppSettings _appSettings;
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
 
-        public UserService(IOptions<AppSettings> appSettings, [FromServices] WorkFavourDbContext workFavourDbContext, IMapper mapper)
+        public UserService([FromServices] WorkFavourDbContext workFavourDbContext, IMapper mapper)
         {
-            _appSettings = appSettings.Value;
             this.dbContext = workFavourDbContext;
             this.mapper = mapper;
 

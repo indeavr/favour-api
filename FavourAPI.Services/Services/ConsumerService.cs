@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
 using AutoMapper;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
+using FavourAPI.Data;
 
 namespace FavourAPI.Services
 {

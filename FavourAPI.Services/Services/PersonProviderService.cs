@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using FavourAPI.Data;
 using FavourAPI.Dtos;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
 
 namespace FavourAPI.Services
 {

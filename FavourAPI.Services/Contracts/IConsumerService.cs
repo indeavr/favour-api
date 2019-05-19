@@ -1,11 +1,11 @@
 ﻿using FavourAPI.Dtos;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FavourAPI
+namespace FavourAPI.Services
 {
     public interface IConsumerService
     {

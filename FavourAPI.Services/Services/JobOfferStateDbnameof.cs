@@ -1,4 +1,4 @@
-﻿using FavourAPI.Models.enums;
+﻿using FavourAPI.Data.Models.Enums;
 
 namespace FavourAPI.Services
 {
