@@ -12,11 +12,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
+using FavourAPI.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FavourAPI
+namespace FavourAPI.Controllers
 {
     [Authorize]
     [ApiController]

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using FavourAPI.Services;
 
 namespace FavourAPI.Controllers
 {

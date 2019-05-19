@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using FavourAPI.Dtos;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
+using FavourAPI.Services;
 
 namespace FavourAPI.Controllers
 {

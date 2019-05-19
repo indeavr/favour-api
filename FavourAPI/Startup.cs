@@ -20,6 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 using AutoMapper;
 using System.IO;
 using Microsoft.AspNetCore.Http.Internal;
+using FavourAPI.Data;
 
 namespace FavourAPI
 {

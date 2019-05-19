@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using FavourAPI.ApiModels;
 using FavourAPI.Dtos;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FavourAPI.Data.Models.Enums;
 
 namespace FavourAPI.Helpers
 {
