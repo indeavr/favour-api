@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FavourAPI.Data;
 using FavourAPI.Dtos;
@@ -20,7 +18,7 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddPersonProvider(string userId, PersonProviderDto personProvider)
+        public void AddPersonProvider(Guid userId, PersonProviderDto personProvider)
         {
             var provider = this.mapper.Map<PersonProvider>(personProvider);
             provider.Id = userId;
@@ -29,7 +27,7 @@ namespace FavourAPI.Services
             this.dbContext.SaveChanges();
         }
 
-        public PersonProviderDto GetPersonProvider(string userId)
+        public PersonProviderDto GetPersonProvider(Guid userId)
         {
             var provider = this.dbContext.PersonProvider.SingleOrDefault(pp => pp.Id == userId);
 

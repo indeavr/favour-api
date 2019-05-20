@@ -1,15 +1,12 @@
 ﻿using FavourAPI.Dtos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
     public interface IPersonProviderService
     {
-        PersonProviderDto GetPersonProvider(string userId);
+        PersonProviderDto GetPersonProvider(Guid userId);
 
-        void AddPersonProvider(string userId, PersonProviderDto personProvider);
+        void AddPersonProvider(Guid userId, PersonProviderDto personProvider);
     }
 }

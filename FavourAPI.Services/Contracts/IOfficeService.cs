@@ -2,8 +2,6 @@
 using FavourAPI.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -13,7 +11,7 @@ namespace FavourAPI.Services
 
         void AddOffice(CompanyProvider provider, OfficeDto office);
 
-        void AddOffice(string providerId, OfficeDto office);
+        void AddOffice(Guid providerId, OfficeDto office);
 
         void AddIndustriesForOffice(Office dbModel);
     }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FavourAPI.Data;
 using FavourAPI.Dtos;
@@ -22,7 +20,7 @@ namespace FavourAPI.Services
             this.dbContext = dbContext;
         }
 
-        public CompanyProviderDto AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
+        public CompanyProviderDto AddCompanyProvider(Guid userId, CompanyProviderDto companyProvider)
         {
             var dbModel = mapper.Map<CompanyProvider>(companyProvider);
             dbModel.Id = userId;
@@ -39,7 +37,7 @@ namespace FavourAPI.Services
             return mapper.Map<CompanyProviderDto>(dbModel);
         }
 
-        public CompanyProviderDto GetProvider(string userId)
+        public CompanyProviderDto GetProvider(Guid userId)
         {
             var provider = this.dbContext.CompanyProvider.SingleOrDefault(cp => cp.Id == userId);
             var providerDto = this.mapper.Map<CompanyProviderDto>(provider);

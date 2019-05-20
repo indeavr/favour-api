@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
@@ -21,10 +20,10 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddOffice(string providerId, OfficeDto office)
+        public void AddOffice(Guid providerId, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
-            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry= this.dbContext.Industry.First(), Office = officeEntity });
+            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industry.First(), Office = officeEntity });
             officeEntity.OfficeIndustries = officeIndustries.ToArray();
 
             // this.dbContext.OfficeIndustries.AddRange(officeIndustries);
@@ -37,7 +36,7 @@ namespace FavourAPI.Services
         public void AddOffice(CompanyProvider provider, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
-            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = i.Name, Office = officeEntity });
+            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = i.Id, Office = officeEntity });
 
             this.dbContext.OfficeIndustry.AddRange(officeIndustries);
 
@@ -68,7 +67,7 @@ namespace FavourAPI.Services
             return this.dbContext.Office.Select(selector).ToArray();
         }
 
-        private IEnumerable<IndustryDto> GetIndustriesForOffice(string officeId)
+        private IEnumerable<IndustryDto> GetIndustriesForOffice(Guid officeId)
         {
             return this.dbContext.OfficeIndustry
                 .Where(oi => oi.OfficeId == officeId)

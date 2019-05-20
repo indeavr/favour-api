@@ -4,14 +4,9 @@ using FavourAPI.Data;
 using FavourAPI.Data.Models;
 using FavourAPI.Services.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -61,7 +56,7 @@ namespace FavourAPI.Services
             return this.dbContext.User;
         }
 
-        public UserDto GetById(string id)
+        public UserDto GetById(Guid id)
         {
             return mapper.Map<UserDto>(this.dbContext.User.Find(id));
         }
@@ -124,7 +119,7 @@ namespace FavourAPI.Services
             this.dbContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             var user = this.dbContext.User.Find(id);
             if (user != null)
@@ -134,7 +129,7 @@ namespace FavourAPI.Services
             }
         }
 
-        public void UpdatePermissions(string userId, Action<PermissionMy> updater)
+        public void UpdatePermissions(Guid userId, Action<PermissionMy> updater)
         {
             var permission = this.dbContext.PermissionMy.Single(p => p.Id == userId);
 

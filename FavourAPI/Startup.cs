@@ -62,7 +62,7 @@ namespace FavourAPI
                     OnTokenValidated = context =>
                     {
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                        var userId = context.Principal.Identity.Name;
+                        var userId = new Guid(context.Principal.Identity.Name);
                         var user = userService.GetById(userId);
                         if (user == null)
                         {

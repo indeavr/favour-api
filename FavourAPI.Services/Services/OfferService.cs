@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
@@ -21,7 +20,7 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddJobOffer(string userId, JobOfferDto jobOfferDto)
+        public void AddJobOffer(Guid userId, JobOfferDto jobOfferDto)
         {
             var jobOffer = mapper.Map<JobOffer>(jobOfferDto);
             var provider = dbContext.CompanyProvider.SingleOrDefault(u => u.Id == userId);
@@ -62,7 +61,7 @@ namespace FavourAPI.Services
             this.dbContext.SaveChanges();
         }
 
-        public void AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
+        public void AddApplication(Guid consumerId, Guid jobOfferId, ApplicationDto applicationDto)
         {
             var application = mapper.Map<Application>(applicationDto);
 

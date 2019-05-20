@@ -25,7 +25,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ConsumerDto> GetConsumer([FromQuery] string userId)
+        public ActionResult<ConsumerDto> GetConsumer([FromQuery] Guid userId)
         {
             var consumer = this.consumerService.GetById(userId);
             //this.consumerService.AddOrUpdateConsumer("user123", new ConsumerDto()
@@ -48,7 +48,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> AddConsumer([FromQuery]string userId, [FromBody] ConsumerDto consumer)
+        public ActionResult<bool> AddConsumer([FromQuery] Guid userId, [FromBody] ConsumerDto consumer)
         {
             bool canProceed = this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
@@ -57,8 +57,9 @@ namespace FavourAPI.Controllers
                 HasSufficientInfo = canProceed
             });
         }
+
         [HttpPost("save")]
-        public ActionResult SaveJobOffer([FromQuery]string userId, [FromQuery]string jobOfferId)
+        public ActionResult SaveJobOffer([FromQuery] Guid userId, [FromQuery] Guid jobOfferId)
         {
             this.consumerService.SaveJobOffer(userId, jobOfferId);
 
