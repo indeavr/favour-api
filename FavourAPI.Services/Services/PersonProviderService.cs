@@ -25,13 +25,13 @@ namespace FavourAPI.Services
             var provider = this.mapper.Map<PersonProvider>(personProvider);
             provider.Id = userId;
 
-            this.dbContext.PersonProviders.Add(provider);
+            this.dbContext.PersonProvider.Add(provider);
             this.dbContext.SaveChanges();
         }
 
         public PersonProviderDto GetPersonProvider(string userId)
         {
-            var provider = this.dbContext.PersonProviders.SingleOrDefault(pp => pp.Id == userId);
+            var provider = this.dbContext.PersonProvider.SingleOrDefault(pp => pp.Id == userId);
 
             return this.mapper.Map<PersonProviderDto>(provider);
         }

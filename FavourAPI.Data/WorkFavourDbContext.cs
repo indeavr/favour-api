@@ -26,37 +26,37 @@ namespace FavourAPI.Data
 
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Available)
+                Value = nameof(Models.Enums.JobOfferState.Available)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Expired)
+                Value = nameof(Models.Enums.JobOfferState.Expired)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Failed)
+                Value = nameof(Models.Enums.JobOfferState.Failed)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Finished)
+                Value = nameof(Models.Enums.JobOfferState.Finished)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Ongoing)
+                Value = nameof(Models.Enums.JobOfferState.Ongoing)
             });
 
 
             modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
             {
-                Value = nameof(ApplicationState.Pending)
+                Value = nameof(Models.Enums.ApplicationState.Pending)
             });
             modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
             {
-                Value = nameof(ApplicationState.Accepted)
+                Value = nameof(Models.Enums.ApplicationState.Accepted)
             });
             modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
             {
-                Value = nameof(ApplicationState.Rejected)
+                Value = nameof(Models.Enums.ApplicationState.Rejected)
             });
 
             //modelBuilder.Entity<Skill>().HasData(new CompanyProvider()
@@ -225,48 +225,48 @@ namespace FavourAPI.Data
 
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
 
-        public DbSet<PersonProvider> PersonProviders { get; set; }
+        public DbSet<PersonProvider> PersonProvider { get; set; }
 
-        public DbSet<CompanyProvider> CompanyProviders { get; set; }
+        public DbSet<CompanyProvider> CompanyProvider { get; set; }
 
-        public DbSet<Office> Offices { get; set; }
+        public DbSet<Office> Office { get; set; }
 
-        public DbSet<Industry> Industries { get; set; }
+        public DbSet<Industry> Industry { get; set; }
 
-        public DbSet<Position> Positions { get; set; }
+        public DbSet<Position> Position { get; set; }
 
-        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Skill> Skill { get; set; }
 
-        public DbSet<Email> Emails { get; set; }
+        public DbSet<Email> Email { get; set; }
 
-        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+        public DbSet<PhoneNumber> PhoneNumber { get; set; }
 
-        public DbSet<Consumer> Consumers { get; set; }
+        public DbSet<Consumer> Consumer { get; set; }
 
-        public DbSet<JobOffer> JobOffers { get; set; }
+        public DbSet<JobOffer> JobOffer { get; set; }
 
-        public DbSet<Application> Applications { get; set; }
+        public DbSet<Application> Application { get; set; }
 
-        public DbSet<Period> Periods { get; set; }
+        public DbSet<Period> Period { get; set; }
 
-        public DbSet<SexDb> Sexes { get; set; }
+        public DbSet<SexDb> Sex { get; set; }
 
-        public DbSet<JobOfferStateDb> JobOfferStates { get; set; }
+        public DbSet<JobOfferStateDb> JobOfferState { get; set; }
 
-        public DbSet<ApplicationStateDb> ApplicationStates { get; set; }
+        public DbSet<ApplicationStateDb> ApplicationState { get; set; }
 
-        public DbSet<PermissionMy> PermissionMys { get; set; }
+        public DbSet<PermissionMy> PermissionMy { get; set; }
 
-        public DbSet<CompletionResult> Results { get; set; }
+        public DbSet<CompletionResult> Result { get; set; }
 
-        public DbSet<PositionSkills> PositionSkills { get; set; }
+        public DbSet<PositionSkills> PositionSkill { get; set; }
 
-        public DbSet<IndustryPosition> IndustryPositions { get; set; }
+        public DbSet<IndustryPosition> IndustryPosition { get; set; }
 
-        public DbSet<OfficeIndustry> OfficeIndustries { get; set; }
+        public DbSet<OfficeIndustry> OfficeIndustry { get; set; }
 
-        public DbSet<ConsumerJobOffer> ConsumerJobOffers { get; set; }
+        public DbSet<ConsumerJobOffer> ConsumerJobOffer { get; set; }
     }
 }

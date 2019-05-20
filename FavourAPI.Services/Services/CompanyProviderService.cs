@@ -27,7 +27,7 @@ namespace FavourAPI.Services
             var dbModel = mapper.Map<CompanyProvider>(companyProvider);
             dbModel.Id = userId;
 
-            this.dbContext.CompanyProviders.Add(dbModel);
+            this.dbContext.CompanyProvider.Add(dbModel);
             this.dbContext.SaveChanges();
 
 
@@ -41,11 +41,11 @@ namespace FavourAPI.Services
 
         public CompanyProviderDto GetProvider(string userId)
         {
-            var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userId);
+            var provider = this.dbContext.CompanyProvider.SingleOrDefault(cp => cp.Id == userId);
             var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
             providerDto.Offices = providerDto.Offices.Select(o =>
              {
-                 o.Industries = this.dbContext.OfficeIndustries
+                 o.Industries = this.dbContext.OfficeIndustry
                  .Where(oi => oi.OfficeId == o.Id)
                  .Select(oi => mapper.Map<IndustryDto>(oi.Industry)).ToArray();
                  return o;

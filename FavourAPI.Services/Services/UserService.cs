@@ -31,7 +31,7 @@ namespace FavourAPI.Services
 
         public void Add(User user)
         {
-            this.dbContext.Users.Add(user);
+            this.dbContext.User.Add(user);
             this.dbContext.SaveChanges();
 
         }
@@ -41,7 +41,7 @@ namespace FavourAPI.Services
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 return null;
 
-            var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
+            var user = this.dbContext.User.SingleOrDefault(x => x.Email == email);
             // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
             if (user == null)
@@ -58,12 +58,12 @@ namespace FavourAPI.Services
         public IEnumerable<User> GetAll()
         {
             // return users without passwords
-            return this.dbContext.Users;
+            return this.dbContext.User;
         }
 
         public UserDto GetById(string id)
         {
-            return mapper.Map<UserDto>(this.dbContext.Users.Find(id));
+            return mapper.Map<UserDto>(this.dbContext.User.Find(id));
         }
 
         public UserDto Create(UserDto userDto, string password)
@@ -74,7 +74,7 @@ namespace FavourAPI.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (this.dbContext.Users.Any(x => x.Email == user.Email))
+            if (this.dbContext.User.Any(x => x.Email == user.Email))
                 throw new AppException("Username \"" + user.Email + "\" is already taken");
 
             byte[] passwordHash, passwordSalt;
@@ -87,7 +87,7 @@ namespace FavourAPI.Services
             //user.PermissionMy = new PermissionMy();
             //dbContext.PermissionMys.Add(new PermissionMy() { User = user });
 
-            this.dbContext.Users.Add(user);
+            this.dbContext.User.Add(user);
             this.dbContext.SaveChanges();
 
             return mapper.Map<UserDto>(user);
@@ -95,7 +95,7 @@ namespace FavourAPI.Services
 
         public void Update(User userParam, string password = null)
         {
-            var user = this.dbContext.Users.Find(userParam.Id);
+            var user = this.dbContext.User.Find(userParam.Id);
 
             if (user == null)
                 throw new AppException("User not found");
@@ -103,7 +103,7 @@ namespace FavourAPI.Services
             if (userParam.Email != user.Email)
             {
                 // username has changed so check if the new username is already taken
-                if (this.dbContext.Users.Any(x => x.Email == userParam.Email))
+                if (this.dbContext.User.Any(x => x.Email == userParam.Email))
                     throw new AppException("Username " + userParam.Email + " is already taken");
             }
 
@@ -120,23 +120,23 @@ namespace FavourAPI.Services
                 user.PasswordSalt = passwordSalt;
             }
 
-            this.dbContext.Users.Update(user);
+            this.dbContext.User.Update(user);
             this.dbContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var user = this.dbContext.Users.Find(id);
+            var user = this.dbContext.User.Find(id);
             if (user != null)
             {
-                this.dbContext.Users.Remove(user);
+                this.dbContext.User.Remove(user);
                 this.dbContext.SaveChanges();
             }
         }
 
         public void UpdatePermissions(string userId, Action<PermissionMy> updater)
         {
-            var permission = this.dbContext.PermissionMys.Single(p => p.Id == userId);
+            var permission = this.dbContext.PermissionMy.Single(p => p.Id == userId);
 
             updater.Invoke(permission);
 

@@ -24,12 +24,12 @@ namespace FavourAPI.Services
         public void AddOffice(string providerId, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
-            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry= this.dbContext.Industries.First(), Office = officeEntity });
+            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry= this.dbContext.Industry.First(), Office = officeEntity });
             officeEntity.OfficeIndustries = officeIndustries.ToArray();
 
             // this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
-            this.dbContext.CompanyProviders.Single(cp => cp.Id == providerId).Offices.Add(officeEntity);
+            this.dbContext.CompanyProvider.Single(cp => cp.Id == providerId).Offices.Add(officeEntity);
 
             this.dbContext.SaveChanges();
         }
@@ -39,7 +39,7 @@ namespace FavourAPI.Services
             var officeEntity = mapper.Map<Office>(office);
             var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = i.Name, Office = officeEntity });
 
-            this.dbContext.OfficeIndustries.AddRange(officeIndustries);
+            this.dbContext.OfficeIndustry.AddRange(officeIndustries);
 
             provider.Offices.Add(officeEntity);
 
@@ -48,9 +48,9 @@ namespace FavourAPI.Services
 
         public void AddIndustriesForOffice(Office dbModel)
         {
-            var officeIndustries = dbModel.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industries.First(), Office = dbModel });
+            var officeIndustries = dbModel.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industry.First(), Office = dbModel });
 
-            this.dbContext.OfficeIndustries.AddRange(officeIndustries);
+            this.dbContext.OfficeIndustry.AddRange(officeIndustries);
 
             this.dbContext.SaveChanges();
         }
@@ -65,12 +65,12 @@ namespace FavourAPI.Services
                 return officeDto;
             });
 
-            return this.dbContext.Offices.Select(selector).ToArray();
+            return this.dbContext.Office.Select(selector).ToArray();
         }
 
         private IEnumerable<IndustryDto> GetIndustriesForOffice(string officeId)
         {
-            return this.dbContext.OfficeIndustries
+            return this.dbContext.OfficeIndustry
                 .Where(oi => oi.OfficeId == officeId)
                 .Select(oi => oi.Industry)
                 .Select(i => this.mapper.Map<IndustryDto>(i))

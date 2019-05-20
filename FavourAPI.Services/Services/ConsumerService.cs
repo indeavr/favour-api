@@ -26,20 +26,20 @@ namespace FavourAPI.Services
             var currentUserInfo = GetConsumer(userId);
 
             var dbConsumer = mapper.Map<Consumer>(consumerData);
-            var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
+            var correctSexDb = this.dbContext.Sex.First(s => s.Value == dbConsumer.Sex.Value);
             dbConsumer.Sex = correctSexDb;
             dbConsumer.Id = userId;
 
-            var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
+            var phoneNumberDb = this.dbContext.PhoneNumber.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
             if (phoneNumberDb != null)
             {
                 dbConsumer.PhoneNumber = phoneNumberDb;
             }
 
-            var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == userId);
+            var currentUser = this.dbContext.User.SingleOrDefault(u => u.Id == userId);
             currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
-            dbContext.Consumers.Add(dbConsumer);
+            dbContext.Consumer.Add(dbConsumer);
 
             dbContext.SaveChanges();
             return CheckForLoginProceedPermission(dbConsumer);
@@ -53,7 +53,7 @@ namespace FavourAPI.Services
 
         private Consumer GetConsumer(string userId)
         {
-            return dbContext.Consumers.SingleOrDefault(c => c.Id == userId);
+            return dbContext.Consumer.SingleOrDefault(c => c.Id == userId);
         }
 
         public bool CheckForLoginProceedPermission(Consumer consumer)
@@ -63,7 +63,7 @@ namespace FavourAPI.Services
 
         public void SaveJobOffer(string userId, string jobOfferId)
         {
-            this.dbContext.ConsumerJobOffers.Add(new ConsumerJobOffer()
+            this.dbContext.ConsumerJobOffer.Add(new ConsumerJobOffer()
             {
                 JobOfferId = jobOfferId,
                 ConsumerId = userId
