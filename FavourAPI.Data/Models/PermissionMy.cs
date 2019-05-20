@@ -9,7 +9,7 @@ namespace FavourAPI.Data.Models
     public class PermissionMy
     {
         [ForeignKey("User")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public bool HasSufficientInfoConsumer { get; set; }
 

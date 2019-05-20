@@ -10,7 +10,8 @@ namespace FavourAPI.Data.Models
 {
     public class JobOffer
     {
-        public string Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
 
@@ -38,6 +39,8 @@ namespace FavourAPI.Data.Models
         public virtual CompletionResult Result { get;set; }
 
         public virtual ICollection<ConsumerJobOffer> ConsumerJobOffers { get; set; }
+
+        public virtual ICollection<JobPhoto> Photos { get; set; }
     }
 }
         

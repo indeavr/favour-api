@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Data.Models
 {
-    public class PhoneNumber
+    public class JobPhoto
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public string Label { get; set; }
+        [ForeignKey("JobOffer")]
+        public string JobOfferId { get; set; }
 
-        [Phone]
-        public string Number { get; set; }
+        public virtual JobOffer JobOffer { get; set; }
+
+        public byte[] Photo { get; set; }
     }
 }

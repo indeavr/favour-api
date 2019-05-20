@@ -11,7 +11,8 @@ namespace FavourAPI.Data.Models
     public class Application
     {
         [Key]
-        public string Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         public string Message { get; set; }
 

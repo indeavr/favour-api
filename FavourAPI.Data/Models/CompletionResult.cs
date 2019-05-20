@@ -9,7 +9,7 @@ namespace FavourAPI.Data.Models
     public class CompletionResult
     {
         [ForeignKey("JobOffer")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public virtual Consumer Consumer { get; set; }
 
