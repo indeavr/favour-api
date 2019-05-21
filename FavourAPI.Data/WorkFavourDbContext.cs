@@ -1,29 +1,79 @@
 ﻿using FavourAPI.Data.Models.Enums;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using FavourAPI.Data.Models;
+using System;
 
 namespace FavourAPI.Data
 {
     public class WorkFavourDbContext : DbContext
     {
         public WorkFavourDbContext(DbContextOptions<WorkFavourDbContext> options)
-            : base(options) { }
+            : base(options)
+        {
+        }
+
+        public DbSet<User> User { get; set; }
+
+        public DbSet<PersonProvider> PersonProvider { get; set; }
+
+        public DbSet<CompanyProvider> CompanyProvider { get; set; }
+
+        public DbSet<Office> Office { get; set; }
+
+        public DbSet<Industry> Industry { get; set; }
+
+        public DbSet<Position> Position { get; set; }
+
+        public DbSet<Skill> Skill { get; set; }
+
+        public DbSet<Email> Email { get; set; }
+
+        public DbSet<PhoneNumber> PhoneNumber { get; set; }
+
+        public DbSet<Consumer> Consumer { get; set; }
+
+        public DbSet<JobOffer> JobOffer { get; set; }
+
+        public DbSet<JobPhoto> JobPhoto { get; set; }
+
+        public DbSet<Application> Application { get; set; }
+
+        public DbSet<Period> Period { get; set; }
+
+        public DbSet<SexDb> Sex { get; set; }
+
+        public DbSet<JobOfferStateDb> JobOfferState { get; set; }
+
+        public DbSet<ApplicationStateDb> ApplicationState { get; set; }
+
+        public DbSet<PermissionMy> PermissionMy { get; set; }
+
+        public DbSet<CompletionResult> Result { get; set; }
+
+        public DbSet<PositionSkills> PositionSkill { get; set; }
+
+        public DbSet<IndustryPosition> IndustryPosition { get; set; }
+
+        public DbSet<OfficeIndustry> OfficeIndustry { get; set; }
+
+        public DbSet<ConsumerJobOffer> ConsumerJobOffer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Configuring one-to-one relation
             modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
 
+            // Configuring the many-to-many realtions
             modelBuilder.Entity<IndustryPosition>().HasKey(ip => new { ip.IndustryId, ip.PositionId });
             modelBuilder.Entity<PositionSkills>().HasKey(ps => new { ps.SkillId, ps.PositionId });
             modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
             modelBuilder.Entity<ConsumerJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
 
+            // Setting autogenerating PK GUIDs 
+            //modelBuilder.Entity<Application>().Property(a => a.Id).HasColumnType("uniqueidentifier");//.HasDefaultValueSql("NEWID()");
 
+            // Start TODO: Find a better way to load this data (like JSON or something)
+            // Loding the enums data into the tables in database
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
                 Value = nameof(Models.Enums.JobOfferState.Available)
@@ -42,9 +92,8 @@ namespace FavourAPI.Data
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(Models.Enums.JobOfferState.Ongoing)
+                Value = nameof(Models.Enums.JobOfferState.Ongoing),
             });
-
 
             modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
             {
@@ -58,6 +107,7 @@ namespace FavourAPI.Data
             {
                 Value = nameof(Models.Enums.ApplicationState.Rejected)
             });
+            // End TODO
 
             //modelBuilder.Entity<Skill>().HasData(new CompanyProvider()
             //{
@@ -224,49 +274,5 @@ namespace FavourAPI.Data
             */
 
         }
-
-        public DbSet<User> User { get; set; }
-
-        public DbSet<PersonProvider> PersonProvider { get; set; }
-
-        public DbSet<CompanyProvider> CompanyProvider { get; set; }
-
-        public DbSet<Office> Office { get; set; }
-
-        public DbSet<Industry> Industry { get; set; }
-
-        public DbSet<Position> Position { get; set; }
-
-        public DbSet<Skill> Skill { get; set; }
-
-        public DbSet<Email> Email { get; set; }
-
-        public DbSet<PhoneNumber> PhoneNumber { get; set; }
-
-        public DbSet<Consumer> Consumer { get; set; }
-
-        public DbSet<JobOffer> JobOffer { get; set; }
-
-        public DbSet<Application> Application { get; set; }
-
-        public DbSet<Period> Period { get; set; }
-
-        public DbSet<SexDb> Sex { get; set; }
-
-        public DbSet<JobOfferStateDb> JobOfferState { get; set; }
-
-        public DbSet<ApplicationStateDb> ApplicationState { get; set; }
-
-        public DbSet<PermissionMy> PermissionMy { get; set; }
-
-        public DbSet<CompletionResult> Result { get; set; }
-
-        public DbSet<PositionSkills> PositionSkill { get; set; }
-
-        public DbSet<IndustryPosition> IndustryPosition { get; set; }
-
-        public DbSet<OfficeIndustry> OfficeIndustry { get; set; }
-
-        public DbSet<ConsumerJobOffer> ConsumerJobOffer { get; set; }
     }
 }

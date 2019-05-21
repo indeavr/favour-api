@@ -7,6 +7,7 @@ namespace FavourAPI.Data.Models
     public class PersonProvider
     {
         [ForeignKey("User")]
+        [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
         public string FirstName { get; set; }

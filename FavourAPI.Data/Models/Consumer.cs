@@ -2,14 +2,14 @@
 using FavourAPI.Data.Models.Enums;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace FavourAPI.Data.Models
 {
     public class Consumer
     {
         [ForeignKey("User")]
+        [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
         public string FirstName { get; set; }

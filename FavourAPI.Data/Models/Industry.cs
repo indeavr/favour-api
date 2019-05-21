@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Data.Models
 {
     public class Industry
     {
         [Key]
+        [Column(TypeName = "uniqueidentifier")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Name { get; set; }
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
 
         public virtual IList<IndustryPosition> IndustryPositions { get; set; }
 

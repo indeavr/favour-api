@@ -1,17 +1,16 @@
 ﻿using FavourAPI.Data.Models.Enums;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Data.Models
 {
     public class Application
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Column(TypeName = "uniqueidentifier")]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DataType("uniqueidentifier")]
         public Guid Id { get; set; }
 
         public string Message { get; set; }

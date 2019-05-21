@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Data.Models
 {
     public class CompanyProvider
     {
         [ForeignKey("User")]
+        [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
         public string Name { get; set; }
@@ -29,6 +28,6 @@ namespace FavourAPI.Data.Models
 
         public virtual User User { get; set; }
 
-        public virtual ICollection<JobOffer> Offers {get; set; }
+        public virtual ICollection<JobOffer> Offers { get; set; }
     }
 }
