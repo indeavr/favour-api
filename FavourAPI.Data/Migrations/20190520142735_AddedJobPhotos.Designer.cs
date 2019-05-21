@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190520142735_AddedJobPhotos")]
+    partial class AddedJobPhotos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,12 +23,12 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Application", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("ConsumerId");
+                    b.Property<string>("ConsumerId");
 
-                    b.Property<Guid?>("JobOfferId");
+                    b.Property<string>("JobOfferId");
 
                     b.Property<string>("Message");
 
@@ -47,8 +49,7 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompanyProvider", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id");
 
                     b.Property<string>("Description");
 
@@ -67,11 +68,10 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompletionResult", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("ConsumerId");
+                    b.Property<string>("ConsumerId");
 
                     b.Property<string>("Review");
 
@@ -84,8 +84,7 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Consumer", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id");
 
                     b.Property<byte[]>("CV");
 
@@ -95,7 +94,7 @@ namespace FavourAPI.Migrations
 
                     b.Property<string>("Location");
 
-                    b.Property<Guid?>("PhoneNumberId");
+                    b.Property<string>("PhoneNumberId");
 
                     b.Property<string>("SexValue");
 
@@ -110,11 +109,9 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.ConsumerJobOffer", b =>
                 {
-                    b.Property<Guid>("ConsumerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ConsumerId");
 
-                    b.Property<Guid>("JobOfferId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("JobOfferId");
 
                     b.HasKey("ConsumerId", "JobOfferId");
 
@@ -125,17 +122,16 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Email", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("EmailAddress");
 
                     b.Property<string>("Label");
 
-                    b.Property<Guid?>("OfficeId");
+                    b.Property<string>("OfficeId");
 
-                    b.Property<Guid?>("PersonProviderId");
+                    b.Property<string>("PersonProviderId");
 
                     b.HasKey("Id");
 
@@ -214,15 +210,12 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Industry", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Name")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CompanyProviderId");
+                    b.Property<string>("CompanyProviderId");
 
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.HasIndex("CompanyProviderId");
 
@@ -231,11 +224,9 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.IndustryPosition", b =>
                 {
-                    b.Property<Guid>("IndustryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("IndustryId");
 
-                    b.Property<Guid>("PositionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PositionId");
 
                     b.HasKey("IndustryId", "PositionId");
 
@@ -246,9 +237,8 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.JobOffer", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
@@ -256,9 +246,9 @@ namespace FavourAPI.Migrations
 
                     b.Property<double>("Money");
 
-                    b.Property<Guid?>("ProviderId");
+                    b.Property<string>("ProviderId");
 
-                    b.Property<Guid?>("ResultId");
+                    b.Property<string>("ResultId");
 
                     b.Property<string>("StateValue");
 
@@ -279,12 +269,10 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.JobPhoto", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("JobOfferId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("JobOfferId");
 
                     b.Property<byte[]>("Photo");
 
@@ -297,11 +285,10 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Office", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CompanyProviderId");
+                    b.Property<string>("CompanyProviderId");
 
                     b.Property<string>("Location");
 
@@ -316,11 +303,9 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.OfficeIndustry", b =>
                 {
-                    b.Property<Guid>("IndustryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("IndustryId");
 
-                    b.Property<Guid>("OfficeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("OfficeId");
 
                     b.HasKey("IndustryId", "OfficeId");
 
@@ -331,15 +316,14 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Period", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("EndDate");
 
                     b.Property<DateTime>("EndHour");
 
-                    b.Property<Guid?>("JobOfferId");
+                    b.Property<string>("JobOfferId");
 
                     b.Property<DateTime>("StartDate");
 
@@ -354,8 +338,7 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.PermissionMy", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id");
 
                     b.Property<bool>("CanApplyConsumer");
 
@@ -370,8 +353,7 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.PersonProvider", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id");
 
                     b.Property<string>("Description");
 
@@ -390,17 +372,16 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.PhoneNumber", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Label");
 
                     b.Property<string>("Number");
 
-                    b.Property<Guid?>("OfficeId");
+                    b.Property<string>("OfficeId");
 
-                    b.Property<Guid?>("PersonProviderId");
+                    b.Property<string>("PersonProviderId");
 
                     b.HasKey("Id");
 
@@ -413,11 +394,10 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Position", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CompanyProviderId");
+                    b.Property<string>("CompanyProviderId");
 
                     b.Property<string>("Name");
 
@@ -430,32 +410,25 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.PositionSkills", b =>
                 {
-                    b.Property<Guid>("SkillId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SkillId");
 
-                    b.Property<Guid>("PositionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("PositionId1");
+                    b.Property<string>("PositionId");
 
                     b.HasKey("SkillId", "PositionId");
 
-                    b.HasAlternateKey("PositionId", "SkillId");
-
-                    b.HasIndex("PositionId1");
+                    b.HasIndex("PositionId");
 
                     b.ToTable("PositionSkill");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Skill", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("ConsumerId");
+                    b.Property<string>("ConsumerId");
 
-                    b.Property<Guid?>("JobOfferId");
+                    b.Property<string>("JobOfferId");
 
                     b.Property<string>("Name");
 
@@ -470,9 +443,8 @@ namespace FavourAPI.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email");
 
@@ -598,8 +570,7 @@ namespace FavourAPI.Migrations
                 {
                     b.HasOne("FavourAPI.Data.Models.JobOffer", "JobOffer")
                         .WithMany("Photos")
-                        .HasForeignKey("JobOfferId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("JobOfferId");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Office", b =>
@@ -667,7 +638,8 @@ namespace FavourAPI.Migrations
                 {
                     b.HasOne("FavourAPI.Data.Models.Position", "Position")
                         .WithMany("PositionSkills")
-                        .HasForeignKey("PositionId1");
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FavourAPI.Data.Models.Skill", "Skill")
                         .WithMany("PositionSkills")
