@@ -18,18 +18,19 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddPersonProvider(Guid userId, PersonProviderDto personProvider)
+        public void AddPersonProvider(string userId, PersonProviderDto personProvider)
         {
             var provider = this.mapper.Map<PersonProvider>(personProvider);
-            provider.Id = userId;
+            provider.Id = Guid.Parse(userId);
 
-            this.dbContext.PersonProvider.Add(provider);
+            this.dbContext.PersonProviders.Add(provider);
             this.dbContext.SaveChanges();
         }
 
-        public PersonProviderDto GetPersonProvider(Guid userId)
+        public PersonProviderDto GetPersonProvider(string userId)
         {
-            var provider = this.dbContext.PersonProvider.SingleOrDefault(pp => pp.Id == userId);
+            Guid guidUserId = Guid.Parse(userId);
+            var provider = this.dbContext.PersonProviders.SingleOrDefault(pp => pp.Id == guidUserId);
 
             return this.mapper.Map<PersonProviderDto>(provider);
         }

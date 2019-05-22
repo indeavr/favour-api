@@ -20,12 +20,12 @@ namespace FavourAPI.Services
             this.dbContext = dbContext;
         }
 
-        public CompanyProviderDto AddCompanyProvider(Guid userId, CompanyProviderDto companyProvider)
+        public CompanyProviderDto AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
         {
             var dbModel = mapper.Map<CompanyProvider>(companyProvider);
-            dbModel.Id = userId;
+            dbModel.Id = Guid.Parse(userId);
 
-            this.dbContext.CompanyProvider.Add(dbModel);
+            this.dbContext.CompanyProviders.Add(dbModel);
             this.dbContext.SaveChanges();
 
 
@@ -37,17 +37,19 @@ namespace FavourAPI.Services
             return mapper.Map<CompanyProviderDto>(dbModel);
         }
 
-        public CompanyProviderDto GetProvider(Guid userId)
+        public CompanyProviderDto GetProvider(string userId)
         {
-            var provider = this.dbContext.CompanyProvider.SingleOrDefault(cp => cp.Id == userId);
+            Guid userIdGuid = Guid.Parse(userId);
+            var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
             var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
             providerDto.Offices = providerDto.Offices.Select(o =>
-             {
-                 o.Industries = this.dbContext.OfficeIndustry
-                 .Where(oi => oi.OfficeId == o.Id)
+            {
+                 o.Industries = this.dbContext.OfficeIndustries
+                 .Where(oi => oi.OfficeId == new Guid(o.Id))
                  .Select(oi => mapper.Map<IndustryDto>(oi.Industry)).ToArray();
                  return o;
-             }).ToArray();
+            }).ToArray();
+
             return providerDto;
         }
     }

@@ -20,10 +20,11 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddJobOffer(Guid userId, JobOfferDto jobOfferDto)
+        public void AddJobOffer(string userId, JobOfferDto jobOfferDto)
         {
             var jobOffer = mapper.Map<JobOffer>(jobOfferDto);
-            var provider = dbContext.CompanyProvider.SingleOrDefault(u => u.Id == userId);
+            Guid guidUserId = Guid.Parse(userId);
+            var provider = dbContext.CompanyProviders.SingleOrDefault(u => u.Id == guidUserId);
 
 
             jobOffer.State = new JobOfferStateDb()
@@ -41,17 +42,29 @@ namespace FavourAPI.Services
                     Description = "PART TIME: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                     Money = i + 100,
                     TimePosted = new DateTime(),
-                    Location = new Location()
+                    Locations = new List<Location>
                     {
-                        Id = Guid.NewGuid(),
-                        Country = "Bulgaria",
-                        Area = "Sofia",
-                        Region = "Lozenetz",
-                        StreetAddress = "Lipa 2",
-                        ZipCode = "1421",
-                        CustomInfo = "On the 2nd floor from the back entrance",
-                        Latitude = 42.680721,
-                        Longitude = 23.3225158
+                        new Location
+                        {
+                            Id = Guid.NewGuid(),
+                            Country = "Bulgaria",
+                            Town = "Sofia",
+                            Region = "Lozenetz",
+                            StreetAddress = "Lipa 2",
+                            ZipCode = "1421",
+                            CustomInfo = "On the 2nd floor from the back entrance",
+                            Latitude = 42.680721,
+                            Longitude = 23.3225158
+                        },
+                        new Location
+                        {
+                            Id = Guid.NewGuid(),
+                            Country = "Bulgaria",
+                            Town = "Sofia",
+                            Region = "Lozenetz",
+                            StreetAddress = "Lipa 5",
+                            ZipCode = "1421",
+                        }
                     }
                 });
             }
@@ -63,29 +76,35 @@ namespace FavourAPI.Services
                     Description = "Nasa Hacker" + name + i,
                     Money = i + 100,
                     TimePosted = new DateTime(),
-                    Location = new Location()
+                    Locations = new List<Location>
                     {
-                        Id = Guid.NewGuid(),
-                        Country = "Bulgaria",
-                        Area = "Sofia",
-                        Region = "Vrazhdebna",
-                        StreetAddress = "ul.61, 10",
-                        ZipCode = "1839",
+                        new Location()
+                        {
+                            Id = Guid.NewGuid(),
+                            Country = "Bulgaria",
+                            Town = "Sofia",
+                            Region = "Vrazhdebna",
+                            StreetAddress = "ul.61, 10",
+                            ZipCode = "1839",
+                        }
                     }
                 });
             }
 
             // TODO: review may be redundant
-            this.dbContext.JobOffer.Add(jobOffer);
+            this.dbContext.JobOffers.Add(jobOffer);
             this.dbContext.SaveChanges();
         }
 
-        public void AddApplication(Guid consumerId, Guid jobOfferId, ApplicationDto applicationDto)
+        public void AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
         {
             var application = mapper.Map<Application>(applicationDto);
 
-            var consumer = this.dbContext.Consumer.SingleOrDefault(c => c.Id == consumerId);
-            var jobOffer = this.dbContext.JobOffer.SingleOrDefault(job => job.Id == jobOfferId);
+            Guid guidUserId = Guid.Parse(consumerId);
+            Guid guidJobOfferId = Guid.Parse(jobOfferId);
+
+            var consumer = this.dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
+            var jobOffer = this.dbContext.JobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
             application.Consumer = consumer;
             application.State = new ApplicationStateDb()
@@ -100,7 +119,7 @@ namespace FavourAPI.Services
 
         public List<JobOfferDto> GetAllOffers()
         {
-            var offers = dbContext.JobOffer.ToList();
+            var offers = dbContext.JobOffers.ToList();
 
             // mahni neshta ot job modela- . inache se polzva samo DTO-to 
 

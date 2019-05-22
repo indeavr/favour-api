@@ -20,13 +20,13 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PersonProviderDto> GetCompanyProvider([FromQuery] Guid userId)
+        public ActionResult<PersonProviderDto> GetCompanyProvider([FromQuery] string userId)
         {
             return Ok(this.personProviderService.GetPersonProvider(userId));
         }
 
         [HttpPut]
-        public ActionResult AddPersonPrvider([FromQuery] Guid userId, [FromBody] PersonProviderDto personProvider)
+        public ActionResult AddPersonPrvider([FromQuery] string userId, [FromBody] PersonProviderDto personProvider)
         {
             this.personProviderService.AddPersonProvider(userId, personProvider);
             return Ok();

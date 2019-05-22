@@ -5,7 +5,7 @@ namespace FavourAPI.Dtos
 {
     public class JobOfferDto
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public string Title { get; set; }
 

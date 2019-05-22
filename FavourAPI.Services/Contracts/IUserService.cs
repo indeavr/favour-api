@@ -11,14 +11,14 @@ namespace FavourAPI.Services
 
         IEnumerable<User> GetAll();
 
-        UserDto GetById(Guid id);
+        UserDto GetById(string id);
 
-        void UpdatePermissions(Guid userId, Action<PermissionMy> updater);
+        void UpdatePermissions(string userId, Action<PermissionMy> updater);
 
         UserDto Create(UserDto userDto, string password);
 
         void Update(User user, string password = null);
 
-        void Delete(Guid id);
+        void Delete(string id);
     }
 }

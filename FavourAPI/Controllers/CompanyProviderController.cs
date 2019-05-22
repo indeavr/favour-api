@@ -26,11 +26,11 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery] Guid userId)
+        public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery] string userId)
         {
-            this.companyProviderService.AddCompanyProvider(Guid.NewGuid(), new CompanyProviderDto()
+            this.companyProviderService.AddCompanyProvider(Guid.NewGuid().ToString(), new CompanyProviderDto()
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 Description = "neshto si",
                 FoundedYear = new DateTime().Ticks,
                 Name = "Macuranka",
@@ -39,7 +39,7 @@ namespace FavourAPI.Controllers
                 {
                     new OfficeDto()
                     {
-                        Id = Guid.NewGuid(),
+                        Id = Guid.NewGuid().ToString(),
                         Name = "MyOffice",
                         Location = "Sofia",
                         Industries = new IndustryDto[]
@@ -65,7 +65,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult AddCompanyProvider([FromQuery] Guid userId, [FromBody] CompanyProviderDto companyProvider)
+        public ActionResult AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             this.companyProviderService.AddCompanyProvider(userId, companyProvider);
             this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
@@ -75,14 +75,14 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("office")]
-        public ActionResult<OfficeDto> GetOffices([FromQuery] Guid userId)
+        public ActionResult<OfficeDto> GetOffices([FromQuery] string userId)
         {
             var offices = this.officeService.GetOffices();
             return Ok(offices);
         }
 
         [HttpPut("office")]
-        public ActionResult AddOffice([FromQuery] Guid userId, [FromBody] OfficeDto office)
+        public ActionResult AddOffice([FromQuery] string userId, [FromBody] OfficeDto office)
         {
             this.officeService.AddOffice(userId, office);
 

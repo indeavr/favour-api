@@ -20,15 +20,16 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddOffice(Guid providerId, OfficeDto office)
+        public void AddOffice(string providerId, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
-            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industry.First(), Office = officeEntity });
+            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industries.First(), Office = officeEntity });
             officeEntity.OfficeIndustries = officeIndustries.ToArray();
 
             // this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
-            this.dbContext.CompanyProvider.Single(cp => cp.Id == providerId).Offices.Add(officeEntity);
+            Guid guidProvinceId = Guid.Parse(providerId);
+            this.dbContext.CompanyProviders.Single(cp => cp.Id == guidProvinceId).Offices.Add(officeEntity);
 
             this.dbContext.SaveChanges();
         }
@@ -36,9 +37,9 @@ namespace FavourAPI.Services
         public void AddOffice(CompanyProvider provider, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
-            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = i.Id, Office = officeEntity });
+            var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = Guid.Parse(i.Id), Office = officeEntity });
 
-            this.dbContext.OfficeIndustry.AddRange(officeIndustries);
+            this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
             provider.Offices.Add(officeEntity);
 
@@ -47,9 +48,9 @@ namespace FavourAPI.Services
 
         public void AddIndustriesForOffice(Office dbModel)
         {
-            var officeIndustries = dbModel.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industry.First(), Office = dbModel });
+            var officeIndustries = dbModel.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industries.First(), Office = dbModel });
 
-            this.dbContext.OfficeIndustry.AddRange(officeIndustries);
+            this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
             this.dbContext.SaveChanges();
         }
@@ -64,12 +65,12 @@ namespace FavourAPI.Services
                 return officeDto;
             });
 
-            return this.dbContext.Office.Select(selector).ToArray();
+            return this.dbContext.Offices.Select(selector).ToArray();
         }
 
         private IEnumerable<IndustryDto> GetIndustriesForOffice(Guid officeId)
         {
-            return this.dbContext.OfficeIndustry
+            return this.dbContext.OfficeIndustries
                 .Where(oi => oi.OfficeId == officeId)
                 .Select(oi => oi.Industry)
                 .Select(i => this.mapper.Map<IndustryDto>(i))

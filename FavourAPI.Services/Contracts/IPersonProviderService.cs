@@ -5,8 +5,8 @@ namespace FavourAPI.Services
 {
     public interface IPersonProviderService
     {
-        PersonProviderDto GetPersonProvider(Guid userId);
+        PersonProviderDto GetPersonProvider(string userId);
 
-        void AddPersonProvider(Guid userId, PersonProviderDto personProvider);
+        void AddPersonProvider(string userId, PersonProviderDto personProvider);
     }
 }

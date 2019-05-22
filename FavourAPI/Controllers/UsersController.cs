@@ -41,7 +41,7 @@ namespace FavourAPI.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             var headers = Request.Headers;
-            this.userService.Create(new UserDto() { Id = Guid.NewGuid(), Email = "abv@abv", Password = "mypassword" }, "mypassword");
+            this.userService.Create(new UserDto() { Id = Guid.NewGuid().ToString(), Email = "abv@abv", Password = "mypassword" }, "mypassword");
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };
@@ -195,7 +195,7 @@ namespace FavourAPI.Controllers
         //}
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(string id)
         {
             var user = this.userService.GetById(id);
             var userDto = this.mapper.Map<UserDto>(user);
@@ -223,7 +223,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(string id)
         {
             this.userService.Delete(id);
 

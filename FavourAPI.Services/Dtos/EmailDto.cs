@@ -4,7 +4,7 @@ namespace FavourAPI.Dtos
 {
     public class EmailDto
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public string Label { get; set; }
 

@@ -19,39 +19,42 @@ namespace FavourAPI.Services
         }
 
         // Add for now
-        public bool AddOrUpdateConsumer(Guid userId, ConsumerDto consumerData)
+        public bool AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
         {
-            var currentUserInfo = GetConsumer(userId);
+            var currentUserInfo = GetConsumer(Guid.Parse(userId));
 
             var dbConsumer = mapper.Map<Consumer>(consumerData);
-            var correctSexDb = this.dbContext.Sex.First(s => s.Value == dbConsumer.Sex.Value);
+            var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
             dbConsumer.Sex = correctSexDb;
-            dbConsumer.Id = userId;
+            dbConsumer.Id = Guid.Parse(userId);
 
-            var phoneNumberDb = this.dbContext.PhoneNumber.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
+            var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
             if (phoneNumberDb != null)
             {
                 dbConsumer.PhoneNumber = phoneNumberDb;
             }
 
-            var currentUser = this.dbContext.User.SingleOrDefault(u => u.Id == userId);
+            Guid guidUserId = Guid.Parse(userId);
+            var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == guidUserId);
             currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
-            dbContext.Consumer.Add(dbConsumer);
+            dbContext.Consumers.Add(dbConsumer);
 
             dbContext.SaveChanges();
             return CheckForLoginProceedPermission(dbConsumer);
         }
 
-        public ConsumerDto GetById(Guid userId)
+        public ConsumerDto GetById(string userId)
         {
-            var dto = this.mapper.Map<ConsumerDto>(GetConsumer(userId));
+            Guid guidUserId = Guid.Parse(userId);
+            var dto = this.mapper.Map<ConsumerDto>(GetConsumer(guidUserId));
+
             return dto;
         }
 
         private Consumer GetConsumer(Guid userId)
         {
-            return dbContext.Consumer.SingleOrDefault(c => c.Id == userId);
+            return dbContext.Consumers.SingleOrDefault(c => c.Id == userId);
         }
 
         public bool CheckForLoginProceedPermission(Consumer consumer)
@@ -59,16 +62,15 @@ namespace FavourAPI.Services
             return consumer.FirstName != null && consumer.LastName != null && consumer.PhoneNumber != null;
         }
 
-        public void SaveJobOffer(Guid userId, Guid jobOfferId)
+        public void SaveJobOffer(string userId, string jobOfferId)
         {
-            this.dbContext.ConsumerJobOffer.Add(new ConsumerJobOffer()
+            this.dbContext.ConsumerJobOffers.Add(new ConsumerJobOffer()
             {
-                JobOfferId = jobOfferId,
-                ConsumerId = userId
+                JobOfferId = Guid.Parse(jobOfferId),
+                ConsumerId = Guid.Parse(userId)
             });
 
             this.dbContext.SaveChanges();
         }
-
     }
 }

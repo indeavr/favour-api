@@ -28,7 +28,7 @@ namespace FavourAPI.Services
 
         public void Add(User user)
         {
-            this.dbContext.User.Add(user);
+            this.dbContext.Users.Add(user);
             this.dbContext.SaveChanges();
 
         }
@@ -41,7 +41,7 @@ namespace FavourAPI.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new PasswordAppException("Password is required in order to authenticate");
 
-            var user = this.dbContext.User.SingleOrDefault(x => x.Email == email);
+            var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
             
             // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
@@ -59,12 +59,13 @@ namespace FavourAPI.Services
         public IEnumerable<User> GetAll()
         {
             // return users without passwords
-            return this.dbContext.User;
+            return this.dbContext.Users;
         }
 
-        public UserDto GetById(Guid id)
+        public UserDto GetById(string userId)
         {
-            return mapper.Map<UserDto>(this.dbContext.User.Find(id));
+            Guid guidUserId = Guid.Parse(userId);
+            return mapper.Map<UserDto>(this.dbContext.Users.Find(guidUserId));
         }
 
         public UserDto Create(UserDto userDto, string password)
@@ -95,7 +96,7 @@ namespace FavourAPI.Services
             if (IsValidEmail(userDto.Email))
                 throw new EmailAppException($"Email ({user.Email}) is not valid!");
 
-            if (this.dbContext.User.Any(u => u.Email == user.Email))
+            if (this.dbContext.Users.Any(u => u.Email == user.Email))
                 throw new EmailAppException($"Email ({user.Email}) is already taken!");
 
             // Password hashing
@@ -109,7 +110,7 @@ namespace FavourAPI.Services
             //user.PermissionMy = new PermissionMy();
             //dbContext.PermissionMys.Add(new PermissionMy() { User = user });
 
-            this.dbContext.User.Add(user);
+            this.dbContext.Users.Add(user);
             this.dbContext.SaveChanges();
 
             return mapper.Map<UserDto>(user);
@@ -117,7 +118,7 @@ namespace FavourAPI.Services
 
         public void Update(User userParam, string password = null)
         {
-            var user = this.dbContext.User.Find(userParam.Id);
+            var user = this.dbContext.Users.Find(userParam.Id);
 
             if (user == null)
                 throw new AppException("User not found");
@@ -125,7 +126,7 @@ namespace FavourAPI.Services
             if (userParam.Email != user.Email)
             {
                 // username has changed so check if the new username is already taken
-                if (this.dbContext.User.Any(x => x.Email == userParam.Email))
+                if (this.dbContext.Users.Any(x => x.Email == userParam.Email))
                     throw new AppException("Username " + userParam.Email + " is already taken");
             }
 
@@ -142,23 +143,25 @@ namespace FavourAPI.Services
                 user.PasswordSalt = passwordSalt;
             }
 
-            this.dbContext.User.Update(user);
+            this.dbContext.Users.Update(user);
             this.dbContext.SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public void Delete(string userId)
         {
-            var user = this.dbContext.User.Find(id);
+            Guid guidUserId = Guid.Parse(userId);
+            var user = this.dbContext.Users.Find(guidUserId);
             if (user != null)
             {
-                this.dbContext.User.Remove(user);
+                this.dbContext.Users.Remove(user);
                 this.dbContext.SaveChanges();
             }
         }
 
-        public void UpdatePermissions(Guid userId, Action<PermissionMy> updater)
+        public void UpdatePermissions(string userId, Action<PermissionMy> updater)
         {
-            var permission = this.dbContext.PermissionMy.Single(p => p.Id == userId);
+            Guid guidUserId = Guid.Parse(userId);
+            var permission = this.dbContext.PermissionMys.Single(p => p.Id == guidUserId);
 
             updater.Invoke(permission);
 

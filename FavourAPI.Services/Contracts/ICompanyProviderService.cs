@@ -5,8 +5,8 @@ namespace FavourAPI.Services
 {
     public interface ICompanyProviderService
     {
-        CompanyProviderDto GetProvider(Guid userId);
+        CompanyProviderDto GetProvider(string userId);
 
-        CompanyProviderDto AddCompanyProvider(Guid userId, CompanyProviderDto companyProvider);
+        CompanyProviderDto AddCompanyProvider(string userId, CompanyProviderDto companyProvider);
     }
 }
