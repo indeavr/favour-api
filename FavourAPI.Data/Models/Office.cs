@@ -14,7 +14,7 @@ namespace FavourAPI.Data.Models
 
         public string Name { get; set; }
 
-        public string Location { get; set; }
+        public virtual Location Location { get; set; }
 
         public virtual ICollection<Email> Emails { get; set; }
 

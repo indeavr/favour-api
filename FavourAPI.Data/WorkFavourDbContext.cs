@@ -58,6 +58,8 @@ namespace FavourAPI.Data
 
         public DbSet<ConsumerJobOffer> ConsumerJobOffer { get; set; }
 
+        public DbSet<Location> Location { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuring one-to-one relation

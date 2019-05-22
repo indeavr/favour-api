@@ -18,7 +18,7 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Period> Periods { get; set; }
 
-        public string Location { get; set; }
+        public virtual Location Location { get; set; }
 
         public DateTime TimePosted { get; set; }
 
