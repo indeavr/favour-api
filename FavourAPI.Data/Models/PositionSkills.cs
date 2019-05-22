@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FavourAPI.Data.Models
 {
-    public class PositionSkills
+    public class PositionSkill
     {
         [Key]
         [Column(TypeName = "uniqueidentifier")]
