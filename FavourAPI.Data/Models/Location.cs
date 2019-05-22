@@ -12,8 +12,7 @@ namespace FavourAPI.Data.Models
 
         public string Country { get; set; }
 
-        // Town/City
-        public string Area { get; set; }
+        public string Town { get; set; }
 
         // Neighborhood/Province/Region
         public string Region { get; set; }
@@ -24,7 +23,6 @@ namespace FavourAPI.Data.Models
 
         public string CustomInfo { get; set; }
 
-        // TODO: are this two for here?
         public double? Latitude { get; set; }
 
         public double? Longitude { get; set; }
