@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace FavourAPI.Services.Helpers
+namespace FavourAPI.Services.Helpers.Exceptions
 {
     // Custom exception class for throwing application specific exceptions (e.g. for validation) 
     // that can be caught and handled within the application
