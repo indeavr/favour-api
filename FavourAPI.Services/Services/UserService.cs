@@ -3,10 +3,12 @@ using FavourAPI.ApiModels;
 using FavourAPI.Data;
 using FavourAPI.Data.Models;
 using FavourAPI.Services.Helpers;
+using FavourAPI.Services.Helpers.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FavourAPI.Services
 {
@@ -33,18 +35,22 @@ namespace FavourAPI.Services
 
         public UserDto Authenticate(string email, string password)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-                return null;
+            if (string.IsNullOrWhiteSpace(email))
+                throw new EmailAppException("Email is required in order to authenticate");
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new PasswordAppException("Password is required in order to authenticate");
 
             var user = this.dbContext.User.SingleOrDefault(x => x.Email == email);
+            
             // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
             if (user == null)
-                return null;
+                throw new EmailAppException($"There is no user with such email ({email})");
 
             // check if password is correct
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
+                throw new PasswordAppException("Wrong password");
 
             // authentication successful
             return mapper.Map<UserDto>(user);
@@ -63,15 +69,36 @@ namespace FavourAPI.Services
 
         public UserDto Create(UserDto userDto, string password)
         {
+            if (userDto == null)
+                throw new ArgumentNullException("User cannot be null");
+
             var user = this.mapper.Map<User>(userDto);
 
-            // validation
+            // Password validations
             if (string.IsNullOrWhiteSpace(password))
-                throw new AppException("Password is required");
+                throw new PasswordAppException("Password is required!");
 
-            if (this.dbContext.User.Any(x => x.Email == user.Email))
-                throw new AppException("Username \"" + user.Email + "\" is already taken");
+            int passMinLen = 8;
+            if (password.Length < passMinLen)
+                throw new PasswordAppException($"Password must be at least {passMinLen} characters!");
 
+            if (!Regex.IsMatch(password, "[0-9]"))
+                throw new PasswordAppException("Password must contains at least one digit!");
+            
+            if (userDto.Email.Contains(password))
+                throw new PasswordAppException($"Password cannot be contained in your email address ({user.Email})!");
+
+            // Email validations
+            if (string.IsNullOrWhiteSpace(userDto.Email))
+                throw new EmailAppException("Email is required!");
+
+            if (IsValidEmail(userDto.Email))
+                throw new EmailAppException($"Email ({user.Email}) is not valid!");
+
+            if (this.dbContext.User.Any(u => u.Email == user.Email))
+                throw new EmailAppException($"Email ({user.Email}) is already taken!");
+
+            // Password hashing
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
@@ -138,7 +165,7 @@ namespace FavourAPI.Services
             this.dbContext.SaveChanges();
         }
 
-        // private helper methods
+        // Private helper methods
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
@@ -169,6 +196,19 @@ namespace FavourAPI.Services
             }
 
             return true;
+        }
+
+        private static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
