@@ -4,11 +4,13 @@ using FavourAPI.Data;
 using FavourAPI.Data.Models;
 using FavourAPI.Services.Helpers;
 using FavourAPI.Services.Helpers.Exceptions;
+using FavourAPI.Services.Helpers.Result;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -42,7 +44,7 @@ namespace FavourAPI.Services
                 throw new PasswordAppException("Password is required in order to authenticate");
 
             var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
-            
+
             // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
             if (user == null)
@@ -68,44 +70,43 @@ namespace FavourAPI.Services
             return mapper.Map<UserDto>(this.dbContext.Users.Find(guidUserId));
         }
 
-        public UserDto Create(UserDto userDto, string password)
+        public async Task<Result<object>> Create(string email, string password)
         {
-            if (userDto == null)
-                throw new ArgumentNullException("User cannot be null");
+            if (string.IsNullOrWhiteSpace(email))
+                return new InvalidResult<object>("Email is required !");
 
-            var user = this.mapper.Map<User>(userDto);
+            if (string.IsNullOrWhiteSpace(password))
+                return new InvalidResult<object>("Password is required!");
 
             // Password validations
-            if (string.IsNullOrWhiteSpace(password))
-                throw new PasswordAppException("Password is required!");
-
             int passMinLen = 8;
             if (password.Length < passMinLen)
-                throw new PasswordAppException($"Password must be at least {passMinLen} characters!");
+                return new InvalidResult<object>($"Password must be at least {passMinLen} characters!");
 
             if (!Regex.IsMatch(password, "[0-9]"))
-                throw new PasswordAppException("Password must contains at least one digit!");
-            
-            if (userDto.Email.Contains(password))
-                throw new PasswordAppException($"Password cannot be contained in your email address ({user.Email})!");
+                return new InvalidResult<object>("Password must contains at least one digit!");
+
+            if (email.Contains(password))
+                return new InvalidResult<object>($"Password cannot be contained in your email address ({email})!");
 
             // Email validations
-            if (string.IsNullOrWhiteSpace(userDto.Email))
-                throw new EmailAppException("Email is required!");
+            if (IsValidEmail(email))
+                return new InvalidResult<object>($"Email ({email}) is not valid!");
 
-            if (IsValidEmail(userDto.Email))
-                throw new EmailAppException($"Email ({user.Email}) is not valid!");
-
-            if (this.dbContext.Users.Any(u => u.Email == user.Email))
-                throw new EmailAppException($"Email ({user.Email}) is already taken!");
+            if (this.dbContext.Users.Any(u => u.Email == email))
+                return new InvalidResult<object>($"Email ({email}) is already taken!");
 
             // Password hashing
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-            user.PermissionMy = new PermissionMy();
+            User user = new User()
+            {
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                PermissionMy = new PermissionMy()
+            };
+
 
             //user.PermissionMy = new PermissionMy();
             //dbContext.PermissionMys.Add(new PermissionMy() { User = user });
@@ -113,7 +114,7 @@ namespace FavourAPI.Services
             this.dbContext.Users.Add(user);
             this.dbContext.SaveChanges();
 
-            return mapper.Map<UserDto>(user);
+            return new OkResult<object>(new { });
         }
 
         public void Update(User userParam, string password = null)

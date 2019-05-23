@@ -41,7 +41,7 @@ namespace FavourAPI.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             var headers = Request.Headers;
-            this.userService.Create(new UserDto() { Id = Guid.NewGuid().ToString(), Email = "abv@abv", Password = "mypassword" }, "mypassword");
+            this.userService.Create("abv@abv", "mypassword");
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };
@@ -124,42 +124,11 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody] UserDto userDto)
+        public async Task<IActionResult> Register([FromQuery] string email, [FromQuery] string password)
         {
-            try
-            {
-                // Save 
-                this.userService.Create(userDto, userDto.Password);
-                return Ok();
-            }                
-            catch (PasswordAppException ex)
-            {
-                return BadRequest(new
-                {
-                    message = $"Password Custom Exception: {ex.Message}"
-                });
-            }
-            catch (EmailAppException ex)
-            {
-                return BadRequest(new
-                {
-                    message = $"Email Custom Exception: {ex.Message}"
-                });
-            }
-            catch (AppException ex)
-            {
-                return BadRequest(new
-                {
-                    message = $"App Custom Exception: {ex.Message}"
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    message = $"Exception: {ex.Message}"
-                });
-            }
+            var result = await this.userService.Create(email, password);
+
+            return this.FromResult(result);
         }
 
         [HttpGet("refresh")]

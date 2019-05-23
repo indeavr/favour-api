@@ -1,7 +1,9 @@
 ﻿using FavourAPI.ApiModels;
 using FavourAPI.Data.Models;
+using FavourAPI.Services.Helpers.Result;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -15,7 +17,7 @@ namespace FavourAPI.Services
 
         void UpdatePermissions(string userId, Action<PermissionMy> updater);
 
-        UserDto Create(UserDto userDto, string password);
+        Task<Result<object>> Create(string email, string password);
 
         void Update(User user, string password = null);
 
