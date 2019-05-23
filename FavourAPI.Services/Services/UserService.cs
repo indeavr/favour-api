@@ -202,6 +202,11 @@ namespace FavourAPI.Services
             return true;
         }
 
+        //private string[] ValidateCredentials(string email, string password)
+        //{
+        //    // if error return errors, else [] 
+        //}
+
         private static bool IsValidEmail(string email)
         {
             try
@@ -214,6 +219,8 @@ namespace FavourAPI.Services
                 return false;
             }
         }
+
+
     }
 }
 

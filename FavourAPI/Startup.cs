@@ -45,6 +45,7 @@ namespace FavourAPI
 
             var appSettings = appSettingsSection.Get<AppSettings>();
 
+            // TODO: Why auth0 ? 
             string domain = $"https://{Configuration["Auth0:Domain"]}";
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
@@ -104,17 +105,22 @@ namespace FavourAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
+                //app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseCors(x => x
                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader());
+
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
