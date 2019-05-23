@@ -12,11 +12,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
+using FavourAPI.Services;
+using FavourAPI.Services.Helpers.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FavourAPI
+namespace FavourAPI.Controllers
 {
     [Authorize]
     [ApiController]
@@ -33,12 +35,13 @@ namespace FavourAPI
             this.mapper = mapper;
             this.appSettings = appSettings.Value;
         }
+
         // GET: api/<controller>
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             var headers = Request.Headers;
-            this.userService.Create(new UserDto() { Id = "user123", Email = "abv@abv", Password = "abv" }, "abv");
+            this.userService.Create(new UserDto() { Id = Guid.NewGuid().ToString(), Email = "abv@abv", Password = "mypassword" }, "mypassword");
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };
@@ -53,7 +56,7 @@ namespace FavourAPI
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
 
@@ -70,12 +73,29 @@ namespace FavourAPI
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]UserDto userDto)
+        public IActionResult Authenticate([FromBody] UserDto userDto)
         {
-            var user = this.userService.Authenticate(userDto.Email, userDto.Password);
-
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+            UserDto user;
+            try
+            {
+                user = this.userService.Authenticate(userDto.Email, userDto.Password);
+            }
+            catch (EmailAppException ex)
+            {
+                return BadRequest(new { message = $"Email custom exception: {ex}" });
+            }
+            catch (PasswordAppException ex)
+            {
+                return BadRequest(new { message = $"Password custom exception: {ex}" });
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = $"App custom exception: {ex}" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = $"Exception: {ex}" });
+            }
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);
@@ -104,18 +124,41 @@ namespace FavourAPI
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody]UserDto userDto)
+        public IActionResult Register([FromBody] UserDto userDto)
         {
             try
             {
-                // save 
+                // Save 
                 this.userService.Create(userDto, userDto.Password);
                 return Ok();
+            }                
+            catch (PasswordAppException ex)
+            {
+                return BadRequest(new
+                {
+                    message = $"Password Custom Exception: {ex.Message}"
+                });
+            }
+            catch (EmailAppException ex)
+            {
+                return BadRequest(new
+                {
+                    message = $"Email Custom Exception: {ex.Message}"
+                });
             }
             catch (AppException ex)
             {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new
+                {
+                    message = $"App Custom Exception: {ex.Message}"
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = $"Exception: {ex.Message}"
+                });
             }
         }
 
@@ -160,7 +203,7 @@ namespace FavourAPI
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody]UserDto userDto)
+        public IActionResult Update(Guid id, [FromBody] UserDto userDto)
         {
             // map dto to entity and set id
             var user = this.mapper.Map<User>(userDto);
@@ -180,9 +223,10 @@ namespace FavourAPI
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             this.userService.Delete(id);
+
             return Ok();
         }
     }

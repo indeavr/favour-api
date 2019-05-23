@@ -1,10 +1,10 @@
 ﻿using FavourAPI.Dtos;
+using FavourAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Controllers
 {
@@ -27,11 +27,11 @@ namespace FavourAPI.Controllers
             {
                 new PeriodDto()
                 {
-                    Id= "period",
-                    StartDate =20123100000,
-                    EndDate=20123100000,
-                    StartHour =20123100000,
-                    EndHour =20123100000,
+                    Id = Guid.NewGuid().ToString(),
+                    StartDate = 20123100000,
+                    EndDate = 20123100000,
+                    StartHour = 20123100000,
+                    EndHour = 20123100000,
                 }
             };
 
@@ -49,7 +49,7 @@ namespace FavourAPI.Controllers
 
             var jobOffer = new JobOfferDto()
             {
-                Id = "jobOffer123",
+                Id = Guid.NewGuid().ToString(),
                 Description = "adsadass",
                 Location = "Sofia",
                 Money = 3000,
@@ -59,7 +59,7 @@ namespace FavourAPI.Controllers
                 RequiredSkills = requiredSkills
             };
 
-            this.offerService.AddJobOffer("user123", jobOffer);
+            this.offerService.AddJobOffer(Guid.NewGuid().ToString(), jobOffer);
             return Ok();
         }
 
@@ -67,8 +67,8 @@ namespace FavourAPI.Controllers
         [HttpGet("application")]
         public ActionResult SeedApplication()
         {
-            var jobOfferId = "jobOffer123";
-            var consumerId = "user123";
+            var jobOfferId = Guid.NewGuid().ToString();
+            var consumerId = Guid.NewGuid().ToString();
 
             var application = new ApplicationDto()
             {
@@ -82,7 +82,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult AddOffer([FromQuery]string userId, [FromBody] JobOfferDto jobOffer)
+        public ActionResult AddOffer([FromQuery] string userId, [FromBody] JobOfferDto jobOffer)
         {
             this.offerService.AddJobOffer(userId, jobOffer);
             return Ok();
@@ -91,10 +91,10 @@ namespace FavourAPI.Controllers
         [AllowAnonymous]
         [HttpGet]
         public ActionResult<List<JobOfferDto>> Get(
-            [FromQuery]string userId,
-            [FromQuery]string currentPosition,
-            [FromQuery]string chunkSize,
-            [FromQuery]long accessTime)
+            [FromQuery] string userId,
+            [FromQuery] string currentPosition,
+            [FromQuery] string chunkSize,
+            [FromQuery] long accessTime)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first

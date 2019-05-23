@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FavourAPI.Dtos;
-using FavourAPI.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using FavourAPI.Services;
 
 namespace FavourAPI.Controllers
 {
@@ -30,21 +26,22 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery]string userId)
+        public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery] string userId)
         {
-            this.companyProviderService.AddCompanyProvider("user123", new CompanyProviderDto()
+            this.companyProviderService.AddCompanyProvider(Guid.NewGuid().ToString(), new CompanyProviderDto()
             {
-                Id = "user123",
+                Id = Guid.NewGuid().ToString(),
                 Description = "neshto si",
                 FoundedYear = new DateTime().Ticks,
                 Name = "Macuranka",
                 NumberOfEmployees = 100,
                 Offices = new OfficeDto[]
                 {
-                    new OfficeDto(){
-                        Id="office1",
-                        Name="MyOffice",
-                        Location="Sofia",
+                    new OfficeDto()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Name = "MyOffice",
+                        Location = "Sofia",
                         Industries = new IndustryDto[]
                         {
                             new IndustryDto()
@@ -63,11 +60,12 @@ namespace FavourAPI.Controllers
                     }
                 }
             });
+
             return Ok(this.companyProviderService.GetProvider(userId));
         }
 
         [HttpPut]
-        public ActionResult AddCompanyProvider([FromQuery]string userId, [FromBody] CompanyProviderDto companyProvider)
+        public ActionResult AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             this.companyProviderService.AddCompanyProvider(userId, companyProvider);
             this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
@@ -77,7 +75,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("office")]
-        public ActionResult<OfficeDto> GetOffices([FromQuery]string userId)
+        public ActionResult<OfficeDto> GetOffices([FromQuery] string userId)
         {
             var offices = this.officeService.GetOffices();
             return Ok(offices);

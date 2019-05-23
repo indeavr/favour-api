@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavourAPI", "FavourAPI\FavourAPI.csproj", "{E4FE8BEE-9B05-43D0-A5A7-15C22EBF2752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavourAPI", "FavourAPI\FavourAPI.csproj", "{E4FE8BEE-9B05-43D0-A5A7-15C22EBF2752}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavourAPI.Data", "FavourAPI.Data\FavourAPI.Data.csproj", "{66C1053E-1A83-4FC4-AA15-49718EEA366E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavourAPI.Services", "FavourAPI.Services\FavourAPI.Services.csproj", "{6F63A2AF-5E26-4D16-A161-06774AECAEBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E4FE8BEE-9B05-43D0-A5A7-15C22EBF2752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4FE8BEE-9B05-43D0-A5A7-15C22EBF2752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4FE8BEE-9B05-43D0-A5A7-15C22EBF2752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C1053E-1A83-4FC4-AA15-49718EEA366E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C1053E-1A83-4FC4-AA15-49718EEA366E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C1053E-1A83-4FC4-AA15-49718EEA366E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C1053E-1A83-4FC4-AA15-49718EEA366E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F63A2AF-5E26-4D16-A161-06774AECAEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F63A2AF-5E26-4D16-A161-06774AECAEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F63A2AF-5E26-4D16-A161-06774AECAEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F63A2AF-5E26-4D16-A161-06774AECAEBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

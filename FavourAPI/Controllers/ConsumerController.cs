@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using FavourAPI.Dtos;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
+using FavourAPI.Services;
 
 namespace FavourAPI.Controllers
 {
@@ -47,7 +48,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> AddConsumer([FromQuery]string userId, [FromBody] ConsumerDto consumer)
+        public ActionResult<bool> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
             bool canProceed = this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
@@ -56,8 +57,9 @@ namespace FavourAPI.Controllers
                 HasSufficientInfo = canProceed
             });
         }
+
         [HttpPost("save")]
-        public ActionResult SaveJobOffer([FromQuery]string userId, [FromQuery]string jobOfferId)
+        public ActionResult SaveJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
         {
             this.consumerService.SaveJobOffer(userId, jobOfferId);
 

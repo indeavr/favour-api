@@ -20,6 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 using AutoMapper;
 using System.IO;
 using Microsoft.AspNetCore.Http.Internal;
+using FavourAPI.Data;
 
 namespace FavourAPI
 {
@@ -27,8 +28,7 @@ namespace FavourAPI
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -40,7 +40,7 @@ namespace FavourAPI
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
+            var appSettingsSection = this.Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -91,11 +91,10 @@ namespace FavourAPI
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IOfficeService, OfficeService>();
 
+            var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
-            var connection = @"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
-            services.AddDbContext<WorkFavourDbContext>
-            (options =>
-            options.UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
+            services.AddDbContext<WorkFavourDbContext>(options => options
+                .UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
             );
         }
 
