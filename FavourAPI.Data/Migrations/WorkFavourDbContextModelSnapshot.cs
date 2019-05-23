@@ -283,11 +283,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid>("LocationId");
 
-                    b.Property<Guid?>("JobOfferId1");
-
                     b.HasKey("JobOfferId", "LocationId");
-
-                    b.HasIndex("JobOfferId1");
 
                     b.HasIndex("LocationId");
 
@@ -322,8 +318,6 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<string>("CustomInfo");
 
-                    b.Property<Guid?>("JobOfferId");
-
                     b.Property<double?>("Latitude");
 
                     b.Property<double?>("Longitude");
@@ -337,8 +331,6 @@ namespace FavourAPI.Data.Migrations
                     b.Property<string>("ZipCode");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("JobOfferId");
 
                     b.ToTable("Locations");
                 });
@@ -480,7 +472,7 @@ namespace FavourAPI.Data.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkills", b =>
+            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkill", b =>
                 {
                     b.Property<Guid>("SkillId")
                         .HasColumnType("uniqueidentifier");
@@ -653,8 +645,9 @@ namespace FavourAPI.Data.Migrations
             modelBuilder.Entity("FavourAPI.Data.Models.JobOfferLocation", b =>
                 {
                     b.HasOne("FavourAPI.Data.Models.JobOffer", "JobOffer")
-                        .WithMany()
-                        .HasForeignKey("JobOfferId1");
+                        .WithMany("Locations")
+                        .HasForeignKey("JobOfferId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FavourAPI.Data.Models.Location", "Location")
                         .WithMany()
@@ -668,13 +661,6 @@ namespace FavourAPI.Data.Migrations
                         .WithMany("Photos")
                         .HasForeignKey("JobOfferId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FavourAPI.Data.Models.Location", b =>
-                {
-                    b.HasOne("FavourAPI.Data.Models.JobOffer")
-                        .WithMany("Locations")
-                        .HasForeignKey("JobOfferId");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Office", b =>
@@ -746,7 +732,7 @@ namespace FavourAPI.Data.Migrations
                         .HasForeignKey("CompanyProviderId");
                 });
 
-            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkills", b =>
+            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkill", b =>
                 {
                     b.HasOne("FavourAPI.Data.Models.Position", "Position")
                         .WithMany("PositionSkills")

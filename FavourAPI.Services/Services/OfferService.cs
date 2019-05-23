@@ -42,28 +42,36 @@ namespace FavourAPI.Services
                     Description = "PART TIME: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                     Money = i + 100,
                     TimePosted = new DateTime(),
-                    Locations = new List<Location>
+                    Locations = new List<JobOfferLocation>
                     {
-                        new Location
+                        new JobOfferLocation
                         {
-                            Id = Guid.NewGuid(),
-                            Country = "Bulgaria",
-                            Town = "Sofia",
-                            Region = "Lozenetz",
-                            StreetAddress = "Lipa 2",
-                            ZipCode = "1421",
-                            CustomInfo = "On the 2nd floor from the back entrance",
-                            Latitude = 42.680721,
-                            Longitude = 23.3225158
+                            LocationId = new Guid(),
+                            Location = new Location
+                            {
+                                Id = Guid.NewGuid(),
+                                Country = "Bulgaria",
+                                Town = "Sofia",
+                                Region = "Lozenetz",
+                                StreetAddress = "Lipa 2",
+                                ZipCode = "1421",
+                                CustomInfo = "On the 2nd floor from the back entrance",
+                                Latitude = 42.680721,
+                                Longitude = 23.3225158
+                            },
                         },
-                        new Location
+                        new JobOfferLocation
                         {
-                            Id = Guid.NewGuid(),
-                            Country = "Bulgaria",
-                            Town = "Sofia",
-                            Region = "Lozenetz",
-                            StreetAddress = "Lipa 5",
-                            ZipCode = "1421",
+                            LocationId = new Guid(),
+                            Location = new Location
+                            {
+                                Id = Guid.NewGuid(),
+                                Country = "Bulgaria",
+                                Town = "Sofia",
+                                Region = "Lozenetz",
+                                StreetAddress = "Lipa 5",
+                                ZipCode = "1421",
+                            }
                         }
                     }
                 });
@@ -76,16 +84,20 @@ namespace FavourAPI.Services
                     Description = "Nasa Hacker" + name + i,
                     Money = i + 100,
                     TimePosted = new DateTime(),
-                    Locations = new List<Location>
+                    Locations = new List<JobOfferLocation>
                     {
-                        new Location()
+                        new JobOfferLocation
                         {
-                            Id = Guid.NewGuid(),
-                            Country = "Bulgaria",
-                            Town = "Sofia",
-                            Region = "Vrazhdebna",
-                            StreetAddress = "ul.61, 10",
-                            ZipCode = "1839",
+                            LocationId = new Guid(),
+                            Location = new Location()
+                            {
+                                Id = Guid.NewGuid(),
+                                Country = "Bulgaria",
+                                Town = "Sofia",
+                                Region = "Vrazhdebna",
+                                StreetAddress = "ul.61, 10",
+                                ZipCode = "1839",
+                            }
                         }
                     }
                 });
