@@ -480,7 +480,7 @@ namespace FavourAPI.Data.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkills", b =>
+            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkill", b =>
                 {
                     b.Property<Guid>("SkillId")
                         .HasColumnType("uniqueidentifier");
@@ -746,7 +746,7 @@ namespace FavourAPI.Data.Migrations
                         .HasForeignKey("CompanyProviderId");
                 });
 
-            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkills", b =>
+            modelBuilder.Entity("FavourAPI.Data.Models.PositionSkill", b =>
                 {
                     b.HasOne("FavourAPI.Data.Models.Position", "Position")
                         .WithMany("PositionSkills")
