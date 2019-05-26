@@ -80,21 +80,21 @@ namespace FavourAPI.Services
 
             // Password validations
             int passMinLen = 8;
-            if (password.Length < passMinLen)
-                return new InvalidResult<object>($"Password must be at least {passMinLen} characters!");
+            //if (password.Length < passMinLen)
+            //    return new InvalidResult<object>($"Password must be at least {passMinLen} characters!");
 
-            if (!Regex.IsMatch(password, "[0-9]"))
-                return new InvalidResult<object>("Password must contains at least one digit!");
+            //if (!Regex.IsMatch(password, "[0-9]"))
+            //    return new InvalidResult<object>("Password must contains at least one digit!");
 
-            if (email.Contains(password))
-                return new InvalidResult<object>($"Password cannot be contained in your email address ({email})!");
+            //if (email.Contains(password))
+            //    return new InvalidResult<object>($"Password cannot be contained in your email address ({email})!");
 
-            // Email validations
-            if (IsValidEmail(email))
-                return new InvalidResult<object>($"Email ({email}) is not valid!");
+            //// Email validations
+            //if (!IsValidEmail(email))
+            //    return new InvalidResult<object>($"Email ({email}) is not valid!");
 
-            if (this.dbContext.Users.Any(u => u.Email == email))
-                return new InvalidResult<object>($"Email ({email}) is already taken!");
+            //if (this.dbContext.Users.Any(u => u.Email == email))
+            //    return new InvalidResult<object>($"Email ({email}) is already taken!");
 
             // Password hashing
             byte[] passwordHash, passwordSalt;
@@ -104,7 +104,8 @@ namespace FavourAPI.Services
             {
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                PermissionMy = new PermissionMy()
+                PermissionMy = new PermissionMy(),
+                Email = email
             };
 
 

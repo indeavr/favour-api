@@ -21,6 +21,8 @@ using AutoMapper;
 using System.IO;
 using Microsoft.AspNetCore.Http.Internal;
 using FavourAPI.Data;
+using FavourAPI.Services.Contracts;
+using FavourAPI.Services.Services;
 
 namespace FavourAPI
 {
@@ -90,6 +92,7 @@ namespace FavourAPI
             services.AddScoped<IConsumerService, ConsumerService>();
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IOfficeService, OfficeService>();
+            services.AddScoped<ISkillService, SkillService>();
 
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 

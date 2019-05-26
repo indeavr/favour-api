@@ -124,9 +124,9 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromQuery] string email, [FromQuery] string password)
+        public async Task<IActionResult> Register([FromBody] UserDto user)
         {
-            var result = await this.userService.Create(email, password);
+            var result = await this.userService.Create(user.Email, user.Password);
 
             return this.FromResult(result);
         }

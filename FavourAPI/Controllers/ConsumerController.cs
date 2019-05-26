@@ -9,6 +9,7 @@ using AutoMapper;
 using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
 using FavourAPI.Services;
+using FavourAPI.Services.Contracts;
 
 namespace FavourAPI.Controllers
 {
@@ -18,10 +19,12 @@ namespace FavourAPI.Controllers
     public class ConsumerController : ControllerBase
     {
         private readonly IConsumerService consumerService;
+        private readonly ISkillService skillService;
 
-        public ConsumerController([FromServices] IConsumerService service)
+        public ConsumerController([FromServices] IConsumerService service, [FromServices] ISkillService skillService)
         {
             this.consumerService = service;
+            this.skillService = skillService;
         }
 
         [HttpGet]
@@ -64,6 +67,12 @@ namespace FavourAPI.Controllers
             this.consumerService.SaveJobOffer(userId, jobOfferId);
 
             return Ok();
+        }
+
+        [HttpGet("skills")]
+        public ActionResult<string[]> GetSkills()
+        {
+            return Ok(this.skillService.GetSkills().Data);
         }
     }
 }
