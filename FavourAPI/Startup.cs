@@ -93,6 +93,7 @@ namespace FavourAPI
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IOfficeService, OfficeService>();
             services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<IPositionService, PositionService>();
 
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 

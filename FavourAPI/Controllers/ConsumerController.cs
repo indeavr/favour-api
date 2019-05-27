@@ -20,11 +20,13 @@ namespace FavourAPI.Controllers
     {
         private readonly IConsumerService consumerService;
         private readonly ISkillService skillService;
+        private readonly IPositionService positionService;
 
-        public ConsumerController([FromServices] IConsumerService service, [FromServices] ISkillService skillService)
+        public ConsumerController([FromServices] IConsumerService service, [FromServices] ISkillService skillService, [FromServices] IPositionService positionService)
         {
             this.consumerService = service;
             this.skillService = skillService;
+            this.positionService = positionService;
         }
 
         [HttpGet]
@@ -73,6 +75,12 @@ namespace FavourAPI.Controllers
         public ActionResult<string[]> GetSkills()
         {
             return Ok(this.skillService.GetSkills().Data);
+        }
+
+        [HttpGet("positions")]
+        public ActionResult<string[]> GetPossitions()
+        {
+            return Ok(this.positionService.GetPositions().Data);
         }
     }
 }

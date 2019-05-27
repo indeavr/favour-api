@@ -25,7 +25,9 @@ namespace FavourAPI.Services
 
             var dbConsumer = mapper.Map<Consumer>(consumerData);
             var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
+            var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
             dbConsumer.Sex = correctSexDb;
+            dbConsumer.Skills = correctSkills;
             dbConsumer.Id = Guid.Parse(userId);
 
             var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);

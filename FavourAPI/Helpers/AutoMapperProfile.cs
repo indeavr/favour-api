@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FavourAPI.Data.Models.Enums;
+using FavourAPI.Services.Dtos;
 
 namespace FavourAPI.Helpers
 {
@@ -44,7 +45,8 @@ namespace FavourAPI.Helpers
 
             CreateMap<Consumer, ConsumerDto>()
                 .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number))
-                .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value));
+                .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
+                .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name)));
 
             Func<ConsumerDto, Consumer, object> transform = (cdto, _) =>
               {
@@ -54,7 +56,8 @@ namespace FavourAPI.Helpers
 
             CreateMap<ConsumerDto, Consumer>()
                 .ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }))
-                .ForMember(c => c.Sex, opt => opt.MapFrom(transform));
+                .ForMember(c => c.Sex, opt => opt.MapFrom(transform))
+                .ForMember(c => c.Skills, opt => opt.MapFrom(cdto => cdto.Skills.Select(s => new Skill() { Name = s })));
 
             CreateMap<JobOffer, JobOfferDto>();
             CreateMap<JobOfferDto, JobOffer>();
@@ -77,6 +80,8 @@ namespace FavourAPI.Helpers
             CreateMap<ApplicationDto, Application>();
             CreateMap<Application, ApplicationDto>();
 
+            CreateMap<LocationDto, Location>();
+            CreateMap<Location, LocationDto>();
         }
     }
 }
