@@ -8,10 +8,6 @@ namespace FavourAPI.Data.Models
     public class Skill
     {
         [Key]
-        [Column(TypeName = "uniqueidentifier")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public virtual IList<PositionSkill> PositionSkills { get; set; }
