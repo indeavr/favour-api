@@ -62,6 +62,14 @@ namespace FavourAPI.Data
 
         public DbSet<JobOfferLocation> JobOfferLocations { get; set; }
 
+        public DbSet<PermissionName> PermissionNames { get; set; }
+
+        public DbSet<Permission> Permissions { get; set; }
+
+        public DbSet<PermissionTransaction> PermissionTransactions { get; set; }
+
+        public DbSet<Subscription> Subscriptions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuring one-to-one relation
