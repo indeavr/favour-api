@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -40,5 +41,16 @@ namespace FavourAPI.Data.Models
         public virtual CompanyProvider CompanyProvider { get; set; }
 
         public virtual PermissionMy PermissionMy { get; set; }
+
+        public virtual List<Permission> Permissions { get; set; }
+        
+        // Currently ignored because it introduces complex relations and can be populated simpler
+        // Its value can be calculated by taking all permissions for all roles in currently active subscriptions
+        // It should be present in the dto
+        // public virtual List<Permission> RolePermission { get; set; }
+
+        public virtual List<PermissionTransaction> Transactions { get; set; }
+
+        public virtual List<Subscription> Subscriptions { get; set; }
     }
 }
