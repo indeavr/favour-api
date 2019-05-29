@@ -96,7 +96,7 @@ namespace FavourAPI.Controllers
             [FromQuery] string currentPosition,
             [FromQuery] string chunkSize,
             [FromQuery] long accessTime,
-            [FromQuery] string searchQuery)
+            [FromQuery] JobSearchFiltersDto filters)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first
