@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Dtos;
 using FavourAPI.Services;
+using FavourAPI.Services.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -94,7 +95,8 @@ namespace FavourAPI.Controllers
             [FromQuery] string userId,
             [FromQuery] string currentPosition,
             [FromQuery] string chunkSize,
-            [FromQuery] long accessTime)
+            [FromQuery] long accessTime,
+            [FromQuery] string searchQuery)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first
