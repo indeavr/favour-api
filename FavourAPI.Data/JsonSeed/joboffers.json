@@ -1,0 +1,4020 @@
+[
+  // From Company Providers
+  {
+    "Id": "ac5dac36-c9c3-49f3-964e-06584d9a82eb",
+    "Title": "Job Offer Title 1",
+    "Money": 212.72,
+    "Description": "The same awesome job offer description 1",
+    "TimePosted": "2005-08-30T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "8115581c-1dce-4896-80c2-059f611cf5be",
+    "Title": "Job Offer Title 2",
+    "Money": 515.41,
+    "Description": "The same awesome job offer description 2",
+    "TimePosted": "2004-06-11T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "baf51037-9d5b-46f4-98f0-ce551e6e4ed3",
+    "Title": "Job Offer Title 3",
+    "Money": 105.03,
+    "Description": "The same awesome job offer description 3",
+    "TimePosted": "2007-02-19T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "44dabb9d-cf3b-48a3-ab00-a684a85fc9f1",
+    "Title": "Job Offer Title 4",
+    "Money": 107.49,
+    "Description": "The same awesome job offer description 4",
+    "TimePosted": "2007-12-31T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "58a0bde8-1fe7-4ce3-9dcc-08d965cd0c00",
+    "Title": "Job Offer Title 5",
+    "Money": 548.99,
+    "Description": "The same awesome job offer description 5",
+    "TimePosted": "2008-05-05T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6e3c583c-5f44-40f7-87ee-43930d406a73",
+    "Title": "Job Offer Title 6",
+    "Money": 1141.67,
+    "Description": "The same awesome job offer description 6",
+    "TimePosted": "2010-03-19T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "144558d3-9676-49c2-b32c-1c3f928a3f8d",
+    "Title": "Job Offer Title 7",
+    "Money": 386.15,
+    "Description": "The same awesome job offer description 7",
+    "TimePosted": "2008-07-21T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "33a16e7e-2576-476d-9722-84a50f7cff9b",
+    "Title": "Job Offer Title 8",
+    "Money": 287.19,
+    "Description": "The same awesome job offer description 8",
+    "TimePosted": "2000-03-17T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "89580b8b-d852-4356-aa52-be9772a7d630",
+    "Title": "Job Offer Title 9",
+    "Money": 692.61,
+    "Description": "The same awesome job offer description 9",
+    "TimePosted": "2015-07-03T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e12945f4-43a6-4805-aa76-c7f3dac318de",
+    "Title": "Job Offer Title 10",
+    "Money": 1083.71,
+    "Description": "The same awesome job offer description 10",
+    "TimePosted": "2006-03-08T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4938d982-2b42-46e2-8ecc-23089057ba84",
+    "Title": "Job Offer Title 11",
+    "Money": 82.32,
+    "Description": "The same awesome job offer description 11",
+    "TimePosted": "2011-01-10T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "afa36647-6edd-4945-a667-d02e8dde090c",
+    "Title": "Job Offer Title 12",
+    "Money": 1063.04,
+    "Description": "The same awesome job offer description 12",
+    "TimePosted": "2016-10-07T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "005d2553-8a8b-4ebf-9f3b-a4c9059049d9",
+    "Title": "Job Offer Title 13",
+    "Money": 975.29,
+    "Description": "The same awesome job offer description 13",
+    "TimePosted": "2015-04-08T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "63cc26e1-f151-45ff-98ca-73dcb1c8a3e6",
+    "Title": "Job Offer Title 14",
+    "Money": 419.64,
+    "Description": "The same awesome job offer description 14",
+    "TimePosted": "2001-02-01T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "db303d66-8610-482c-966f-d6d072a1c99d",
+    "Title": "Job Offer Title 15",
+    "Money": 1120.1,
+    "Description": "The same awesome job offer description 15",
+    "TimePosted": "2002-11-18T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "36c720e8-7707-4e7d-b0ec-4b62b7f92247",
+    "Title": "Job Offer Title 16",
+    "Money": 153.98,
+    "Description": "The same awesome job offer description 16",
+    "TimePosted": "2006-04-20T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2770296f-7ff0-49ab-9909-c01034b16e10",
+    "Title": "Job Offer Title 17",
+    "Money": 922.39,
+    "Description": "The same awesome job offer description 17",
+    "TimePosted": "2001-12-17T00:00:00",
+    "ProviderId": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d544ec78-7907-42aa-87c6-0085c7de5585",
+    "Title": "Job Offer Title 18",
+    "Money": 993.27,
+    "Description": "The same awesome job offer description 18",
+    "TimePosted": "2013-08-10T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c6d3395c-d64f-4b3b-86cb-4b065abd7f00",
+    "Title": "Job Offer Title 19",
+    "Money": 232.5,
+    "Description": "The same awesome job offer description 19",
+    "TimePosted": "2014-05-26T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e8537277-cb3c-4784-8dd2-8eb518d49694",
+    "Title": "Job Offer Title 20",
+    "Money": 89.55,
+    "Description": "The same awesome job offer description 20",
+    "TimePosted": "2012-02-28T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6018ea44-e07b-4e16-bd3e-c8d8eb13b766",
+    "Title": "Job Offer Title 21",
+    "Money": 1192.46,
+    "Description": "The same awesome job offer description 21",
+    "TimePosted": "2012-11-19T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1a3cc095-27ad-43ac-ac17-153096b067d8",
+    "Title": "Job Offer Title 22",
+    "Money": 264.82,
+    "Description": "The same awesome job offer description 22",
+    "TimePosted": "2000-12-21T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "afa594c6-8093-4c74-b10c-60538556f057",
+    "Title": "Job Offer Title 23",
+    "Money": 497.18,
+    "Description": "The same awesome job offer description 23",
+    "TimePosted": "2017-03-21T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8c93662a-1279-42ea-bf3a-311955861a64",
+    "Title": "Job Offer Title 24",
+    "Money": 1007.29,
+    "Description": "The same awesome job offer description 24",
+    "TimePosted": "2007-04-09T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b0301812-51a0-4c3b-b78d-589c26020743",
+    "Title": "Job Offer Title 25",
+    "Money": 572.59,
+    "Description": "The same awesome job offer description 25",
+    "TimePosted": "2018-04-20T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ca170089-69e9-4d40-931b-4f2094b27e1f",
+    "Title": "Job Offer Title 26",
+    "Money": 100.93,
+    "Description": "The same awesome job offer description 26",
+    "TimePosted": "2013-12-19T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2f4e89ed-bb86-45df-99a0-c2d609f7b424",
+    "Title": "Job Offer Title 27",
+    "Money": 119.87,
+    "Description": "The same awesome job offer description 27",
+    "TimePosted": "2012-03-18T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "dba16bb4-1948-40b8-a627-721e5b42df5d",
+    "Title": "Job Offer Title 28",
+    "Money": 968.98,
+    "Description": "The same awesome job offer description 28",
+    "TimePosted": "2017-06-09T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6ff125e3-ad75-45f5-9ce2-0defe6a6d8d2",
+    "Title": "Job Offer Title 29",
+    "Money": 538.24,
+    "Description": "The same awesome job offer description 29",
+    "TimePosted": "2015-01-13T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "56357aeb-646c-4518-ad2a-814410141956",
+    "Title": "Job Offer Title 30",
+    "Money": 718.44,
+    "Description": "The same awesome job offer description 30",
+    "TimePosted": "2013-02-21T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bc97c075-eddb-4c03-8b3a-92aac495606e",
+    "Title": "Job Offer Title 31",
+    "Money": 1004.83,
+    "Description": "The same awesome job offer description 31",
+    "TimePosted": "2004-09-30T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "27aac2ad-8209-4f59-8744-129f8bd6ded7",
+    "Title": "Job Offer Title 32",
+    "Money": 462.62,
+    "Description": "The same awesome job offer description 32",
+    "TimePosted": "2017-02-22T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "0497ad85-dccf-434f-963b-34e45fe6ab59",
+    "Title": "Job Offer Title 33",
+    "Money": 361.44,
+    "Description": "The same awesome job offer description 33",
+    "TimePosted": "2000-12-03T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2fda8bf3-e86c-4d1b-9e1d-22892031d217",
+    "Title": "Job Offer Title 34",
+    "Money": 889.15,
+    "Description": "The same awesome job offer description 34",
+    "TimePosted": "2011-04-15T00:00:00",
+    "ProviderId": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "11823038-59a8-4309-9ac0-263d642ea78e",
+    "Title": "Job Offer Title 35",
+    "Money": 569.03,
+    "Description": "The same awesome job offer description 35",
+    "TimePosted": "2015-11-18T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5ecbb88b-dd00-4264-9f34-c1c97e321d38",
+    "Title": "Job Offer Title 36",
+    "Money": 154.78,
+    "Description": "The same awesome job offer description 36",
+    "TimePosted": "2016-05-15T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "23c2c862-769f-4a2f-97db-a16a2b75b178",
+    "Title": "Job Offer Title 37",
+    "Money": 466.88,
+    "Description": "The same awesome job offer description 37",
+    "TimePosted": "2001-08-13T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7949a566-a280-4001-97b9-ce51b98be60e",
+    "Title": "Job Offer Title 38",
+    "Money": 1006.15,
+    "Description": "The same awesome job offer description 38",
+    "TimePosted": "2009-07-28T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ca8f7bed-3563-4377-9d2c-b69bb5623494",
+    "Title": "Job Offer Title 39",
+    "Money": 1093.73,
+    "Description": "The same awesome job offer description 39",
+    "TimePosted": "2009-04-17T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2a85312a-9e3f-4320-911b-d74868e63c81",
+    "Title": "Job Offer Title 40",
+    "Money": 768.35,
+    "Description": "The same awesome job offer description 40",
+    "TimePosted": "2006-01-04T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "70d6485d-30d9-4210-99c1-b8488f36a7dc",
+    "Title": "Job Offer Title 41",
+    "Money": 153.31,
+    "Description": "The same awesome job offer description 41",
+    "TimePosted": "2014-08-19T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e9d6f29e-1ec3-4eb4-ba75-686b2e8b830c",
+    "Title": "Job Offer Title 42",
+    "Money": 218.18,
+    "Description": "The same awesome job offer description 42",
+    "TimePosted": "2014-01-28T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "52562ce8-43ad-4504-880d-9ae00ef481f3",
+    "Title": "Job Offer Title 43",
+    "Money": 149.98,
+    "Description": "The same awesome job offer description 43",
+    "TimePosted": "2003-06-07T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "32570eed-d8ef-4e3e-b472-f51c1dc8e732",
+    "Title": "Job Offer Title 44",
+    "Money": 418.84,
+    "Description": "The same awesome job offer description 44",
+    "TimePosted": "2017-08-16T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2f2295c5-d3bd-49d0-87b8-d02978e14c11",
+    "Title": "Job Offer Title 45",
+    "Money": 95.97,
+    "Description": "The same awesome job offer description 45",
+    "TimePosted": "2001-10-29T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a5c7e06b-3f53-4398-a243-f5a938fccb42",
+    "Title": "Job Offer Title 46",
+    "Money": 184.54,
+    "Description": "The same awesome job offer description 46",
+    "TimePosted": "2003-08-10T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3939e0da-8920-40e6-a9ce-82232d5a7fbc",
+    "Title": "Job Offer Title 47",
+    "Money": 195.74,
+    "Description": "The same awesome job offer description 47",
+    "TimePosted": "2010-10-27T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "986a8756-6bde-4fa6-93ae-b315764e9240",
+    "Title": "Job Offer Title 48",
+    "Money": 339.7,
+    "Description": "The same awesome job offer description 48",
+    "TimePosted": "2005-05-24T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "27d14906-a192-466f-bf13-15d3571a235d",
+    "Title": "Job Offer Title 49",
+    "Money": 178.86,
+    "Description": "The same awesome job offer description 49",
+    "TimePosted": "2009-05-17T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b83d2a0b-2cd6-4deb-880f-1eab135ad213",
+    "Title": "Job Offer Title 50",
+    "Money": 1018.94,
+    "Description": "The same awesome job offer description 50",
+    "TimePosted": "2011-09-10T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6f73b90c-35a5-4067-a693-69029809d2f5",
+    "Title": "Job Offer Title 51",
+    "Money": 790.21,
+    "Description": "The same awesome job offer description 51",
+    "TimePosted": "2013-07-30T00:00:00",
+    "ProviderId": "83bfc050-5013-4813-9602-9c024090207c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "db581fe8-1695-43c4-93a9-0b4387887a5d",
+    "Title": "Job Offer Title 52",
+    "Money": 876.53,
+    "Description": "The same awesome job offer description 52",
+    "TimePosted": "2003-01-31T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9a9dc5cf-d0ea-4a14-8947-53a651562510",
+    "Title": "Job Offer Title 53",
+    "Money": 651.04,
+    "Description": "The same awesome job offer description 53",
+    "TimePosted": "2002-05-30T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b34b9bad-4fa4-46a2-9eb1-b076a902be49",
+    "Title": "Job Offer Title 54",
+    "Money": 993.88,
+    "Description": "The same awesome job offer description 54",
+    "TimePosted": "2005-12-07T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "446687e1-cdec-4273-9bd5-513923bbfe66",
+    "Title": "Job Offer Title 55",
+    "Money": 1077.23,
+    "Description": "The same awesome job offer description 55",
+    "TimePosted": "2010-02-06T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9ac68978-16ba-4827-b3e2-282d0f03b145",
+    "Title": "Job Offer Title 56",
+    "Money": 976.47,
+    "Description": "The same awesome job offer description 56",
+    "TimePosted": "2004-09-08T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "010ba97c-fa0f-45cb-9f1c-d00d06beafea",
+    "Title": "Job Offer Title 57",
+    "Money": 895.19,
+    "Description": "The same awesome job offer description 57",
+    "TimePosted": "2006-08-18T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3a16bb14-ab2a-4d5e-8d23-b59f601738f8",
+    "Title": "Job Offer Title 58",
+    "Money": 1154.7,
+    "Description": "The same awesome job offer description 58",
+    "TimePosted": "2019-04-10T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4bd9f3c0-2015-4bd6-abda-a45b7c96ddea",
+    "Title": "Job Offer Title 59",
+    "Money": 411.87,
+    "Description": "The same awesome job offer description 59",
+    "TimePosted": "2009-02-07T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "19d8ca6a-0453-456a-8419-d82696ebc416",
+    "Title": "Job Offer Title 60",
+    "Money": 145.03,
+    "Description": "The same awesome job offer description 60",
+    "TimePosted": "2013-10-12T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a1561edb-0e83-4d9a-af9c-3ce7f0bd005c",
+    "Title": "Job Offer Title 61",
+    "Money": 718.77,
+    "Description": "The same awesome job offer description 61",
+    "TimePosted": "2017-05-28T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f1ea92c2-0512-41f4-9eff-f76414e5424f",
+    "Title": "Job Offer Title 62",
+    "Money": 294.13,
+    "Description": "The same awesome job offer description 62",
+    "TimePosted": "2010-07-09T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "602a7a17-d759-4910-9012-ffbab9485785",
+    "Title": "Job Offer Title 63",
+    "Money": 625.92,
+    "Description": "The same awesome job offer description 63",
+    "TimePosted": "2004-07-30T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a8c75e32-6255-4b37-9a12-1d81019510f0",
+    "Title": "Job Offer Title 64",
+    "Money": 851.14,
+    "Description": "The same awesome job offer description 64",
+    "TimePosted": "2002-05-11T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "12d3cbd2-ef7a-482c-80c3-1ae65f43d722",
+    "Title": "Job Offer Title 65",
+    "Money": 955.84,
+    "Description": "The same awesome job offer description 65",
+    "TimePosted": "2001-06-07T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ddbf133e-90d1-4eb7-832b-21d96c97c620",
+    "Title": "Job Offer Title 66",
+    "Money": 496.67,
+    "Description": "The same awesome job offer description 66",
+    "TimePosted": "2013-04-15T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "11933a0f-ab46-48c6-ae59-390c7480f45e",
+    "Title": "Job Offer Title 67",
+    "Money": 398.57,
+    "Description": "The same awesome job offer description 67",
+    "TimePosted": "2015-11-04T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "db99c56f-e705-4064-9d39-c902de9f673e",
+    "Title": "Job Offer Title 68",
+    "Money": 963.1,
+    "Description": "The same awesome job offer description 68",
+    "TimePosted": "2003-12-25T00:00:00",
+    "ProviderId": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9012513d-8a9f-4a3b-a25c-09ceb35905f7",
+    "Title": "Job Offer Title 69",
+    "Money": 727.58,
+    "Description": "The same awesome job offer description 69",
+    "TimePosted": "2004-08-11T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "23322c87-cf86-487e-b9f3-f73962ea52aa",
+    "Title": "Job Offer Title 70",
+    "Money": 662.29,
+    "Description": "The same awesome job offer description 70",
+    "TimePosted": "2005-11-30T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ca6bb343-2495-4753-849c-ade772a633c4",
+    "Title": "Job Offer Title 71",
+    "Money": 564.07,
+    "Description": "The same awesome job offer description 71",
+    "TimePosted": "2004-09-07T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3d81c87a-3480-417e-b366-d8700db5dfe6",
+    "Title": "Job Offer Title 72",
+    "Money": 793.21,
+    "Description": "The same awesome job offer description 72",
+    "TimePosted": "2011-10-17T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f2dcd272-5c9b-4f61-b8ad-8c1b1cb8d374",
+    "Title": "Job Offer Title 73",
+    "Money": 776.51,
+    "Description": "The same awesome job offer description 73",
+    "TimePosted": "2004-04-25T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "aa9d93ed-98a5-4001-963f-b0f25c191ef0",
+    "Title": "Job Offer Title 74",
+    "Money": 341.11,
+    "Description": "The same awesome job offer description 74",
+    "TimePosted": "2008-05-21T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "625ab951-d10a-4d24-9bef-b3ca458b2fd0",
+    "Title": "Job Offer Title 75",
+    "Money": 813.21,
+    "Description": "The same awesome job offer description 75",
+    "TimePosted": "2016-12-06T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4c681b9d-e7ce-46cb-ae69-8f221f14b4b5",
+    "Title": "Job Offer Title 76",
+    "Money": 671.25,
+    "Description": "The same awesome job offer description 76",
+    "TimePosted": "2018-03-20T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ead26bc5-f6e3-4eda-b98a-88e589f500b6",
+    "Title": "Job Offer Title 77",
+    "Money": 991.8,
+    "Description": "The same awesome job offer description 77",
+    "TimePosted": "2016-12-11T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bbfc8b96-db38-4a10-8a3f-ca579f786d16",
+    "Title": "Job Offer Title 78",
+    "Money": 955.31,
+    "Description": "The same awesome job offer description 78",
+    "TimePosted": "2019-01-01T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e778306b-1c1b-4651-b48b-457b4f2a2ae3",
+    "Title": "Job Offer Title 79",
+    "Money": 608.29,
+    "Description": "The same awesome job offer description 79",
+    "TimePosted": "2005-06-10T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8bdad693-58d0-4be5-ae1c-505921f77e7e",
+    "Title": "Job Offer Title 80",
+    "Money": 85.02,
+    "Description": "The same awesome job offer description 80",
+    "TimePosted": "2014-09-10T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "40b13517-a3a9-40da-b310-3542edde7192",
+    "Title": "Job Offer Title 81",
+    "Money": 782.15,
+    "Description": "The same awesome job offer description 81",
+    "TimePosted": "2003-02-23T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "39f5d099-5f8e-4d3b-89d4-22e47badd828",
+    "Title": "Job Offer Title 82",
+    "Money": 657.14,
+    "Description": "The same awesome job offer description 82",
+    "TimePosted": "2006-10-26T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "211ff535-dcca-492e-860a-133d8552a747",
+    "Title": "Job Offer Title 83",
+    "Money": 487.09,
+    "Description": "The same awesome job offer description 83",
+    "TimePosted": "2008-01-24T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8e767d78-3362-4f50-8f8b-54507178dae4",
+    "Title": "Job Offer Title 84",
+    "Money": 396.27,
+    "Description": "The same awesome job offer description 84",
+    "TimePosted": "2003-05-06T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d92bd194-d722-4ecf-83e2-75563af6e153",
+    "Title": "Job Offer Title 85",
+    "Money": 805.2,
+    "Description": "The same awesome job offer description 85",
+    "TimePosted": "2018-12-21T00:00:00",
+    "ProviderId": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4a406b8e-f7b6-4327-8473-5b62e548ff22",
+    "Title": "Job Offer Title 86",
+    "Money": 1005.27,
+    "Description": "The same awesome job offer description 86",
+    "TimePosted": "2001-08-30T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4c47edab-2e40-4bc0-9e1d-85a51386b893",
+    "Title": "Job Offer Title 87",
+    "Money": 688.55,
+    "Description": "The same awesome job offer description 87",
+    "TimePosted": "2014-09-25T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "94b3b051-f929-46ea-905e-51c7ffd77475",
+    "Title": "Job Offer Title 88",
+    "Money": 244.53,
+    "Description": "The same awesome job offer description 88",
+    "TimePosted": "2014-05-25T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bd357ad6-4453-43a3-a5bd-bcaf3103cbca",
+    "Title": "Job Offer Title 89",
+    "Money": 688.89,
+    "Description": "The same awesome job offer description 89",
+    "TimePosted": "2001-03-08T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a43e86a5-2993-45d4-9c8f-efa4f43316c1",
+    "Title": "Job Offer Title 90",
+    "Money": 469.52,
+    "Description": "The same awesome job offer description 90",
+    "TimePosted": "2011-03-11T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "f6c58b2c-a471-47e2-baf4-bbe6e24ea0cb",
+    "Title": "Job Offer Title 91",
+    "Money": 136.56,
+    "Description": "The same awesome job offer description 91",
+    "TimePosted": "2009-09-27T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5e3c7222-200d-4007-a792-237fc5fb344d",
+    "Title": "Job Offer Title 92",
+    "Money": 189.15,
+    "Description": "The same awesome job offer description 92",
+    "TimePosted": "2001-09-30T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c3170a92-f63a-482a-8261-6d75ece1c7d7",
+    "Title": "Job Offer Title 93",
+    "Money": 291.25,
+    "Description": "The same awesome job offer description 93",
+    "TimePosted": "2000-06-20T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "94029e09-c234-46d8-8763-c30150064ecb",
+    "Title": "Job Offer Title 94",
+    "Money": 645.67,
+    "Description": "The same awesome job offer description 94",
+    "TimePosted": "2014-12-02T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "84e422c3-818e-4109-accd-3172a24ee7c2",
+    "Title": "Job Offer Title 95",
+    "Money": 926.55,
+    "Description": "The same awesome job offer description 95",
+    "TimePosted": "2008-01-05T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fff92b6b-e55a-4a3f-8241-939f67766178",
+    "Title": "Job Offer Title 96",
+    "Money": 736.15,
+    "Description": "The same awesome job offer description 96",
+    "TimePosted": "2004-02-11T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "cf24acbf-5d55-4cfa-b7e6-aa1398a87594",
+    "Title": "Job Offer Title 97",
+    "Money": 469.23,
+    "Description": "The same awesome job offer description 97",
+    "TimePosted": "2009-06-30T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c5c37445-9aff-483a-a7d8-687d900e0f06",
+    "Title": "Job Offer Title 98",
+    "Money": 175.81,
+    "Description": "The same awesome job offer description 98",
+    "TimePosted": "2001-01-27T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "efe13d3e-c81f-449e-8250-a64087e90652",
+    "Title": "Job Offer Title 99",
+    "Money": 339.96,
+    "Description": "The same awesome job offer description 99",
+    "TimePosted": "2016-03-10T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a948cb0b-c85f-452a-ba62-d1cce1f2834a",
+    "Title": "Job Offer Title 100",
+    "Money": 476.26,
+    "Description": "The same awesome job offer description 100",
+    "TimePosted": "2007-12-11T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "34be47e2-1290-451d-8845-4b3fa2ce9aa6",
+    "Title": "Job Offer Title 101",
+    "Money": 662.94,
+    "Description": "The same awesome job offer description 101",
+    "TimePosted": "2007-03-04T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "5ccc17a3-1645-406d-81a1-3cac695bfa0e",
+    "Title": "Job Offer Title 102",
+    "Money": 109.61,
+    "Description": "The same awesome job offer description 102",
+    "TimePosted": "2006-11-02T00:00:00",
+    "ProviderId": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6431de66-a3fa-44e9-b2a8-98fe28a50506",
+    "Title": "Job Offer Title 103",
+    "Money": 489.09,
+    "Description": "The same awesome job offer description 103",
+    "TimePosted": "2000-10-12T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "248ffaca-50ba-41aa-a9b3-85e0e68a192c",
+    "Title": "Job Offer Title 104",
+    "Money": 393.54,
+    "Description": "The same awesome job offer description 104",
+    "TimePosted": "2003-06-17T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "da00be7b-f832-4279-8dd0-11a680a24054",
+    "Title": "Job Offer Title 105",
+    "Money": 151.84,
+    "Description": "The same awesome job offer description 105",
+    "TimePosted": "2007-01-02T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "819f425a-af00-4ccb-85d5-cbf37ad2f2c0",
+    "Title": "Job Offer Title 106",
+    "Money": 873.96,
+    "Description": "The same awesome job offer description 106",
+    "TimePosted": "2001-10-14T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a5831c07-c036-4b42-a3db-1422b2c7f614",
+    "Title": "Job Offer Title 107",
+    "Money": 976.99,
+    "Description": "The same awesome job offer description 107",
+    "TimePosted": "2018-03-05T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d32aa40e-15c2-433b-b250-910413454c9b",
+    "Title": "Job Offer Title 108",
+    "Money": 1186.89,
+    "Description": "The same awesome job offer description 108",
+    "TimePosted": "2013-06-06T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "09b74371-4e61-48a6-a0ab-74e52f2f5b43",
+    "Title": "Job Offer Title 109",
+    "Money": 1057.63,
+    "Description": "The same awesome job offer description 109",
+    "TimePosted": "2008-05-28T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "93ae09c4-4b91-4013-ae9f-bdf925ee6f88",
+    "Title": "Job Offer Title 110",
+    "Money": 102.95,
+    "Description": "The same awesome job offer description 110",
+    "TimePosted": "2011-04-16T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bc0b3a3f-de9b-422e-afd6-d878d503c052",
+    "Title": "Job Offer Title 111",
+    "Money": 861.64,
+    "Description": "The same awesome job offer description 111",
+    "TimePosted": "2007-02-24T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6d2e3da2-6474-4d8b-9ab2-7752b824a020",
+    "Title": "Job Offer Title 112",
+    "Money": 816.85,
+    "Description": "The same awesome job offer description 112",
+    "TimePosted": "2007-01-13T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ce05d8f1-57e9-452d-adf0-0fbafa603e76",
+    "Title": "Job Offer Title 113",
+    "Money": 243.38,
+    "Description": "The same awesome job offer description 113",
+    "TimePosted": "2013-10-31T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "dcab1cf0-6f11-4083-9977-5536d8675c96",
+    "Title": "Job Offer Title 114",
+    "Money": 23.81,
+    "Description": "The same awesome job offer description 114",
+    "TimePosted": "2013-10-25T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "90c8a5a4-18a1-4a62-85e1-ae08becd6625",
+    "Title": "Job Offer Title 115",
+    "Money": 239.85,
+    "Description": "The same awesome job offer description 115",
+    "TimePosted": "2010-08-19T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fa2a1baf-b631-49bf-8703-7e51d3b6b42e",
+    "Title": "Job Offer Title 116",
+    "Money": 938.6,
+    "Description": "The same awesome job offer description 116",
+    "TimePosted": "2010-08-02T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1fe3823c-49ec-4bc3-9ec4-1ed690626725",
+    "Title": "Job Offer Title 117",
+    "Money": 684.01,
+    "Description": "The same awesome job offer description 117",
+    "TimePosted": "2002-06-16T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4ed85a96-79c1-49d7-9d75-ba5a455bf120",
+    "Title": "Job Offer Title 118",
+    "Money": 1106.61,
+    "Description": "The same awesome job offer description 118",
+    "TimePosted": "2001-03-27T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "652aafc0-84f2-4477-813c-79dfa948e8ac",
+    "Title": "Job Offer Title 119",
+    "Money": 922.91,
+    "Description": "The same awesome job offer description 119",
+    "TimePosted": "2002-10-17T00:00:00",
+    "ProviderId": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8327dd6d-21df-42f3-be51-903d89d97b21",
+    "Title": "Job Offer Title 120",
+    "Money": 827.54,
+    "Description": "The same awesome job offer description 120",
+    "TimePosted": "2019-03-06T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5d93aad8-470e-4fdd-830a-e0679711751d",
+    "Title": "Job Offer Title 121",
+    "Money": 685.09,
+    "Description": "The same awesome job offer description 121",
+    "TimePosted": "2017-12-17T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "0b9d32d6-86e4-472a-85c4-c2e8c98174ed",
+    "Title": "Job Offer Title 122",
+    "Money": 1031.01,
+    "Description": "The same awesome job offer description 122",
+    "TimePosted": "2001-06-12T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "649c8f9d-537f-4003-a3d3-0639120e4902",
+    "Title": "Job Offer Title 123",
+    "Money": 1151.19,
+    "Description": "The same awesome job offer description 123",
+    "TimePosted": "2002-10-18T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4a61c9c7-2bde-49f5-9307-8ad3c604980b",
+    "Title": "Job Offer Title 124",
+    "Money": 1135.02,
+    "Description": "The same awesome job offer description 124",
+    "TimePosted": "2012-10-28T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9133fe76-7bb8-44e3-aaac-d4769f228d0d",
+    "Title": "Job Offer Title 125",
+    "Money": 222.69,
+    "Description": "The same awesome job offer description 125",
+    "TimePosted": "2015-07-31T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "026eee4b-bf1b-490e-9d8a-15272863d7c3",
+    "Title": "Job Offer Title 126",
+    "Money": 71.89,
+    "Description": "The same awesome job offer description 126",
+    "TimePosted": "2002-12-09T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e014eb39-6f20-4d56-86d3-03d95e0b13fc",
+    "Title": "Job Offer Title 127",
+    "Money": 198.93,
+    "Description": "The same awesome job offer description 127",
+    "TimePosted": "2011-04-29T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "029d8cfc-5207-4201-a596-2111a6426810",
+    "Title": "Job Offer Title 128",
+    "Money": 1007.8,
+    "Description": "The same awesome job offer description 128",
+    "TimePosted": "2008-10-20T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "41a635bc-62dc-4095-b48c-cbf28b60170c",
+    "Title": "Job Offer Title 129",
+    "Money": 291.53,
+    "Description": "The same awesome job offer description 129",
+    "TimePosted": "2000-05-17T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9cd75455-6f74-4db7-8e7a-77a3a4e2f922",
+    "Title": "Job Offer Title 130",
+    "Money": 954.03,
+    "Description": "The same awesome job offer description 130",
+    "TimePosted": "2012-10-26T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c936741b-d0a5-499c-8229-7e7b690e7374",
+    "Title": "Job Offer Title 131",
+    "Money": 1078.98,
+    "Description": "The same awesome job offer description 131",
+    "TimePosted": "2008-09-20T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f49a1beb-9a1c-47df-b2c7-c1c55a53d005",
+    "Title": "Job Offer Title 132",
+    "Money": 512.96,
+    "Description": "The same awesome job offer description 132",
+    "TimePosted": "2015-11-14T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "aa3986c9-156f-4e25-b525-eb9fad0d1437",
+    "Title": "Job Offer Title 133",
+    "Money": 312.31,
+    "Description": "The same awesome job offer description 133",
+    "TimePosted": "2002-10-23T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1e9b9276-320d-4e96-ae22-c5a5d97e0585",
+    "Title": "Job Offer Title 134",
+    "Money": 1009.0,
+    "Description": "The same awesome job offer description 134",
+    "TimePosted": "2016-11-25T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c4d7c1ec-d9c0-4d8a-b6b1-9a1704cc7134",
+    "Title": "Job Offer Title 135",
+    "Money": 299.05,
+    "Description": "The same awesome job offer description 135",
+    "TimePosted": "2007-07-09T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "66db1797-6e47-434a-b715-cb220246f0a6",
+    "Title": "Job Offer Title 136",
+    "Money": 369.51,
+    "Description": "The same awesome job offer description 136",
+    "TimePosted": "2015-09-18T00:00:00",
+    "ProviderId": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "73310012-bd5d-40fd-9b6e-9f8e81c319d8",
+    "Title": "Job Offer Title 137",
+    "Money": 1045.02,
+    "Description": "The same awesome job offer description 137",
+    "TimePosted": "2006-01-13T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f0c27bc2-9422-4c20-9af2-b9ef5886ebe0",
+    "Title": "Job Offer Title 138",
+    "Money": 970.51,
+    "Description": "The same awesome job offer description 138",
+    "TimePosted": "2004-08-08T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6a714ede-e741-464c-8b02-8f60b2f1093a",
+    "Title": "Job Offer Title 139",
+    "Money": 1121.4,
+    "Description": "The same awesome job offer description 139",
+    "TimePosted": "2015-09-29T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "cb4037de-2681-4dce-92ca-31648ce12bce",
+    "Title": "Job Offer Title 140",
+    "Money": 808.2,
+    "Description": "The same awesome job offer description 140",
+    "TimePosted": "2017-03-09T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8e221936-7f2d-4fd2-a8b3-043925e2aacb",
+    "Title": "Job Offer Title 141",
+    "Money": 905.25,
+    "Description": "The same awesome job offer description 141",
+    "TimePosted": "2002-11-23T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "555e984d-8c00-45e7-b7e3-73789207f3a1",
+    "Title": "Job Offer Title 142",
+    "Money": 378.62,
+    "Description": "The same awesome job offer description 142",
+    "TimePosted": "2001-04-21T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6ab4aad8-2182-443d-b9c4-65745490d758",
+    "Title": "Job Offer Title 143",
+    "Money": 63.86,
+    "Description": "The same awesome job offer description 143",
+    "TimePosted": "2005-12-27T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "812ecfc1-8a73-4a20-b6df-231961ba3798",
+    "Title": "Job Offer Title 144",
+    "Money": 282.9,
+    "Description": "The same awesome job offer description 144",
+    "TimePosted": "2009-04-19T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "38ef613d-b609-4a64-be24-792662f3975e",
+    "Title": "Job Offer Title 145",
+    "Money": 484.85,
+    "Description": "The same awesome job offer description 145",
+    "TimePosted": "2004-01-16T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f9cad863-33fa-43ad-896e-3d7a04339325",
+    "Title": "Job Offer Title 146",
+    "Money": 196.68,
+    "Description": "The same awesome job offer description 146",
+    "TimePosted": "2002-09-15T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ca2a63dc-d6a8-430d-9bc3-a4967839f82b",
+    "Title": "Job Offer Title 147",
+    "Money": 822.74,
+    "Description": "The same awesome job offer description 147",
+    "TimePosted": "2007-04-28T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bc0c1ca6-28f1-4810-9a07-f4c6cea2f94b",
+    "Title": "Job Offer Title 148",
+    "Money": 1144.41,
+    "Description": "The same awesome job offer description 148",
+    "TimePosted": "2006-01-21T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "17642263-abd2-43a9-8998-bf994f66e6b2",
+    "Title": "Job Offer Title 149",
+    "Money": 102.79,
+    "Description": "The same awesome job offer description 149",
+    "TimePosted": "2004-04-14T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "f0594be3-09bc-4fc1-a81b-5e14e9a6a76e",
+    "Title": "Job Offer Title 150",
+    "Money": 864.91,
+    "Description": "The same awesome job offer description 150",
+    "TimePosted": "2016-10-30T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "70dbf583-f2f2-4d1c-91bc-61711caa6574",
+    "Title": "Job Offer Title 151",
+    "Money": 929.1,
+    "Description": "The same awesome job offer description 151",
+    "TimePosted": "2001-08-28T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c598b562-585b-4c5a-9b19-2566a4eeeebd",
+    "Title": "Job Offer Title 152",
+    "Money": 239.59,
+    "Description": "The same awesome job offer description 152",
+    "TimePosted": "2008-04-04T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1bb1361c-f65d-4d0a-a26c-e03536bb8eb1",
+    "Title": "Job Offer Title 153",
+    "Money": 129.87,
+    "Description": "The same awesome job offer description 153",
+    "TimePosted": "2017-09-08T00:00:00",
+    "ProviderId": "9840e851-0347-4cc3-857d-25beec563e20",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5baeea22-698e-41aa-9765-d9612f9c7bfc",
+    "Title": "Job Offer Title 154",
+    "Money": 389.39,
+    "Description": "The same awesome job offer description 154",
+    "TimePosted": "2016-06-02T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9d1638ee-137c-41a8-b69e-3d0077f364aa",
+    "Title": "Job Offer Title 155",
+    "Money": 668.14,
+    "Description": "The same awesome job offer description 155",
+    "TimePosted": "2009-05-22T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3c04f4a9-9901-4521-be5b-7914a239cec6",
+    "Title": "Job Offer Title 156",
+    "Money": 508.9,
+    "Description": "The same awesome job offer description 156",
+    "TimePosted": "2005-09-22T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fd792552-5584-4781-ad94-5b59f011a7c0",
+    "Title": "Job Offer Title 157",
+    "Money": 1015.39,
+    "Description": "The same awesome job offer description 157",
+    "TimePosted": "2004-01-16T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d3f7ec15-7a8c-4aca-b8b9-5ac8cc2fe8bc",
+    "Title": "Job Offer Title 158",
+    "Money": 231.03,
+    "Description": "The same awesome job offer description 158",
+    "TimePosted": "2007-05-13T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9dc01091-5887-41f7-9d5a-a86b90fdd1cb",
+    "Title": "Job Offer Title 159",
+    "Money": 1047.82,
+    "Description": "The same awesome job offer description 159",
+    "TimePosted": "2007-04-15T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1a2e4e93-be70-4f1b-be3d-a38c2a52c5d6",
+    "Title": "Job Offer Title 160",
+    "Money": 956.92,
+    "Description": "The same awesome job offer description 160",
+    "TimePosted": "2004-01-25T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "95aa442c-34d5-456e-aee2-828f1c18304d",
+    "Title": "Job Offer Title 161",
+    "Money": 372.0,
+    "Description": "The same awesome job offer description 161",
+    "TimePosted": "2009-11-12T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a5acc0f8-5017-40b6-9023-d92f58a41758",
+    "Title": "Job Offer Title 162",
+    "Money": 846.15,
+    "Description": "The same awesome job offer description 162",
+    "TimePosted": "2009-05-16T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "cc854528-1ae2-4a6e-93ba-86af245e8012",
+    "Title": "Job Offer Title 163",
+    "Money": 592.33,
+    "Description": "The same awesome job offer description 163",
+    "TimePosted": "2013-01-19T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "85669da6-79d5-4f32-958e-472c683249a2",
+    "Title": "Job Offer Title 164",
+    "Money": 980.57,
+    "Description": "The same awesome job offer description 164",
+    "TimePosted": "2014-12-29T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bb67ff57-535f-4a83-a91a-e1bba17a7884",
+    "Title": "Job Offer Title 165",
+    "Money": 1080.93,
+    "Description": "The same awesome job offer description 165",
+    "TimePosted": "2002-07-27T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "6b2f513a-236d-4962-8bd6-a548e6e2a72f",
+    "Title": "Job Offer Title 166",
+    "Money": 45.65,
+    "Description": "The same awesome job offer description 166",
+    "TimePosted": "2010-09-07T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9fcd94ac-6ae0-40c3-a4f0-7f9d2d21143f",
+    "Title": "Job Offer Title 167",
+    "Money": 201.5,
+    "Description": "The same awesome job offer description 167",
+    "TimePosted": "2004-03-22T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8720aac0-d1f8-4733-ae2d-8edb52c3a890",
+    "Title": "Job Offer Title 168",
+    "Money": 111.35,
+    "Description": "The same awesome job offer description 168",
+    "TimePosted": "2016-05-02T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fd2fadd1-c2b0-4de5-8f30-0db48940846a",
+    "Title": "Job Offer Title 169",
+    "Money": 601.72,
+    "Description": "The same awesome job offer description 169",
+    "TimePosted": "2006-04-19T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f31f26a7-99df-4ad1-8617-82fa1656406e",
+    "Title": "Job Offer Title 170",
+    "Money": 747.31,
+    "Description": "The same awesome job offer description 170",
+    "TimePosted": "2014-04-28T00:00:00",
+    "ProviderId": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fb23c260-95d7-4d08-a31a-a82f21287243",
+    "Title": "Job Offer Title 171",
+    "Money": 770.55,
+    "Description": "The same awesome job offer description 171",
+    "TimePosted": "2004-07-20T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e6c71ed7-5ebf-445c-820a-79a10e0c5fab",
+    "Title": "Job Offer Title 172",
+    "Money": 590.47,
+    "Description": "The same awesome job offer description 172",
+    "TimePosted": "2017-04-04T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7e7928f6-fa55-40f9-a55c-3aec9ad0c57c",
+    "Title": "Job Offer Title 173",
+    "Money": 862.18,
+    "Description": "The same awesome job offer description 173",
+    "TimePosted": "2004-11-24T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "323cf7ba-b144-4066-8b9a-4126e90de4c1",
+    "Title": "Job Offer Title 174",
+    "Money": 991.68,
+    "Description": "The same awesome job offer description 174",
+    "TimePosted": "2005-01-05T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f3b0ff35-4153-4291-8249-112861ebfdbd",
+    "Title": "Job Offer Title 175",
+    "Money": 799.26,
+    "Description": "The same awesome job offer description 175",
+    "TimePosted": "2016-04-12T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "042ecf2d-856f-41e2-949d-9ac2b94c02d3",
+    "Title": "Job Offer Title 176",
+    "Money": 1183.44,
+    "Description": "The same awesome job offer description 176",
+    "TimePosted": "2016-08-28T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3185ae8f-2af0-4631-be6c-3832d625ec91",
+    "Title": "Job Offer Title 177",
+    "Money": 664.11,
+    "Description": "The same awesome job offer description 177",
+    "TimePosted": "2014-11-11T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "004d06bd-9221-441f-ba2b-54670ab914d2",
+    "Title": "Job Offer Title 178",
+    "Money": 565.25,
+    "Description": "The same awesome job offer description 178",
+    "TimePosted": "2012-11-25T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f09df0fe-d808-4eb0-82a4-ba10c33fa601",
+    "Title": "Job Offer Title 179",
+    "Money": 347.14,
+    "Description": "The same awesome job offer description 179",
+    "TimePosted": "2008-10-13T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6c90e7d3-2608-4709-b9af-e30ac7cefdf8",
+    "Title": "Job Offer Title 180",
+    "Money": 902.98,
+    "Description": "The same awesome job offer description 180",
+    "TimePosted": "2012-11-14T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6be1e229-27be-4e56-9057-cace34cc55f3",
+    "Title": "Job Offer Title 181",
+    "Money": 126.12,
+    "Description": "The same awesome job offer description 181",
+    "TimePosted": "2015-01-09T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e3541fd1-1918-47e6-8133-95429855d9f9",
+    "Title": "Job Offer Title 182",
+    "Money": 1111.49,
+    "Description": "The same awesome job offer description 182",
+    "TimePosted": "2005-04-08T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "9e93c544-fbad-4b5c-b5f3-3fa448773952",
+    "Title": "Job Offer Title 183",
+    "Money": 601.98,
+    "Description": "The same awesome job offer description 183",
+    "TimePosted": "2004-07-07T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bc569991-2190-4b80-81c1-3eeabf1e7383",
+    "Title": "Job Offer Title 184",
+    "Money": 303.58,
+    "Description": "The same awesome job offer description 184",
+    "TimePosted": "2002-12-13T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a82612dc-e37b-4ccf-9805-7f3f408e3974",
+    "Title": "Job Offer Title 185",
+    "Money": 901.89,
+    "Description": "The same awesome job offer description 185",
+    "TimePosted": "2011-02-28T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "909cb8a0-fbc8-4c7a-a80c-43f3ed10c5c3",
+    "Title": "Job Offer Title 186",
+    "Money": 536.37,
+    "Description": "The same awesome job offer description 186",
+    "TimePosted": "2000-06-17T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "13f60bf7-8268-4b63-a465-242ce7494294",
+    "Title": "Job Offer Title 187",
+    "Money": 80.05,
+    "Description": "The same awesome job offer description 187",
+    "TimePosted": "2017-08-03T00:00:00",
+    "ProviderId": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "cd6a27c3-e67d-4cd6-8684-cacfdd66c96d",
+    "Title": "Job Offer Title 188",
+    "Money": 799.89,
+    "Description": "The same awesome job offer description 188",
+    "TimePosted": "2005-10-18T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ee8b0f1e-ab35-4cf3-89d0-e1a3ab08193f",
+    "Title": "Job Offer Title 189",
+    "Money": 37.82,
+    "Description": "The same awesome job offer description 189",
+    "TimePosted": "2007-07-06T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2fe2fda2-b854-4c00-ba81-f19ded897a81",
+    "Title": "Job Offer Title 190",
+    "Money": 667.13,
+    "Description": "The same awesome job offer description 190",
+    "TimePosted": "2001-10-17T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "61a35f5a-de9d-47c6-a512-d6d986db5c98",
+    "Title": "Job Offer Title 191",
+    "Money": 231.09,
+    "Description": "The same awesome job offer description 191",
+    "TimePosted": "2011-09-03T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4d89f1fd-8b0c-4ec1-9409-9d271fb249ac",
+    "Title": "Job Offer Title 192",
+    "Money": 510.95,
+    "Description": "The same awesome job offer description 192",
+    "TimePosted": "2018-01-29T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7f53fd4e-313e-4544-b2e6-b228d0e518c3",
+    "Title": "Job Offer Title 193",
+    "Money": 799.66,
+    "Description": "The same awesome job offer description 193",
+    "TimePosted": "2016-09-21T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "0fb4d549-a9de-47ae-9dc2-32e8e6e731a6",
+    "Title": "Job Offer Title 194",
+    "Money": 1041.45,
+    "Description": "The same awesome job offer description 194",
+    "TimePosted": "2011-09-04T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9b4f0e5e-df3e-4fa1-8e6b-d0809e498835",
+    "Title": "Job Offer Title 195",
+    "Money": 133.16,
+    "Description": "The same awesome job offer description 195",
+    "TimePosted": "2007-04-27T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bd228330-3edf-48c1-840d-e4c2ccbe4469",
+    "Title": "Job Offer Title 196",
+    "Money": 936.07,
+    "Description": "The same awesome job offer description 196",
+    "TimePosted": "2012-12-05T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "700318a0-9911-4395-a38d-1b05d763fa09",
+    "Title": "Job Offer Title 197",
+    "Money": 663.26,
+    "Description": "The same awesome job offer description 197",
+    "TimePosted": "2007-08-28T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3a75ad65-77bd-4f45-8644-c2f87e4c8cf8",
+    "Title": "Job Offer Title 198",
+    "Money": 1140.26,
+    "Description": "The same awesome job offer description 198",
+    "TimePosted": "2010-05-26T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "414a3893-607d-4797-ad8c-7062c99ba1a1",
+    "Title": "Job Offer Title 199",
+    "Money": 78.94,
+    "Description": "The same awesome job offer description 199",
+    "TimePosted": "2006-09-24T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e1582367-8c98-4780-b816-41a5fee71bb3",
+    "Title": "Job Offer Title 200",
+    "Money": 136.17,
+    "Description": "The same awesome job offer description 200",
+    "TimePosted": "2012-10-05T00:00:00",
+    "ProviderId": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // From Person Providers
+  {
+    "Id": "080b51c9-b419-44ed-bd7a-b2ee3c16be34",
+    "Title": "Job Offer Title 201",
+    "Money": 872.15,
+    "Description": "The same awesome job offer description 201",
+    "TimePosted": "2017-11-21T00:00:00",
+    "ProviderId": "63c964dd-a2ea-4cc6-b78d-2e4fc1624f31",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "e341959f-929b-4b68-ab08-62c3f560fa3d",
+    "Title": "Job Offer Title 202",
+    "Money": 408.36,
+    "Description": "The same awesome job offer description 202",
+    "TimePosted": "2010-05-23T00:00:00",
+    "ProviderId": "63c964dd-a2ea-4cc6-b78d-2e4fc1624f31",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b6802914-dee5-4443-9129-e8cfb13ad07c",
+    "Title": "Job Offer Title 203",
+    "Money": 239.65,
+    "Description": "The same awesome job offer description 203",
+    "TimePosted": "2019-03-02T00:00:00",
+    "ProviderId": "63c964dd-a2ea-4cc6-b78d-2e4fc1624f31",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "b879f625-270e-47ee-b303-213856bfa0f6",
+    "Title": "Job Offer Title 204",
+    "Money": 232.45,
+    "Description": "The same awesome job offer description 204",
+    "TimePosted": "2009-05-15T00:00:00",
+    "ProviderId": "63c964dd-a2ea-4cc6-b78d-2e4fc1624f31",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6f09bd55-b9f0-43d7-8a4f-76333803b37c",
+    "Title": "Job Offer Title 205",
+    "Money": 971.33,
+    "Description": "The same awesome job offer description 205",
+    "TimePosted": "2012-04-12T00:00:00",
+    "ProviderId": "5b77846d-998e-4209-8035-baa45d8b8abf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "40143053-310f-415b-b238-38040a0d00f8",
+    "Title": "Job Offer Title 206",
+    "Money": 35.6,
+    "Description": "The same awesome job offer description 206",
+    "TimePosted": "2003-10-21T00:00:00",
+    "ProviderId": "5b77846d-998e-4209-8035-baa45d8b8abf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "60b4327c-dd85-47b9-8e93-d13e6534fa95",
+    "Title": "Job Offer Title 207",
+    "Money": 254.38,
+    "Description": "The same awesome job offer description 207",
+    "TimePosted": "2003-05-11T00:00:00",
+    "ProviderId": "5b77846d-998e-4209-8035-baa45d8b8abf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "723f0b37-fd5d-420a-a5aa-d0ece18b6948",
+    "Title": "Job Offer Title 208",
+    "Money": 1195.16,
+    "Description": "The same awesome job offer description 208",
+    "TimePosted": "2012-09-02T00:00:00",
+    "ProviderId": "5b77846d-998e-4209-8035-baa45d8b8abf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1779908e-c8ea-47ca-bd02-fbedd5877f97",
+    "Title": "Job Offer Title 209",
+    "Money": 467.1,
+    "Description": "The same awesome job offer description 209",
+    "TimePosted": "2000-02-20T00:00:00",
+    "ProviderId": "014ad432-fb7d-4f94-b95b-d067f935cc32",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1ca199fb-e290-4d69-99e3-0099f84042ac",
+    "Title": "Job Offer Title 210",
+    "Money": 361.67,
+    "Description": "The same awesome job offer description 210",
+    "TimePosted": "2012-02-20T00:00:00",
+    "ProviderId": "014ad432-fb7d-4f94-b95b-d067f935cc32",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9a5dc7ff-67ee-4e41-ba37-f8e6484f04d9",
+    "Title": "Job Offer Title 211",
+    "Money": 721.75,
+    "Description": "The same awesome job offer description 211",
+    "TimePosted": "2010-04-08T00:00:00",
+    "ProviderId": "014ad432-fb7d-4f94-b95b-d067f935cc32",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4042df68-f3cd-4732-8744-58c168de87d8",
+    "Title": "Job Offer Title 212",
+    "Money": 147.1,
+    "Description": "The same awesome job offer description 212",
+    "TimePosted": "2010-07-18T00:00:00",
+    "ProviderId": "014ad432-fb7d-4f94-b95b-d067f935cc32",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "451e4932-9ec6-42f8-a306-94a974c743cf",
+    "Title": "Job Offer Title 213",
+    "Money": 760.86,
+    "Description": "The same awesome job offer description 213",
+    "TimePosted": "2017-12-26T00:00:00",
+    "ProviderId": "d961181a-14b0-4692-8fe5-99f6d410c4de",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "65354be3-7ff4-4f37-beb6-10fcdd899766",
+    "Title": "Job Offer Title 214",
+    "Money": 1021.81,
+    "Description": "The same awesome job offer description 214",
+    "TimePosted": "2013-10-26T00:00:00",
+    "ProviderId": "d961181a-14b0-4692-8fe5-99f6d410c4de",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "80469245-3850-44f5-927f-bbe639575e3c",
+    "Title": "Job Offer Title 215",
+    "Money": 527.76,
+    "Description": "The same awesome job offer description 215",
+    "TimePosted": "2008-06-13T00:00:00",
+    "ProviderId": "d961181a-14b0-4692-8fe5-99f6d410c4de",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "39c5686c-e8b6-4519-ae08-13b54255960e",
+    "Title": "Job Offer Title 216",
+    "Money": 137.48,
+    "Description": "The same awesome job offer description 216",
+    "TimePosted": "2004-08-06T00:00:00",
+    "ProviderId": "d961181a-14b0-4692-8fe5-99f6d410c4de",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b107c5ee-5ed3-49e0-8ba6-f5d2e1737444",
+    "Title": "Job Offer Title 217",
+    "Money": 1121.14,
+    "Description": "The same awesome job offer description 217",
+    "TimePosted": "2004-11-08T00:00:00",
+    "ProviderId": "9869910e-5dd5-47d4-b297-44d249dfb123",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "aed7fedb-f880-4564-986e-aeaf4433e96e",
+    "Title": "Job Offer Title 218",
+    "Money": 1165.72,
+    "Description": "The same awesome job offer description 218",
+    "TimePosted": "2010-02-07T00:00:00",
+    "ProviderId": "9869910e-5dd5-47d4-b297-44d249dfb123",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3681efb3-c97d-4430-9418-b73176763ee2",
+    "Title": "Job Offer Title 219",
+    "Money": 955.65,
+    "Description": "The same awesome job offer description 219",
+    "TimePosted": "2003-10-31T00:00:00",
+    "ProviderId": "9869910e-5dd5-47d4-b297-44d249dfb123",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "76815b70-7622-4e69-836f-fc59a3aeb63f",
+    "Title": "Job Offer Title 220",
+    "Money": 241.53,
+    "Description": "The same awesome job offer description 220",
+    "TimePosted": "2002-02-08T00:00:00",
+    "ProviderId": "9869910e-5dd5-47d4-b297-44d249dfb123",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "470208ee-cc15-4d50-8349-7911912bbd53",
+    "Title": "Job Offer Title 221",
+    "Money": 842.56,
+    "Description": "The same awesome job offer description 221",
+    "TimePosted": "2012-07-01T00:00:00",
+    "ProviderId": "53c438b6-c288-43c4-b57a-3b0c3560dfd4",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c5695edf-4bc2-48a0-b267-b4e82a08e381",
+    "Title": "Job Offer Title 222",
+    "Money": 278.58,
+    "Description": "The same awesome job offer description 222",
+    "TimePosted": "2017-10-30T00:00:00",
+    "ProviderId": "53c438b6-c288-43c4-b57a-3b0c3560dfd4",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "63090a75-6774-40ce-9032-09b9c5de5f05",
+    "Title": "Job Offer Title 223",
+    "Money": 950.49,
+    "Description": "The same awesome job offer description 223",
+    "TimePosted": "2008-10-28T00:00:00",
+    "ProviderId": "53c438b6-c288-43c4-b57a-3b0c3560dfd4",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4b0a3e66-2678-4bd8-a1e2-07b60356affb",
+    "Title": "Job Offer Title 224",
+    "Money": 811.56,
+    "Description": "The same awesome job offer description 224",
+    "TimePosted": "2004-07-02T00:00:00",
+    "ProviderId": "53c438b6-c288-43c4-b57a-3b0c3560dfd4",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "240d1c56-6ec3-4240-b036-c4476e19940e",
+    "Title": "Job Offer Title 225",
+    "Money": 213.18,
+    "Description": "The same awesome job offer description 225",
+    "TimePosted": "2002-08-25T00:00:00",
+    "ProviderId": "6658480f-b984-499a-aac4-def5515437f2",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "dead1b42-0d25-4f66-924f-42ee3d352999",
+    "Title": "Job Offer Title 226",
+    "Money": 1136.57,
+    "Description": "The same awesome job offer description 226",
+    "TimePosted": "2005-11-17T00:00:00",
+    "ProviderId": "6658480f-b984-499a-aac4-def5515437f2",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7eb790f4-aded-47a6-94da-af49c5ff227a",
+    "Title": "Job Offer Title 227",
+    "Money": 667.78,
+    "Description": "The same awesome job offer description 227",
+    "TimePosted": "2000-07-14T00:00:00",
+    "ProviderId": "6658480f-b984-499a-aac4-def5515437f2",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "dc563146-0ed7-46ef-be58-031442d0361b",
+    "Title": "Job Offer Title 228",
+    "Money": 697.69,
+    "Description": "The same awesome job offer description 228",
+    "TimePosted": "2012-08-17T00:00:00",
+    "ProviderId": "6658480f-b984-499a-aac4-def5515437f2",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4b569538-c481-4e8d-b802-98e9b8004549",
+    "Title": "Job Offer Title 229",
+    "Money": 555.48,
+    "Description": "The same awesome job offer description 229",
+    "TimePosted": "2017-02-05T00:00:00",
+    "ProviderId": "35cc3db5-73bf-47d8-bc56-13b81b757faa",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fdc02c95-2330-44ec-90d0-cb8ebccc57b3",
+    "Title": "Job Offer Title 230",
+    "Money": 740.16,
+    "Description": "The same awesome job offer description 230",
+    "TimePosted": "2003-05-09T00:00:00",
+    "ProviderId": "35cc3db5-73bf-47d8-bc56-13b81b757faa",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "72c87290-d954-4030-a9d9-862dfc73d97e",
+    "Title": "Job Offer Title 231",
+    "Money": 217.15,
+    "Description": "The same awesome job offer description 231",
+    "TimePosted": "2008-12-31T00:00:00",
+    "ProviderId": "35cc3db5-73bf-47d8-bc56-13b81b757faa",
+    "ResultId": null,
+    "StateValue": "Finished"
+  },
+  {
+    "Id": "ea0511f3-9572-4aa1-aa2c-826cc6887e55",
+    "Title": "Job Offer Title 232",
+    "Money": 400.82,
+    "Description": "The same awesome job offer description 232",
+    "TimePosted": "2004-06-17T00:00:00",
+    "ProviderId": "35cc3db5-73bf-47d8-bc56-13b81b757faa",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "da72cdb6-b811-43b9-ade3-2f79777d7514",
+    "Title": "Job Offer Title 233",
+    "Money": 183.28,
+    "Description": "The same awesome job offer description 233",
+    "TimePosted": "2006-03-04T00:00:00",
+    "ProviderId": "669d5c9d-b690-467c-b346-d846d3705b08",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "00badbad-c327-4587-b8eb-f2c6a4f806e4",
+    "Title": "Job Offer Title 234",
+    "Money": 1087.93,
+    "Description": "The same awesome job offer description 234",
+    "TimePosted": "2015-06-05T00:00:00",
+    "ProviderId": "669d5c9d-b690-467c-b346-d846d3705b08",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4159f02d-1f5d-45b9-8b6b-c5f6c1d5fcc6",
+    "Title": "Job Offer Title 235",
+    "Money": 907.8,
+    "Description": "The same awesome job offer description 235",
+    "TimePosted": "2014-05-22T00:00:00",
+    "ProviderId": "669d5c9d-b690-467c-b346-d846d3705b08",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8337cdf8-8318-4649-b8e7-9522e822fa31",
+    "Title": "Job Offer Title 236",
+    "Money": 594.73,
+    "Description": "The same awesome job offer description 236",
+    "TimePosted": "2004-08-19T00:00:00",
+    "ProviderId": "669d5c9d-b690-467c-b346-d846d3705b08",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f70646c5-e165-4083-a014-ceb2c4ce3370",
+    "Title": "Job Offer Title 237",
+    "Money": 568.81,
+    "Description": "The same awesome job offer description 237",
+    "TimePosted": "2005-07-04T00:00:00",
+    "ProviderId": "154bc1e8-d12d-4728-a2dd-ff35e50f0f62",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4978cb69-de11-4695-94a0-f9cabb2bd623",
+    "Title": "Job Offer Title 238",
+    "Money": 66.5,
+    "Description": "The same awesome job offer description 238",
+    "TimePosted": "2014-07-21T00:00:00",
+    "ProviderId": "154bc1e8-d12d-4728-a2dd-ff35e50f0f62",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5f22590a-ead5-4393-8583-f4f9ce80bc41",
+    "Title": "Job Offer Title 239",
+    "Money": 209.22,
+    "Description": "The same awesome job offer description 239",
+    "TimePosted": "2010-01-28T00:00:00",
+    "ProviderId": "154bc1e8-d12d-4728-a2dd-ff35e50f0f62",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4623da04-6324-4494-8b3d-81496e4df8a5",
+    "Title": "Job Offer Title 240",
+    "Money": 563.27,
+    "Description": "The same awesome job offer description 240",
+    "TimePosted": "2007-05-11T00:00:00",
+    "ProviderId": "154bc1e8-d12d-4728-a2dd-ff35e50f0f62",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9114659d-2959-4a81-9ed3-384c2548149f",
+    "Title": "Job Offer Title 241",
+    "Money": 1158.96,
+    "Description": "The same awesome job offer description 241",
+    "TimePosted": "2016-07-05T00:00:00",
+    "ProviderId": "ff36b649-fb17-41ec-9a59-5d72aaacdf52",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e8b63c72-1bc7-4082-8db4-0a133d2141a7",
+    "Title": "Job Offer Title 242",
+    "Money": 941.86,
+    "Description": "The same awesome job offer description 242",
+    "TimePosted": "2004-11-30T00:00:00",
+    "ProviderId": "ff36b649-fb17-41ec-9a59-5d72aaacdf52",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ad48e867-0829-4914-9497-e9ad4f10f73c",
+    "Title": "Job Offer Title 243",
+    "Money": 29.76,
+    "Description": "The same awesome job offer description 243",
+    "TimePosted": "2005-08-29T00:00:00",
+    "ProviderId": "ff36b649-fb17-41ec-9a59-5d72aaacdf52",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "55e8802d-5ae7-4326-9dad-25a5e9b67c07",
+    "Title": "Job Offer Title 244",
+    "Money": 553.12,
+    "Description": "The same awesome job offer description 244",
+    "TimePosted": "2014-10-12T00:00:00",
+    "ProviderId": "ff36b649-fb17-41ec-9a59-5d72aaacdf52",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "fdfd1dd2-3fe8-42bf-9b89-9bd11b6b7f33",
+    "Title": "Job Offer Title 245",
+    "Money": 822.34,
+    "Description": "The same awesome job offer description 245",
+    "TimePosted": "2010-12-07T00:00:00",
+    "ProviderId": "341c632a-18c5-4b2b-a5e8-1de89b730ba3",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d0fd9d36-efb2-4e0e-bb5e-1a6c940c7283",
+    "Title": "Job Offer Title 246",
+    "Money": 960.95,
+    "Description": "The same awesome job offer description 246",
+    "TimePosted": "2001-02-16T00:00:00",
+    "ProviderId": "341c632a-18c5-4b2b-a5e8-1de89b730ba3",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "12bc593a-68b7-4782-bf80-22df23f34ad9",
+    "Title": "Job Offer Title 247",
+    "Money": 627.06,
+    "Description": "The same awesome job offer description 247",
+    "TimePosted": "2000-02-03T00:00:00",
+    "ProviderId": "341c632a-18c5-4b2b-a5e8-1de89b730ba3",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "97a458bf-a8b0-4af5-95ce-cce236b40757",
+    "Title": "Job Offer Title 248",
+    "Money": 654.82,
+    "Description": "The same awesome job offer description 248",
+    "TimePosted": "2002-11-26T00:00:00",
+    "ProviderId": "341c632a-18c5-4b2b-a5e8-1de89b730ba3",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "544495d2-4ce3-4dca-913c-7bf46947ba61",
+    "Title": "Job Offer Title 249",
+    "Money": 210.65,
+    "Description": "The same awesome job offer description 249",
+    "TimePosted": "2003-03-24T00:00:00",
+    "ProviderId": "7883417f-3559-4cce-8446-210a36394999",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "260d9578-67a9-4605-89e6-f6bd2a0c0756",
+    "Title": "Job Offer Title 250",
+    "Money": 872.65,
+    "Description": "The same awesome job offer description 250",
+    "TimePosted": "2002-09-20T00:00:00",
+    "ProviderId": "7883417f-3559-4cce-8446-210a36394999",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "470130d6-53ea-456b-948e-d5bb867bf297",
+    "Title": "Job Offer Title 251",
+    "Money": 691.9,
+    "Description": "The same awesome job offer description 251",
+    "TimePosted": "2008-01-27T00:00:00",
+    "ProviderId": "7883417f-3559-4cce-8446-210a36394999",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6c6cf788-3652-497f-acd0-395f4862fb11",
+    "Title": "Job Offer Title 252",
+    "Money": 374.51,
+    "Description": "The same awesome job offer description 252",
+    "TimePosted": "2016-12-15T00:00:00",
+    "ProviderId": "7883417f-3559-4cce-8446-210a36394999",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c27c1122-f8ec-48ef-b683-519040908ace",
+    "Title": "Job Offer Title 253",
+    "Money": 1061.58,
+    "Description": "The same awesome job offer description 253",
+    "TimePosted": "2006-07-26T00:00:00",
+    "ProviderId": "f8822d16-b53b-4faf-a2f0-c53aeb670c94",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ccb719cb-48b6-49f7-a51a-64ff2aa81dea",
+    "Title": "Job Offer Title 254",
+    "Money": 714.37,
+    "Description": "The same awesome job offer description 254",
+    "TimePosted": "2004-08-15T00:00:00",
+    "ProviderId": "f8822d16-b53b-4faf-a2f0-c53aeb670c94",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4800f3c3-5619-4235-ab1e-0577315df29e",
+    "Title": "Job Offer Title 255",
+    "Money": 170.58,
+    "Description": "The same awesome job offer description 255",
+    "TimePosted": "2000-04-05T00:00:00",
+    "ProviderId": "f8822d16-b53b-4faf-a2f0-c53aeb670c94",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f6bbe1b4-c8b6-4255-a46c-ab8f28dd4f34",
+    "Title": "Job Offer Title 256",
+    "Money": 290.54,
+    "Description": "The same awesome job offer description 256",
+    "TimePosted": "2000-01-22T00:00:00",
+    "ProviderId": "f8822d16-b53b-4faf-a2f0-c53aeb670c94",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4b65b6b6-f496-44ca-ba6d-d1445320501b",
+    "Title": "Job Offer Title 257",
+    "Money": 334.83,
+    "Description": "The same awesome job offer description 257",
+    "TimePosted": "2001-07-25T00:00:00",
+    "ProviderId": "0d68c54a-39fd-44b6-9139-d97f515d65e8",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ca0b3968-94ec-438a-904c-9e3e4239563c",
+    "Title": "Job Offer Title 258",
+    "Money": 305.05,
+    "Description": "The same awesome job offer description 258",
+    "TimePosted": "2014-08-30T00:00:00",
+    "ProviderId": "0d68c54a-39fd-44b6-9139-d97f515d65e8",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "dfb2ed53-5acc-4daf-b152-9dc198311dcc",
+    "Title": "Job Offer Title 259",
+    "Money": 896.23,
+    "Description": "The same awesome job offer description 259",
+    "TimePosted": "2006-09-20T00:00:00",
+    "ProviderId": "0d68c54a-39fd-44b6-9139-d97f515d65e8",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9a0f49e9-e968-4d13-a0b1-eca2ef068969",
+    "Title": "Job Offer Title 260",
+    "Money": 711.72,
+    "Description": "The same awesome job offer description 260",
+    "TimePosted": "2006-05-27T00:00:00",
+    "ProviderId": "0d68c54a-39fd-44b6-9139-d97f515d65e8",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6c7cbf37-d26c-4390-8ca6-10374e9689ae",
+    "Title": "Job Offer Title 261",
+    "Money": 244.78,
+    "Description": "The same awesome job offer description 261",
+    "TimePosted": "2003-04-09T00:00:00",
+    "ProviderId": "6fca855c-ef19-4dac-b361-46dc47fe38be",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "0b0e1ec6-0d11-4d07-a150-a1a842f044cf",
+    "Title": "Job Offer Title 262",
+    "Money": 433.65,
+    "Description": "The same awesome job offer description 262",
+    "TimePosted": "2010-02-19T00:00:00",
+    "ProviderId": "6fca855c-ef19-4dac-b361-46dc47fe38be",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "82178a53-69b3-43e6-b345-2c732b3e8241",
+    "Title": "Job Offer Title 263",
+    "Money": 336.64,
+    "Description": "The same awesome job offer description 263",
+    "TimePosted": "2014-12-24T00:00:00",
+    "ProviderId": "6fca855c-ef19-4dac-b361-46dc47fe38be",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5b118d86-e1ae-4722-bce0-7fdeaec376fa",
+    "Title": "Job Offer Title 264",
+    "Money": 603.91,
+    "Description": "The same awesome job offer description 264",
+    "TimePosted": "2016-03-10T00:00:00",
+    "ProviderId": "6fca855c-ef19-4dac-b361-46dc47fe38be",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6c0c0830-d43e-4ca4-9c0b-372c6030352c",
+    "Title": "Job Offer Title 265",
+    "Money": 1021.49,
+    "Description": "The same awesome job offer description 265",
+    "TimePosted": "2003-02-19T00:00:00",
+    "ProviderId": "7450129c-3d2f-4218-987b-cf42938d3af7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "cbedcc93-7f18-484a-8fb7-5ea5620723c1",
+    "Title": "Job Offer Title 266",
+    "Money": 1197.9,
+    "Description": "The same awesome job offer description 266",
+    "TimePosted": "2005-10-21T00:00:00",
+    "ProviderId": "7450129c-3d2f-4218-987b-cf42938d3af7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "89493a0f-7db2-43a8-b7ef-054b02d9211c",
+    "Title": "Job Offer Title 267",
+    "Money": 840.79,
+    "Description": "The same awesome job offer description 267",
+    "TimePosted": "2004-05-15T00:00:00",
+    "ProviderId": "7450129c-3d2f-4218-987b-cf42938d3af7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d4e66232-613d-491a-970f-5e29ea23d5f0",
+    "Title": "Job Offer Title 268",
+    "Money": 549.89,
+    "Description": "The same awesome job offer description 268",
+    "TimePosted": "2002-07-23T00:00:00",
+    "ProviderId": "7450129c-3d2f-4218-987b-cf42938d3af7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b2ca6c05-d8c2-4e35-a0f6-1e6572e5a49f",
+    "Title": "Job Offer Title 269",
+    "Money": 990.97,
+    "Description": "The same awesome job offer description 269",
+    "TimePosted": "2018-11-01T00:00:00",
+    "ProviderId": "a9bbf881-103a-4bc0-820c-09ea18f4bd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1a270df5-7f80-40b1-86aa-0ecc3f46c82a",
+    "Title": "Job Offer Title 270",
+    "Money": 810.0,
+    "Description": "The same awesome job offer description 270",
+    "TimePosted": "2003-10-25T00:00:00",
+    "ProviderId": "a9bbf881-103a-4bc0-820c-09ea18f4bd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "40234f24-92f6-4802-b544-14fcabbfb3a0",
+    "Title": "Job Offer Title 271",
+    "Money": 445.64,
+    "Description": "The same awesome job offer description 271",
+    "TimePosted": "2018-07-01T00:00:00",
+    "ProviderId": "a9bbf881-103a-4bc0-820c-09ea18f4bd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3916ef9a-548e-4d84-934e-6932acf88926",
+    "Title": "Job Offer Title 272",
+    "Money": 751.6,
+    "Description": "The same awesome job offer description 272",
+    "TimePosted": "2009-09-16T00:00:00",
+    "ProviderId": "a9bbf881-103a-4bc0-820c-09ea18f4bd8d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "79f46128-a10b-4857-b733-5793ffa1105c",
+    "Title": "Job Offer Title 273",
+    "Money": 653.46,
+    "Description": "The same awesome job offer description 273",
+    "TimePosted": "2000-01-11T00:00:00",
+    "ProviderId": "9011d729-7949-48d6-baf8-4e807b8d8f46",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "349662b5-d091-442f-a2d8-499888ccdbf0",
+    "Title": "Job Offer Title 274",
+    "Money": 89.35,
+    "Description": "The same awesome job offer description 274",
+    "TimePosted": "2015-11-18T00:00:00",
+    "ProviderId": "9011d729-7949-48d6-baf8-4e807b8d8f46",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f92537fc-7155-4017-9372-9640d1e507bf",
+    "Title": "Job Offer Title 275",
+    "Money": 1139.54,
+    "Description": "The same awesome job offer description 275",
+    "TimePosted": "2005-01-01T00:00:00",
+    "ProviderId": "9011d729-7949-48d6-baf8-4e807b8d8f46",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ef2ac9d9-6b09-47fc-a8c9-cf55e69561ce",
+    "Title": "Job Offer Title 276",
+    "Money": 777.66,
+    "Description": "The same awesome job offer description 276",
+    "TimePosted": "2007-08-01T00:00:00",
+    "ProviderId": "9011d729-7949-48d6-baf8-4e807b8d8f46",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "640b6d9f-1374-4393-89f2-c321761ab87d",
+    "Title": "Job Offer Title 277",
+    "Money": 1125.78,
+    "Description": "The same awesome job offer description 277",
+    "TimePosted": "2012-03-03T00:00:00",
+    "ProviderId": "3821b447-848d-411d-9529-8be8493cf5b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bec2c5d4-14e9-4bca-9c71-82f8de5acf3c",
+    "Title": "Job Offer Title 278",
+    "Money": 94.34,
+    "Description": "The same awesome job offer description 278",
+    "TimePosted": "2013-06-14T00:00:00",
+    "ProviderId": "3821b447-848d-411d-9529-8be8493cf5b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4ee5290a-66e6-43b5-96dd-e9c97712ba45",
+    "Title": "Job Offer Title 279",
+    "Money": 866.19,
+    "Description": "The same awesome job offer description 279",
+    "TimePosted": "2012-12-22T00:00:00",
+    "ProviderId": "3821b447-848d-411d-9529-8be8493cf5b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "81dc1adb-09da-442a-b11a-00d3e562d7b3",
+    "Title": "Job Offer Title 280",
+    "Money": 129.2,
+    "Description": "The same awesome job offer description 280",
+    "TimePosted": "2001-07-09T00:00:00",
+    "ProviderId": "3821b447-848d-411d-9529-8be8493cf5b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ae93751b-1e4d-4a74-898f-480065b8fdf3",
+    "Title": "Job Offer Title 281",
+    "Money": 206.47,
+    "Description": "The same awesome job offer description 281",
+    "TimePosted": "2005-10-14T00:00:00",
+    "ProviderId": "3a3de128-038a-4d10-917a-04094628314e",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "77413b9e-6b79-426a-ba76-935e35107796",
+    "Title": "Job Offer Title 282",
+    "Money": 889.93,
+    "Description": "The same awesome job offer description 282",
+    "TimePosted": "2017-01-13T00:00:00",
+    "ProviderId": "3a3de128-038a-4d10-917a-04094628314e",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "821e6a74-c997-4754-a61b-5daa6cfaceb3",
+    "Title": "Job Offer Title 283",
+    "Money": 184.01,
+    "Description": "The same awesome job offer description 283",
+    "TimePosted": "2009-05-27T00:00:00",
+    "ProviderId": "3a3de128-038a-4d10-917a-04094628314e",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bee61633-6a27-4f98-a4a2-336a67d81a26",
+    "Title": "Job Offer Title 284",
+    "Money": 559.8,
+    "Description": "The same awesome job offer description 284",
+    "TimePosted": "2014-05-19T00:00:00",
+    "ProviderId": "3a3de128-038a-4d10-917a-04094628314e",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a502efb5-74d6-4855-948a-ec70acc54406",
+    "Title": "Job Offer Title 285",
+    "Money": 925.23,
+    "Description": "The same awesome job offer description 285",
+    "TimePosted": "2014-09-07T00:00:00",
+    "ProviderId": "2f9f6976-164a-461f-845f-3e95029b193c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6f991b61-0c4b-4f10-946c-7a3c99120658",
+    "Title": "Job Offer Title 286",
+    "Money": 719.6,
+    "Description": "The same awesome job offer description 286",
+    "TimePosted": "2011-06-14T00:00:00",
+    "ProviderId": "2f9f6976-164a-461f-845f-3e95029b193c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "347a8be1-2200-403f-b6a1-eb4e48224a5c",
+    "Title": "Job Offer Title 287",
+    "Money": 216.21,
+    "Description": "The same awesome job offer description 287",
+    "TimePosted": "2017-04-20T00:00:00",
+    "ProviderId": "2f9f6976-164a-461f-845f-3e95029b193c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "56039b2a-6cc9-4150-9e80-fb350b1c5026",
+    "Title": "Job Offer Title 288",
+    "Money": 345.87,
+    "Description": "The same awesome job offer description 288",
+    "TimePosted": "2001-07-19T00:00:00",
+    "ProviderId": "2f9f6976-164a-461f-845f-3e95029b193c",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c6d992d1-2cda-47dc-b4d5-c3fee27dc856",
+    "Title": "Job Offer Title 289",
+    "Money": 614.32,
+    "Description": "The same awesome job offer description 289",
+    "TimePosted": "2015-03-01T00:00:00",
+    "ProviderId": "bef81570-5178-44e9-9a3a-2fdd594c42e5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "11f67ba2-8fe6-4886-b049-0500103f6d6f",
+    "Title": "Job Offer Title 290",
+    "Money": 314.23,
+    "Description": "The same awesome job offer description 290",
+    "TimePosted": "2014-05-01T00:00:00",
+    "ProviderId": "bef81570-5178-44e9-9a3a-2fdd594c42e5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "36697aae-0562-4b1f-be02-9fbbd7d91cb4",
+    "Title": "Job Offer Title 291",
+    "Money": 1136.86,
+    "Description": "The same awesome job offer description 291",
+    "TimePosted": "2003-01-25T00:00:00",
+    "ProviderId": "bef81570-5178-44e9-9a3a-2fdd594c42e5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a9402cf1-92cf-46fa-9c31-b166bf98f5a4",
+    "Title": "Job Offer Title 292",
+    "Money": 1140.72,
+    "Description": "The same awesome job offer description 292",
+    "TimePosted": "2010-04-01T00:00:00",
+    "ProviderId": "bef81570-5178-44e9-9a3a-2fdd594c42e5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "9e4fe294-b934-4b0b-a443-8936fc0c3e44",
+    "Title": "Job Offer Title 293",
+    "Money": 47.23,
+    "Description": "The same awesome job offer description 293",
+    "TimePosted": "2007-10-31T00:00:00",
+    "ProviderId": "613e39eb-ecc3-44c0-9e2d-d7359ead9f81",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5f166875-07ad-4f96-bdd9-c85ebf998f1b",
+    "Title": "Job Offer Title 294",
+    "Money": 374.47,
+    "Description": "The same awesome job offer description 294",
+    "TimePosted": "2003-09-03T00:00:00",
+    "ProviderId": "613e39eb-ecc3-44c0-9e2d-d7359ead9f81",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b25e110d-f866-4285-8930-89d069ee94cd",
+    "Title": "Job Offer Title 295",
+    "Money": 1195.45,
+    "Description": "The same awesome job offer description 295",
+    "TimePosted": "2004-02-01T00:00:00",
+    "ProviderId": "613e39eb-ecc3-44c0-9e2d-d7359ead9f81",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2a635a91-5a2a-464e-b7db-6553cd501b97",
+    "Title": "Job Offer Title 296",
+    "Money": 422.28,
+    "Description": "The same awesome job offer description 296",
+    "TimePosted": "2006-05-16T00:00:00",
+    "ProviderId": "613e39eb-ecc3-44c0-9e2d-d7359ead9f81",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "021deeba-b31b-4544-b5df-4e7334002f89",
+    "Title": "Job Offer Title 297",
+    "Money": 302.19,
+    "Description": "The same awesome job offer description 297",
+    "TimePosted": "2009-05-05T00:00:00",
+    "ProviderId": "4719a489-f061-4f46-99d5-e3747eb2c916",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e500d619-e11c-4398-bee4-d9e5a53c854b",
+    "Title": "Job Offer Title 298",
+    "Money": 302.82,
+    "Description": "The same awesome job offer description 298",
+    "TimePosted": "2008-11-15T00:00:00",
+    "ProviderId": "4719a489-f061-4f46-99d5-e3747eb2c916",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "590e0cf4-d11c-4d50-9237-74c428cd3be8",
+    "Title": "Job Offer Title 299",
+    "Money": 408.6,
+    "Description": "The same awesome job offer description 299",
+    "TimePosted": "2011-08-23T00:00:00",
+    "ProviderId": "4719a489-f061-4f46-99d5-e3747eb2c916",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "517bdf8e-0230-4a38-8f8e-019c0a40ca44",
+    "Title": "Job Offer Title 300",
+    "Money": 501.41,
+    "Description": "The same awesome job offer description 300",
+    "TimePosted": "2005-02-15T00:00:00",
+    "ProviderId": "4719a489-f061-4f46-99d5-e3747eb2c916",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "65e6c3e7-1367-4953-8810-2948cc21f746",
+    "Title": "Job Offer Title 301",
+    "Money": 997.13,
+    "Description": "The same awesome job offer description 301",
+    "TimePosted": "2016-02-29T00:00:00",
+    "ProviderId": "269ed4c0-31c5-48ec-b057-7f0233eaa1df",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8c341dfb-92f4-4dea-9a26-f09526a47cd5",
+    "Title": "Job Offer Title 302",
+    "Money": 954.14,
+    "Description": "The same awesome job offer description 302",
+    "TimePosted": "2016-12-09T00:00:00",
+    "ProviderId": "269ed4c0-31c5-48ec-b057-7f0233eaa1df",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a54b2840-98c1-466b-a185-e744424b5db0",
+    "Title": "Job Offer Title 303",
+    "Money": 540.81,
+    "Description": "The same awesome job offer description 303",
+    "TimePosted": "2003-06-22T00:00:00",
+    "ProviderId": "269ed4c0-31c5-48ec-b057-7f0233eaa1df",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "092dc571-f5fa-45e2-b301-ffcbe130bd9b",
+    "Title": "Job Offer Title 304",
+    "Money": 277.62,
+    "Description": "The same awesome job offer description 304",
+    "TimePosted": "2018-10-25T00:00:00",
+    "ProviderId": "269ed4c0-31c5-48ec-b057-7f0233eaa1df",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6c88da6b-59b3-404b-b60b-273607ab7fbe",
+    "Title": "Job Offer Title 305",
+    "Money": 123.98,
+    "Description": "The same awesome job offer description 305",
+    "TimePosted": "2003-08-18T00:00:00",
+    "ProviderId": "ce6bd0b0-da13-4792-853e-5d84c8b09ae0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c3b07a38-cff7-4321-941f-ad51ff497d57",
+    "Title": "Job Offer Title 306",
+    "Money": 817.26,
+    "Description": "The same awesome job offer description 306",
+    "TimePosted": "2017-10-08T00:00:00",
+    "ProviderId": "ce6bd0b0-da13-4792-853e-5d84c8b09ae0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "133d5e8b-71af-4ea0-9be6-ecc4dee434a8",
+    "Title": "Job Offer Title 307",
+    "Money": 598.02,
+    "Description": "The same awesome job offer description 307",
+    "TimePosted": "2016-12-05T00:00:00",
+    "ProviderId": "ce6bd0b0-da13-4792-853e-5d84c8b09ae0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6dec8b8a-fb0a-4fc0-8f39-518e372ce4ab",
+    "Title": "Job Offer Title 308",
+    "Money": 669.2,
+    "Description": "The same awesome job offer description 308",
+    "TimePosted": "2010-02-03T00:00:00",
+    "ProviderId": "ce6bd0b0-da13-4792-853e-5d84c8b09ae0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "16538c63-0188-4640-8ba1-268603215302",
+    "Title": "Job Offer Title 309",
+    "Money": 451.8,
+    "Description": "The same awesome job offer description 309",
+    "TimePosted": "2019-01-10T00:00:00",
+    "ProviderId": "19cbe3a8-4b44-447f-a8a6-8db934c4339d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3d37f1e1-863d-4309-8d55-571b7fefa621",
+    "Title": "Job Offer Title 310",
+    "Money": 269.88,
+    "Description": "The same awesome job offer description 310",
+    "TimePosted": "2012-02-01T00:00:00",
+    "ProviderId": "19cbe3a8-4b44-447f-a8a6-8db934c4339d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bf8e86d0-afd8-404c-b020-a64bd9ba1586",
+    "Title": "Job Offer Title 311",
+    "Money": 41.72,
+    "Description": "The same awesome job offer description 311",
+    "TimePosted": "2007-04-17T00:00:00",
+    "ProviderId": "19cbe3a8-4b44-447f-a8a6-8db934c4339d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "56b4f95f-bde8-4e69-81a2-25e0a8754179",
+    "Title": "Job Offer Title 312",
+    "Money": 1117.46,
+    "Description": "The same awesome job offer description 312",
+    "TimePosted": "2007-07-09T00:00:00",
+    "ProviderId": "19cbe3a8-4b44-447f-a8a6-8db934c4339d",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ccc672a1-dd03-45f0-82d3-3044e8c2ee20",
+    "Title": "Job Offer Title 313",
+    "Money": 315.83,
+    "Description": "The same awesome job offer description 313",
+    "TimePosted": "2001-09-08T00:00:00",
+    "ProviderId": "eb8a866d-e62b-45a8-95e8-c0f00ca35cba",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "173337e1-aa89-4fc7-9801-bdd02c032645",
+    "Title": "Job Offer Title 314",
+    "Money": 464.0,
+    "Description": "The same awesome job offer description 314",
+    "TimePosted": "2005-03-13T00:00:00",
+    "ProviderId": "eb8a866d-e62b-45a8-95e8-c0f00ca35cba",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "2eebf49a-ad8d-40b8-8e21-8ddbdcb34c6f",
+    "Title": "Job Offer Title 315",
+    "Money": 202.22,
+    "Description": "The same awesome job offer description 315",
+    "TimePosted": "2000-08-13T00:00:00",
+    "ProviderId": "eb8a866d-e62b-45a8-95e8-c0f00ca35cba",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "eb51b274-3c17-4349-859c-2fcc81674d42",
+    "Title": "Job Offer Title 316",
+    "Money": 231.82,
+    "Description": "The same awesome job offer description 316",
+    "TimePosted": "2005-08-21T00:00:00",
+    "ProviderId": "eb8a866d-e62b-45a8-95e8-c0f00ca35cba",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d346e5c9-0297-41d7-8bc9-49cdacdac843",
+    "Title": "Job Offer Title 317",
+    "Money": 1126.61,
+    "Description": "The same awesome job offer description 317",
+    "TimePosted": "2000-09-24T00:00:00",
+    "ProviderId": "1d23969a-6777-4519-9c3f-4aaf90a37e14",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "721cfe1d-6600-4092-9efa-702d33a520af",
+    "Title": "Job Offer Title 318",
+    "Money": 653.81,
+    "Description": "The same awesome job offer description 318",
+    "TimePosted": "2000-08-06T00:00:00",
+    "ProviderId": "1d23969a-6777-4519-9c3f-4aaf90a37e14",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5bb2205a-008f-4370-8556-9c66fafb072f",
+    "Title": "Job Offer Title 319",
+    "Money": 555.65,
+    "Description": "The same awesome job offer description 319",
+    "TimePosted": "2001-07-03T00:00:00",
+    "ProviderId": "1d23969a-6777-4519-9c3f-4aaf90a37e14",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "bb334cc9-4f67-4351-9672-6a37b2762c46",
+    "Title": "Job Offer Title 320",
+    "Money": 1178.85,
+    "Description": "The same awesome job offer description 320",
+    "TimePosted": "2011-02-03T00:00:00",
+    "ProviderId": "1d23969a-6777-4519-9c3f-4aaf90a37e14",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6fd555b6-86e3-4d7d-b286-81e29cd42ca7",
+    "Title": "Job Offer Title 321",
+    "Money": 678.66,
+    "Description": "The same awesome job offer description 321",
+    "TimePosted": "2007-11-29T00:00:00",
+    "ProviderId": "5913d3d2-d846-4878-92e8-a8c23bf725b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c5d9eca4-bf22-4b08-a12d-2dbdaf8cd5b8",
+    "Title": "Job Offer Title 322",
+    "Money": 191.89,
+    "Description": "The same awesome job offer description 322",
+    "TimePosted": "2002-10-27T00:00:00",
+    "ProviderId": "5913d3d2-d846-4878-92e8-a8c23bf725b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "70c347b8-cbbc-4d0f-9a91-ecb3897a64c1",
+    "Title": "Job Offer Title 323",
+    "Money": 812.54,
+    "Description": "The same awesome job offer description 323",
+    "TimePosted": "2006-10-19T00:00:00",
+    "ProviderId": "5913d3d2-d846-4878-92e8-a8c23bf725b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "d4a450a1-49be-41aa-a4b3-f33afaae6b7a",
+    "Title": "Job Offer Title 324",
+    "Money": 373.72,
+    "Description": "The same awesome job offer description 324",
+    "TimePosted": "2004-07-03T00:00:00",
+    "ProviderId": "5913d3d2-d846-4878-92e8-a8c23bf725b5",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6dbacce6-5254-4682-9620-327418444827",
+    "Title": "Job Offer Title 325",
+    "Money": 550.11,
+    "Description": "The same awesome job offer description 325",
+    "TimePosted": "2000-09-30T00:00:00",
+    "ProviderId": "e92a837c-2cd1-4106-8367-4193c1f24dfb",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3dd129c6-32e4-4d45-958b-666b32ec31fa",
+    "Title": "Job Offer Title 326",
+    "Money": 181.88,
+    "Description": "The same awesome job offer description 326",
+    "TimePosted": "2008-03-31T00:00:00",
+    "ProviderId": "e92a837c-2cd1-4106-8367-4193c1f24dfb",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "64907993-1c48-4271-b662-aca9b2381b43",
+    "Title": "Job Offer Title 327",
+    "Money": 401.34,
+    "Description": "The same awesome job offer description 327",
+    "TimePosted": "2001-11-16T00:00:00",
+    "ProviderId": "e92a837c-2cd1-4106-8367-4193c1f24dfb",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "68aba382-30a9-4d03-9cff-1fd85a8f6374",
+    "Title": "Job Offer Title 328",
+    "Money": 1155.96,
+    "Description": "The same awesome job offer description 328",
+    "TimePosted": "2015-10-05T00:00:00",
+    "ProviderId": "e92a837c-2cd1-4106-8367-4193c1f24dfb",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "550ad8c3-a719-4cf0-8956-700377979ca5",
+    "Title": "Job Offer Title 329",
+    "Money": 950.87,
+    "Description": "The same awesome job offer description 329",
+    "TimePosted": "2011-10-17T00:00:00",
+    "ProviderId": "c254da0a-75c3-45dd-b088-8dc7774237ea",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "55a7ed3d-3554-4836-ae30-270401d447c8",
+    "Title": "Job Offer Title 330",
+    "Money": 414.23,
+    "Description": "The same awesome job offer description 330",
+    "TimePosted": "2018-01-13T00:00:00",
+    "ProviderId": "c254da0a-75c3-45dd-b088-8dc7774237ea",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "51096c4e-ec91-481e-8162-7d0b05fbd50c",
+    "Title": "Job Offer Title 331",
+    "Money": 172.44,
+    "Description": "The same awesome job offer description 331",
+    "TimePosted": "2017-08-24T00:00:00",
+    "ProviderId": "c254da0a-75c3-45dd-b088-8dc7774237ea",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "62154756-2323-46ee-b49c-2f09aee7e913",
+    "Title": "Job Offer Title 332",
+    "Money": 519.93,
+    "Description": "The same awesome job offer description 332",
+    "TimePosted": "2003-04-18T00:00:00",
+    "ProviderId": "c254da0a-75c3-45dd-b088-8dc7774237ea",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "71c967d7-6b9b-4621-8c36-b51af2c45c8d",
+    "Title": "Job Offer Title 333",
+    "Money": 562.71,
+    "Description": "The same awesome job offer description 333",
+    "TimePosted": "2001-10-23T00:00:00",
+    "ProviderId": "8a88983e-b246-48f4-9e3a-7d375109aa55",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "dce05e10-39b6-45d5-aed1-c32e7e5d8760",
+    "Title": "Job Offer Title 334",
+    "Money": 61.75,
+    "Description": "The same awesome job offer description 334",
+    "TimePosted": "2007-11-06T00:00:00",
+    "ProviderId": "8a88983e-b246-48f4-9e3a-7d375109aa55",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "45ac0e53-b102-4518-8bc4-968e7f0b393d",
+    "Title": "Job Offer Title 335",
+    "Money": 1189.04,
+    "Description": "The same awesome job offer description 335",
+    "TimePosted": "2004-10-06T00:00:00",
+    "ProviderId": "8a88983e-b246-48f4-9e3a-7d375109aa55",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "142eb08b-fef3-4236-b0a0-e9af407a9c3e",
+    "Title": "Job Offer Title 336",
+    "Money": 129.3,
+    "Description": "The same awesome job offer description 336",
+    "TimePosted": "2008-04-01T00:00:00",
+    "ProviderId": "8a88983e-b246-48f4-9e3a-7d375109aa55",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8efc8d67-1724-4bf7-99c6-c09798c82b84",
+    "Title": "Job Offer Title 337",
+    "Money": 46.08,
+    "Description": "The same awesome job offer description 337",
+    "TimePosted": "2013-07-25T00:00:00",
+    "ProviderId": "9a7ae9e3-6e27-4204-9223-2debcbb2b4bf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4d5619d1-18b1-4660-b66c-0c55d441864f",
+    "Title": "Job Offer Title 338",
+    "Money": 783.36,
+    "Description": "The same awesome job offer description 338",
+    "TimePosted": "2009-12-28T00:00:00",
+    "ProviderId": "9a7ae9e3-6e27-4204-9223-2debcbb2b4bf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "876847e0-dbf6-4332-80aa-776e22954918",
+    "Title": "Job Offer Title 339",
+    "Money": 132.79,
+    "Description": "The same awesome job offer description 339",
+    "TimePosted": "2010-10-01T00:00:00",
+    "ProviderId": "9a7ae9e3-6e27-4204-9223-2debcbb2b4bf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "673536ae-1c08-4e08-aaab-38dee9c5ac20",
+    "Title": "Job Offer Title 340",
+    "Money": 984.93,
+    "Description": "The same awesome job offer description 340",
+    "TimePosted": "2016-04-27T00:00:00",
+    "ProviderId": "9a7ae9e3-6e27-4204-9223-2debcbb2b4bf",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "04ef1b32-a5c3-4a5e-a0b7-815097fbbe69",
+    "Title": "Job Offer Title 341",
+    "Money": 998.55,
+    "Description": "The same awesome job offer description 341",
+    "TimePosted": "2013-12-04T00:00:00",
+    "ProviderId": "30514a2b-dcee-4872-a2cc-14ba60905901",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b18952c4-4d00-4880-851a-090f2b8b7280",
+    "Title": "Job Offer Title 342",
+    "Money": 423.98,
+    "Description": "The same awesome job offer description 342",
+    "TimePosted": "2007-03-17T00:00:00",
+    "ProviderId": "30514a2b-dcee-4872-a2cc-14ba60905901",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "69d0d8ed-3dc7-4df2-a384-0ac94937be3f",
+    "Title": "Job Offer Title 343",
+    "Money": 771.04,
+    "Description": "The same awesome job offer description 343",
+    "TimePosted": "2001-12-05T00:00:00",
+    "ProviderId": "30514a2b-dcee-4872-a2cc-14ba60905901",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "67c9376b-b9fd-4f53-9d60-7add43d31f26",
+    "Title": "Job Offer Title 344",
+    "Money": 41.4,
+    "Description": "The same awesome job offer description 344",
+    "TimePosted": "2003-01-29T00:00:00",
+    "ProviderId": "30514a2b-dcee-4872-a2cc-14ba60905901",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "63922b9b-d79e-4478-a9e6-1c754d40e99a",
+    "Title": "Job Offer Title 345",
+    "Money": 1149.47,
+    "Description": "The same awesome job offer description 345",
+    "TimePosted": "2007-01-14T00:00:00",
+    "ProviderId": "1e375312-232d-469d-934e-91792036ff96",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a63a339b-2f1f-46e7-bdd1-6d3ba8c30e09",
+    "Title": "Job Offer Title 346",
+    "Money": 896.37,
+    "Description": "The same awesome job offer description 346",
+    "TimePosted": "2014-12-15T00:00:00",
+    "ProviderId": "1e375312-232d-469d-934e-91792036ff96",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7cbcaf69-8939-4c94-804c-27135d17ce4b",
+    "Title": "Job Offer Title 347",
+    "Money": 521.86,
+    "Description": "The same awesome job offer description 347",
+    "TimePosted": "2008-07-24T00:00:00",
+    "ProviderId": "1e375312-232d-469d-934e-91792036ff96",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "550773f3-7ef0-4524-a70e-e7638a627f4d",
+    "Title": "Job Offer Title 348",
+    "Money": 460.2,
+    "Description": "The same awesome job offer description 348",
+    "TimePosted": "2002-08-20T00:00:00",
+    "ProviderId": "1e375312-232d-469d-934e-91792036ff96",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c2f6a8a3-4dc0-467d-9388-5c853b623814",
+    "Title": "Job Offer Title 349",
+    "Money": 1049.22,
+    "Description": "The same awesome job offer description 349",
+    "TimePosted": "2003-01-21T00:00:00",
+    "ProviderId": "61b98223-3965-4642-b2fb-e8bf9c2bd2ef",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "0d7d977a-6e1f-40be-8a5a-dc651db122db",
+    "Title": "Job Offer Title 350",
+    "Money": 660.59,
+    "Description": "The same awesome job offer description 350",
+    "TimePosted": "2017-11-08T00:00:00",
+    "ProviderId": "61b98223-3965-4642-b2fb-e8bf9c2bd2ef",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "df6b410a-f9f1-4778-9cfb-c950adcbd507",
+    "Title": "Job Offer Title 351",
+    "Money": 172.63,
+    "Description": "The same awesome job offer description 351",
+    "TimePosted": "2005-08-22T00:00:00",
+    "ProviderId": "61b98223-3965-4642-b2fb-e8bf9c2bd2ef",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3a5734a1-0c1c-42c1-8eaa-1f0490a962cf",
+    "Title": "Job Offer Title 352",
+    "Money": 525.35,
+    "Description": "The same awesome job offer description 352",
+    "TimePosted": "2008-09-28T00:00:00",
+    "ProviderId": "61b98223-3965-4642-b2fb-e8bf9c2bd2ef",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e44919cd-6029-446c-9fdd-4b1b9a61aa0d",
+    "Title": "Job Offer Title 353",
+    "Money": 624.14,
+    "Description": "The same awesome job offer description 353",
+    "TimePosted": "2007-05-15T00:00:00",
+    "ProviderId": "f206145e-f7ba-4c56-b7c0-fb6c709cd21f",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c0a38937-94dc-4ac1-9b1f-cafd07964c7d",
+    "Title": "Job Offer Title 354",
+    "Money": 106.71,
+    "Description": "The same awesome job offer description 354",
+    "TimePosted": "2000-07-19T00:00:00",
+    "ProviderId": "f206145e-f7ba-4c56-b7c0-fb6c709cd21f",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "57a4caf7-80a4-4d36-9028-5f3422fadd72",
+    "Title": "Job Offer Title 355",
+    "Money": 699.72,
+    "Description": "The same awesome job offer description 355",
+    "TimePosted": "2016-08-14T00:00:00",
+    "ProviderId": "f206145e-f7ba-4c56-b7c0-fb6c709cd21f",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1b259c7b-cdc2-4055-a247-82600c5894cd",
+    "Title": "Job Offer Title 356",
+    "Money": 502.2,
+    "Description": "The same awesome job offer description 356",
+    "TimePosted": "2013-05-04T00:00:00",
+    "ProviderId": "f206145e-f7ba-4c56-b7c0-fb6c709cd21f",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1b8cb6b1-c341-4367-bd62-4303355fa30a",
+    "Title": "Job Offer Title 357",
+    "Money": 1018.57,
+    "Description": "The same awesome job offer description 357",
+    "TimePosted": "2010-02-20T00:00:00",
+    "ProviderId": "5eae91ea-345a-40e3-bae2-a59daaa5d3a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3b7ac423-a68d-4a00-940b-9b1f0da78aed",
+    "Title": "Job Offer Title 358",
+    "Money": 1044.06,
+    "Description": "The same awesome job offer description 358",
+    "TimePosted": "2018-05-17T00:00:00",
+    "ProviderId": "5eae91ea-345a-40e3-bae2-a59daaa5d3a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "905fc6ab-ea6e-4ca1-b1b8-5fd781881437",
+    "Title": "Job Offer Title 359",
+    "Money": 604.48,
+    "Description": "The same awesome job offer description 359",
+    "TimePosted": "2018-01-25T00:00:00",
+    "ProviderId": "5eae91ea-345a-40e3-bae2-a59daaa5d3a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b8bc6eba-18cf-40c3-8782-9b20c0b1b2f2",
+    "Title": "Job Offer Title 360",
+    "Money": 819.06,
+    "Description": "The same awesome job offer description 360",
+    "TimePosted": "2014-10-15T00:00:00",
+    "ProviderId": "5eae91ea-345a-40e3-bae2-a59daaa5d3a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "41513171-d3e0-46ef-9dfd-a2d2da2b788d",
+    "Title": "Job Offer Title 361",
+    "Money": 112.89,
+    "Description": "The same awesome job offer description 361",
+    "TimePosted": "2015-11-22T00:00:00",
+    "ProviderId": "a8a8f92c-1ac9-481e-8b3b-b2386128bce7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "08a5a524-8068-44d1-9076-d2ed2cb6a176",
+    "Title": "Job Offer Title 362",
+    "Money": 319.03,
+    "Description": "The same awesome job offer description 362",
+    "TimePosted": "2001-03-02T00:00:00",
+    "ProviderId": "a8a8f92c-1ac9-481e-8b3b-b2386128bce7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ce68a933-e464-46fd-b262-81c9c526728e",
+    "Title": "Job Offer Title 363",
+    "Money": 595.3,
+    "Description": "The same awesome job offer description 363",
+    "TimePosted": "2017-09-14T00:00:00",
+    "ProviderId": "a8a8f92c-1ac9-481e-8b3b-b2386128bce7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7aed039f-9c52-4d8e-954f-c9dd5fb0d924",
+    "Title": "Job Offer Title 364",
+    "Money": 914.53,
+    "Description": "The same awesome job offer description 364",
+    "TimePosted": "2000-12-27T00:00:00",
+    "ProviderId": "a8a8f92c-1ac9-481e-8b3b-b2386128bce7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "184e1a06-9377-4ba2-a27f-6991ed77e205",
+    "Title": "Job Offer Title 365",
+    "Money": 974.41,
+    "Description": "The same awesome job offer description 365",
+    "TimePosted": "2013-11-04T00:00:00",
+    "ProviderId": "c35e3f74-efbe-4e3b-b9ed-ac9e9106cb77",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "99658060-09c2-42a9-bb6c-3486274e7976",
+    "Title": "Job Offer Title 366",
+    "Money": 398.76,
+    "Description": "The same awesome job offer description 366",
+    "TimePosted": "2003-12-31T00:00:00",
+    "ProviderId": "c35e3f74-efbe-4e3b-b9ed-ac9e9106cb77",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a7ec321e-41f8-49fa-9a86-b1ab9ebeef8c",
+    "Title": "Job Offer Title 367",
+    "Money": 251.72,
+    "Description": "The same awesome job offer description 367",
+    "TimePosted": "2005-09-16T00:00:00",
+    "ProviderId": "c35e3f74-efbe-4e3b-b9ed-ac9e9106cb77",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "472cf66a-097b-4541-9e92-7646dcd31ca2",
+    "Title": "Job Offer Title 368",
+    "Money": 1131.04,
+    "Description": "The same awesome job offer description 368",
+    "TimePosted": "2013-03-30T00:00:00",
+    "ProviderId": "c35e3f74-efbe-4e3b-b9ed-ac9e9106cb77",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8ed195e2-0bc9-4901-835e-7d23475d46bf",
+    "Title": "Job Offer Title 369",
+    "Money": 151.93,
+    "Description": "The same awesome job offer description 369",
+    "TimePosted": "2000-06-06T00:00:00",
+    "ProviderId": "45c0409a-0709-42b3-a84b-4f898588bdc7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3e6b5759-eed5-4097-ba9f-5259acdaa88a",
+    "Title": "Job Offer Title 370",
+    "Money": 949.88,
+    "Description": "The same awesome job offer description 370",
+    "TimePosted": "2011-10-09T00:00:00",
+    "ProviderId": "45c0409a-0709-42b3-a84b-4f898588bdc7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1b7c3e4c-eb80-4b3d-bd4b-236476825c1c",
+    "Title": "Job Offer Title 371",
+    "Money": 1062.71,
+    "Description": "The same awesome job offer description 371",
+    "TimePosted": "2011-06-25T00:00:00",
+    "ProviderId": "45c0409a-0709-42b3-a84b-4f898588bdc7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "daa0c20b-b5c5-4d5d-a844-688bcb2729b9",
+    "Title": "Job Offer Title 372",
+    "Money": 40.22,
+    "Description": "The same awesome job offer description 372",
+    "TimePosted": "2010-02-22T00:00:00",
+    "ProviderId": "45c0409a-0709-42b3-a84b-4f898588bdc7",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "662fb376-9f5a-4aef-a273-fdfdd858529a",
+    "Title": "Job Offer Title 373",
+    "Money": 217.98,
+    "Description": "The same awesome job offer description 373",
+    "TimePosted": "2009-04-03T00:00:00",
+    "ProviderId": "6853038d-ad66-45c3-9a54-1f9a06888a49",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c12e6bd3-a701-4ce3-968e-bc91af99e639",
+    "Title": "Job Offer Title 374",
+    "Money": 447.68,
+    "Description": "The same awesome job offer description 374",
+    "TimePosted": "2004-08-03T00:00:00",
+    "ProviderId": "6853038d-ad66-45c3-9a54-1f9a06888a49",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "7c5da4ce-9996-4b97-ad22-e18d457c39fc",
+    "Title": "Job Offer Title 375",
+    "Money": 1057.27,
+    "Description": "The same awesome job offer description 375",
+    "TimePosted": "2016-07-28T00:00:00",
+    "ProviderId": "6853038d-ad66-45c3-9a54-1f9a06888a49",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "4347cf33-eb95-48b9-a8b8-8e9056751b7f",
+    "Title": "Job Offer Title 376",
+    "Money": 1131.64,
+    "Description": "The same awesome job offer description 376",
+    "TimePosted": "2000-09-13T00:00:00",
+    "ProviderId": "6853038d-ad66-45c3-9a54-1f9a06888a49",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "12481871-537b-451f-8d38-c4e251a79e3c",
+    "Title": "Job Offer Title 377",
+    "Money": 297.82,
+    "Description": "The same awesome job offer description 377",
+    "TimePosted": "2000-11-21T00:00:00",
+    "ProviderId": "ecdff001-123f-487f-94fe-79916b2a92da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f2ffe60f-3416-458e-8ccf-c8e73306cd66",
+    "Title": "Job Offer Title 378",
+    "Money": 468.1,
+    "Description": "The same awesome job offer description 378",
+    "TimePosted": "2003-09-21T00:00:00",
+    "ProviderId": "ecdff001-123f-487f-94fe-79916b2a92da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1b899d17-c8e0-4d32-b4b6-abb116e74ef9",
+    "Title": "Job Offer Title 379",
+    "Money": 101.21,
+    "Description": "The same awesome job offer description 379",
+    "TimePosted": "2016-11-15T00:00:00",
+    "ProviderId": "ecdff001-123f-487f-94fe-79916b2a92da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5dee0b05-0db0-4b4b-b20a-608d8fd3e91d",
+    "Title": "Job Offer Title 380",
+    "Money": 530.71,
+    "Description": "The same awesome job offer description 380",
+    "TimePosted": "2005-03-14T00:00:00",
+    "ProviderId": "ecdff001-123f-487f-94fe-79916b2a92da",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f8434fea-d2ef-4f83-8716-b9c31b3febab",
+    "Title": "Job Offer Title 381",
+    "Money": 536.99,
+    "Description": "The same awesome job offer description 381",
+    "TimePosted": "2019-02-03T00:00:00",
+    "ProviderId": "61958fb8-6860-49bf-a347-33666165e8fe",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8b655240-280d-480f-984c-c970614658b2",
+    "Title": "Job Offer Title 382",
+    "Money": 818.11,
+    "Description": "The same awesome job offer description 382",
+    "TimePosted": "2018-08-24T00:00:00",
+    "ProviderId": "61958fb8-6860-49bf-a347-33666165e8fe",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f5a6dbda-ba3b-47a6-96fa-0973e2f4219e",
+    "Title": "Job Offer Title 383",
+    "Money": 983.7,
+    "Description": "The same awesome job offer description 383",
+    "TimePosted": "2012-09-14T00:00:00",
+    "ProviderId": "61958fb8-6860-49bf-a347-33666165e8fe",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "a093c91c-35ad-4f97-b129-4f2b31d82b60",
+    "Title": "Job Offer Title 384",
+    "Money": 1167.24,
+    "Description": "The same awesome job offer description 384",
+    "TimePosted": "2013-05-06T00:00:00",
+    "ProviderId": "61958fb8-6860-49bf-a347-33666165e8fe",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "6244738b-498b-4413-ab26-5a3019a0cd40",
+    "Title": "Job Offer Title 385",
+    "Money": 1118.57,
+    "Description": "The same awesome job offer description 385",
+    "TimePosted": "2012-05-24T00:00:00",
+    "ProviderId": "c3a9ed6f-1bf5-497b-8b2a-c34070c7e21a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "528e973b-720e-4be8-bf32-7aa24d92eab2",
+    "Title": "Job Offer Title 386",
+    "Money": 524.06,
+    "Description": "The same awesome job offer description 386",
+    "TimePosted": "2008-11-25T00:00:00",
+    "ProviderId": "c3a9ed6f-1bf5-497b-8b2a-c34070c7e21a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "101134d4-4216-49c4-8ac9-6f491031b92f",
+    "Title": "Job Offer Title 387",
+    "Money": 772.76,
+    "Description": "The same awesome job offer description 387",
+    "TimePosted": "2015-05-01T00:00:00",
+    "ProviderId": "c3a9ed6f-1bf5-497b-8b2a-c34070c7e21a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "ba5ee6ee-9f84-433b-97b3-3bcb209694a7",
+    "Title": "Job Offer Title 388",
+    "Money": 152.96,
+    "Description": "The same awesome job offer description 388",
+    "TimePosted": "2001-04-05T00:00:00",
+    "ProviderId": "c3a9ed6f-1bf5-497b-8b2a-c34070c7e21a",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "8bb3b5b5-5842-47b5-b13c-3a8b79841be8",
+    "Title": "Job Offer Title 389",
+    "Money": 239.0,
+    "Description": "The same awesome job offer description 389",
+    "TimePosted": "2010-08-19T00:00:00",
+    "ProviderId": "d64935c6-1487-4161-b6e1-6f8d50435186",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "67e91a72-8390-41ea-98b4-3f57988cf8cd",
+    "Title": "Job Offer Title 390",
+    "Money": 383.8,
+    "Description": "The same awesome job offer description 390",
+    "TimePosted": "2010-10-30T00:00:00",
+    "ProviderId": "d64935c6-1487-4161-b6e1-6f8d50435186",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "f42e04d1-c9dc-4882-85d8-1b055ebe34b3",
+    "Title": "Job Offer Title 391",
+    "Money": 1167.7,
+    "Description": "The same awesome job offer description 391",
+    "TimePosted": "2017-07-08T00:00:00",
+    "ProviderId": "d64935c6-1487-4161-b6e1-6f8d50435186",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "1106d9e8-c155-4ed0-82a4-8ce5c69b3f2f",
+    "Title": "Job Offer Title 392",
+    "Money": 1058.98,
+    "Description": "The same awesome job offer description 392",
+    "TimePosted": "2014-08-06T00:00:00",
+    "ProviderId": "d64935c6-1487-4161-b6e1-6f8d50435186",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "669280e6-423e-4678-bb94-937bf2a45741",
+    "Title": "Job Offer Title 393",
+    "Money": 1055.84,
+    "Description": "The same awesome job offer description 393",
+    "TimePosted": "2011-05-01T00:00:00",
+    "ProviderId": "6713c30f-845b-4b27-9d33-e963783b93a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "747b98be-e0d6-4ef8-9aee-74dfe3348286",
+    "Title": "Job Offer Title 394",
+    "Money": 190.7,
+    "Description": "The same awesome job offer description 394",
+    "TimePosted": "2015-05-15T00:00:00",
+    "ProviderId": "6713c30f-845b-4b27-9d33-e963783b93a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "3fcbd310-c552-4290-adde-a982252cc635",
+    "Title": "Job Offer Title 395",
+    "Money": 569.01,
+    "Description": "The same awesome job offer description 395",
+    "TimePosted": "2000-06-05T00:00:00",
+    "ProviderId": "6713c30f-845b-4b27-9d33-e963783b93a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "c73be260-f490-4206-b920-219122d15aa0",
+    "Title": "Job Offer Title 396",
+    "Money": 376.49,
+    "Description": "The same awesome job offer description 396",
+    "TimePosted": "2012-10-04T00:00:00",
+    "ProviderId": "6713c30f-845b-4b27-9d33-e963783b93a0",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "47860c01-0d6c-4958-ae75-c28789737606",
+    "Title": "Job Offer Title 397",
+    "Money": 705.65,
+    "Description": "The same awesome job offer description 397",
+    "TimePosted": "2008-11-28T00:00:00",
+    "ProviderId": "36754362-d406-469d-be02-7b563805c285",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "b698a87f-9717-44c0-aed7-711e77453e0c",
+    "Title": "Job Offer Title 398",
+    "Money": 733.48,
+    "Description": "The same awesome job offer description 398",
+    "TimePosted": "2000-12-09T00:00:00",
+    "ProviderId": "36754362-d406-469d-be02-7b563805c285",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "5e551f59-65fa-4aaa-80ec-5f707d4cc4d4",
+    "Title": "Job Offer Title 399",
+    "Money": 1123.96,
+    "Description": "The same awesome job offer description 399",
+    "TimePosted": "2008-08-21T00:00:00",
+    "ProviderId": "36754362-d406-469d-be02-7b563805c285",
+    "ResultId": null,
+    "StateValue": "Available"
+  },
+  {
+    "Id": "e6462154-8177-4822-914f-fd9b222feaa5",
+    "Title": "Job Offer Title 400",
+    "Money": 447.68,
+    "Description": "The same awesome job offer description 400",
+    "TimePosted": "2003-01-15T00:00:00",
+    "ProviderId": "36754362-d406-469d-be02-7b563805c285",
+    "ResultId": null,
+    "StateValue": "Failed"
+  }
+]

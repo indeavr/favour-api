@@ -1,0 +1,506 @@
+[
+  // Person Providers
+  {
+    "Id": "63c964dd-a2ea-4cc6-b78d-2e4fc1624f31",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "5b77846d-998e-4209-8035-baa45d8b8abf",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "014ad432-fb7d-4f94-b95b-d067f935cc32",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "d961181a-14b0-4692-8fe5-99f6d410c4de",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "9869910e-5dd5-47d4-b297-44d249dfb123",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "53c438b6-c288-43c4-b57a-3b0c3560dfd4",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "6658480f-b984-499a-aac4-def5515437f2",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "35cc3db5-73bf-47d8-bc56-13b81b757faa",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "669d5c9d-b690-467c-b346-d846d3705b08",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "154bc1e8-d12d-4728-a2dd-ff35e50f0f62",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "ff36b649-fb17-41ec-9a59-5d72aaacdf52",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "341c632a-18c5-4b2b-a5e8-1de89b730ba3",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "7883417f-3559-4cce-8446-210a36394999",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "f8822d16-b53b-4faf-a2f0-c53aeb670c94",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "0d68c54a-39fd-44b6-9139-d97f515d65e8",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "6fca855c-ef19-4dac-b361-46dc47fe38be",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "7450129c-3d2f-4218-987b-cf42938d3af7",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "a9bbf881-103a-4bc0-820c-09ea18f4bd8d",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "9011d729-7949-48d6-baf8-4e807b8d8f46",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "3821b447-848d-411d-9529-8be8493cf5b5",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "3a3de128-038a-4d10-917a-04094628314e",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "2f9f6976-164a-461f-845f-3e95029b193c",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "bef81570-5178-44e9-9a3a-2fdd594c42e5",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "613e39eb-ecc3-44c0-9e2d-d7359ead9f81",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "4719a489-f061-4f46-99d5-e3747eb2c916",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "269ed4c0-31c5-48ec-b057-7f0233eaa1df",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "ce6bd0b0-da13-4792-853e-5d84c8b09ae0",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "19cbe3a8-4b44-447f-a8a6-8db934c4339d",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "eb8a866d-e62b-45a8-95e8-c0f00ca35cba",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "1d23969a-6777-4519-9c3f-4aaf90a37e14",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "5913d3d2-d846-4878-92e8-a8c23bf725b5",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "e92a837c-2cd1-4106-8367-4193c1f24dfb",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "c254da0a-75c3-45dd-b088-8dc7774237ea",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "8a88983e-b246-48f4-9e3a-7d375109aa55",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "9a7ae9e3-6e27-4204-9223-2debcbb2b4bf",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "30514a2b-dcee-4872-a2cc-14ba60905901",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "1e375312-232d-469d-934e-91792036ff96",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "61b98223-3965-4642-b2fb-e8bf9c2bd2ef",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "f206145e-f7ba-4c56-b7c0-fb6c709cd21f",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "5eae91ea-345a-40e3-bae2-a59daaa5d3a0",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "a8a8f92c-1ac9-481e-8b3b-b2386128bce7",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "c35e3f74-efbe-4e3b-b9ed-ac9e9106cb77",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "45c0409a-0709-42b3-a84b-4f898588bdc7",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "6853038d-ad66-45c3-9a54-1f9a06888a49",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "ecdff001-123f-487f-94fe-79916b2a92da",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "61958fb8-6860-49bf-a347-33666165e8fe",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "c3a9ed6f-1bf5-497b-8b2a-c34070c7e21a",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "d64935c6-1487-4161-b6e1-6f8d50435186",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "6713c30f-845b-4b27-9d33-e963783b93a0",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "36754362-d406-469d-be02-7b563805c285",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+
+
+
+
+  // Company Providers
+  {
+    "Id": "d30dd1d3-e738-4414-83ac-568936d1f2bc",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "9ea1a016-4c6e-47dd-8413-8cea8fa3ea2c",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "83bfc050-5013-4813-9602-9c024090207c",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "3789dd09-11f9-4750-97cf-01e1d31cfd13",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "3733d358-0279-4b7f-a7a7-726f6134dd8d",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "af101c9c-2d50-4c91-a77f-9204383b1b72",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "e1f305ab-a9f4-4c59-89b4-1ea7fc805a8a",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "f2f38cc8-b464-42f2-bcc3-d752bb3bedd6",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "9840e851-0347-4cc3-857d-25beec563e20",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "a5d21cb6-d119-4b1a-b63f-1ba0db0f71e9",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "91316029-1e76-4f36-9e6f-2a5887ff55da",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "3fbba360-97c4-4606-b012-e93ebb554835",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": true,
+    "CanApplyConsumer": true
+  },
+
+
+
+
+
+  // Only Consumers
+  {
+    "Id": "55a3d71c-bd97-4adc-9ac9-a78a39f5f537",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "e91fa5a5-7a31-40b3-aa82-af79a9a9c23d",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "07e18758-b594-44dc-9ac2-2f5d162d1dc4",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "7023a048-3512-43f2-81ab-8e70b72f05bb",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "de832038-20df-49ba-bd83-a2732fefd908",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "839310ff-c901-44d1-9eff-7305a0920847",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "5e994a2c-0876-455b-aeb6-9d8bc6fdfd77",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "8ea514b8-c405-4e82-b4fc-7c14f0176abb",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "45ea16d3-7a48-4bbe-9d52-5ba4629ab0a9",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "8be87f81-5d04-4bbc-a1a4-8012bfe00326",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "73291ad1-7d6c-4f0e-8f4a-10b01b193d6c",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "1cc2a7b3-4708-414a-9715-7ff1fc8bca49",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "5ea82433-fe6b-4f64-9d24-299787396a41",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "d65c40c3-e4cd-4ec8-8f19-af57caf406d9",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "f070b443-ada7-41d7-aea2-7aff3108638a",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "c23c6d3f-e1a1-49a4-a959-b7f69f56e3c2",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "d9e71500-2335-495f-8290-7bb7c2b97324",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "2cca8680-e298-457c-94df-6de1c9774e8d",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "033d12be-7be3-41cd-9467-e81c57736fd7",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  },
+  {
+    "Id": "738346e9-fa96-4960-8b12-fdb8593e8a19",
+    "HasSufficientInfoConsumer": true,
+    "HasSufficientInfoProvider": false,
+    "CanApplyConsumer": true
+  }
+]

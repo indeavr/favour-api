@@ -1,0 +1,186 @@
+[
+  {
+    "Id": "9c508599-7675-4565-8f71-6cdaad17323d",
+    "Message": "Ей, супер - давай насам, аз съм перфектния човек за тая работа!",
+    "Time": "2019-04-20T00:00:00",
+    "JobOfferId": "ac5dac36-c9c3-49f3-964e-06584d9a82eb",
+    "ConsumerId": "55a3d71c-bd97-4adc-9ac9-a78a39f5f537",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "5b9fc6eb-4968-4209-8e98-d707a6bcde7b",
+    "Message": "Цъкам ги, блъскам ги, пръскаам! Давай насам бачкането ;P",
+    "Time": "2015-08-29T00:00:00",
+    "JobOfferId": "afa36647-6edd-4945-a667-d02e8dde090c",
+    "ConsumerId": "55a3d71c-bd97-4adc-9ac9-a78a39f5f537",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "bf5097e7-8113-43ca-86f3-c24a8366fe36",
+    "Message": "Мега якото, ще ти го свърша, а пък и добри кинти даваш гледам",
+    "Time": "2015-04-06T00:00:00",
+    "JobOfferId": "db303d66-8610-482c-966f-d6d072a1c99d",
+    "ConsumerId": "e91fa5a5-7a31-40b3-aa82-af79a9a9c23d",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "1f40a6fb-7888-49af-8c1a-0426125589a2",
+    "Message": "Ее, че това ми е мечтаната работа! Добре, че беше Work Favour да се намерим",
+    "Time": "2017-04-02T00:00:00",
+    "JobOfferId": "7949a566-a280-4001-97b9-ce51b98be60e",
+    "ConsumerId": "7023a048-3512-43f2-81ab-8e70b72f05bb",
+    "StateId": "Pending"
+  },
+  {
+    "Id": "c92ea775-650c-429a-9e30-ecbed35f674a",
+    "Message": "Бруталка! Взимам 3в1-то и идвам",
+    "Time": "2017-09-28T00:00:00",
+    "JobOfferId": "bd357ad6-4453-43a3-a5bd-bcaf3103cbca",
+    "ConsumerId": "de832038-20df-49ba-bd83-a2732fefd908",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "8871a725-cce6-4d28-8eb1-00f2a7fe8e95",
+    "Message": "Работа точно като за батка като мен",
+    "Time": "2016-02-11T00:00:00",
+    "JobOfferId": "a43e86a5-2993-45d4-9c8f-efa4f43316c1",
+    "ConsumerId": "839310ff-c901-44d1-9eff-7305a0920847",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "3a3212e0-09da-453f-a449-841e681e1b70",
+    "Message": "Approve-вай и идвам да ги нацепиме",
+    "Time": "2018-06-29T00:00:00",
+    "JobOfferId": "34be47e2-1290-451d-8845-4b3fa2ce9aa6",
+    "ConsumerId": "8ea514b8-c405-4e82-b4fc-7c14f0176abb",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "0b62559d-c554-4fc1-b42e-f32d25249b7e",
+    "Message": "Ухуууууууу",
+    "Time": "2015-08-12T00:00:00",
+    "JobOfferId": "026eee4b-bf1b-490e-9d8a-15272863d7c3",
+    "ConsumerId": "8be87f81-5d04-4bbc-a1a4-8012bfe00326",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "87d18128-e0dc-45fb-9b1b-5e1d08074e2a",
+    "Message": "Oo, yeah!",
+    "Time": "2017-07-10T00:00:00",
+    "JobOfferId": "9cd75455-6f74-4db7-8e7a-77a3a4e2f922",
+    "ConsumerId": "1cc2a7b3-4708-414a-9715-7ff1fc8bca49",
+    "StateId": "Pending"
+  },
+  {
+    "Id": "94a83642-7db5-42c2-9ee0-fbd2f7afe49e",
+    "Message": "Може да се спазарим за повече кинти, ама айде като дойда ще обсъдим",
+    "Time": "2016-01-12T00:00:00",
+    "JobOfferId": "f49a1beb-9a1c-47df-b2c7-c1c55a53d005",
+    "ConsumerId": "1cc2a7b3-4708-414a-9715-7ff1fc8bca49",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "ee8d1cb8-7802-4bd3-8a46-20bbfbaf8b7c",
+    "Message": "Това е 1352-рата ми работа в Work Favour. Благодарение на тая платформа и балъци като вас дето дават много пари за лесни неща, направих първия си милион вчера!",
+    "Time": "2018-08-28T00:00:00",
+    "JobOfferId": "17642263-abd2-43a9-8998-bf994f66e6b2",
+    "ConsumerId": "1cc2a7b3-4708-414a-9715-7ff1fc8bca49",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "c364a9c5-b782-40d4-8195-c51fb96d618e",
+    "Message": "Аз съм най-добрата за това. Избери ме! Ето виж ми YT канала, точно по темата - https://www.youtube.com/channel/UCiq1FIgtEK7LRAOB1JXTPig",
+    "Time": "2018-07-25T00:00:00",
+    "JobOfferId": "fd792552-5584-4781-ad94-5b59f011a7c0",
+    "ConsumerId": "d65c40c3-e4cd-4ec8-8f19-af57caf406d9",
+    "StateId": "Pending"
+  },
+  {
+    "Id": "02e04cbc-4c31-4d6e-9aa6-0e6663594e4a",
+    "Message": "da we",
+    "Time": "2018-07-22T00:00:00",
+    "JobOfferId": "bb67ff57-535f-4a83-a91a-e1bba17a7884",
+    "ConsumerId": "d65c40c3-e4cd-4ec8-8f19-af57caf406d9",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "f8a0d7c0-f30a-4121-abfb-04f112afc3ad",
+    "Message": "Айде, аз ще ти свърша мръсната работа",
+    "Time": "2016-12-13T00:00:00",
+    "JobOfferId": "6c90e7d3-2608-4709-b9af-e30ac7cefdf8",
+    "ConsumerId": "f070b443-ada7-41d7-aea2-7aff3108638a",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "4040fd96-382f-467f-956f-7b6f60170e4b",
+    "Message": "braat u4itel po bg li si tarsi6. eto me as sam mnogo dobar w balgarskiq i 6e te naucha na kot saka6",
+    "Time": "2016-03-07T00:00:00",
+    "JobOfferId": "e3541fd1-1918-47e6-8133-95429855d9f9",
+    "ConsumerId": "c23c6d3f-e1a1-49a4-a959-b7f69f56e3c2",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "a7ec33fc-a52c-42d7-9027-5f48d0ec3ccc",
+    "Message": "Роден съм за това. Одобри ме и ще ти го направя златно",
+    "Time": "2016-01-27T00:00:00",
+    "JobOfferId": "2fe2fda2-b854-4c00-ba81-f19ded897a81",
+    "ConsumerId": "2cca8680-e298-457c-94df-6de1c9774e8d",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "1d453cb7-c260-4413-8bda-daf25f869e9b",
+    "Message": "яко",
+    "Time": "2016-01-18T00:00:00",
+    "JobOfferId": "e1582367-8c98-4780-b816-41a5fee71bb3",
+    "ConsumerId": "033d12be-7be3-41cd-9467-e81c57736fd7",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "84e9c2e1-0f79-4a43-b17a-4602e28052c6",
+    "Message": "Може ли да дойда с брат ми да го свърша? Ще стане по-бързо",
+    "Time": "2018-04-20T00:00:00",
+    "JobOfferId": "080b51c9-b419-44ed-bd7a-b2ee3c16be34",
+    "ConsumerId": "033d12be-7be3-41cd-9467-e81c57736fd7",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "220647ce-fe95-45cc-a979-0901bc83556e",
+    "Message": "zdr kp asl",
+    "Time": "2017-12-26T00:00:00",
+    "JobOfferId": "b6802914-dee5-4443-9129-e8cfb13ad07c",
+    "ConsumerId": "738346e9-fa96-4960-8b12-fdb8593e8a19",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "1034f0fd-88ef-4066-8231-e023c794f855",
+    "Message": "Еее тва е много яко. Взимам работата",
+    "Time": "2015-01-31T00:00:00",
+    "JobOfferId": "dead1b42-0d25-4f66-924f-42ee3d352999",
+    "ConsumerId": "45ea16d3-7a48-4bbe-9d52-5ba4629ab0a9",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "c41044c0-c282-4de8-87be-d14076fd5656",
+    "Message": "cool",
+    "Time": "2016-11-28T00:00:00",
+    "JobOfferId": "72c87290-d954-4030-a9d9-862dfc73d97e",
+    "ConsumerId": "8be87f81-5d04-4bbc-a1a4-8012bfe00326",
+    "StateId": "Accepted"
+  },
+  {
+    "Id": "aafd1f99-4399-43a8-9178-3de87a784e1f",
+    "Message": "Нали знаеш че е нелегално :D Ама аре, аз така или иначе съм над закона и щи хелпна",
+    "Time": "2015-08-31T00:00:00",
+    "JobOfferId": "5f166875-07ad-4f96-bdd9-c85ebf998f1b",
+    "ConsumerId": "1cc2a7b3-4708-414a-9715-7ff1fc8bca49",
+    "StateId": "Rejected"
+  },
+  {
+    "Id": "63cbdaa6-275a-4081-b0d2-b35c3254e1cb",
+    "Message": "Мисля, че си намерихте точния човек за това! Нямам търпение да получа кинт.. ъъъ така де - работата ^^",
+    "Time": "2018-01-27T00:00:00",
+    "JobOfferId": "e6462154-8177-4822-914f-fd9b222feaa5",
+    "ConsumerId": "1cc2a7b3-4708-414a-9715-7ff1fc8bca49",
+    "StateId": "Accepted"
+  }
+]
