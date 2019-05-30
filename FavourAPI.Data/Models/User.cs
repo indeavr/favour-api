@@ -24,21 +24,19 @@ namespace FavourAPI.Data.Models
 
         [EmailAddress]
         public string Email { get; set; }
-
         public string Password { get; set; }
-
         public byte[] PasswordHash { get; set; }
-
         public byte[] PasswordSalt { get; set; }
-
         public string Token { get; set; }
 
+        public Guid? ConsumerId { get; set; }
+        public Guid? PersonProviderId { get; set; }
+        public Guid? CompanyProviderId { get; set; }
+        public Guid? PermissionMyId { get; set; }
+
         public virtual Consumer Consumer { get; set; }
-
         public virtual PersonProvider PersonProvider { get; set; }
-
         public virtual CompanyProvider CompanyProvider { get; set; }
-
         public virtual PermissionMy PermissionMy { get; set; }
     }
 }

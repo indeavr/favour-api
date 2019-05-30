@@ -9,13 +9,11 @@ namespace FavourAPI.Data.Models
         [Key]
         [Column(TypeName = "uniqueidentifier")]
         public Guid IndustryId { get; set; }
-
-        public virtual Industry Industry { get; set; }
-
         [Key]
         [Column(TypeName = "uniqueidentifier")]
         public Guid PositionId { get; set; }
 
+        public virtual Industry Industry { get; set; }
         public virtual Position Position { get; set; }
     }
 }

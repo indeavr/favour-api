@@ -9,8 +9,10 @@ namespace FavourAPI.Data.Models
         [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
-
         public string Review { get; set; }
+
+        public string ConsumerId { get; set; }
+
+        public virtual Consumer Consumer { get; set; }
     }
 }

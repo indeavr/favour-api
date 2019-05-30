@@ -11,9 +11,7 @@ namespace FavourAPI.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public string Label { get; set; }
-
-        [Phone]
         public string Number { get; set; }
+        public string Label { get; set; }
     }
 }
