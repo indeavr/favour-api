@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using FavourAPI.Data.Models;
 using System;
+using System.Linq;
 
 namespace FavourAPI.Data
 {
@@ -74,6 +75,7 @@ namespace FavourAPI.Data
         {
             // Configuring one-to-one relation
             modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
+            modelBuilder.Entity<Permission>().HasIndex(p => new { p.UserId, p.PermissionNameId }).IsUnique();
 
             // Configuring the many-to-many realtions
             modelBuilder.Entity<IndustryPosition>().HasKey(ip => new { ip.IndustryId, ip.PositionId });
