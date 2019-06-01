@@ -13,4 +13,9 @@
     <ProjectReference Include="..\FavourAPI.Data\FavourAPI.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\Seeder\ValuesGeneration\CalculatedCollections\" />
+    <Folder Include="Helpers\Seeder\ValuesGeneration\GeneratedCollections\" />
+  </ItemGroup>
+
 </Project>

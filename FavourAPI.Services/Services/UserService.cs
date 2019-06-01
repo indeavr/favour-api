@@ -102,6 +102,7 @@ namespace FavourAPI.Services
 
             User user = new User()
             {
+                Password = password,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 PermissionMy = new PermissionMy(),

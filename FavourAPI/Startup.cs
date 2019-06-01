@@ -23,6 +23,9 @@ using Microsoft.AspNetCore.Http.Internal;
 using FavourAPI.Data;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Services;
+using FavourAPI.Services.Helpers.Seeder;
+using FavourAPI.Services.Helpers.Seeder.Contracts;
+using FavourAPI.Services.Helpers.Seeder.JsonManager;
 
 namespace FavourAPI
 {
@@ -93,6 +96,12 @@ namespace FavourAPI
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IOfficeService, OfficeService>();
             services.AddScoped<ISkillService, SkillService>();
+            // custom data seeder services
+            services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
+            services.AddScoped<IJsonManager, JsonManager>();
+            services.AddScoped<IHardcodedCollections, HardcodedCollections>();
+            services.AddScoped<IGeneratedCollections, GeneratedCollections>();
+            services.AddScoped<ICalculatedCollections, CalculatedCollections>();
 
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
