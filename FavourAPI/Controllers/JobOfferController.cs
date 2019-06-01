@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Controllers
 {
@@ -22,7 +23,7 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("seed")]
-        public ActionResult SeedOffer()
+        public async Task<ActionResult> SeedOffer()
         {
             var periods = new List<PeriodDto>()
             {
@@ -66,7 +67,7 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("application")]
-        public ActionResult SeedApplication()
+        public async Task<ActionResult> SeedApplication()
         {
             var jobOfferId = Guid.NewGuid().ToString();
             var consumerId = Guid.NewGuid().ToString();
@@ -83,7 +84,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult AddOffer([FromQuery] string userId, [FromBody] JobOfferDto jobOffer)
+        public async Task<ActionResult> AddOffer([FromQuery] string userId, [FromBody] JobOfferDto jobOffer)
         {
             this.offerService.AddJobOffer(userId, jobOffer);
             return Ok();
@@ -91,7 +92,7 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<List<JobOfferDto>> Get(
+        public async Task<ActionResult<List<JobOfferDto>>> Get(
             [FromQuery] string userId,
             [FromQuery] string currentPosition,
             [FromQuery] string chunkSize,

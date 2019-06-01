@@ -3,6 +3,7 @@ using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using FavourAPI.Services;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Controllers
 {
@@ -26,7 +27,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<CompanyProvider> GetCompanyProvider([FromQuery] string userId)
+        public async Task<ActionResult<CompanyProvider>> GetCompanyProvider([FromQuery] string userId)
         {
             this.companyProviderService.AddCompanyProvider(Guid.NewGuid().ToString(), new CompanyProviderDto()
             {
@@ -65,7 +66,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
+        public async Task<ActionResult> AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             this.companyProviderService.AddCompanyProvider(userId, companyProvider);
             this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
@@ -75,14 +76,14 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("office")]
-        public ActionResult<OfficeDto> GetOffices([FromQuery] string userId)
+        public async Task<ActionResult<OfficeDto>> GetOffices([FromQuery] string userId)
         {
             var offices = this.officeService.GetOffices();
             return Ok(offices);
         }
 
         [HttpPut("office")]
-        public ActionResult AddOffice([FromQuery] string userId, [FromBody] OfficeDto office)
+        public async Task<ActionResult> AddOffice([FromQuery] string userId, [FromBody] OfficeDto office)
         {
             this.officeService.AddOffice(userId, office);
 
