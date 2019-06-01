@@ -76,15 +76,15 @@ namespace FavourAPI.Data
             modelBuilder.Entity<JobOfferLocation>().HasKey(jol => new { jol.JobOfferId, jol.LocationId });
 
             // Seeding the database (the old variant)
-            var jsonManager = new JsonSeeder(modelBuilder);
-            jsonManager.RegisterJson<User>("users.json");
-            jsonManager.RegisterJson<Consumer>("consumers.json");
-            jsonManager.RegisterJson<Consumer>("application.json");
-            jsonManager.RegisterJson<Consumer>("company_providers.json");
-            jsonManager.RegisterJson<Consumer>("completition_results.json");
-            jsonManager.RegisterJson<Consumer>("jobofferes.json");
-            jsonManager.RegisterJson<Consumer>("permissions.json");
-            jsonManager.RegisterJson<Consumer>("person_providers.json");
+            //var jsonManager = new JsonSeeder(modelBuilder);
+            //jsonManager.RegisterJson<User>("users.json");
+            //jsonManager.RegisterJson<Consumer>("consumers.json");
+            //jsonManager.RegisterJson<Consumer>("application.json");
+            //jsonManager.RegisterJson<Consumer>("company_providers.json");
+            //jsonManager.RegisterJson<Consumer>("completition_results.json");
+            //jsonManager.RegisterJson<Consumer>("jobofferes.json");
+            //jsonManager.RegisterJson<Consumer>("permissions.json");
+            //jsonManager.RegisterJson<Consumer>("person_providers.json");
 
             // Loding the enums data into the tables in database
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
