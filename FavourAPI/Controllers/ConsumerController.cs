@@ -30,7 +30,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ConsumerDto> GetConsumer([FromQuery] string userId)
+        public async Task<ActionResult<ConsumerDto>> GetConsumer([FromQuery] string userId)
         {
             var consumer = this.consumerService.GetById(userId);
             //this.consumerService.AddOrUpdateConsumer("user123", new ConsumerDto()
@@ -53,7 +53,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<bool> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
+        public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
             bool canProceed = this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
@@ -64,7 +64,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPost("save")]
-        public ActionResult SaveJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
+        public async Task<ActionResult> SaveJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
         {
             this.consumerService.SaveJobOffer(userId, jobOfferId);
 
@@ -72,13 +72,13 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("skills")]
-        public ActionResult<string[]> GetSkills()
+        public async Task<ActionResult<string[]>> GetSkills()
         {
             return Ok(this.skillService.GetSkills().Data);
         }
 
         [HttpGet("positions")]
-        public ActionResult<string[]> GetPossitions()
+        public async Task<ActionResult<string[]>> GetPossitions()
         {
             return Ok(this.positionService.GetPositions().Data);
         }

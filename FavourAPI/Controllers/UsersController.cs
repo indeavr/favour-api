@@ -38,26 +38,13 @@ namespace FavourAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
             var headers = Request.Headers;
-            this.userService.Create("abv@abv", "mypassword");
+            await this.userService.Create("abv@abv", "mypassword");
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
         //// PUT api/<controller>/5
@@ -73,7 +60,7 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] UserDto userDto)
+        public async Task<IActionResult> Authenticate([FromBody] UserDto userDto)
         {
             UserDto user;
             try
@@ -132,7 +119,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("refresh")]
-        public IActionResult Refresh([FromQuery] string oldToken, [FromQuery] string userId)
+        public async Task<IActionResult> Refresh([FromQuery] string oldToken, [FromQuery] string userId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);
@@ -164,7 +151,7 @@ namespace FavourAPI.Controllers
         //}
 
         [HttpGet("{id}")]
-        public IActionResult GetById(string id)
+        public async Task<IActionResult> GetById(string id)
         {
             var user = this.userService.GetById(id);
             var userDto = this.mapper.Map<UserDto>(user);
@@ -172,7 +159,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] UserDto userDto)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserDto userDto)
         {
             // map dto to entity and set id
             var user = this.mapper.Map<User>(userDto);
@@ -192,7 +179,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
             this.userService.Delete(id);
 
