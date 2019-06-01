@@ -18,11 +18,11 @@ namespace FavourAPI.Data.Models
         public DateTime TimePosted { get; set; }
 
         [ForeignKey("User")]
-        public Guid ProviderId {get; set;}
+        public Guid UserProviderId { get; set; }
         public Guid? ResultId { get; set; }
         public string StateValue { get; set; }
 
-        public virtual CompanyProvider Provider { get; set; }
+        public virtual User Provider { get; set; }
         public virtual CompletionResult Result { get; set; }
         public virtual JobOfferStateDb State { get; set; }
 

@@ -18,7 +18,7 @@ namespace FavourAPI.Data.Models
 
         public Guid LocationId { get; set; }
         public Guid PhoneNumberId { get; set; }
-        public Guid SexValue { get; set; }
+        public string SexValue { get; set; }
 
         public virtual User User { get; set; }
         public virtual Location Location { get; set; }
