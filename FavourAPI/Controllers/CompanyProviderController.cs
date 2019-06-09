@@ -4,64 +4,36 @@ using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using FavourAPI.Services;
 using System.Threading.Tasks;
+using FavourAPI.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FavourAPI.Controllers
 {
     [Route("[controller]")]
-    // [Authorize]
+    [Authorize]
     [ApiController]
     public class CompanyProviderController : ControllerBase
     {
         private readonly ICompanyProviderService companyProviderService;
         private readonly IUserService userService;
         private readonly IOfficeService officeService;
+        private readonly IIndustryService industryService;
 
         public CompanyProviderController(
             [FromServices] ICompanyProviderService cps,
             [FromServices] IUserService userService,
-            [FromServices] IOfficeService officeService)
+            [FromServices] IOfficeService officeService,
+            [FromServices] IIndustryService industryService)
         {
             this.companyProviderService = cps;
             this.userService = userService;
             this.officeService = officeService;
+            this.industryService = industryService;
         }
 
         [HttpGet]
         public async Task<ActionResult<CompanyProvider>> GetCompanyProvider([FromQuery] string userId)
         {
-            this.companyProviderService.AddCompanyProvider(Guid.NewGuid().ToString(), new CompanyProviderDto()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Description = "neshto si",
-                FoundedYear = new DateTime().Ticks,
-                Name = "Macuranka",
-                NumberOfEmployees = 100,
-                Offices = new OfficeDto[]
-                {
-                    new OfficeDto()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        Name = "MyOffice",
-                        Location = "Sofia",
-                        Industries = new IndustryDto[]
-                        {
-                            new IndustryDto()
-                            {
-                                Name = "BaiGoshoIndustriqta"
-                            }
-                        }
-                    }
-
-                },
-                Industries = new IndustryDto[]
-                {
-                    new IndustryDto()
-                    {
-                        Name="PetHeaven"
-                    }
-                }
-            });
-
             return Ok(this.companyProviderService.GetProvider(userId));
         }
 
@@ -88,6 +60,12 @@ namespace FavourAPI.Controllers
             this.officeService.AddOffice(userId, office);
 
             return Ok();
+        }
+
+        [HttpGet("industries")]
+        public async Task<IActionResult> GetIndustries()
+        {
+            return Ok(this.industryService.GetAll().Data);
         }
     }
 }

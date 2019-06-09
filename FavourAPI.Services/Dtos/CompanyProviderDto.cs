@@ -16,6 +16,8 @@ namespace FavourAPI.Dtos
 
         public byte[] Picture { get; set; }
 
+        public string Bulstat { get; set; }
+
         public string Description { get; set; }
 
         public int NumberOfEmployees { get; set; }

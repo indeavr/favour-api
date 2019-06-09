@@ -42,13 +42,17 @@ namespace FavourAPI.Services
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
             var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
-            providerDto.Offices = providerDto.Offices.Select(o =>
+            if (providerDto != null)
             {
-                 o.Industries = this.dbContext.OfficeIndustries
-                 .Where(oi => oi.OfficeId == new Guid(o.Id))
-                 .Select(oi => mapper.Map<IndustryDto>(oi.Industry)).ToArray();
-                 return o;
-            }).ToArray();
+                providerDto.Offices = providerDto.Offices.Select(o =>
+                {
+                    o.Industries = this.dbContext.OfficeIndustries
+                    .Where(oi => oi.OfficeId == new Guid(o.Id))
+                    .Select(oi => mapper.Map<IndustryDto>(oi.Industry)).ToArray();
+                    return o;
+                }).ToArray();
+            }
+
 
             return providerDto;
         }
