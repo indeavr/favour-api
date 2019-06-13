@@ -15,7 +15,7 @@ namespace FavourAPI.Dtos
 
         public double Money { get; set; }
 
-        public long TimePosted { get; set; }
+        public DateTime TimePosted { get; set; }
 
         public List<PeriodDto> Periods { get; set; }
 
