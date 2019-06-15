@@ -22,50 +22,6 @@ namespace FavourAPI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("seed")]
-        public async Task<ActionResult> SeedOffer()
-        {
-            var periods = new List<PeriodDto>()
-            {
-                new PeriodDto()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    StartDate = 20123100000,
-                    EndDate = 20123100000,
-                    StartHour = 20123100000,
-                    EndHour = 20123100000,
-                }
-            };
-
-            var requiredSkills = new List<SkillDto>()
-            {
-                new SkillDto()
-                {
-                    Name = "Da pliushti",
-                },
-                 new SkillDto()
-                {
-                    Name = "Da pulni",
-                }
-            };
-
-            var jobOffer = new JobOfferDto()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Description = "adsadass",
-                Location = "Sofia",
-                Money = 3000,
-                Title = "Anakondioto",
-                TimePosted = 20123100000,
-                Periods = periods,
-                RequiredSkills = requiredSkills
-            };
-
-            this.offerService.AddJobOffer(Guid.NewGuid().ToString(), jobOffer);
-            return Ok();
-        }
-
-        [AllowAnonymous]
         [HttpGet("application")]
         public async Task<ActionResult> SeedApplication()
         {
