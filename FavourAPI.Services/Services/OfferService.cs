@@ -24,10 +24,12 @@ namespace FavourAPI.Services
         {
             var jobOffer = mapper.Map<JobOffer>(jobOfferDto);
             Guid guidUserId = Guid.Parse(userId);
+            var position = dbContext.Positions.SingleOrDefault(p => p.Name == jobOfferDto.Title);
             var provider = dbContext.CompanyProviders.SingleOrDefault(u => u.Id == guidUserId);
             var state = dbContext.JobOfferStates.SingleOrDefault(jos => jos.Value == nameof(JobOfferState.Available));
 
             jobOffer.State = state;
+            jobOffer.Title = position.Name;
 
             provider.Offers.Add(jobOffer);
 

@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Dtos;
 using FavourAPI.Services;
+using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,27 +17,12 @@ namespace FavourAPI.Controllers
     public class JobOfferController : ControllerBase
     {
         private readonly IOfferService offerService;
-        public JobOfferController([FromServices] IOfferService offerService)
+        private readonly IApplicationService applicationService;
+
+        public JobOfferController([FromServices] IOfferService offerService, [FromServices] IApplicationService applicationService)
         {
             this.offerService = offerService;
-        }
-
-        [AllowAnonymous]
-        [HttpGet("application")]
-        public async Task<ActionResult> SeedApplication()
-        {
-            var jobOfferId = Guid.NewGuid().ToString();
-            var consumerId = Guid.NewGuid().ToString();
-
-            var application = new ApplicationDto()
-            {
-                Message = "Plis mnogo iskam da te vzemesh",
-                Time = 124152141242131
-            };
-
-            this.offerService.AddApplication(consumerId, jobOfferId, application);
-
-            return Ok();
+            this.applicationService = applicationService;
         }
 
         [HttpPut]
@@ -44,6 +30,39 @@ namespace FavourAPI.Controllers
         {
             this.offerService.AddJobOffer(userId, jobOffer);
             return Ok();
+        }
+
+        [HttpPut("acceptApplication")]
+        public async Task<ActionResult> AcceptApplication([FromQuery] string userId, [FromQuery] string applicationId)
+        {
+            var result = this.applicationService.Accept(applicationId);
+
+            return Ok(result);
+        }
+
+        [HttpPut("rejectApplication")]
+        public async Task<ActionResult> RejectApplication([FromQuery] string userId, [FromQuery] string applicationId)
+        {
+            var result = this.applicationService.Reject(applicationId);
+
+            return Ok(result);
+        }
+
+        [HttpPut("confirmJobOffer")]
+        public async Task<ActionResult> ConfirmJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
+        {
+            var result = this.applicationService.ConfirmJobOffer(jobOfferId);
+
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpPut("apply")]
+        public async Task<ActionResult> Apply([FromQuery] string userId, [FromQuery] string jobOfferId, [FromBody] ApplicationDto application)
+        {
+            var result = this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
+
+            return Ok(result);
         }
 
         [AllowAnonymous]

@@ -12,7 +12,8 @@ namespace FavourAPI.Data.Models.Enums
         Ongoing,
         Finished,
         Failed,
-        Expired
+        Expired,
+        Upcoming
     }
 
     public class JobOfferStateDb
