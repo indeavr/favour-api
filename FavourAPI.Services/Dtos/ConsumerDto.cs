@@ -1,4 +1,5 @@
-﻿using FavourAPI.Data.Models;
+﻿using AutoMapper.Configuration.Annotations;
+using FavourAPI.Data.Models;
 using FavourAPI.Services.Dtos;
 using System.Collections.Generic;
 
@@ -19,6 +20,9 @@ namespace FavourAPI.Dtos
         public List<string> Skills { get; set; }
 
         public List<JobOffer> Offers { get; set; }
+
+        [Ignore]
+        public string ProfilePhoto { get; set; }
 
         //public byte[] CV { get; set; }
 

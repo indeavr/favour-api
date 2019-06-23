@@ -34,6 +34,8 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<ConsumerJobOffer> ConsumerJobOffers { get; set; }
 
+        public virtual Image ProfilePhoto { get; set; }
+
         //public ICollection<byte[]> Photos { get; set; }
     }
 }

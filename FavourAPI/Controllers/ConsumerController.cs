@@ -32,30 +32,15 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<ConsumerDto>> GetConsumer([FromQuery] string userId)
         {
-            var consumer = this.consumerService.GetById(userId);
-            //this.consumerService.AddOrUpdateConsumer("user123", new ConsumerDto()
-            //{
-            //    FirstName = "gosho",
-            //    LastName = "peshov",
-            //    Location = "sofia",
-            //    Sex = new Models.SexDb() { Value = nameof(Sex.Male) },
-            //    PhoneNumber = "1234",
-            //    Skills = new List<Skill>()
-            //    {
-            //        new Skill()
-            //        {
-            //            Id="skill1",
-            //            Name = "Qm",
-            //        }
-            //    }
-            //});
+            var consumer = await this.consumerService.GetById(userId);
+
             return Ok(consumer);
         }
 
         [HttpPost]
         public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
-            bool canProceed = this.consumerService.AddOrUpdateConsumer(userId, consumer);
+            bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
             return Ok(new
             {

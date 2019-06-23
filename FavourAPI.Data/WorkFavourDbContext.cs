@@ -71,6 +71,8 @@ namespace FavourAPI.Data
 
         public DbSet<Subscription> Subscriptions { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuring one-to-one relation

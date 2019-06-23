@@ -43,7 +43,7 @@ namespace FavourAPI.Data.Models
         public virtual PermissionMy PermissionMy { get; set; }
 
         public virtual List<Permission> Permissions { get; set; }
-        
+
         // Currently ignored because it introduces complex relations and can be populated simpler
         // Its value can be calculated by taking all permissions for all roles in currently active subscriptions
         // It should be present in the dto

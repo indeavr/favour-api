@@ -96,6 +96,8 @@ namespace FavourAPI
             services.AddScoped<IPositionService, PositionService>();
             services.AddScoped<IIndustryService, IndustryService>();
             services.AddScoped<IApplicationService, ApplicationService>();
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IBlobService, BlobService>();
 
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 

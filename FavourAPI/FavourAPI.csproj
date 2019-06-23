@@ -28,4 +28,8 @@
     <ProjectReference Include="..\FavourAPI.Services\FavourAPI.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
 </Project>
