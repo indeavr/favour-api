@@ -2,6 +2,7 @@
 using FavourAPI.ApiModels;
 using FavourAPI.Data;
 using FavourAPI.Data.Models;
+using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
 using FavourAPI.Services.Helpers.Exceptions;
 using FavourAPI.Services.Helpers.Result;
@@ -25,7 +26,6 @@ namespace FavourAPI.Services
         {
             this.dbContext = workFavourDbContext;
             this.mapper = mapper;
-
         }
 
         public void Add(User user)

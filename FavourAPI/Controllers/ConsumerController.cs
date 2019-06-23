@@ -30,9 +30,9 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ConsumerDto>> GetConsumer([FromQuery] string userId)
+        public async Task<ActionResult<ConsumerDto>> GetConsumer([FromQuery] string userId, [FromQuery] bool withPhoto)
         {
-            var consumer = await this.consumerService.GetById(userId);
+            var consumer = await this.consumerService.GetById(userId, withPhoto);
 
             return Ok(consumer);
         }
@@ -63,9 +63,15 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("positions")]
-        public async Task<ActionResult<string[]>> GetPossitions()
+        public async Task<ActionResult<string[]>> GetPositions()
         {
             return Ok(this.positionService.GetPositions().Data);
+        }
+
+        [HttpGet("profilePhoto")]
+        public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)
+        {
+            return Ok(await this.consumerService.GetProfilePhoto(userId));
         }
     }
 }

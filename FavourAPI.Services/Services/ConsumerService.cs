@@ -60,18 +60,22 @@ namespace FavourAPI.Services
 
         public async Task<ConsumerDto> GetById(string userId)
         {
-            Guid guidUserId = Guid.Parse(userId);
-            var consumerDb = GetConsumer(guidUserId);
-            var dto = this.mapper.Map<ConsumerDto>(consumerDb);
-            var buffer = await this.blobService.GetImage(consumerDb.ProfilePhoto.Name.ToString(), consumerDb.ProfilePhoto.Size);
-            dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-
-            return dto;
+            return await this.GetById(userId, true);
         }
 
         private Consumer GetConsumer(Guid userId)
         {
             return dbContext.Consumers.SingleOrDefault(c => c.Id == userId);
+        }
+
+        public async Task<string> GetProfilePhoto(string userdId)
+        {
+            var idAsGuid = Guid.Parse(userdId);
+            var user = this.dbContext.Consumers.SingleOrDefault(u => u.Id == idAsGuid);
+
+            var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
+
+            return Encoding.UTF8.GetString(buffer);
         }
 
         public bool CheckForLoginProceedPermission(Consumer consumer)
@@ -88,6 +92,21 @@ namespace FavourAPI.Services
             });
 
             this.dbContext.SaveChanges();
+        }
+
+        public async Task<ConsumerDto> GetById(string userId, bool withPhoto)
+        {
+            Guid guidUserId = Guid.Parse(userId);
+            var consumerDb = GetConsumer(guidUserId);
+            var dto = this.mapper.Map<ConsumerDto>(consumerDb);
+
+            if (withPhoto)
+            {
+                var buffer = await this.blobService.GetImage(consumerDb.ProfilePhoto.Name.ToString(), consumerDb.ProfilePhoto.Size);
+                dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+            }
+
+            return dto;
         }
     }
 }
