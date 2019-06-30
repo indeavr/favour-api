@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using FavourAPI.Data;
+using FavourAPI.Data.Models;
 
 namespace FavourAPI.Controllers
 {
@@ -17,7 +19,12 @@ namespace FavourAPI.Controllers
         public ActionResult<IEnumerable<string>> Get([FromServices] WorkFavourDbContext myService)
         {
             var headers = Request.Headers;
-
+            //var user = myService.Users.First(u => u.Id == Guid.Parse("77BB5A96-9906-4135-61E0-08D6E15505CD"));
+            //var permissionName = myService.PermissionNames.First(pn => pn.Name == "PermissionNameTest");
+            //user.Permissions.Add(new Permission() { CurrentCount = 0, PermissionName = permissionName, PermissionNameId = permissionName.Name, User = user, UserId = user.Id });
+            //myService.SaveChanges();
+            //user.Permissions.Add(new Permission() { CurrentCount = 0, PermissionName = permissionName, PermissionNameId = permissionName.Name, User = user, UserId = user.Id });
+            //myService.SaveChanges();
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };

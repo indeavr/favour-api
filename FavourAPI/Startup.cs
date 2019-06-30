@@ -21,6 +21,9 @@ using AutoMapper;
 using System.IO;
 using System.Configuration;
 using Microsoft.AspNetCore.Http.Internal;
+using FavourAPI.Data;
+using FavourAPI.Services.Contracts;
+using FavourAPI.Services.Services;
 
 namespace FavourAPI
 {
@@ -28,8 +31,7 @@ namespace FavourAPI
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -45,7 +47,7 @@ namespace FavourAPI
             services.AddMvc();
             services.AddAutoMapper();
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
+            var appSettingsSection = this.Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -93,7 +95,14 @@ namespace FavourAPI
             services.AddScoped<IConsumerService, ConsumerService>();
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IOfficeService, OfficeService>();
+            services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<IPositionService, PositionService>();
+            services.AddScoped<IIndustryService, IndustryService>();
+            services.AddScoped<IApplicationService, ApplicationService>();
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IBlobService, BlobService>();
 
+            //var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
             var connection = @"Server =tcp:favourdb.database.windows.net,1433;Initial Catalog=FavourDb;Persist Security Info=False;User ID=WorkFavour;Password=Meowmix$$$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";//@"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
             services.AddDbContext<WorkFavourDbContext>

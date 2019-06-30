@@ -1,4 +1,7 @@
 ﻿using FavourAPI.Dtos;
+using FavourAPI.Services;
+using FavourAPI.Services.Contracts;
+using FavourAPI.Services.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,87 +17,62 @@ namespace FavourAPI.Controllers
     public class JobOfferController : ControllerBase
     {
         private readonly IOfferService offerService;
-        public JobOfferController([FromServices] IOfferService offerService)
+        private readonly IApplicationService applicationService;
+
+        public JobOfferController([FromServices] IOfferService offerService, [FromServices] IApplicationService applicationService)
         {
             this.offerService = offerService;
-        }
-
-        [AllowAnonymous]
-        [HttpGet("seed")]
-        public ActionResult SeedOffer()
-        {
-            var periods = new List<PeriodDto>()
-            {
-                new PeriodDto()
-                {
-                    Id= "period",
-                    StartDate =20123100000,
-                    EndDate=20123100000,
-                    StartHour =20123100000,
-                    EndHour =20123100000,
-                }
-            };
-
-            var requiredSkills = new List<SkillDto>()
-            {
-                new SkillDto()
-                {
-                    Name = "Da pliushti",
-                },
-                 new SkillDto()
-                {
-                    Name = "Da pulni",
-                }
-            };
-
-            var jobOffer = new JobOfferDto()
-            {
-                Id = "jobOffer123",
-                Description = "adsadass",
-                Location = "Sofia",
-                Money = 3000,
-                Title = "Anakondioto",
-                TimePosted = 20123100000,
-                Periods = periods,
-                RequiredSkills = requiredSkills
-            };
-
-            this.offerService.AddJobOffer("user123", jobOffer);
-            return Ok();
-        }
-
-        [AllowAnonymous]
-        [HttpGet("application")]
-        public ActionResult SeedApplication()
-        {
-            var jobOfferId = "jobOffer123";
-            var consumerId = "user123";
-
-            var application = new ApplicationDto()
-            {
-                Message = "Plis mnogo iskam da te vzemesh",
-                Time = 124152141242131
-            };
-
-            this.offerService.AddApplication(consumerId, jobOfferId, application);
-
-            return Ok();
+            this.applicationService = applicationService;
         }
 
         [HttpPut]
-        public ActionResult AddOffer([FromQuery]string userId, [FromBody] JobOfferDto jobOffer)
+        public async Task<ActionResult> AddOffer([FromQuery] string userId, [FromBody] JobOfferDto jobOffer)
         {
             this.offerService.AddJobOffer(userId, jobOffer);
             return Ok();
         }
 
+        [HttpPut("acceptApplication")]
+        public async Task<ActionResult> AcceptApplication([FromQuery] string userId, [FromQuery] string applicationId)
+        {
+            var result = this.applicationService.Accept(applicationId);
+
+            return Ok(result);
+        }
+
+        [HttpPut("rejectApplication")]
+        public async Task<ActionResult> RejectApplication([FromQuery] string userId, [FromQuery] string applicationId)
+        {
+            var result = this.applicationService.Reject(applicationId);
+
+            return Ok(result);
+        }
+
+        [HttpPut("confirmJobOffer")]
+        public async Task<ActionResult> ConfirmJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
+        {
+            var result = this.applicationService.ConfirmJobOffer(jobOfferId);
+
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpPut("apply")]
+        public async Task<ActionResult> Apply([FromQuery] string userId, [FromQuery] string jobOfferId, [FromBody] ApplicationDto application)
+        {
+            var result = this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
+
+            return Ok(result);
+        }
+
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<List<JobOfferDto>> Get(
-            [FromQuery]string userId,
-            [FromQuery]string currentPosition,
-            [FromQuery]string chunkSize,
-            [FromQuery]long accessTime)
+        public async Task<ActionResult<List<JobOfferDto>>> Get(
+            [FromQuery] string userId,
+            [FromQuery] string currentPosition,
+            [FromQuery] string chunkSize,
+            [FromQuery] long accessTime,
+            [FromQuery] JobSearchFiltersDto filters)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first

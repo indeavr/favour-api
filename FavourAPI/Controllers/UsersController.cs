@@ -12,11 +12,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using FavourAPI.Models;
+using FavourAPI.Data.Models;
+using FavourAPI.Services;
+using FavourAPI.Services.Helpers.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FavourAPI
+namespace FavourAPI.Controllers
 {
     [Authorize]
     [ApiController]
@@ -33,28 +35,16 @@ namespace FavourAPI
             this.mapper = mapper;
             this.appSettings = appSettings.Value;
         }
+
         // GET: api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
             var headers = Request.Headers;
-            this.userService.Create(new UserDto() { Id = "user123", Email = "abv@abv", Password = "abv" }, "abv");
+            await this.userService.Create("abv@abv", "mypassword");
             return new UnauthorizedResult();
 
             //return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
         }
 
         //// PUT api/<controller>/5
@@ -70,12 +60,29 @@ namespace FavourAPI
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]UserDto userDto)
+        public async Task<IActionResult> Authenticate([FromBody] UserDto userDto)
         {
-            var user = this.userService.Authenticate(userDto.Email, userDto.Password);
-
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+            UserDto user;
+            try
+            {
+                user = this.userService.Authenticate(userDto.Email, userDto.Password);
+            }
+            catch (EmailAppException ex)
+            {
+                return BadRequest(new { message = $"Email custom exception: {ex}" });
+            }
+            catch (PasswordAppException ex)
+            {
+                return BadRequest(new { message = $"Password custom exception: {ex}" });
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = $"App custom exception: {ex}" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = $"Exception: {ex}" });
+            }
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);
@@ -94,7 +101,7 @@ namespace FavourAPI
             // return basic user info (without password) and token to store client side
             return Ok(new
             {
-                Id = user.Id,
+                UserId = user.Id,
                 Email = user.Email,
                 Token = tokenString,
                 Permissions = user.PermissionMy,
@@ -104,23 +111,15 @@ namespace FavourAPI
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody]UserDto userDto)
+        public async Task<IActionResult> Register([FromBody] UserDto user)
         {
-            try
-            {
-                // save 
-                this.userService.Create(userDto, userDto.Password);
-                return Ok();
-            }
-            catch (AppException ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
+            var result = await this.userService.Create(user.Email, user.Password);
+
+            return this.FromResult(result);
         }
 
         [HttpGet("refresh")]
-        public IActionResult Refresh([FromQuery] string oldToken, [FromQuery] string userId)
+        public async Task<IActionResult> Refresh([FromQuery] string oldToken, [FromQuery] string userId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);
@@ -152,7 +151,7 @@ namespace FavourAPI
         //}
 
         [HttpGet("{id}")]
-        public IActionResult GetById(string id)
+        public async Task<IActionResult> GetById(string id)
         {
             var user = this.userService.GetById(id);
             var userDto = this.mapper.Map<UserDto>(user);
@@ -160,7 +159,7 @@ namespace FavourAPI
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody]UserDto userDto)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserDto userDto)
         {
             // map dto to entity and set id
             var user = this.mapper.Map<User>(userDto);
@@ -180,9 +179,10 @@ namespace FavourAPI
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             this.userService.Delete(id);
+
             return Ok();
         }
     }

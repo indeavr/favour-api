@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
+using FavourAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,13 +20,13 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PersonProviderDto> GetCompanyProvider([FromQuery]string userId)
+        public async Task<ActionResult<PersonProviderDto>> GetCompanyProvider([FromQuery] string userId)
         {
             return Ok(this.personProviderService.GetPersonProvider(userId));
         }
 
         [HttpPut]
-        public ActionResult AddPersonPrvider([FromQuery]string userId, [FromBody] PersonProviderDto personProvider)
+        public async Task<ActionResult> AddPersonPrvider([FromQuery] string userId, [FromBody] PersonProviderDto personProvider)
         {
             this.personProviderService.AddPersonProvider(userId, personProvider);
             return Ok();
