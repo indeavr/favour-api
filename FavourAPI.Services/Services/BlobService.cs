@@ -21,7 +21,6 @@ namespace FavourAPI.Services.Services
             this.configuration = configuration;
             this.blobContainer = GetCloudBlobContainer();
         }
-
         public async Task<string> UploadImage(string name, byte[] blobContent, string contentType)
         {
             var blockBlob = blobContainer.GetBlockBlobReference(name);
@@ -33,6 +32,16 @@ namespace FavourAPI.Services.Services
             await blockBlob.SetPropertiesAsync();
 
             return blockBlob.Uri.ToString();
+        }
+
+        public async Task<string> UploadImage(string name, string blobContent, string contentType)
+        {
+            return await this.UploadImage(name, Encoding.Default.GetBytes(blobContent), contentType);
+        }
+
+        public async Task<string> UploadImage(Guid name, string blobContent, string contentType)
+        {
+            return await this.UploadImage(name.ToString(), blobContent, contentType);
         }
 
         public async Task<byte[]> GetImage(string name, int bufferSize)
