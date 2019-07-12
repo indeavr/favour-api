@@ -6,6 +6,7 @@ using FavourAPI.Services;
 using System.Threading.Tasks;
 using FavourAPI.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using FavourAPI.Services.Dtos;
 
 namespace FavourAPI.Controllers
 {
@@ -72,6 +73,19 @@ namespace FavourAPI.Controllers
         public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)
         {
             return Ok(await this.companyProviderService.GetProfilePhoto(userId));
+        }
+
+        [HttpGet("viewTimes")]
+        public async Task<ActionResult<ProviderViewTimeDto>> GetViewTimes([FromQuery] string userId)
+        {
+            return Ok(this.companyProviderService.GetViewTime(userId));
+        }
+
+        [HttpPost("viewTimes")]
+        public async Task<ActionResult> AddOrUpdateViewTimes([FromQuery] string userId, [FromBody] ProviderViewTimeDto viewTimeDto)
+        {
+            await this.companyProviderService.AddOrUpdateViewTime(userId, viewTimeDto);
+            return Ok();
         }
     }
 }
