@@ -19,9 +19,8 @@ namespace FavourAPI.Dtos
 
         public List<string> Skills { get; set; }
 
-        public List<JobOffer> Offers { get; set; }
+        public List<JobOfferDto> Offers { get; set; }
 
-        [Ignore]
         public string ProfilePhoto { get; set; }
 
         //public byte[] CV { get; set; }

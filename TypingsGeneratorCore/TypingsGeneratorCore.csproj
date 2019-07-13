@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+<PropertyGroup>
+   <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+   
+   <UseModules>true</UseModules>
+<DiscardNamespacesWhenUsingModules>true </DiscardNamespacesWhenUsingModules>
+   
+</PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if exist &quot;$(SolutionDir)Typings&quot; (copy /Y &quot;$(TargetDir)*.dll&quot; &quot;$(SolutionDir)Typings&quot;)&#xD;&#xA;if exist &quot;$(SolutionDir)Typings&quot; (copy /Y &quot;$(TargetDir)*.pdb&quot; &quot;$(SolutionDir)Typings&quot;)&#xD;&#xA;" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="Reinforced.Typings">
+      <HintPath>..\Typings\RtLib\Reinforced.Typings.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
