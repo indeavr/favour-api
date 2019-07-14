@@ -22,6 +22,7 @@ namespace FavourAPI.Services
 
         public void AddJobOffer(string userId, JobOfferDto jobOfferDto)
         {
+            // Job Offer State is Ignored
             var jobOffer = mapper.Map<JobOffer>(jobOfferDto);
             Guid guidUserId = Guid.Parse(userId);
             var position = dbContext.Positions.SingleOrDefault(p => p.Name == jobOfferDto.Title);
