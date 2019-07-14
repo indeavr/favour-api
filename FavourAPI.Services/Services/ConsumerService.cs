@@ -76,15 +76,15 @@ namespace FavourAPI.Services
         {
             var idAsGuid = Guid.Parse(userdId);
             var user = this.dbContext.Consumers.SingleOrDefault(u => u.Id == idAsGuid);
-            if (user?.ProfilePhoto != null)
-            {
-                var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
-                return Encoding.UTF8.GetString(buffer);
-            }
-            else
+
+            if (user?.ProfilePhoto == null)
             {
                 return null;
             }
+
+            var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
+
+            return Encoding.UTF8.GetString(buffer);
         }
 
         public bool CheckForLoginProceedPermission(Consumer consumer)

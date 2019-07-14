@@ -55,7 +55,7 @@ namespace FavourAPI.Services
         {
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
-            var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
+           var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
             if (withPhoto)
             {
                 var buffer = await this.blobService.GetImage(provider.ProfilePhoto.Name.ToString(), provider.ProfilePhoto.Size);
