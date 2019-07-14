@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 
 namespace FavourAPI.Dtos
 {
@@ -14,7 +15,8 @@ namespace FavourAPI.Dtos
 
         public long FoundedYear { get; set; }
 
-        public byte[] Picture { get; set; }
+        [Ignore]
+        public string ProfilePhoto { get; set; }
 
         public string Bulstat { get; set; }
 

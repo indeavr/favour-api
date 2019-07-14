@@ -25,8 +25,8 @@ namespace FavourAPI.Controllers
     [Route("[controller]")]
     public class UsersController : Controller
     {
-        private IUserService userService;
-        private IMapper mapper;
+        private readonly IUserService userService;
+        private readonly IMapper mapper;
         private readonly AppSettings appSettings;
 
         public UsersController([FromServices] IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)

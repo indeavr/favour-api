@@ -79,7 +79,7 @@ namespace FavourAPI.Services
                 return new InvalidResult<object>("Password is required!");
 
             // Password validations
-            int passMinLen = 8;
+            // int passMinLen = 8;
             //if (password.Length < passMinLen)
             //    return new InvalidResult<object>($"Password must be at least {passMinLen} characters!");
 
@@ -113,7 +113,7 @@ namespace FavourAPI.Services
             //dbContext.PermissionMys.Add(new PermissionMy() { User = user });
 
             this.dbContext.Users.Add(user);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
 
             return new OkResult<object>(new { });
         }

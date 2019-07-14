@@ -4,6 +4,10 @@ using AutoMapper;
 using FavourAPI.Data;
 using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
+using System.Threading.Tasks;
+using System.Text;
+using FavourAPI.Services.Contracts;
+using FavourAPI.Services.Helpers;
 
 namespace FavourAPI.Services
 {
@@ -12,21 +16,31 @@ namespace FavourAPI.Services
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
         private readonly IOfficeService officeService;
+        private readonly IBlobService blobService;
 
-        public CompanyProviderService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService)
+        public CompanyProviderService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService, IBlobService blobService)
         {
             this.mapper = mapper;
             this.officeService = officeService;
             this.dbContext = dbContext;
+            this.blobService = blobService;
         }
 
-        public CompanyProviderDto AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
+        public async Task<CompanyProviderDto> AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
         {
             var dbModel = mapper.Map<CompanyProvider>(companyProvider);
             dbModel.Id = Guid.Parse(userId);
 
+            if (!string.IsNullOrEmpty(companyProvider.ProfilePhoto))
+            {
+                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = companyProvider.ProfilePhoto.Length };
+                var photoName = profilePhoto.Name.ToString();
+                profilePhoto.Uri = await this.blobService.UploadImage(photoName, companyProvider.ProfilePhoto, profilePhoto.ContentType);
+                dbModel.ProfilePhoto = profilePhoto;
+            }
+
             this.dbContext.CompanyProviders.Add(dbModel);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
 
 
             foreach (var office in dbModel.Offices)
@@ -37,11 +51,16 @@ namespace FavourAPI.Services
             return mapper.Map<CompanyProviderDto>(dbModel);
         }
 
-        public CompanyProviderDto GetProvider(string userId)
+        public async Task<CompanyProviderDto> GetProvider(string userId, bool withPhoto)
         {
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
             var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
+            if (withPhoto)
+            {
+                var buffer = await this.blobService.GetImage(provider.ProfilePhoto.Name.ToString(), provider.ProfilePhoto.Size);
+                providerDto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+            }
             if (providerDto != null)
             {
                 providerDto.Offices = providerDto.Offices.Select(o =>
@@ -55,6 +74,17 @@ namespace FavourAPI.Services
 
 
             return providerDto;
+        }
+
+        public async Task<string> GetProfilePhoto(string userdId)
+        {
+            var idAsGuid = Guid.Parse(userdId);
+
+            var user = this.dbContext.CompanyProviders.SingleOrDefault(u => u.Id == idAsGuid);
+
+            var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
+
+            return Encoding.UTF8.GetString(buffer);
         }
     }
 }

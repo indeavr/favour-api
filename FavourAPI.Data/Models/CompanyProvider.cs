@@ -18,7 +18,7 @@ namespace FavourAPI.Data.Models
 
         public DateTime FoundedYear { get; set; }
 
-        public byte[] Picture { get; set; }
+        public virtual Image ProfilePhoto { get; set; }
 
         public string Bulstat { get; set; }
 

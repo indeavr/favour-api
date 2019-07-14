@@ -32,17 +32,17 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CompanyProvider>> GetCompanyProvider([FromQuery] string userId)
+        public async Task<ActionResult<CompanyProvider>> GetCompanyProvider([FromQuery] string userId, [FromQuery]bool withPhoto)
         {
-            return Ok(this.companyProviderService.GetProvider(userId));
+            return Ok(await this.companyProviderService.GetProvider(userId, withPhoto));
         }
 
         [HttpPut]
         public async Task<ActionResult> AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
         {
-            this.companyProviderService.AddCompanyProvider(userId, companyProvider);
+            await this.companyProviderService.AddCompanyProvider(userId, companyProvider);
             this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
-            var companyProviderResult = this.companyProviderService.GetProvider(userId);
+            var companyProviderResult = await this.companyProviderService.GetProvider(userId, false);
 
             return Ok(companyProviderResult);
         }
@@ -66,6 +66,12 @@ namespace FavourAPI.Controllers
         public async Task<IActionResult> GetIndustries()
         {
             return Ok(this.industryService.GetAll().Data);
+        }
+
+        [HttpGet("profilePhoto")]
+        public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)
+        {
+            return Ok(await this.companyProviderService.GetProfilePhoto(userId));
         }
     }
 }

@@ -9,7 +9,10 @@ namespace FavourAPI.Services.Contracts
     {
         Task<string> UploadImage(string name, byte[] blobContent, string contentType);
 
-        Task<byte[]> GetImage(string name, int bufferSize);
+        Task<string> UploadImage(string name, string blobContent, string contentType);
 
+        Task<string> UploadImage(Guid name, string blobContent, string contentType);
+
+        Task<byte[]> GetImage(string name, int bufferSize);
     }
 }

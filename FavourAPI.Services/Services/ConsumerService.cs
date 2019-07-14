@@ -34,13 +34,16 @@ namespace FavourAPI.Services
             var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
 
-            var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = consumerData.ProfilePhoto.Length };
-            profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name.ToString(), Encoding.Default.GetBytes(consumerData.ProfilePhoto), profilePhoto.ContentType);
+            if (!string.IsNullOrEmpty(consumerData.ProfilePhoto))
+            {
+                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = consumerData.ProfilePhoto.Length };
+                profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, consumerData.ProfilePhoto, profilePhoto.ContentType);
+                dbConsumer.ProfilePhoto = profilePhoto;
+            }
 
             dbConsumer.Sex = correctSexDb;
             dbConsumer.Skills = correctSkills;
             dbConsumer.Id = Guid.Parse(userId);
-            dbConsumer.ProfilePhoto = profilePhoto;
 
             var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
             if (phoneNumberDb != null)
@@ -55,6 +58,7 @@ namespace FavourAPI.Services
             dbContext.Consumers.Add(dbConsumer);
 
             await dbContext.SaveChangesAsync();
+
             return CheckForLoginProceedPermission(dbConsumer);
         }
 

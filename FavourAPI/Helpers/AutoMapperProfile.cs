@@ -18,9 +18,11 @@ namespace FavourAPI.Helpers
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
 
-            CreateMap<CompanyProvider, CompanyProviderDto>();
+            CreateMap<CompanyProvider, CompanyProviderDto>()
+                .ForMember(db => db.ProfilePhoto, opt => opt.Ignore());
             CreateMap<CompanyProviderDto, CompanyProvider>()
-                .ForMember(dto => dto.FoundedYear, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.FoundedYear)));
+                .ForMember(dto => dto.FoundedYear, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.FoundedYear)))
+                .ForMember(dto => dto.ProfilePhoto, opt => opt.Ignore());
 
             CreateMap<PersonProvider, PersonProviderDto>();
             CreateMap<PersonProviderDto, PersonProvider>();
