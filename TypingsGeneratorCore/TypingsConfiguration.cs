@@ -14,6 +14,7 @@ namespace TypingsGenerator
     {
         public static void Configure(ConfigurationBuilder builder)
         {
+            builder.Global((config) => config.UseModules());
             //var dataAssemblyPath = Path.GetFullPath("E:\\Projects\\favourapi\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.Data.dll");
             //var dataAssembly = Assembly.LoadFrom(dataAssemblyPath);
             builder.Substitute(typeof(DateTime), new RtSimpleTypeName("string"));
