@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Http.Internal;
 using FavourAPI.Data;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Services;
+using Newtonsoft.Json;
 
 namespace FavourAPI
 {
@@ -39,7 +40,9 @@ namespace FavourAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling= ReferenceLoopHandling.Ignore)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 
             var appSettingsSection = this.Configuration.GetSection("AppSettings");

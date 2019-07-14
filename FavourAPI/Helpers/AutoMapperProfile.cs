@@ -51,7 +51,7 @@ namespace FavourAPI.Helpers
                 .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name)))
                 .ForMember(cdto => cdto.ProfilePhoto, opt => opt.Ignore());
 
-            Func<ConsumerDto, Consumer, object> transform = (cdto, _) =>
+            Func<ConsumerDto, Consumer, object> transformSex = (cdto, _) =>
               {
                   Enum.Parse<Sex>(cdto.Sex);
                   return new SexDb() { Value = cdto.Sex };
@@ -59,11 +59,11 @@ namespace FavourAPI.Helpers
 
             CreateMap<ConsumerDto, Consumer>()
                 .ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }))
-                .ForMember(c => c.Sex, opt => opt.MapFrom(transform))
+                .ForMember(c => c.Sex, opt => opt.MapFrom(transformSex))
                 .ForMember(c => c.Skills, opt => opt.MapFrom(cdto => cdto.Skills.Select(s => new Skill() { Name = s })))
                  .ForMember(c => c.ProfilePhoto, opt => opt.Ignore());
 
-            CreateMap<JobOffer, JobOfferDto>();
+            CreateMap<JobOffer, JobOfferDto>().ForMember(j => j.State, opt => opt.MapFrom(j => j.State.Value));
             CreateMap<JobOfferDto, JobOffer>();
 
             CreateMap<PermissionMy, PermissionsMyDto>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FavourAPI.Data.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FavourAPI.Data.Models
@@ -12,5 +13,7 @@ namespace FavourAPI.Data.Models
         public virtual Consumer Consumer { get; set; }
 
         public string Review { get; set; }
+
+        public virtual CompletionResultStateDb State { get; set; }
     }
 }

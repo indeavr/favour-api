@@ -8,10 +8,9 @@ namespace FavourAPI.Data.Models.Enums
 {
     public enum JobOfferState
     {
-        Available,
+        Active,
         Ongoing,
-        Finished,
-        Failed,
+        Completed,
         Expired,
         Upcoming
     }
