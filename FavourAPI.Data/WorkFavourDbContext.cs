@@ -93,7 +93,7 @@ namespace FavourAPI.Data
             // Loding the enums data into the tables in database
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Available)
+                Value = nameof(JobOfferState.Active)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
@@ -101,11 +101,7 @@ namespace FavourAPI.Data
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Failed)
-            });
-            modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
-            {
-                Value = nameof(JobOfferState.Finished)
+                Value = nameof(JobOfferState.Completed)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
@@ -173,7 +169,7 @@ namespace FavourAPI.Data
 
             //var offerState = new JobOfferStateDb()
             //{
-            //    Value = JobOfferState.Available.ToString(),
+            //    Value = JobOfferState.Active.ToString(),
             //    JobOffers = new List<JobOffer>()
             //    {
             //        new JobOffer()

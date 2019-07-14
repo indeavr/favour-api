@@ -63,9 +63,9 @@ namespace FavourAPI.Services.Services
         {
             var guidId = Guid.Parse(applicationId);
             var jobOffer = this.dbContext.Applications.Single(application => application.Id == guidId).JobOffer;
-            if (jobOffer.State.Value != nameof(JobOfferState.Available))
+            if (jobOffer.State.Value != nameof(JobOfferState.Active))
             {
-                throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Available);
+                throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Active);
             }
             return ChangeJobOfferState(jobOffer, JobOfferState.Upcoming);
         }

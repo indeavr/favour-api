@@ -79,9 +79,13 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<string>("Review");
 
+                    b.Property<string>("StateValue");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ConsumerId");
+
+                    b.HasIndex("StateValue");
 
                     b.ToTable("Results");
                 });
@@ -180,6 +184,16 @@ namespace FavourAPI.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("FavourAPI.Data.Models.Enums.CompletionResultStateDb", b =>
+                {
+                    b.Property<string>("Value")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Value");
+
+                    b.ToTable("CompletionResultStateDb");
+                });
+
             modelBuilder.Entity("FavourAPI.Data.Models.Enums.JobOfferStateDb", b =>
                 {
                     b.Property<string>("Value")
@@ -192,7 +206,7 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Value = "Available"
+                            Value = "Active"
                         },
                         new
                         {
@@ -200,11 +214,7 @@ namespace FavourAPI.Data.Migrations
                         },
                         new
                         {
-                            Value = "Failed"
-                        },
-                        new
-                        {
-                            Value = "Finished"
+                            Value = "Completed"
                         },
                         new
                         {
@@ -698,6 +708,10 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
                         .WithMany("CompletedJobs")
                         .HasForeignKey("ConsumerId");
+
+                    b.HasOne("FavourAPI.Data.Models.Enums.CompletionResultStateDb", "State")
+                        .WithMany("CompletionResults")
+                        .HasForeignKey("StateValue");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Consumer", b =>

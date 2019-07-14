@@ -587,7 +587,7 @@ namespace FavourAPI.Data.Migrations
                 column: "Value",
                 values: new object[]
                 {
-                    "Available",
+                    "Active",
                     "Expired",
                     "Failed",
                     "Finished",
