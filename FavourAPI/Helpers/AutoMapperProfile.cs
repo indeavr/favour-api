@@ -45,6 +45,9 @@ namespace FavourAPI.Helpers
             CreateMap<Position, PositionDto>();
             CreateMap<PositionDto, Position>();
 
+            CreateMap<CompletionResult, CompletionResultDto>();
+            CreateMap<CompletionResultDto, CompletionResult>();
+
             CreateMap<Consumer, ConsumerDto>()
                 .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number))
                 .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
