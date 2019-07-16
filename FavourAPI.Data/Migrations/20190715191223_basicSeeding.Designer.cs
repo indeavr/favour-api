@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190715191223_basicSeeding")]
+    partial class basicSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,9 +79,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid?>("ConsumerId");
 
-                    b.Property<string>("ReviewForConsumer");
-
-                    b.Property<string>("ReviewForProvider");
+                    b.Property<string>("Review");
 
                     b.Property<string>("StateValue");
 
@@ -859,7 +859,7 @@ namespace FavourAPI.Data.Migrations
             modelBuilder.Entity("FavourAPI.Data.Models.ConsumerJobOffer", b =>
                 {
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
-                        .WithMany("SavedJobOffers")
+                        .WithMany("ConsumerJobOffers")
                         .HasForeignKey("ConsumerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
