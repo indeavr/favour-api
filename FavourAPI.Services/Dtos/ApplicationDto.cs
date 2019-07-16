@@ -7,5 +7,7 @@ namespace FavourAPI.Dtos
         public DateTime Time { get; set; }
 
         public string Message { get; set; }
+
+        public ConsumerDto Consumer { get; set; }
     }
 }
