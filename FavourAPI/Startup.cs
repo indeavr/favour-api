@@ -34,18 +34,21 @@ namespace FavourAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(co => co.AddDefaultPolicy(b => b
+                  .WithOrigins("*")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                 .Build()));
+
             services.AddMvc()
-                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling= ReferenceLoopHandling.Ignore)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+           .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
+           .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 
             var appSettingsSection = this.Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
-
-            string domain = $"https://{Configuration["Auth0:Domain"]}";
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
@@ -97,16 +100,22 @@ namespace FavourAPI
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IBlobService, BlobService>();
 
-            var connection = this.Configuration.GetConnectionString("DefaultConnection");
+            //var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<WorkFavourDbContext>(options => options
-                .UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
+            var connection = @"Server =tcp:favourdb.database.windows.net,1433;Initial Catalog=FavourDb;Persist Security Info=False;User ID=WorkFavour;Password=Meowmix$$$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";//@"Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;";
+            services.AddDbContext<WorkFavourDbContext>
+            (options =>
+            options.UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
             );
+    
+            services.BuildServiceProvider().GetService<WorkFavourDbContext>().Database.Migrate();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseOptions();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -116,16 +125,58 @@ namespace FavourAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCors(b => b
+                    .WithOrigins("*")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                  .Build()).UseAuthentication().UseMvc();
 
-            app.UseCors(x => x
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
+            // app.UseHttpsRedirection();
+            //app.UseAuthentication();
+            //// app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            //app.UseMvc();
+        }
+    }
 
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            // app.UseMiddleware<RequestResponseLoggingMiddleware>();
-            app.UseMvc();
+    public class OptionsMiddleware
+    {
+        private readonly RequestDelegate _next;
+        private IHostingEnvironment _environment;
+
+        public OptionsMiddleware(RequestDelegate next, IHostingEnvironment environment)
+        {
+            _next = next;
+            _environment = environment;
+        }
+
+        public async Task Invoke(HttpContext context)
+        {
+            this.BeginInvoke(context);
+            if (context.Request.Method != "OPTIONS")
+            {
+                await this._next.Invoke(context);
+            }
+        }
+
+        private async void BeginInvoke(HttpContext context)
+        {
+            if (context.Request.Method == "OPTIONS")
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+                context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "Origin, X-Requested-With, Content-Type, Accept" });
+                context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "GET, POST, PUT, DELETE, OPTIONS" });
+                context.Response.Headers.Add("Access-Control-Allow-Credentials", new[] { "true" });
+                context.Response.StatusCode = 200;
+                await context.Response.WriteAsync("OK");
+            }
+        }
+    }
+
+    public static class OptionsMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseOptions(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<OptionsMiddleware>();
         }
     }
 
