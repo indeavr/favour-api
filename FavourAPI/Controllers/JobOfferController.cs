@@ -56,11 +56,18 @@ namespace FavourAPI.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
         [HttpPut("apply")]
         public async Task<ActionResult> Apply([FromQuery] string userId, [FromQuery] string jobOfferId, [FromBody] ApplicationDto application)
         {
             var result = this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
+
+            return Ok(result);
+        }
+
+        [HttpGet("applications")]
+        public async Task<ActionResult> GetApplications([FromQuery] string userId, [FromQuery] string jobOfferId)
+        {
+            var result = this.applicationService.Get(jobOfferId);
 
             return Ok(result);
         }
