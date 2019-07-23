@@ -105,7 +105,7 @@ namespace FavourAPI.Controllers
                 Email = user.Email,
                 Token = tokenString,
                 Permissions = user.PermissionMy,
-                ExpiresAt = DateTime.Now + TimeSpan.FromTicks(TimeSpan.TicksPerHour)
+                ExpiresAt = DateTime.UtcNow + TimeSpan.FromTicks(TimeSpan.TicksPerHour)
             });
         }
 
@@ -138,7 +138,7 @@ namespace FavourAPI.Controllers
             return Ok(new
             {
                 Token = tokenString,
-                ExpiresAt = DateTime.Now + TimeSpan.FromTicks(TimeSpan.TicksPerHour)
+                ExpiresAt = DateTime.UtcNow + TimeSpan.FromTicks(TimeSpan.TicksPerHour)
             });
         }
 
