@@ -105,7 +105,7 @@ namespace FavourAPI.Services.Services
         {
             try
             {
-                var newStateDb = this.dbContext.ApplicationStates.Single(aps => aps.Value == nameof(newState));
+                var newStateDb = this.dbContext.ApplicationStates.Single(aps => aps.Value == newState.ToString());
                 application.State = newStateDb;
 
                 this.dbContext.SaveChanges();
