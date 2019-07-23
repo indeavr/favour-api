@@ -115,7 +115,7 @@ namespace FavourAPI.Services
             this.dbContext.Users.Add(user);
             await this.dbContext.SaveChangesAsync();
 
-            return new OkResult<object>(new { });
+            return new CorrectResult<object>(new { });
         }
 
         public void Update(User userParam, string password = null)

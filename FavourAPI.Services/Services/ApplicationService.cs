@@ -18,7 +18,7 @@ namespace FavourAPI.Services.Services
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
 
-        public ApplicationService([FromServices] WorkFavourDbContext dbContext)
+        public ApplicationService([FromServices] WorkFavourDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
@@ -45,7 +45,7 @@ namespace FavourAPI.Services.Services
 
             this.dbContext.SaveChanges();
 
-            return new OkResult<object>(null);
+            return new CorrectResult<object>(null);
         }
 
         public Result<object> Accept(string applicationId)
@@ -98,7 +98,7 @@ namespace FavourAPI.Services.Services
                 return new FavourAPI.Services.Helpers.Result.InvalidResult<object>(e.Message);
             }
 
-            return new FavourAPI.Services.Helpers.Result.OkResult<object>(null);
+            return new FavourAPI.Services.Helpers.Result.CorrectResult<object>(null);
         }
 
         private Result<object> ChangeApplicationState(Application application, ApplicationState newState)
@@ -115,7 +115,7 @@ namespace FavourAPI.Services.Services
                 return new FavourAPI.Services.Helpers.Result.InvalidResult<object>(e.Message);
             }
 
-            return new FavourAPI.Services.Helpers.Result.OkResult<object>(null);
+            return new FavourAPI.Services.Helpers.Result.CorrectResult<object>(null);
         }
     }
 }

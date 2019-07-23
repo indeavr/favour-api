@@ -17,7 +17,7 @@ namespace FavourAPI.Services.Services
 
         public Result<string[]> GetAll()
         {
-            return new OkResult<string[]>(this.dbContext.Industries.Select(i => i.Name).ToArray());
+            return new CorrectResult<string[]>(this.dbContext.Industries.Select(i => i.Name).ToArray());
         }
     }
 }

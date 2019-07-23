@@ -4,10 +4,10 @@ using System.Text;
 
 namespace FavourAPI.Services.Helpers.Result
 {
-    public class OkResult<T> : Result<T>
+    public class CorrectResult<T> : Result<T>
     {
         private readonly T data;
-        public OkResult(T data)
+        public CorrectResult(T data)
         {
             this.data = data;
         }

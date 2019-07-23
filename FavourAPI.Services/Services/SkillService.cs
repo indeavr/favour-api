@@ -20,7 +20,7 @@ namespace FavourAPI.Services.Services
 
         public Result<string[]> GetSkills()
         {
-            return new OkResult<string[]>((dbContext.Skills.Select(s => s.Name).ToArray()));
+            return new CorrectResult<string[]>((dbContext.Skills.Select(s => s.Name).ToArray()));
         }
     }
 }

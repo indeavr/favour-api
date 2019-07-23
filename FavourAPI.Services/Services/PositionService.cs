@@ -19,7 +19,7 @@ namespace FavourAPI.Services.Services
         }
         public Result<string[]> GetPositions()
         {
-            return new OkResult<string[]>(this.dbContext.Positions.Select(p => p.Name).ToArray());
+            return new CorrectResult<string[]>(this.dbContext.Positions.Select(p => p.Name).ToArray());
         }
     }
 }

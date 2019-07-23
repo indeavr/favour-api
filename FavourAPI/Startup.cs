@@ -24,6 +24,10 @@ using FavourAPI.Data;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Services;
 using Newtonsoft.Json;
+using System.Net;
+using FavourAPI.Services.Helpers.Result;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FavourAPI
 {
@@ -41,7 +45,7 @@ namespace FavourAPI
         {
             services.AddCors();
             services.AddMvc()
-                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling= ReferenceLoopHandling.Ignore)
+                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 
@@ -107,6 +111,7 @@ namespace FavourAPI
             services.AddDbContext<WorkFavourDbContext>(options => options
                 .UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
             );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -126,7 +131,19 @@ namespace FavourAPI
                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader());
+            app.UseExceptionHandler(appError =>
+            {
+                appError.Run(async context =>
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Response.ContentType = "application/json";
 
+                    var exceptionHandlerPathFeature =
+                    context.Features.Get<IExceptionHandlerPathFeature>();
+                    var invalidResultAsBytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new InvalidResult<object>(exceptionHandlerPathFeature?.Error.Message)));
+                    await context.Response.Body.WriteAsync(invalidResultAsBytes, 0, invalidResultAsBytes.Length);
+                });
+            });
             app.UseHttpsRedirection();
             app.UseAuthentication();
             // app.UseMiddleware<RequestResponseLoggingMiddleware>();
