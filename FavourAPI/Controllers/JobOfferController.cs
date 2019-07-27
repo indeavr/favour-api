@@ -28,8 +28,8 @@ namespace FavourAPI.Controllers
         [HttpPut]
         public async Task<ActionResult> AddOffer([FromQuery] string userId, [FromBody] JobOfferDto jobOffer)
         {
-            this.offerService.AddJobOffer(userId, jobOffer);
-            return Ok();
+            var newOfferResult = await this.offerService.AddJobOffer(userId, jobOffer);
+            return Ok(newOfferResult);
         }
 
         [HttpPut("acceptApplication")]
