@@ -6,6 +6,6 @@
 
         public IndustryDto Industry { get; set; }
 
-        public SkillDto Skills { get; set; }
+        public SkillDto[] Skills { get; set; }
     }
 }

@@ -105,7 +105,9 @@ namespace FavourAPI
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<WorkFavourDbContext>(options => options
-                .UseLazyLoadingProxies().UseSqlServer(connection).EnableSensitiveDataLogging()
+                .UseLazyLoadingProxies()
+                .UseSqlServer(connection)
+                .EnableSensitiveDataLogging()
             );
         }
 

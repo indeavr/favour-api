@@ -24,7 +24,7 @@ namespace FavourAPI.Services.Services
 
         public Result<SkillDto[]> GetSkills()
         {
-            return new OkResult<SkillDto[]>((dbContext.Skills.Select(s => autoMapper.Map<SkillDto>(s)).ToArray()));
+            return new OkResult<SkillDto[]>((dbContext.Skills.ToList().Select(s => autoMapper.Map<SkillDto>(s)).ToArray()));
         }
     }
 }
