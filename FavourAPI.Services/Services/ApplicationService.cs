@@ -18,7 +18,7 @@ namespace FavourAPI.Services.Services
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
 
-        public ApplicationService([FromServices] WorkFavourDbContext dbContext)
+        public ApplicationService([FromServices] WorkFavourDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;

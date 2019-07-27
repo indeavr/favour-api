@@ -1,4 +1,6 @@
-﻿using FavourAPI.Data;
+﻿using AutoMapper;
+using FavourAPI.Data;
+using FavourAPI.Dtos;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers.Result;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +11,17 @@ namespace FavourAPI.Services.Services
     public class IndustryService : IIndustryService
     {
         private readonly WorkFavourDbContext dbContext;
+        private readonly IMapper autoMapper;
 
-        public IndustryService([FromServices] WorkFavourDbContext dbContext)
+        public IndustryService([FromServices] WorkFavourDbContext dbContext, IMapper autoMapper)
         {
             this.dbContext = dbContext;
+            this.autoMapper = autoMapper;
         }
 
-        public Result<string[]> GetAll()
+        public Result<IndustryDto[]> GetAll()
         {
-            return new OkResult<string[]>(this.dbContext.Industries.Select(i => i.Name).ToArray());
+            return new OkResult<IndustryDto[]>(this.dbContext.Industries.Select(i => this.autoMapper.Map<IndustryDto>(i)).ToArray());
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using FavourAPI.Data;
+﻿using AutoMapper;
+using FavourAPI.Data;
+using FavourAPI.Dtos;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers.Result;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +14,16 @@ namespace FavourAPI.Services.Services
     public class PositionService : IPositionService
     {
         private readonly WorkFavourDbContext dbContext;
+        private readonly IMapper autoMapper;
 
-        public PositionService([FromServices] WorkFavourDbContext dbContext)
+        public PositionService([FromServices] WorkFavourDbContext dbContext, IMapper autoMapper)
         {
             this.dbContext = dbContext;
+            this.autoMapper = autoMapper;
         }
-        public Result<string[]> GetPositions()
+        public Result<PositionDto[]> GetPositions()
         {
-            return new OkResult<string[]>(this.dbContext.Positions.Select(p => p.Name).ToArray());
+            return new OkResult<PositionDto[]>(this.dbContext.Positions.Select(p => this.autoMapper.Map<PositionDto>(p)).ToArray());
         }
     }
 }

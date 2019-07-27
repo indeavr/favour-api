@@ -63,12 +63,6 @@ namespace FavourAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("industries")]
-        public async Task<IActionResult> GetIndustries()
-        {
-            return Ok(this.industryService.GetAll().Data);
-        }
-
         [HttpGet("profilePhoto")]
         public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)
         {

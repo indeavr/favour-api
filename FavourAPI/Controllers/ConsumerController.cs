@@ -40,9 +40,19 @@ namespace FavourAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
-            ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+            try
+            {
+                // bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+				ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
-            return Ok(newConsumer);
+            	return Ok(newConsumer);
+            }
+            catch (Exception e)
+            {
+
+                return Unauthorized(e);
+            }
+
         }
 
         [HttpPost("save")]
