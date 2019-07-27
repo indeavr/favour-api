@@ -42,12 +42,10 @@ namespace FavourAPI.Controllers
         {
             try
             {
-                bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+                // bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+				ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
-                return Ok(new
-                {
-                    HasSufficientInfo = canProceed
-                });
+            	return Ok(newConsumer);
             }
             catch (Exception e)
             {
@@ -65,7 +63,17 @@ namespace FavourAPI.Controllers
             return Ok();
         }
 
-   
+        [HttpGet("skills")]
+        public async Task<ActionResult<string[]>> GetSkills()
+        {
+            return Ok(this.skillService.GetSkills().Data);
+        }
+
+        [HttpGet("positions")]
+        public async Task<ActionResult<string[]>> GetPositions()
+        {
+            return Ok(this.positionService.GetPositions().Data);
+        }
 
         [HttpGet("profilePhoto")]
         public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)

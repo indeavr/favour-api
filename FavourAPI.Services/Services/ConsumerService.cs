@@ -28,7 +28,7 @@ namespace FavourAPI.Services
         }
 
         // Add for now
-        public async Task<bool> AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
+        public async Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
         {
             var currentUserInfo = GetConsumer(Guid.Parse(userId));
 
@@ -61,7 +61,8 @@ namespace FavourAPI.Services
 
             await dbContext.SaveChangesAsync();
 
-            return CheckForLoginProceedPermission(dbConsumer);
+            return this.mapper.Map<ConsumerDto>(dbConsumer);
+            //return CheckForLoginProceedPermission(dbConsumer);
         }
 
         public async Task<ConsumerDto> GetById(string userId)
