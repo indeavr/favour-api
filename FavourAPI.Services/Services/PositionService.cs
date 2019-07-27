@@ -23,7 +23,7 @@ namespace FavourAPI.Services.Services
         }
         public Result<PositionDto[]> GetPositions()
         {
-            return new OkResult<PositionDto[]>(this.dbContext.Positions.Select(p => this.autoMapper.Map<PositionDto>(p)).ToArray());
+            return new OkResult<PositionDto[]>(this.dbContext.Positions.ToList().Select(p => this.autoMapper.Map<PositionDto>(p)).ToArray());
         }
     }
 }

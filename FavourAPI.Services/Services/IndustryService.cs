@@ -21,7 +21,7 @@ namespace FavourAPI.Services.Services
 
         public Result<IndustryDto[]> GetAll()
         {
-            return new OkResult<IndustryDto[]>(this.dbContext.Industries.Select(i => this.autoMapper.Map<IndustryDto>(i)).ToArray());
+            return new OkResult<IndustryDto[]>(this.dbContext.Industries.ToList().Select(i => this.autoMapper.Map<IndustryDto>(i)).ToArray());
         }
     }
 }
