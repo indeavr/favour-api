@@ -7,7 +7,7 @@ namespace FavourAPI.Services
 {
     public interface IConsumerService
     {
-        Task<bool> AddOrUpdateConsumer(string userId, ConsumerDto consumerData);
+        Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData);
 
         Task<ConsumerDto> GetById(string userId);
 
