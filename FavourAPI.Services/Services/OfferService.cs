@@ -22,11 +22,13 @@ namespace FavourAPI.Services
 
         public void AddJobOffer(string userId, JobOfferDto jobOfferDto)
         {
+            // Job Offer State is Ignored
             var jobOffer = mapper.Map<JobOffer>(jobOfferDto);
             Guid guidUserId = Guid.Parse(userId);
             var position = dbContext.Positions.SingleOrDefault(p => p.Name == jobOfferDto.Title);
+
             var provider = dbContext.CompanyProviders.SingleOrDefault(u => u.Id == guidUserId);
-            var state = dbContext.JobOfferStates.SingleOrDefault(jos => jos.Value == nameof(JobOfferState.Available));
+            var state = dbContext.JobOfferStates.SingleOrDefault(joS => joS.Value == nameof(JobOfferState.Active));
 
             jobOffer.State = state;
             jobOffer.Title = position.Name;

@@ -95,7 +95,7 @@ namespace FavourAPI.Data
             // Loding the enums data into the tables in database
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Available)
+                Value = nameof(JobOfferState.Active)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
@@ -103,11 +103,7 @@ namespace FavourAPI.Data
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
-                Value = nameof(JobOfferState.Failed)
-            });
-            modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
-            {
-                Value = nameof(JobOfferState.Finished)
+                Value = nameof(JobOfferState.Completed)
             });
             modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
             {
@@ -128,164 +124,34 @@ namespace FavourAPI.Data
             });
             // End TODO
 
-            //modelBuilder.Entity<Skill>().HasData(new CompanyProvider()
-            //{
-            //    Id = "8bfc8f4b-050b-41af-a7a2-b15eeb6e0f2e",
-            //    Name = "Dao",
-            //    Description = "KOt",
-            //    FoundedYear = new DateTime(),
-            //    NumberOfEmployees = 100,
-            //    //Industries = 
+           
+            modelBuilder.Entity<SexDb>().HasData(
+                new SexDb() { Value = nameof(Sex.Male) },
+                new SexDb() { Value = nameof(Sex.Female) });
 
-            //});
+            modelBuilder.Entity<Position>().HasData(new Position() { Id = Guid.NewGuid(), Name = "Test position 1" },
+                new Position() { Id = Guid.NewGuid(), Name = "Test position 2" },
+                new Position() { Id = Guid.NewGuid(), Name = "Test position 3" },
+                new Position() { Id = Guid.NewGuid(), Name = "Test position 4" },
+                new Position() { Id = Guid.NewGuid(), Name = "Test position 5" },
+                new Position() { Id = Guid.NewGuid(), Name = "Test position 6" },
+                new Position() { Id = Guid.NewGuid(), Name = "Test position 7" });
 
-            //var user = new User()
-            //{
-            //    Id = "consumer",
-            //    Email = "gosho",
-            //    Password = "dasds"
-            //};
+            modelBuilder.Entity<Industry>().HasData(new Industry() { Id = Guid.NewGuid(), Name = "Test industry 1" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 2" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 3" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 4" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 5" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 6" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 7" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 8" },
+                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 9" });
 
-            //var sex = new SexDb()
-            //{
-            //    Value = Sex.Slave.ToString(),
-            //    Consumers = new List<Consumer>()
-            //    {
-            //        new Consumer()
-            //        {
-            //            Id = "consumer"
-            //        }
-            //    }
-            //};
-
-            //var pn = new PhoneNumber()
-            //{
-            //    Id = "phone",
-            //    Label = "Tilifon",
-            //    Number = "1219412"
-            //};
-
-            //var skills = new List<Skill>();
-
-            //skills.Add(new Skill()
-            //{
-            //    Id = "skill",
-            //    Name = "Gucha",
-            //});
-
-            //var offerState = new JobOfferStateDb()
-            //{
-            //    Value = JobOfferState.Available.ToString(),
-            //    JobOffers = new List<JobOffer>()
-            //    {
-            //        new JobOffer()
-            //        {
-            //            Id = "jobOffer"
-            //        }
-            //    }
-            //};
-
-            //var jobOffer = new JobOffer()
-            //{
-            //    Id = "jobOffer",
-            //    Description = "adsadass",
-            //    Location = "Sofia",
-            //    Money = 3000,
-            //    Title = "Anakondioto",
-            //    TimePosted = new DateTime(),
-
-            //};
-
-            //var periods = new List<Period>()
-            //{
-            //    new Period()
-            //    {
-            //        Id= "period",
-            //        StartDate =new DateTime(),
-            //        EndDate=new DateTime(),
-            //        StartHour =new DateTime(),
-            //        EndHour =new DateTime(),
-            //        JobOffer =  jobOffer
-            //    }
-            //};
-
-            //var consumer = new Consumer()
-            //{
-            //    Id = "consumer",
-            //    FirstName = "Dao",
-            //    LastName = "KOt",
-            //    Location = "Sofia",
-            //    // Offers = offers,
-            //};
-
-            //var applicationState = new ApplicationStateDb()
-            //{
-            //    Value = ApplicationState.Pending.ToString(),
-            //    Applications = new List<Application>()
-            //    {
-            //        new Application()
-            //        {
-            //            Id = "application",
-            //        }
-            //    }
-            //};
-
-            //var applic = new Application()
-            //{
-            //    Id = "application",
-            //    Time = new DateTime(),
-            //};
-
-            //var applications = new List<Application>()
-            //{
-            //   applic
-            //};
-
-
-            //var offers = new List<JobOffer>()
-            //{
-            //    jobOffer
-            //};
-
-
-            //modelBuilder.Entity<SexDb>().HasData(sex);
-            //modelBuilder.Entity<PhoneNumber>().HasData(pn);
-            //modelBuilder.Entity<Skill>().HasData(skills);
-
-            //modelBuilder.Entity<Consumer>().HasData(consumer);
-
-
-            //modelBuilder.Entity<JobOfferStateDb>().HasData(offerState);
-
-            //modelBuilder.Entity<ApplicationStateDb>().HasData(applicationState);
-            //modelBuilder.Entity<Application>().HasData(applications);
-
-            //modelBuilder.Entity<JobOffer>().HasData(offers);
-            //modelBuilder.Entity<Period>().HasData(periods);
-
-
-
-
-            //modelBuilder.Entity<CompanyProvider>().HasData(new CompanyProvider()
-            //{
-            //    Id = "68b67c4b-bc66-4d31-b672-47a8d55f6145",
-            //    Name = "Dao",
-            //});
-
-            //int count = 101011;
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    modelBuilder.Entity<JobOffer>().HasData(new JobOffer
-            //    {
-            //        Id = count++.ToString(),
-            //        Title = "Nasa Hacker" + count,
-            //        Description = "Nasa Hacker" + count,
-            //        Money = count,
-            //        TimePosted = new DateTime(),
-            //        Location = "Sofia",
-
-            //    });
-            //}
+            modelBuilder.Entity<Skill>().HasData(new Skill() { Name = "Test skill 1" },
+                new Skill() { Name = "Test skill 2" },
+                new Skill() { Name = "Test skill 3" },
+                new Skill() { Name = "Test skill 4" },
+                new Skill() { Name = "Test skill 5" });
 
             /* Hack
             * In indexMagic 5 migration we make the time posted column a clustedred index

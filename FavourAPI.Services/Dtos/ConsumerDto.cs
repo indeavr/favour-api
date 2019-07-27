@@ -7,6 +7,8 @@ namespace FavourAPI.Dtos
 {
     public class ConsumerDto
     {
+        public string Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -19,7 +21,11 @@ namespace FavourAPI.Dtos
 
         public List<string> Skills { get; set; }
 
-        public List<JobOfferDto> Offers { get; set; }
+        public List<JobOfferDto> SavedJobOffers { get; set; }
+
+        public List<CompletionResultDto> CompletedJobs { get; set; }
+
+        public List<ApplicationDto> Applications { get; set; }
 
         public string ProfilePhoto { get; set; }
 

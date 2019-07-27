@@ -1,11 +1,14 @@
-﻿using FavourAPI.Data;
+﻿using AutoMapper;
+using FavourAPI.Data;
 using FavourAPI.Data.Models;
 using FavourAPI.Data.Models.Enums;
+using FavourAPI.Dtos;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers.Exceptions;
 using FavourAPI.Services.Helpers.Result;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FavourAPI.Services.Services
@@ -13,10 +16,12 @@ namespace FavourAPI.Services.Services
     public class ApplicationService : IApplicationService
     {
         private readonly WorkFavourDbContext dbContext;
+        private readonly IMapper mapper;
 
         public ApplicationService([FromServices] WorkFavourDbContext dbContext)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public Result<object> Apply(string userId, string jobOfferId, string message, DateTime time)
@@ -63,11 +68,20 @@ namespace FavourAPI.Services.Services
         {
             var guidId = Guid.Parse(applicationId);
             var jobOffer = this.dbContext.Applications.Single(application => application.Id == guidId).JobOffer;
-            if (jobOffer.State.Value != nameof(JobOfferState.Available))
+            if (jobOffer.State.Value != nameof(JobOfferState.Active))
             {
-                throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Available);
+                throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Active);
             }
             return ChangeJobOfferState(jobOffer, JobOfferState.Upcoming);
+        }
+
+        public List<ApplicationDto> Get(string jobOfferId)
+        {
+            var applicationsForJob = dbContext.JobOffers.FirstOrDefault(job => job.Id == Guid.Parse(jobOfferId));
+
+            return applicationsForJob.Applications
+                .Select(application => this.mapper.Map<ApplicationDto>(application))
+                .ToList();
         }
 
         private Result<object> ChangeJobOfferState(JobOffer jobOffer, JobOfferState newState)
@@ -91,7 +105,7 @@ namespace FavourAPI.Services.Services
         {
             try
             {
-                var newStateDb = this.dbContext.ApplicationStates.Single(aps => aps.Value == nameof(newState));
+                var newStateDb = this.dbContext.ApplicationStates.Single(aps => aps.Value == newState.ToString());
                 application.State = newStateDb;
 
                 this.dbContext.SaveChanges();

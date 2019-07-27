@@ -9,6 +9,8 @@ using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
 using System.Threading.Tasks;
 using System.Text;
+using FavourAPI.Services.Dtos;
+using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
@@ -77,6 +79,11 @@ namespace FavourAPI.Services
             var idAsGuid = Guid.Parse(userdId);
             var user = this.dbContext.Consumers.SingleOrDefault(u => u.Id == idAsGuid);
 
+            if (user?.ProfilePhoto == null)
+            {
+                return null;
+            }
+
             var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
 
             return Encoding.UTF8.GetString(buffer);
@@ -102,8 +109,17 @@ namespace FavourAPI.Services
         {
             Guid guidUserId = Guid.Parse(userId);
             var consumerDb = GetConsumer(guidUserId);
+
+            if (consumerDb == null)
+            {
+                // Log this somewhere
+                return null;
+            }
+
             var dto = this.mapper.Map<ConsumerDto>(consumerDb);
 
+            var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobs);
+            dto.CompletedJobs = completedJobs;
             if (withPhoto)
             {
                 var buffer = await this.blobService.GetImage(consumerDb.ProfilePhoto.Name.ToString(), consumerDb.ProfilePhoto.Size);
@@ -112,5 +128,18 @@ namespace FavourAPI.Services
 
             return dto;
         }
+
+        private List<CompletionResultDto> ReduceCompletedJobsInformation(List<CompletionResultDto> completionResults)
+        {
+            // to be used in future for reducing the amount of data being sent back to the frontend
+            return completionResults;
+        }
+
+        // Only for admins
+        //public async Task<ConsumerDto> GetFull()
+        //{
+
+        //}
+
     }
 }

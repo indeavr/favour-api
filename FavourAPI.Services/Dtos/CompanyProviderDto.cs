@@ -23,5 +23,7 @@ namespace FavourAPI.Dtos
         public int NumberOfEmployees { get; set; }
 
         public OfficeDto[] Offices { get; set; }
+
+        public JobOfferDto[] Offers { get; set; }
     }
 }

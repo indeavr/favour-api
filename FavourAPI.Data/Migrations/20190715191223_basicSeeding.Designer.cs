@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    [Migration("20190608190005_bulstatToCompany")]
-    partial class bulstatToCompany
+    [Migration("20190715191223_basicSeeding")]
+    partial class basicSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,9 +62,11 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<int>("NumberOfEmployees");
 
-                    b.Property<byte[]>("Picture");
+                    b.Property<Guid?>("ProfilePhotoName");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfilePhotoName");
 
                     b.ToTable("CompanyProviders");
                 });
@@ -79,9 +81,13 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<string>("Review");
 
+                    b.Property<string>("StateValue");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ConsumerId");
+
+                    b.HasIndex("StateValue");
 
                     b.ToTable("Results");
                 });
@@ -101,6 +107,8 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid?>("PhoneNumberId");
 
+                    b.Property<Guid?>("ProfilePhotoName");
+
                     b.Property<string>("SexValue");
 
                     b.HasKey("Id");
@@ -108,6 +116,8 @@ namespace FavourAPI.Data.Migrations
                     b.HasIndex("LocationId");
 
                     b.HasIndex("PhoneNumberId");
+
+                    b.HasIndex("ProfilePhotoName");
 
                     b.HasIndex("SexValue");
 
@@ -176,6 +186,16 @@ namespace FavourAPI.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("FavourAPI.Data.Models.Enums.CompletionResultStateDb", b =>
+                {
+                    b.Property<string>("Value")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Value");
+
+                    b.ToTable("CompletionResultStateDb");
+                });
+
             modelBuilder.Entity("FavourAPI.Data.Models.Enums.JobOfferStateDb", b =>
                 {
                     b.Property<string>("Value")
@@ -196,11 +216,7 @@ namespace FavourAPI.Data.Migrations
                         },
                         new
                         {
-                            Value = "Failed"
-                        },
-                        new
-                        {
-                            Value = "Finished"
+                            Value = "Completed"
                         },
                         new
                         {
@@ -216,6 +232,32 @@ namespace FavourAPI.Data.Migrations
                     b.HasKey("Value");
 
                     b.ToTable("Sexes");
+
+                    b.HasData(
+                        new
+                        {
+                            Value = "Male"
+                        },
+                        new
+                        {
+                            Value = "Female"
+                        });
+                });
+
+            modelBuilder.Entity("FavourAPI.Data.Models.Image", b =>
+                {
+                    b.Property<Guid>("Name")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ContentType");
+
+                    b.Property<int>("Size");
+
+                    b.Property<string>("Uri");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Industry", b =>
@@ -233,6 +275,53 @@ namespace FavourAPI.Data.Migrations
                     b.HasIndex("CompanyProviderId");
 
                     b.ToTable("Industries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("48ffce08-54ed-4c5c-9b9c-79300f297098"),
+                            Name = "Test industry 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("a0066260-96e9-49bc-aa2b-6fdffe00482c"),
+                            Name = "Test industry 2"
+                        },
+                        new
+                        {
+                            Id = new Guid("e9a2ddf7-9450-4f15-952f-f2fa717e4f5c"),
+                            Name = "Test industry 3"
+                        },
+                        new
+                        {
+                            Id = new Guid("f67736a5-d6a1-44b6-859c-480c3726192b"),
+                            Name = "Test industry 4"
+                        },
+                        new
+                        {
+                            Id = new Guid("1478f59a-a2b1-485a-bef5-f1c7025cf358"),
+                            Name = "Test industry 5"
+                        },
+                        new
+                        {
+                            Id = new Guid("67f03807-e019-4df2-b9b7-7129bc65e876"),
+                            Name = "Test industry 6"
+                        },
+                        new
+                        {
+                            Id = new Guid("6076e068-1588-4b6b-ba01-182f743b033d"),
+                            Name = "Test industry 7"
+                        },
+                        new
+                        {
+                            Id = new Guid("db4f5b7f-2c52-4852-bdf7-36529946fa9b"),
+                            Name = "Test industry 8"
+                        },
+                        new
+                        {
+                            Id = new Guid("931092ff-e7c0-4698-b4be-4ca258cc4ec4"),
+                            Name = "Test industry 9"
+                        });
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.IndustryPosition", b =>
@@ -536,6 +625,43 @@ namespace FavourAPI.Data.Migrations
                     b.HasIndex("CompanyProviderId");
 
                     b.ToTable("Positions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b46e6e07-a7b6-472b-9a1d-7429f3797202"),
+                            Name = "Test position 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("d645894b-7820-4bcd-85f4-7bec4ba190f2"),
+                            Name = "Test position 2"
+                        },
+                        new
+                        {
+                            Id = new Guid("b4728651-382d-4d3d-96c2-a93cbd72e980"),
+                            Name = "Test position 3"
+                        },
+                        new
+                        {
+                            Id = new Guid("b21037fe-57bd-4b3d-bdb5-e9553dd60531"),
+                            Name = "Test position 4"
+                        },
+                        new
+                        {
+                            Id = new Guid("40889d94-f0dd-46b4-b7f3-dded74735e07"),
+                            Name = "Test position 5"
+                        },
+                        new
+                        {
+                            Id = new Guid("41116f1e-b861-41a7-8b12-1bddf27c2088"),
+                            Name = "Test position 6"
+                        },
+                        new
+                        {
+                            Id = new Guid("d567b94b-3689-453c-af9a-f79be23c2933"),
+                            Name = "Test position 7"
+                        });
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.PositionSkill", b =>
@@ -598,6 +724,28 @@ namespace FavourAPI.Data.Migrations
                     b.HasIndex("JobOfferId");
 
                     b.ToTable("Skills");
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "Test skill 1"
+                        },
+                        new
+                        {
+                            Name = "Test skill 2"
+                        },
+                        new
+                        {
+                            Name = "Test skill 3"
+                        },
+                        new
+                        {
+                            Name = "Test skill 4"
+                        },
+                        new
+                        {
+                            Name = "Test skill 5"
+                        });
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Subscription", b =>
@@ -667,6 +815,10 @@ namespace FavourAPI.Data.Migrations
                         .WithOne("CompanyProvider")
                         .HasForeignKey("FavourAPI.Data.Models.CompanyProvider", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FavourAPI.Data.Models.Image", "ProfilePhoto")
+                        .WithMany()
+                        .HasForeignKey("ProfilePhotoName");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompletionResult", b =>
@@ -674,6 +826,10 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
                         .WithMany("CompletedJobs")
                         .HasForeignKey("ConsumerId");
+
+                    b.HasOne("FavourAPI.Data.Models.Enums.CompletionResultStateDb", "State")
+                        .WithMany("CompletionResults")
+                        .HasForeignKey("StateValue");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Consumer", b =>
@@ -690,6 +846,10 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.PhoneNumber", "PhoneNumber")
                         .WithMany()
                         .HasForeignKey("PhoneNumberId");
+
+                    b.HasOne("FavourAPI.Data.Models.Image", "ProfilePhoto")
+                        .WithMany()
+                        .HasForeignKey("ProfilePhotoName");
 
                     b.HasOne("FavourAPI.Data.Models.Enums.SexDb", "Sex")
                         .WithMany("Consumers")

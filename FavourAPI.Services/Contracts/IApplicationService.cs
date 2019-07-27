@@ -1,5 +1,7 @@
-﻿using FavourAPI.Services.Helpers.Result;
+﻿using FavourAPI.Dtos;
+using FavourAPI.Services.Helpers.Result;
 using System;
+using System.Collections.Generic;
 
 namespace FavourAPI.Services.Contracts
 {
@@ -12,5 +14,7 @@ namespace FavourAPI.Services.Contracts
         Result<object> Apply(string userId, string jobOfferId, string message, DateTime time);
 
         Result<object> Reject(string applicationId);
+
+        List<ApplicationDto> Get(string jobOfferId);
     }
 }

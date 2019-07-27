@@ -40,7 +40,9 @@ namespace FavourAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc().AddJsonOptions(jo=>jo.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling= ReferenceLoopHandling.Ignore)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 
             var appSettingsSection = this.Configuration.GetSection("AppSettings");

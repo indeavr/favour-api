@@ -17,7 +17,7 @@ namespace TypingsGenerator
             builder.Global((config) => config.UseModules());
             //var dataAssemblyPath = Path.GetFullPath("E:\\Projects\\favourapi\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.Data.dll");
             //var dataAssembly = Assembly.LoadFrom(dataAssemblyPath);
-            builder.Substitute(typeof(DateTime), new RtSimpleTypeName("string"));
+            builder.Substitute(typeof(DateTime), new RtSimpleTypeName("Date"));
             var servicesAssemblyPath = Path.GetFullPath("..\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.Services.dll");
             var servicesAssembly = Assembly.LoadFile(servicesAssemblyPath);
             var types = GetTypesToCopy(servicesAssembly, "FavourAPI.Dtos", "Include");

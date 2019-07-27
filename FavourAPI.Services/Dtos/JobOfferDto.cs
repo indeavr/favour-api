@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FavourAPI.Data.Models.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace FavourAPI.Dtos
@@ -15,6 +16,8 @@ namespace FavourAPI.Dtos
 
         public double Money { get; set; }
 
+        public string State { get; set; }
+
         public DateTime TimePosted { get; set; }
 
         public List<PeriodDto> Periods { get; set; }
@@ -22,5 +25,7 @@ namespace FavourAPI.Dtos
         public CompanyProviderDto Provider { get; set; }
 
         public List<SkillDto> RequiredSkills { get; set; }
+
+        public List<ApplicationDto> Applications { get; set; }
     }
 }

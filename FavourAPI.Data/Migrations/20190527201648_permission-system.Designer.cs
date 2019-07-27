@@ -186,7 +186,7 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Value = "Available"
+                            Value = "Active"
                         },
                         new
                         {
