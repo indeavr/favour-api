@@ -6,8 +6,17 @@ using System.Text;
 
 namespace FavourAPI.Services.Dtos
 {
-    public class JobSearchFiltersDto
+    public class JobSearchQueryDto
     {
+        [FromQuery(Name = "accessTime")]
+        public long AcessTime { get; set; }
+
+        [FromQuery(Name = "currentPosition")]
+        public string CurrentPosition { get; set; }
+
+        [FromQuery(Name = "chunkSize")]
+        public string ChunkSize { get; set; }
+
         [FromQuery(Name ="keyword")]
         public string Keyword { get; set; }
 
@@ -18,6 +27,6 @@ namespace FavourAPI.Services.Dtos
         public List<PeriodDto> Shifts { get; set; }
 
         [FromQuery(Name = "positions")]
-        public List<PositionDto> Positions { get; set; }
+        public List<string> Positions { get; set; }
     }
 }
