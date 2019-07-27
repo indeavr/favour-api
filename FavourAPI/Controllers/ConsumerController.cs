@@ -40,12 +40,21 @@ namespace FavourAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
-            bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
-
-            return Ok(new
+            try
             {
-                HasSufficientInfo = canProceed
-            });
+                bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+
+                return Ok(new
+                {
+                    HasSufficientInfo = canProceed
+                });
+            }
+            catch (Exception e)
+            {
+
+                return Unauthorized(e);
+            }
+
         }
 
         [HttpPost("save")]
@@ -56,17 +65,7 @@ namespace FavourAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("skills")]
-        public async Task<ActionResult<string[]>> GetSkills()
-        {
-            return Ok(this.skillService.GetSkills().Data);
-        }
-
-        [HttpGet("positions")]
-        public async Task<ActionResult<string[]>> GetPositions()
-        {
-            return Ok(this.positionService.GetPositions().Data);
-        }
+   
 
         [HttpGet("profilePhoto")]
         public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)
