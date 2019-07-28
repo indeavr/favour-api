@@ -73,6 +73,8 @@ namespace FavourAPI.Data
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {  
             // Configuring one-to-one relation

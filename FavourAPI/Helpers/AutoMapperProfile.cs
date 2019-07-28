@@ -100,6 +100,10 @@ namespace FavourAPI.Helpers
 
             CreateMap<LocationDto, Location>();
             CreateMap<Location, LocationDto>();
+
+            CreateMap<ProviderViewTime, ProviderViewTimeDto>();
+            CreateMap<ProviderViewTimeDto, ProviderViewTime>();
+
         }
     }
 }

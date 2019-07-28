@@ -21,13 +21,12 @@ namespace FavourAPI.Dtos
 
         public List<string> Skills { get; set; }
 
-        public List<JobOffer> SavedJobOffers { get; set; }
+        public List<JobOfferDto> SavedJobOffers { get; set; }
 
         public List<CompletionResultDto> CompletedJobs { get; set; }
 
         public List<ApplicationDto> Applications { get; set; }
 
-        [Ignore]
         public string ProfilePhoto { get; set; }
 
         //public byte[] CV { get; set; }
