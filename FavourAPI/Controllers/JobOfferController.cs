@@ -80,7 +80,18 @@ namespace FavourAPI.Controllers
             var jobList = offerService.GetAllOffers();
             // Sort first
 
-            var chunk = jobList.Skip(int.Parse(query.CurrentPosition)).Take(int.Parse(query.ChunkSize)).ToList();
+            var chunk = jobList
+                .Skip(int.Parse(query.CurrentPosition))
+                .Take(int.Parse(query.ChunkSize))
+                //.Where((job) =>
+                //{
+                //    if (query.Positions == null || query.Positions.Count == 0)
+                //    {
+                //        return true;
+                //    }
+                //    return query.Positions.Contains(job.Title);
+                //})
+                .ToList();
 
             return Ok(chunk);
         }
