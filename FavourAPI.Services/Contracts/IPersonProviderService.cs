@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Dtos;
 using System;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -7,6 +8,6 @@ namespace FavourAPI.Services
     {
         PersonProviderDto GetPersonProvider(string userId);
 
-        void AddPersonProvider(string userId, PersonProviderDto personProvider);
+        Task AddPersonProvider(string userId, PersonProviderDto personProvider);
     }
 }

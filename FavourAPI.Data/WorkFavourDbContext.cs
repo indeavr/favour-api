@@ -73,8 +73,10 @@ namespace FavourAPI.Data
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {  
             // Configuring one-to-one relation
             modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
             modelBuilder.Entity<Permission>().HasIndex(p => new { p.UserId, p.PermissionNameId }).IsUnique();

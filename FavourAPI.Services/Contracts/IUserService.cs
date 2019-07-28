@@ -15,12 +15,12 @@ namespace FavourAPI.Services
 
         UserDto GetById(string id);
 
-        void UpdatePermissions(string userId, Action<PermissionMy> updater);
+        Task UpdatePermissions(string userId, Action<PermissionMy> updater);
 
         Task<Result<object>> Create(string email, string password);
 
-        void Update(User user, string password = null);
+        Task Update(User user, string password = null);
 
-        void Delete(string id);
+        Task Delete(string id);
     }
 }

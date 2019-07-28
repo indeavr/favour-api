@@ -6,6 +6,7 @@ using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
 using FavourAPI.Data.Models.Enums;
 using FavourAPI.Data;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -20,7 +21,7 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddJobOffer(string userId, JobOfferDto jobOfferDto)
+        public async Task<JobOfferDto> AddJobOffer(string userId, JobOfferDto jobOfferDto)
         {
             // Job Offer State is Ignored
             var jobOffer = mapper.Map<JobOffer>(jobOfferDto);
@@ -37,10 +38,12 @@ namespace FavourAPI.Services
 
             // TODO: review may be redundant
             this.dbContext.JobOffers.Add(jobOffer);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
+
+            return this.mapper.Map<JobOfferDto>(jobOffer);
         }
 
-        public void AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
+        public async Task AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
         {
             var application = mapper.Map<Application>(applicationDto);
 
@@ -58,7 +61,7 @@ namespace FavourAPI.Services
 
             jobOffer.Applications.Add(application);
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public List<JobOfferDto> GetAllOffers()

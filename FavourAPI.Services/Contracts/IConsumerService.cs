@@ -7,7 +7,7 @@ namespace FavourAPI.Services
 {
     public interface IConsumerService
     {
-        Task<bool> AddOrUpdateConsumer(string userId, ConsumerDto consumerData);
+        Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData);
 
         Task<ConsumerDto> GetById(string userId);
 
@@ -15,7 +15,7 @@ namespace FavourAPI.Services
 
         bool CheckForLoginProceedPermission(Consumer consumer);
 
-        void SaveJobOffer(string userId, string jobOfferId);
+        Task SaveJobOffer(string userId, string jobOfferId);
 
         Task<string> GetProfilePhoto(string userId);
     }

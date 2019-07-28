@@ -4,6 +4,7 @@ using AutoMapper;
 using FavourAPI.Data;
 using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -18,13 +19,13 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddPersonProvider(string userId, PersonProviderDto personProvider)
+        public async Task AddPersonProvider(string userId, PersonProviderDto personProvider)
         {
             var provider = this.mapper.Map<PersonProvider>(personProvider);
             provider.Id = Guid.Parse(userId);
 
             this.dbContext.PersonProviders.Add(provider);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public PersonProviderDto GetPersonProvider(string userId)

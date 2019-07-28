@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>4c78cb78-b794-419a-a251-de01141d77bf</UserSecretsId>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,5 +32,9 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet &quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; AssemblyPath=&quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; TargetFile=&quot;$(ProjectDir)..\..\work-favour-web\src\services\apiTypes.ts&quot;  RtPath=&quot;$(ProjectDir)..\Typings\RtCLI\rtcli.dll&quot;" />
+  </Target>
 
 </Project>

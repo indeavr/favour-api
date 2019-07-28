@@ -1,4 +1,6 @@
-﻿using FavourAPI.Data;
+﻿using AutoMapper;
+using FavourAPI.Data;
+using FavourAPI.Dtos;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers.Result;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +14,17 @@ namespace FavourAPI.Services.Services
     public class SkillService : ISkillService
     {
         private readonly WorkFavourDbContext dbContext;
+        private readonly IMapper autoMapper;
 
-        public SkillService([FromServices] WorkFavourDbContext dbContext)
+        public SkillService([FromServices] WorkFavourDbContext dbContext, IMapper autoMapper)
         {
             this.dbContext = dbContext;
+            this.autoMapper = autoMapper;
         }
 
-        public Result<string[]> GetSkills()
+        public Result<SkillDto[]> GetSkills()
         {
-            return new OkResult<string[]>((dbContext.Skills.Select(s => s.Name).ToArray()));
+            return new OkResult<SkillDto[]>((dbContext.Skills.ToList().Select(s => autoMapper.Map<SkillDto>(s)).ToArray()));
         }
     }
 }

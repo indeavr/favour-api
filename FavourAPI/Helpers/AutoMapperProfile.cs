@@ -39,11 +39,15 @@ namespace FavourAPI.Helpers
             CreateMap<PhoneNumber, PhoneNumberDto>();
             CreateMap<PhoneNumberDto, PhoneNumber>();
 
-            CreateMap<Industry, IndustryDto>();
+            CreateMap<Position, PositionDto>().ForMember(dto => dto.Skills, opt => opt.MapFrom(db => db.PositionSkills));
+            CreateMap<PositionDto, Position>();
+
+            CreateMap<Industry, IndustryDto>().ForMember(dto => dto.Positions, opt => opt.MapFrom(db => db.IndustryPositions));
             CreateMap<IndustryDto, Industry>();
 
-            CreateMap<Position, PositionDto>();
-            CreateMap<PositionDto, Position>();
+            CreateMap<IList<IndustryPosition>, PositionDto[]>().ConstructUsing((ips, rc) => ips.Select(ip => rc.Mapper.Map<PositionDto>(ip.Position)).ToArray());
+            CreateMap<IList<PositionSkill>, SkillDto[]>().ConstructUsing((pss, rc) => pss.Select(ps => rc.Mapper.Map<SkillDto>(ps.Skill)).ToArray());
+
 
             CreateMap<CompletionResult, CompletionResultDto>();
             CreateMap<CompletionResultDto, CompletionResult>();
@@ -96,6 +100,10 @@ namespace FavourAPI.Helpers
 
             CreateMap<LocationDto, Location>();
             CreateMap<Location, LocationDto>();
+
+            CreateMap<ProviderViewTime, ProviderViewTimeDto>();
+            CreateMap<ProviderViewTimeDto, ProviderViewTime>();
+
         }
     }
 }

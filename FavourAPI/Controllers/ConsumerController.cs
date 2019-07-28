@@ -40,18 +40,25 @@ namespace FavourAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
-            bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
-
-            return Ok(new
+            try
             {
-                HasSufficientInfo = canProceed
-            });
+                // bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+                ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+
+                return Ok(newConsumer);
+            }
+            catch (Exception e)
+            {
+
+                return Unauthorized(e);
+            }
+
         }
 
         [HttpPost("save")]
         public async Task<ActionResult> SaveJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
         {
-            this.consumerService.SaveJobOffer(userId, jobOfferId);
+            await this.consumerService.SaveJobOffer(userId, jobOfferId);
 
             return Ok();
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using FavourAPI.Dtos;
+﻿using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using FavourAPI.Services;
@@ -42,7 +41,7 @@ namespace FavourAPI.Controllers
         public async Task<ActionResult> AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             await this.companyProviderService.AddCompanyProvider(userId, companyProvider);
-            this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
+            await this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
             var companyProviderResult = await this.companyProviderService.GetProvider(userId, false);
 
             return Ok(companyProviderResult);
@@ -58,21 +57,28 @@ namespace FavourAPI.Controllers
         [HttpPut("office")]
         public async Task<ActionResult> AddOffice([FromQuery] string userId, [FromBody] OfficeDto office)
         {
-            this.officeService.AddOffice(userId, office);
+            await this.officeService.AddOffice(userId, office);
 
             return Ok();
-        }
-
-        [HttpGet("industries")]
-        public async Task<IActionResult> GetIndustries()
-        {
-            return Ok(this.industryService.GetAll().Data);
         }
 
         [HttpGet("profilePhoto")]
         public async Task<ActionResult<string>> GetProfilePhoto([FromQuery] string userId)
         {
             return Ok(await this.companyProviderService.GetProfilePhoto(userId));
+        }
+
+        [HttpGet("viewTimes")]
+        public async Task<ActionResult<ProviderViewTimeDto>> GetViewTimes([FromQuery] string userId)
+        {
+            return Ok(this.companyProviderService.GetViewTime(userId));
+        }
+
+        [HttpPost("viewTimes")]
+        public async Task<ActionResult> AddOrUpdateViewTimes([FromQuery] string userId, [FromBody] ProviderViewTimeDto viewTimeDto)
+        {
+            await this.companyProviderService.AddOrUpdateViewTime(userId, viewTimeDto);
+            return Ok();
         }
     }
 }

@@ -28,14 +28,14 @@ namespace FavourAPI.Controllers
         [HttpPut]
         public async Task<ActionResult> AddOffer([FromQuery] string userId, [FromBody] JobOfferDto jobOffer)
         {
-            this.offerService.AddJobOffer(userId, jobOffer);
-            return Ok();
+            var newOfferResult = await this.offerService.AddJobOffer(userId, jobOffer);
+            return Ok(newOfferResult);
         }
 
         [HttpPut("acceptApplication")]
         public async Task<ActionResult> AcceptApplication([FromQuery] string userId, [FromQuery] string applicationId)
         {
-            var result = this.applicationService.Accept(applicationId);
+            var result = await this.applicationService.Accept(applicationId);
 
             return Ok(result);
         }
@@ -43,7 +43,7 @@ namespace FavourAPI.Controllers
         [HttpPut("rejectApplication")]
         public async Task<ActionResult> RejectApplication([FromQuery] string userId, [FromQuery] string applicationId)
         {
-            var result = this.applicationService.Reject(applicationId);
+            var result = await this.applicationService.Reject(applicationId);
 
             return Ok(result);
         }
@@ -51,33 +51,47 @@ namespace FavourAPI.Controllers
         [HttpPut("confirmJobOffer")]
         public async Task<ActionResult> ConfirmJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
         {
-            var result = this.applicationService.ConfirmJobOffer(jobOfferId);
+            var result = await this.applicationService.ConfirmJobOffer(jobOfferId);
 
             return Ok(result);
         }
 
-        [AllowAnonymous]
         [HttpPut("apply")]
         public async Task<ActionResult> Apply([FromQuery] string userId, [FromQuery] string jobOfferId, [FromBody] ApplicationDto application)
         {
-            var result = this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
+            var result = await this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
 
             return Ok(result);
         }
 
-        [AllowAnonymous]
+        [HttpGet("applications")]
+        public async Task<ActionResult> GetApplications([FromQuery] string userId, [FromQuery] string jobOfferId)
+        {
+            var result = this.applicationService.Get(jobOfferId);
+
+            return Ok(result);
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<JobOfferDto>>> Get(
             [FromQuery] string userId,
-            [FromQuery] string currentPosition,
-            [FromQuery] string chunkSize,
-            [FromQuery] long accessTime,
-            [FromQuery] JobSearchFiltersDto filters)
+            [FromQuery] JobSearchQueryDto query)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first
 
-            var chunk = jobList.Skip(int.Parse(currentPosition)).Take(int.Parse(chunkSize)).ToList();
+            var chunk = jobList
+                .Skip(int.Parse(query.CurrentPosition))
+                .Take(int.Parse(query.ChunkSize))
+                //.Where((job) =>
+                //{
+                //    if (query.Positions == null || query.Positions.Count == 0)
+                //    {
+                //        return true;
+                //    }
+                //    return query.Positions.Contains(job.Title);
+                //})
+                .ToList();
 
             return Ok(chunk);
         }

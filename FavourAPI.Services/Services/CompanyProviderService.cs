@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Text;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
+using FavourAPI.Services.Dtos;
 
 namespace FavourAPI.Services
 {
@@ -45,7 +46,7 @@ namespace FavourAPI.Services
 
             foreach (var office in dbModel.Offices)
             {
-                this.officeService.AddIndustriesForOffice(office);
+                await this.officeService.AddIndustriesForOffice(office);
             }
 
             return mapper.Map<CompanyProviderDto>(dbModel);
@@ -85,6 +86,40 @@ namespace FavourAPI.Services
             var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
 
             return Encoding.UTF8.GetString(buffer);
+        }
+
+        public ProviderViewTimeDto GetViewTime(string userId)
+        {
+            var idAsGuid = Guid.Parse(userId);
+
+            var viewTime = this.dbContext.ProviderViewTimes.SingleOrDefault(vt => vt.Id == idAsGuid);
+
+            return this.mapper.Map<ProviderViewTimeDto>(viewTime);
+        }
+
+        public async Task AddOrUpdateViewTime(string userId, ProviderViewTimeDto viewTime)
+        {
+            var idAsGuid = Guid.Parse(userId);
+
+            var currentViewTime = this.dbContext.ProviderViewTimes.FirstOrDefault(vt => vt.Id == idAsGuid);
+
+            if (currentViewTime != null)
+            {
+                currentViewTime.Applications = viewTime.Applications;
+                currentViewTime.OngoingJobOffers = viewTime.OngoingJobOffers;
+            }
+            else
+            {
+                var newViewTime = new ProviderViewTime()
+                {
+                    Applications = viewTime.Applications,
+                    OngoingJobOffers = viewTime.OngoingJobOffers
+                };
+
+                await this.dbContext.AddAsync(newViewTime);
+            }
+
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }
