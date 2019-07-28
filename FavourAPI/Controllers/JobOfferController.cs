@@ -72,19 +72,15 @@ namespace FavourAPI.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<List<JobOfferDto>>> Get(
             [FromQuery] string userId,
-            [FromQuery] string currentPosition,
-            [FromQuery] string chunkSize,
-            [FromQuery] long accessTime,
-            [FromQuery] JobSearchFiltersDto filters)
+            [FromQuery] JobSearchQueryDto query)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first
 
-            var chunk = jobList.Skip(int.Parse(currentPosition)).Take(int.Parse(chunkSize)).ToList();
+            var chunk = jobList.Skip(int.Parse(query.CurrentPosition)).Take(int.Parse(query.ChunkSize)).ToList();
 
             return Ok(chunk);
         }
