@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services.Services
 {
@@ -24,7 +25,7 @@ namespace FavourAPI.Services.Services
             this.mapper = mapper;
         }
 
-        public Result<object> Apply(string userId, string jobOfferId, string message, DateTime time)
+        public async Task<Result<object>> Apply(string userId, string jobOfferId, string message, DateTime time)
         {
             var userIdGuid = Guid.Parse(userId);
             var jobOfferIdGuid = Guid.Parse(jobOfferId);
@@ -43,28 +44,28 @@ namespace FavourAPI.Services.Services
 
             this.dbContext.Applications.Add(application);
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
 
             return new OkResult<object>(null);
         }
 
-        public Result<object> Accept(string applicationId)
+        public async Task<Result<object>> Accept(string applicationId)
         {
             var guidId = Guid.Parse(applicationId);
             var application = this.dbContext.Applications.Single(a => a.Id == guidId);
 
-            return ChangeApplicationState(application, ApplicationState.Accepted);
+            return await ChangeApplicationState(application, ApplicationState.Accepted);
         }
 
-        public Result<object> Reject(string applicationId)
+        public async Task<Result<object>> Reject(string applicationId)
         {
             var guidId = Guid.Parse(applicationId);
             var application = this.dbContext.Applications.Single(a => a.Id == guidId);
 
-            return ChangeApplicationState(application, ApplicationState.Rejected);
+            return await ChangeApplicationState(application, ApplicationState.Rejected);
         }
 
-        public Result<object> ConfirmJobOffer(string applicationId)
+        public async Task<Result<object>> ConfirmJobOffer(string applicationId)
         {
             var guidId = Guid.Parse(applicationId);
             var jobOffer = this.dbContext.Applications.Single(application => application.Id == guidId).JobOffer;
@@ -72,7 +73,7 @@ namespace FavourAPI.Services.Services
             {
                 throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Active);
             }
-            return ChangeJobOfferState(jobOffer, JobOfferState.Upcoming);
+            return await ChangeJobOfferState(jobOffer, JobOfferState.Upcoming);
         }
 
         public List<ApplicationDto> Get(string jobOfferId)
@@ -84,14 +85,14 @@ namespace FavourAPI.Services.Services
                 .ToList();
         }
 
-        private Result<object> ChangeJobOfferState(JobOffer jobOffer, JobOfferState newState)
+        private async Task<Result<object>> ChangeJobOfferState(JobOffer jobOffer, JobOfferState newState)
         {
             try
             {
                 var newStateDb = this.dbContext.JobOfferStates.Single(jos => jos.Value == nameof(newState));
                 jobOffer.State = newStateDb;
-
-                this.dbContext.SaveChanges();
+                this.dbContext.JobOffers.Update(jobOffer);
+                await this.dbContext.SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -101,14 +102,14 @@ namespace FavourAPI.Services.Services
             return new FavourAPI.Services.Helpers.Result.OkResult<object>(null);
         }
 
-        private Result<object> ChangeApplicationState(Application application, ApplicationState newState)
+        private async Task<Result<object>> ChangeApplicationState(Application application, ApplicationState newState)
         {
             try
             {
                 var newStateDb = this.dbContext.ApplicationStates.Single(aps => aps.Value == newState.ToString());
                 application.State = newStateDb;
-
-                this.dbContext.SaveChanges();
+                this.dbContext.Applications.Update(application);
+                await this.dbContext.SaveChangesAsync();
             }
             catch (Exception e)
             {

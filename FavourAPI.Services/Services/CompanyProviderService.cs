@@ -46,7 +46,7 @@ namespace FavourAPI.Services
 
             foreach (var office in dbModel.Offices)
             {
-                this.officeService.AddIndustriesForOffice(office);
+                await this.officeService.AddIndustriesForOffice(office);
             }
 
             return mapper.Map<CompanyProviderDto>(dbModel);

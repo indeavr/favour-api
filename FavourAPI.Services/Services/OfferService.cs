@@ -43,7 +43,7 @@ namespace FavourAPI.Services
             return this.mapper.Map<JobOfferDto>(jobOffer);
         }
 
-        public void AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
+        public async Task AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
         {
             var application = mapper.Map<Application>(applicationDto);
 
@@ -61,7 +61,7 @@ namespace FavourAPI.Services
 
             jobOffer.Applications.Add(application);
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public List<JobOfferDto> GetAllOffers()

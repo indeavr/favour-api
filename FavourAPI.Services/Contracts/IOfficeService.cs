@@ -2,6 +2,7 @@
 using FavourAPI.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -9,10 +10,10 @@ namespace FavourAPI.Services
     {
         IEnumerable<OfficeDto> GetOffices();
 
-        void AddOffice(CompanyProvider provider, OfficeDto office);
+        Task AddOffice(CompanyProvider provider, OfficeDto office);
 
-        void AddOffice(string providerId, OfficeDto office);
+        Task AddOffice(string providerId, OfficeDto office);
 
-        void AddIndustriesForOffice(Office dbModel);
+        Task AddIndustriesForOffice(Office dbModel);
     }
 }

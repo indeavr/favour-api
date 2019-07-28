@@ -43,9 +43,9 @@ namespace FavourAPI.Controllers
             try
             {
                 // bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
-				ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+                ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
 
-            	return Ok(newConsumer);
+                return Ok(newConsumer);
             }
             catch (Exception e)
             {
@@ -58,7 +58,7 @@ namespace FavourAPI.Controllers
         [HttpPost("save")]
         public async Task<ActionResult> SaveJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
         {
-            this.consumerService.SaveJobOffer(userId, jobOfferId);
+            await this.consumerService.SaveJobOffer(userId, jobOfferId);
 
             return Ok();
         }

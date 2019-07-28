@@ -15,7 +15,7 @@ namespace FavourAPI.Services
 
         bool CheckForLoginProceedPermission(Consumer consumer);
 
-        void SaveJobOffer(string userId, string jobOfferId);
+        Task SaveJobOffer(string userId, string jobOfferId);
 
         Task<string> GetProfilePhoto(string userId);
     }

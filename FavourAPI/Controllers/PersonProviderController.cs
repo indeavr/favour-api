@@ -28,7 +28,7 @@ namespace FavourAPI.Controllers
         [HttpPut]
         public async Task<ActionResult> AddPersonPrvider([FromQuery] string userId, [FromBody] PersonProviderDto personProvider)
         {
-            this.personProviderService.AddPersonProvider(userId, personProvider);
+            await this.personProviderService.AddPersonProvider(userId, personProvider);
             return Ok();
         }
     }

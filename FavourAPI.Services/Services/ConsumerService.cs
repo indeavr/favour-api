@@ -57,6 +57,8 @@ namespace FavourAPI.Services
             var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == guidUserId);
             currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
+            this.dbContext.Users.Update(currentUser);
+
             dbContext.Consumers.Add(dbConsumer);
 
             await dbContext.SaveChangesAsync();
@@ -95,7 +97,7 @@ namespace FavourAPI.Services
             return consumer.FirstName != null && consumer.LastName != null && consumer.PhoneNumber != null;
         }
 
-        public void SaveJobOffer(string userId, string jobOfferId)
+        public async Task SaveJobOffer(string userId, string jobOfferId)
         {
             this.dbContext.ConsumerJobOffers.Add(new ConsumerJobOffer()
             {
@@ -103,7 +105,7 @@ namespace FavourAPI.Services
                 ConsumerId = Guid.Parse(userId)
             });
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<ConsumerDto> GetById(string userId, bool withPhoto)

@@ -28,10 +28,10 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void Add(User user)
+        public async Task Add(User user)
         {
             this.dbContext.Users.Add(user);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
 
         }
 
@@ -118,7 +118,7 @@ namespace FavourAPI.Services
             return new OkResult<object>(new { });
         }
 
-        public void Update(User userParam, string password = null)
+        public async Task Update(User userParam, string password = null)
         {
             var user = this.dbContext.Users.Find(userParam.Id);
 
@@ -146,28 +146,30 @@ namespace FavourAPI.Services
             }
 
             this.dbContext.Users.Update(user);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public void Delete(string userId)
+        public async Task Delete(string userId)
         {
             Guid guidUserId = Guid.Parse(userId);
             var user = this.dbContext.Users.Find(guidUserId);
             if (user != null)
             {
                 this.dbContext.Users.Remove(user);
-                this.dbContext.SaveChanges();
+                await this.dbContext.SaveChangesAsync();
             }
         }
 
-        public void UpdatePermissions(string userId, Action<PermissionMy> updater)
+        public async Task UpdatePermissions(string userId, Action<PermissionMy> updater)
         {
             Guid guidUserId = Guid.Parse(userId);
             var permission = this.dbContext.PermissionMys.Single(p => p.Id == guidUserId);
 
             updater.Invoke(permission);
 
-            this.dbContext.SaveChanges();
+            this.dbContext.PermissionMys.Update(permission);
+
+            await this.dbContext.SaveChangesAsync();
         }
 
         // Private helper methods

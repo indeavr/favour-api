@@ -35,7 +35,7 @@ namespace FavourAPI.Controllers
         [HttpPut("acceptApplication")]
         public async Task<ActionResult> AcceptApplication([FromQuery] string userId, [FromQuery] string applicationId)
         {
-            var result = this.applicationService.Accept(applicationId);
+            var result = await this.applicationService.Accept(applicationId);
 
             return Ok(result);
         }
@@ -43,7 +43,7 @@ namespace FavourAPI.Controllers
         [HttpPut("rejectApplication")]
         public async Task<ActionResult> RejectApplication([FromQuery] string userId, [FromQuery] string applicationId)
         {
-            var result = this.applicationService.Reject(applicationId);
+            var result = await this.applicationService.Reject(applicationId);
 
             return Ok(result);
         }
@@ -51,7 +51,7 @@ namespace FavourAPI.Controllers
         [HttpPut("confirmJobOffer")]
         public async Task<ActionResult> ConfirmJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
         {
-            var result = this.applicationService.ConfirmJobOffer(jobOfferId);
+            var result = await this.applicationService.ConfirmJobOffer(jobOfferId);
 
             return Ok(result);
         }
@@ -59,7 +59,7 @@ namespace FavourAPI.Controllers
         [HttpPut("apply")]
         public async Task<ActionResult> Apply([FromQuery] string userId, [FromQuery] string jobOfferId, [FromBody] ApplicationDto application)
         {
-            var result = this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
+            var result = await this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
 
             return Ok(result);
         }

@@ -168,7 +168,7 @@ namespace FavourAPI.Controllers
             try
             {
                 // save 
-                this.userService.Update(user, userDto.Password);
+                await this.userService.Update(user, userDto.Password);
                 return Ok();
             }
             catch (AppException ex)
@@ -181,7 +181,7 @@ namespace FavourAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            this.userService.Delete(id);
+            await this.userService.Delete(id);
 
             return Ok();
         }

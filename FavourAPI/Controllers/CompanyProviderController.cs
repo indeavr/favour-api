@@ -1,12 +1,10 @@
-﻿using System;
-using FavourAPI.Dtos;
+﻿using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using FavourAPI.Services;
 using System.Threading.Tasks;
 using FavourAPI.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
-using FavourAPI.Services.Dtos;
 
 namespace FavourAPI.Controllers
 {
@@ -43,7 +41,7 @@ namespace FavourAPI.Controllers
         public async Task<ActionResult> AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
         {
             await this.companyProviderService.AddCompanyProvider(userId, companyProvider);
-            this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
+            await this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
             var companyProviderResult = await this.companyProviderService.GetProvider(userId, false);
 
             return Ok(companyProviderResult);
@@ -59,7 +57,7 @@ namespace FavourAPI.Controllers
         [HttpPut("office")]
         public async Task<ActionResult> AddOffice([FromQuery] string userId, [FromBody] OfficeDto office)
         {
-            this.officeService.AddOffice(userId, office);
+            await this.officeService.AddOffice(userId, office);
 
             return Ok();
         }

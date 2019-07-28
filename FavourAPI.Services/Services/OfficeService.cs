@@ -6,6 +6,7 @@ using FavourAPI.Dtos;
 using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using FavourAPI.Data;
+using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
@@ -20,7 +21,7 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public void AddOffice(string providerId, OfficeDto office)
+        public async Task AddOffice(string providerId, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
             var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industries.First(), Office = officeEntity });
@@ -29,12 +30,15 @@ namespace FavourAPI.Services
             // this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
             Guid guidProvinceId = Guid.Parse(providerId);
-            this.dbContext.CompanyProviders.Single(cp => cp.Id == guidProvinceId).Offices.Add(officeEntity);
+            var companyProvider = this.dbContext.CompanyProviders.Single(cp => cp.Id == guidProvinceId);
+            companyProvider.Offices.Add(officeEntity);
 
-            this.dbContext.SaveChanges();
+            this.dbContext.CompanyProviders.Update(companyProvider);
+
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public void AddOffice(CompanyProvider provider, OfficeDto office)
+        public async Task AddOffice(CompanyProvider provider, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
             var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = Guid.Parse(i.Id), Office = officeEntity });
@@ -43,16 +47,16 @@ namespace FavourAPI.Services
 
             provider.Offices.Add(officeEntity);
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public void AddIndustriesForOffice(Office dbModel)
+        public async Task AddIndustriesForOffice(Office dbModel)
         {
             var officeIndustries = dbModel.Industries.Select(i => new OfficeIndustry() { Industry = this.dbContext.Industries.First(), Office = dbModel });
 
             this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<OfficeDto> GetOffices()
