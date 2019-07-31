@@ -12,7 +12,7 @@ namespace FavourAPI.Services.Contracts
 
         Task<Result<object>> ConfirmJobOffer(string applicationId);
 
-        Task<Result<object>> Apply(string userId, string jobOfferId, string message, DateTime time);
+        Task<Result<ApplicationDto>> Apply(string userId, string jobOfferId, string message, DateTime time);
 
         Task<Result<object>> Reject(string applicationId);
 

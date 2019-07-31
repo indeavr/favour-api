@@ -82,15 +82,15 @@ namespace FavourAPI.Controllers
 
             var chunk = jobList
                 .Skip(int.Parse(query.CurrentPosition))
+                .Where((job) =>
+                {
+                    if (query.Positions == null || query.Positions.Count == 0)
+                    {
+                        return true;
+                    }
+                    return query.Positions.Contains(job.Title);
+                })
                 .Take(int.Parse(query.ChunkSize))
-                //.Where((job) =>
-                //{
-                //    if (query.Positions == null || query.Positions.Count == 0)
-                //    {
-                //        return true;
-                //    }
-                //    return query.Positions.Contains(job.Title);
-                //})
                 .ToList();
 
             return Ok(chunk);

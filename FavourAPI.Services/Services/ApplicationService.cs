@@ -25,7 +25,7 @@ namespace FavourAPI.Services.Services
             this.mapper = mapper;
         }
 
-        public async Task<Result<object>> Apply(string userId, string jobOfferId, string message, DateTime time)
+        public async Task<Result<ApplicationDto>> Apply(string userId, string jobOfferId, string message, DateTime time)
         {
             var userIdGuid = Guid.Parse(userId);
             var jobOfferIdGuid = Guid.Parse(jobOfferId);
@@ -46,7 +46,9 @@ namespace FavourAPI.Services.Services
 
             await this.dbContext.SaveChangesAsync();
 
-            return new OkResult<object>(null);
+            var dto = this.mapper.Map<ApplicationDto>(application);
+
+            return new OkResult<ApplicationDto>(dto);
         }
 
         public async Task<Result<object>> Accept(string applicationId)

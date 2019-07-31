@@ -33,11 +33,28 @@ namespace FavourAPI.Services
 
             jobOffer.State = state;
             jobOffer.Title = position.Name;
-
             provider.Offers.Add(jobOffer);
 
             // TODO: review may be redundant
             this.dbContext.JobOffers.Add(jobOffer);
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    var jobOffer1 = mapper.Map<JobOffer>(jobOfferDto);
+            //    Guid guidUserId1 = Guid.Parse(userId);
+            //    var position1 = dbContext.Positions.SingleOrDefault(p => p.Name == jobOfferDto.Title);
+
+            //    var provider1 = dbContext.CompanyProviders.SingleOrDefault(u => u.Id == guidUserId);
+            //    var state1 = dbContext.JobOfferStates.SingleOrDefault(joS => joS.Value == nameof(JobOfferState.Active));
+
+            //    jobOffer1.State = state1;
+            //    jobOffer1.Title = position1.Name;
+            //    jobOffer1.Description = "Description" + i;
+            //    provider1.Offers.Add(jobOffer1);
+
+            //    this.dbContext.JobOffers.Add(jobOffer1);
+            //}
+
             await this.dbContext.SaveChangesAsync();
 
             return this.mapper.Map<JobOfferDto>(jobOffer);
