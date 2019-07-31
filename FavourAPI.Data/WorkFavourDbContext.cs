@@ -75,6 +75,8 @@ namespace FavourAPI.Data
 
         public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
 
+        public DbSet<Experience> Experiences { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {  
             // Configuring one-to-one relation
