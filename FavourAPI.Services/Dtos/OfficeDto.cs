@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FavourAPI.Services.Dtos;
+using System;
 
 namespace FavourAPI.Dtos
 {
@@ -8,7 +9,7 @@ namespace FavourAPI.Dtos
 
         public string Name { get; set; }
 
-        public string Location { get; set; }
+        public LocationDto Location { get; set; }
 
         public EmailDto[] Emails { get; set; }
 

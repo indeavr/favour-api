@@ -57,9 +57,14 @@ namespace FavourAPI.Services
             var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == guidUserId);
             currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
-            this.dbContext.Users.Update(currentUser);
-
-            dbContext.Consumers.Add(dbConsumer);
+            if (currentUser != null)
+            {
+                this.dbContext.Users.Update(currentUser);
+            }
+            else
+            {
+                this.dbContext.Consumers.Add(dbConsumer);
+            }
 
             await dbContext.SaveChangesAsync();
 

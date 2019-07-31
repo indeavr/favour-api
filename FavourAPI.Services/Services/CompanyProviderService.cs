@@ -39,8 +39,25 @@ namespace FavourAPI.Services
                 profilePhoto.Uri = await this.blobService.UploadImage(photoName, companyProvider.ProfilePhoto, profilePhoto.ContentType);
                 dbModel.ProfilePhoto = profilePhoto;
             }
+            var dbModelInDb = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == dbModel.Id);
 
-            this.dbContext.CompanyProviders.Add(dbModel);
+            if (dbModelInDb != null)
+            {
+                dbModelInDb.Name = dbModel.Name ?? dbModelInDb.Name;
+                dbModelInDb.NumberOfEmployees = dbModel.NumberOfEmployees;
+                dbModelInDb.ProfilePhoto = dbModel.ProfilePhoto ?? dbModelInDb.ProfilePhoto;
+                dbModelInDb.FoundedYear = dbModel.FoundedYear;
+                dbModelInDb.Description = dbModel.Description ?? dbModelInDb.Description;
+                dbModelInDb.Bulstat = dbModel.Bulstat ?? dbModelInDb.Bulstat;
+                dbModelInDb.Industries.Where(i => dbModel.Industries.Any(dbMI => dbMI.Name == i.Name));
+
+                this.dbContext.CompanyProviders.Update(dbModelInDb);
+            }
+            else
+            {
+                this.dbContext.CompanyProviders.Add(dbModel);
+            }
+
             await this.dbContext.SaveChangesAsync();
 
 
@@ -56,7 +73,7 @@ namespace FavourAPI.Services
         {
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
-           var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
+            var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
             if (withPhoto)
             {
                 var buffer = await this.blobService.GetImage(provider.ProfilePhoto.Name.ToString(), provider.ProfilePhoto.Size);
