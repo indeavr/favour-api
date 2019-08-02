@@ -73,15 +73,18 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<JobOfferDto>>> Get(
+        public async Task<ActionResult<JobOfferSearchResponse>> Get(
             [FromQuery] string userId,
             [FromQuery] JobSearchQueryDto query)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first
 
+            int currentPosition = int.Parse(query.CurrentPosition);
+            int chunkSize = int.Parse(query.ChunkSize);
+
             var chunk = jobList
-                .Skip(int.Parse(query.CurrentPosition))
+                .Skip(currentPosition)
                 .Where((job) =>
                 {
                     if (query.Positions == null || query.Positions.Count == 0)
@@ -90,10 +93,16 @@ namespace FavourAPI.Controllers
                     }
                     return query.Positions.Contains(job.Title);
                 })
-                .Take(int.Parse(query.ChunkSize))
+                .Take(chunkSize)
                 .ToList();
 
-            return Ok(chunk);
+            bool isLastPageForFilters = (currentPosition + chunkSize) >= jobList.Count;
+            return Ok(new JobOfferSearchResponse()
+            {
+                JobOffers = chunk,
+                totalJobOffers = jobList.Count,
+                hasMore = isLastPageForFilters
+            });
         }
     }
 }
