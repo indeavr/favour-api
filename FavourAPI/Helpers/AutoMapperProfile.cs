@@ -98,6 +98,16 @@ namespace FavourAPI.Helpers
             CreateMap<ApplicationDto, Application>();
             CreateMap<Application, ApplicationDto>();
 
+            //Func<ApplicationDto, Application, object> transformApplicationState = (applDto, _) =>
+            //{
+            //    Enum.Parse<ApplicationState>(applDto.State);
+            //    return new ApplicationStateDb() { Value = applDto.State };
+            //};
+
+            CreateMap<Application, ApplicationDto>().ForMember(j => j.State, opt => opt.MapFrom(j => j.State.Value));
+            CreateMap<ApplicationDto, Application>().ForMember(j => j.State, opt => opt.Ignore());
+
+
             CreateMap<LocationDto, Location>();
             CreateMap<Location, LocationDto>();
 

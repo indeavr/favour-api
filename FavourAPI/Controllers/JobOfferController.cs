@@ -48,10 +48,10 @@ namespace FavourAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("confirmJobOffer")]
-        public async Task<ActionResult> ConfirmJobOffer([FromQuery] string userId, [FromQuery] string jobOfferId)
+        [HttpPut("confirmApplication")]
+        public async Task<ActionResult> ConfirmApplication([FromQuery] string userId, [FromQuery] string applicationId)
         {
-            var result = await this.applicationService.ConfirmJobOffer(jobOfferId);
+            var result = await this.applicationService.Confirm(applicationId);
 
             return Ok(result);
         }

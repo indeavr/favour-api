@@ -67,15 +67,17 @@ namespace FavourAPI.Services.Services
             return await ChangeApplicationState(application, ApplicationState.Rejected);
         }
 
-        public async Task<Result<object>> ConfirmJobOffer(string applicationId)
+        public async Task<Result<object>> Confirm(string applicationId)
         {
             var guidId = Guid.Parse(applicationId);
-            var jobOffer = this.dbContext.Applications.Single(application => application.Id == guidId).JobOffer;
-            if (jobOffer.State.Value != nameof(JobOfferState.Active))
+            var application = this.dbContext.Applications.Single(appl => appl.Id == guidId);
+            if (application.JobOffer.State.Value != nameof(JobOfferState.Active))
             {
-                throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Active);
+                throw new InvalidJobOfferStateException(application.JobOffer.State.Value, JobOfferState.Active);
             }
-            return await ChangeJobOfferState(jobOffer, JobOfferState.Upcoming);
+            await ChangeJobOfferState(application.JobOffer, JobOfferState.Upcoming);
+
+            return await ChangeApplicationState(application, ApplicationState.Rejected);
         }
 
         public List<ApplicationDto> Get(string jobOfferId)

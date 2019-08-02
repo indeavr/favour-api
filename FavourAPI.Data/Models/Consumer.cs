@@ -32,6 +32,8 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<CompletionResult> CompletedJobs { get; set; }
 
+        public virtual ICollection<ConsumerJobOffer> OngoingJobOffers { get; set; }
+
         public virtual ICollection<ConsumerJobOffer> SavedJobOffers { get; set; }
 
         public virtual Image ProfilePhoto { get; set; }

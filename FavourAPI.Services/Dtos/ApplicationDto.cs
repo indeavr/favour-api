@@ -6,6 +6,8 @@ namespace FavourAPI.Dtos
     {
         public string Id { get; set; }
 
+        public string State { get; set; }
+
         public DateTime Time { get; set; }
 
         public string Message { get; set; }
