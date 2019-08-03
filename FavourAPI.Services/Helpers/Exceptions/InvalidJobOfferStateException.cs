@@ -7,8 +7,12 @@ namespace FavourAPI.Services.Helpers.Exceptions
 {
     public class InvalidJobOfferStateException : Exception
     {
-        public InvalidJobOfferStateException(string currentState, JobOfferState expectedState)
-            : base($"For this operation the job offer state should be {nameof(expectedState)} but it actually is {currentState}")
+        public InvalidJobOfferStateException(string currentState, string expectedState)
+            : base($"For this operation the job offer state should be {expectedState} but it actually is {currentState}")
+        { }
+
+        public InvalidJobOfferStateException(string message)
+          : base(message)
         { }
     }
 }

@@ -43,8 +43,6 @@ namespace FavourAPI.Data
 
         public DbSet<SexDb> Sexes { get; set; }
 
-        public DbSet<JobOfferStateDb> JobOfferStates { get; set; }
-
         public DbSet<ApplicationStateDb> ApplicationStates { get; set; }
 
         public DbSet<PermissionMy> PermissionMys { get; set; }
@@ -56,8 +54,6 @@ namespace FavourAPI.Data
         public DbSet<IndustryPosition> IndustryPositions { get; set; }
 
         public DbSet<OfficeIndustry> OfficeIndustries { get; set; }
-
-        public DbSet<ConsumerJobOffer> ConsumerJobOffers { get; set; }
 
         public DbSet<Location> Locations { get; set; }
 
@@ -81,6 +77,14 @@ namespace FavourAPI.Data
 
         public DbSet<FieldOfStudy> FieldsOfStudy { get; set; }
 
+        public DbSet<ActiveJobOffer> ActiveJobOffers { get; set; }
+
+        public DbSet<OngoingJobOffer> OngoingJobOffers { get; set; }
+
+        public DbSet<CompletedJobOffer> CompletedJobOffers { get; set; }
+
+        public DbSet<SavedJobOffer> SavedJobOffers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuring one-to-one relation
@@ -91,7 +95,7 @@ namespace FavourAPI.Data
             modelBuilder.Entity<IndustryPosition>().HasKey(ip => new { ip.IndustryId, ip.PositionId });
             modelBuilder.Entity<PositionSkill>().HasKey(ps => new { ps.SkillId, ps.PositionId });
             modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
-            modelBuilder.Entity<ConsumerJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
+            modelBuilder.Entity<SavedJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
             modelBuilder.Entity<JobOfferLocation>().HasKey(jol => new { jol.JobOfferId, jol.LocationId });
 
             // Setting autogenerating PK GUIDs 
@@ -99,22 +103,22 @@ namespace FavourAPI.Data
 
             // Start TODO: Find a better way to load this data (like JSON or something)
             // Loding the enums data into the tables in database
-            modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
-            {
-                Value = nameof(JobOfferState.Active)
-            });
-            modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
-            {
-                Value = nameof(JobOfferState.Expired)
-            });
-            modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
-            {
-                Value = nameof(JobOfferState.Completed)
-            });
-            modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
-            {
-                Value = nameof(JobOfferState.Ongoing),
-            });
+            //modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
+            //{
+            //    Value = nameof(JobOfferState.Active)
+            //});
+            //modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
+            //{
+            //    Value = nameof(JobOfferState.Expired)
+            //});
+            //modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
+            //{
+            //    Value = nameof(JobOfferState.Completed)
+            //});
+            //modelBuilder.Entity<JobOfferStateDb>().HasData(new JobOfferStateDb()
+            //{
+            //    Value = nameof(JobOfferState.Ongoing),
+            //});
 
             modelBuilder.Entity<ApplicationStateDb>().HasData(new ApplicationStateDb()
             {

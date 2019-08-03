@@ -30,16 +30,17 @@ namespace FavourAPI.Data.Models
 
         public byte[] CV { get; set; }
 
-        public virtual ICollection<CompletionResult> CompletedJobs { get; set; }
+        public virtual ICollection<OngoingJobOffer> OngoingJobOffers { get; set; }
 
-        public virtual ICollection<ConsumerJobOffer> SavedJobOffers { get; set; }
+        public virtual ICollection<CompletedJobOffer> CompletedJobs { get; set; }
+
+        public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
 
         public virtual ICollection<Experience> Experiences { get; set; }
 
-        public virtual ICollection<Education> Education{get; set; }
+        public virtual ICollection<Education> Education { get; set; }
 
         public virtual Image ProfilePhoto { get; set; }
 
-        //public ICollection<byte[]> Photos { get; set; }
     }
 }

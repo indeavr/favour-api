@@ -71,14 +71,8 @@ namespace FavourAPI.Helpers
                  .ForMember(c => c.ProfilePhoto, opt => opt.Ignore());
 
 
-            Func<JobOfferDto, JobOffer, object> transformJobState = (jobDto, _) =>
-            {
-                Enum.Parse<JobOfferState>(jobDto.State);
-                return new JobOfferStateDb() { Value = jobDto.State };
-            };
-
-            CreateMap<JobOffer, JobOfferDto>().ForMember(j => j.State, opt => opt.MapFrom(j => j.State.Value));
-            CreateMap<JobOfferDto, JobOffer>().ForMember(j => j.State, opt => opt.Ignore());
+            CreateMap<JobOffer, JobOfferDto>();
+            CreateMap<JobOfferDto, JobOffer>();
 
             CreateMap<PermissionMy, PermissionsMyDto>();
             CreateMap<PermissionsMyDto, PermissionMy>();

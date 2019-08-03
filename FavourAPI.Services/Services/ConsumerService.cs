@@ -119,10 +119,10 @@ namespace FavourAPI.Services
 
         public async Task SaveJobOffer(string userId, string jobOfferId)
         {
-            this.dbContext.ConsumerJobOffers.Add(new ConsumerJobOffer()
+            this.dbContext.SavedJobOffers.Add(new SavedJobOffer()
             {
                 JobOfferId = Guid.Parse(jobOfferId),
-                ConsumerId = Guid.Parse(userId)
+                ConsumerId = Guid.Parse(userId),
             });
 
             await this.dbContext.SaveChangesAsync();

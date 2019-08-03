@@ -22,9 +22,6 @@ namespace FavourAPI.Data.Models
 
         public DateTime TimePosted { get; set; }
 
-        //[ForeignKey("User")]
-        //public string ProviderId {get; set;}
-
         public virtual CompanyProvider Provider { get; set; }
 
         public double Money { get; set; }
@@ -33,12 +30,16 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Skill> RequiredSkills { get; set; }
 
-        public virtual JobOfferStateDb State { get; set; }
-
         public virtual CompletionResult Result { get; set; }
 
-        public virtual ICollection<ConsumerJobOffer> ConsumerJobOffers { get; set; }
+        public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
 
         public virtual ICollection<JobPhoto> Photos { get; set; }
+
+        public virtual ActiveJobOffer ActiveState { get; set; }
+
+        public virtual CompletedJobOffer CompletedState { get; set; }
+
+        public virtual OngoingJobOffer OngoingState { get; set; }
     }
 }
