@@ -75,8 +75,14 @@ namespace FavourAPI.Data
 
         public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
 
+        public DbSet<Experience> Experiences { get; set; }
+
+        public DbSet<Education> Educations { get; set; }
+
+        public DbSet<FieldOfStudy> FieldsOfStudy { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {  
+        {
             // Configuring one-to-one relation
             modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
             modelBuilder.Entity<Permission>().HasIndex(p => new { p.UserId, p.PermissionNameId }).IsUnique();
@@ -124,7 +130,7 @@ namespace FavourAPI.Data
             });
             // End TODO
 
-           
+
             modelBuilder.Entity<SexDb>().HasData(
                 new SexDb() { Value = nameof(Sex.Male) },
                 new SexDb() { Value = nameof(Sex.Female) });

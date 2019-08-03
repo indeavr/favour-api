@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190801202446_education-consumer")]
+    partial class educationconsumer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,47 +346,47 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d31ac721-65f1-42ce-b64b-41ba6c244a33"),
+                            Id = new Guid("d4ab85bf-ed88-4188-a20a-c86caca9d5ec"),
                             Name = "Test industry 1"
                         },
                         new
                         {
-                            Id = new Guid("04689ec3-e820-4f8b-8cd1-db03d779f981"),
+                            Id = new Guid("0bde52da-8c4c-4fef-9381-48eb3139aa13"),
                             Name = "Test industry 2"
                         },
                         new
                         {
-                            Id = new Guid("a165c1be-4c0b-4cdb-800f-e85f1bc19051"),
+                            Id = new Guid("a47378e8-20c7-45f5-a451-5c8b3aa8ef08"),
                             Name = "Test industry 3"
                         },
                         new
                         {
-                            Id = new Guid("54f63b6e-3db7-4894-9240-eb9638031bdf"),
+                            Id = new Guid("a068f373-bc7e-45be-8768-b9bb5690175b"),
                             Name = "Test industry 4"
                         },
                         new
                         {
-                            Id = new Guid("7e68df07-31e4-4e85-8b99-69125731aff3"),
+                            Id = new Guid("e62851e1-8ee5-4504-8e6e-7cd8027d04b6"),
                             Name = "Test industry 5"
                         },
                         new
                         {
-                            Id = new Guid("26895ddc-18f5-4b8e-911f-546ef0df530c"),
+                            Id = new Guid("e36ca0b9-48c8-449e-bc50-73f576336710"),
                             Name = "Test industry 6"
                         },
                         new
                         {
-                            Id = new Guid("bbb3ec51-80d0-4cee-8ab6-758fdcdac141"),
+                            Id = new Guid("57da91d8-86b4-4814-9203-e04b9ddbdb59"),
                             Name = "Test industry 7"
                         },
                         new
                         {
-                            Id = new Guid("f6d161e9-38d5-43fb-a933-395bf635eab5"),
+                            Id = new Guid("ccc69dc8-5231-4c01-a452-2efec093c5d3"),
                             Name = "Test industry 8"
                         },
                         new
                         {
-                            Id = new Guid("d9260bce-0d36-4561-b4fc-28b9a7fd35c4"),
+                            Id = new Guid("0c1fed62-ac00-486b-964c-b2a8adcf8954"),
                             Name = "Test industry 9"
                         });
                 });
@@ -698,37 +700,37 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("db403555-56b7-488e-adc5-7df25c4a0344"),
+                            Id = new Guid("a8ccb9d7-bc32-4336-81b1-90184308ba84"),
                             Name = "Test position 1"
                         },
                         new
                         {
-                            Id = new Guid("03b195de-45a3-44bd-970b-7beead999695"),
+                            Id = new Guid("423d3b42-0b31-4deb-bc49-d29d051b143d"),
                             Name = "Test position 2"
                         },
                         new
                         {
-                            Id = new Guid("dba22efb-5054-4ba0-b3b0-fbe82a6eefa2"),
+                            Id = new Guid("39c8f25b-75ed-4b16-bcc3-4a043efe41e5"),
                             Name = "Test position 3"
                         },
                         new
                         {
-                            Id = new Guid("73ea8042-726b-4d05-bb2f-e95d6fefdcbb"),
+                            Id = new Guid("7730f416-7eeb-439a-9eff-588a38b5ea32"),
                             Name = "Test position 4"
                         },
                         new
                         {
-                            Id = new Guid("dac7c287-5740-4480-9c24-e619451c2a42"),
+                            Id = new Guid("b5483fbd-2311-41dd-a9e1-de03e37a2b26"),
                             Name = "Test position 5"
                         },
                         new
                         {
-                            Id = new Guid("abcdf883-6f79-443a-a5cb-34e2e3a2d614"),
+                            Id = new Guid("d3a65080-00a5-4f62-b625-7cace455f5e2"),
                             Name = "Test position 6"
                         },
                         new
                         {
-                            Id = new Guid("52682b24-4214-4f94-9bdd-b7bcd49b8ce7"),
+                            Id = new Guid("79e4dd6a-5088-4c38-b7b3-d1e529a4351a"),
                             Name = "Test position 7"
                         });
                 });
@@ -956,7 +958,7 @@ namespace FavourAPI.Data.Migrations
             modelBuilder.Entity("FavourAPI.Data.Models.Education", b =>
                 {
                     b.HasOne("FavourAPI.Data.Models.Consumer")
-                        .WithMany("Education")
+                        .WithMany("Educations")
                         .HasForeignKey("ConsumerId");
 
                     b.HasOne("FavourAPI.Data.Models.FieldOfStudy", "Field")
