@@ -30,8 +30,7 @@ namespace FavourAPI.Services
         // Add for now
         public async Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
         {
-            var currentUserInfo = GetConsumer(Guid.Parse(userId));
-
+            var currentUserInfo = this.dbContext.Consumers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
             var dbConsumer = mapper.Map<Consumer>(consumerData);
             var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
@@ -61,10 +60,29 @@ namespace FavourAPI.Services
             {
                 this.dbContext.Users.Update(currentUser);
             }
+
+            if (currentUserInfo != null)
+            {
+                currentUserInfo.FirstName = dbConsumer.FirstName;
+                currentUserInfo.LastName = dbConsumer.LastName;
+                currentUserInfo.Location = dbConsumer.Location;
+                currentUserInfo.PhoneNumber = dbConsumer.PhoneNumber;
+                currentUserInfo.ProfilePhoto = dbConsumer.ProfilePhoto;
+                currentUserInfo.Sex = dbConsumer.Sex;
+                currentUserInfo.Skills.Where(s => dbConsumer.Skills.Any(s1 => s1.Name == s.Name));
+                currentUserInfo.Experiences = currentUserInfo.Experiences.Where(e => dbConsumer.Experiences.Any(e1 => e.Start == e1.Start && e.End == e1.End))
+                    .Concat(dbConsumer.Experiences)
+                    .Distinct()
+                    .ToList();
+                currentUserInfo.Sex = dbConsumer.Sex;
+
+                this.dbContext.Consumers.Update(currentUserInfo);
+            }
             else
             {
                 this.dbContext.Consumers.Add(dbConsumer);
             }
+
 
             await dbContext.SaveChangesAsync();
 
@@ -77,10 +95,7 @@ namespace FavourAPI.Services
             return await this.GetById(userId, true);
         }
 
-        private Consumer GetConsumer(Guid userId)
-        {
-            return dbContext.Consumers.SingleOrDefault(c => c.Id == userId);
-        }
+
 
         public async Task<string> GetProfilePhoto(string userdId)
         {
@@ -116,7 +131,7 @@ namespace FavourAPI.Services
         public async Task<ConsumerDto> GetById(string userId, bool withPhoto)
         {
             Guid guidUserId = Guid.Parse(userId);
-            var consumerDb = GetConsumer(guidUserId);
+            var consumerDb = dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
 
             if (consumerDb == null)
             {

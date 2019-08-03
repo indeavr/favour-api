@@ -29,6 +29,10 @@ namespace FavourAPI.Dtos
 
         public string ProfilePhoto { get; set; }
 
+        public List<ExperienceDto> Experiences { get; set; }
+
+        public List<EducationDto> Educations { get; set; }
+
         //public byte[] CV { get; set; }
 
         //public List<byte[]> Photos { get; set; }

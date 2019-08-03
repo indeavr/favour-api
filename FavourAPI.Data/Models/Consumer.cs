@@ -36,6 +36,8 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Experience> Experiences { get; set; }
 
+        public virtual ICollection<Education> Education{get; set; }
+
         public virtual Image ProfilePhoto { get; set; }
 
         //public ICollection<byte[]> Photos { get; set; }

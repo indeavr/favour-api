@@ -104,6 +104,18 @@ namespace FavourAPI.Helpers
             CreateMap<ProviderViewTime, ProviderViewTimeDto>();
             CreateMap<ProviderViewTimeDto, ProviderViewTime>();
 
+            CreateMap<Education, EducationDto>();
+            CreateMap<EducationDto, Education>();
+
+            CreateMap<string, Position>().ConstructUsing(str => new Position() { Name = str });
+            CreateMap<Position, string>().ConstructUsing(pos=>pos.Name);
+
+            CreateMap<Experience, ExperienceDto>();
+            CreateMap<ExperienceDto, Experience>();
+
+            CreateMap<FieldOfStudy, FieldOfStudyDto>();
+            CreateMap<FieldOfStudyDto, FieldOfStudy>();
+
         }
     }
 }
