@@ -19,7 +19,14 @@ namespace FavourAPI.Helpers
             CreateMap<UserDto, User>();
 
             CreateMap<CompanyProvider, CompanyProviderDto>()
-                .ForMember(db => db.ProfilePhoto, opt => opt.Ignore());
+                .ForMember(db => db.ProfilePhoto, opt => opt.Ignore())
+                .ForMember(dto => dto.ActiveJobOffers, opt => opt.MapFrom(db => db.Offers.Where(o => o.ActiveState != null).Select(o => o.ActiveState).ToArray()))
+                .ForMember(dto => dto.CompletedJobOffers, opt => opt.MapFrom(db => db.Offers.Where(o => o.CompletedState != null).Select(o => o.CompletedState).ToArray()))
+                .ForMember(dto => dto.OngoingJobOffer, opt => opt.MapFrom(db => db.Offers
+                .Where(o => o.OngoingState != null && o.OngoingState.Count > 0)
+                .Select(o => o.OngoingState)
+                .ToArray()));
+
             CreateMap<CompanyProviderDto, CompanyProvider>()
                 .ForMember(dto => dto.FoundedYear, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.FoundedYear)))
                 .ForMember(dto => dto.ProfilePhoto, opt => opt.Ignore());
@@ -112,6 +119,15 @@ namespace FavourAPI.Helpers
 
             CreateMap<OngoingJobOffer, OngoingJobOfferDto>();
             CreateMap<OngoingJobOfferDto, OngoingJobOffer>();
+
+            CreateMap<OngoingJobOffer[], OngoingJobOfferDto>().ConstructUsing((offers, context) =>
+            {
+                return new OngoingJobOfferDto()
+                {
+                    Consumers = offers.Select(o => context.Mapper.Map<ConsumerDto>(o.Consumer)).ToArray(),
+                    JobOffer = context.Mapper.Map<JobOfferDto>(offers.First().JobOffer)
+                };
+            });
 
             CreateMap<CompletedJobOfferDto, CompletedJobOffer>();
             CreateMap<CompletedJobOffer, CompletedJobOfferDto>();
