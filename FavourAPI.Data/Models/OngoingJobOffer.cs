@@ -13,6 +13,6 @@ namespace FavourAPI.Data.Models
 
         public virtual JobOffer JobOffer { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
+        public virtual ConsumerDto Consumer { get; set; }
     }
 }
