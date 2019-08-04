@@ -25,6 +25,8 @@ namespace FavourAPI.Dtos
 
         public List<CompletionResultDto> CompletedJobs { get; set; }
 
+        public List<OngoingJobOfferDto> OngoingJobs { get; set; }
+
         public List<ApplicationDto> Applications { get; set; }
 
         public string ProfilePhoto { get; set; }

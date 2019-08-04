@@ -5,12 +5,12 @@ using System.Text;
 
 namespace FavourAPI.Services.Dtos
 {
-    public class CompletedJobOfferDto
+    public class OngoingJobOfferDto
     {
-        public string Id { get; set; }
+        public List<ConsumerDto> Consumer { get; set; }
 
         public JobOfferDto JobOffer { get; set; }
 
-        public List<CompletionResultDto> Result { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -102,7 +102,7 @@ namespace FavourAPI.Helpers
             CreateMap<EducationDto, Education>();
 
             CreateMap<string, Position>().ConstructUsing(str => new Position() { Name = str });
-            CreateMap<Position, string>().ConstructUsing(pos=>pos.Name);
+            CreateMap<Position, string>().ConstructUsing(pos => pos.Name);
 
             CreateMap<Experience, ExperienceDto>();
             CreateMap<ExperienceDto, Experience>();
@@ -110,6 +110,14 @@ namespace FavourAPI.Helpers
             CreateMap<FieldOfStudy, FieldOfStudyDto>();
             CreateMap<FieldOfStudyDto, FieldOfStudy>();
 
+            CreateMap<OngoingJobOffer, OngoingJobOfferDto>();
+            CreateMap<OngoingJobOfferDto, OngoingJobOffer>();
+
+            CreateMap<CompletedJobOfferDto, CompletedJobOffer>();
+            CreateMap<CompletedJobOffer, CompletedJobOfferDto>();
+
+            CreateMap<ActiveJobOffer, ActiveJobOfferDto>();
+            CreateMap<ActiveJobOfferDto, ActiveJobOffer>();
         }
     }
 }
