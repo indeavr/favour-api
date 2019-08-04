@@ -40,6 +40,6 @@ namespace FavourAPI.Data.Models
 
         public virtual CompletedJobOffer CompletedState { get; set; }
 
-        public virtual OngoingJobOffer OngoingState { get; set; }
+        public virtual ICollection<OngoingJobOffer> OngoingState { get; set; }
     }
 }

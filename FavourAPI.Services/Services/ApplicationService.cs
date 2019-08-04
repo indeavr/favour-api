@@ -82,7 +82,6 @@ namespace FavourAPI.Services.Services
             {
                 Consumer = application.Consumer,
                 JobOffer = jobOffer,
-                Id = jobOffer.Id
             });
 
             await this.dbContext.SaveChangesAsync();

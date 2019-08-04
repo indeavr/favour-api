@@ -13,6 +13,6 @@ namespace FavourAPI.Data.Models
 
         public virtual JobOffer JobOffer { get; set; }
 
-        public virtual CompletionResult Result { get; set; }
+        public virtual ICollection<CompletionResult> Result { get; set; }
     }
 }
