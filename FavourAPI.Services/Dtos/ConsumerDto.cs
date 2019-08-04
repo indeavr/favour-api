@@ -1,6 +1,5 @@
 ﻿using AutoMapper.Configuration.Annotations;
 using FavourAPI.Data.Models;
-using FavourAPI.Services.Dtos;
 using System.Collections.Generic;
 
 namespace FavourAPI.Dtos

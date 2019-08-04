@@ -9,7 +9,6 @@ using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
 using System.Threading.Tasks;
 using System.Text;
-using FavourAPI.Services.Dtos;
 using System.Collections.Generic;
 
 namespace FavourAPI.Services

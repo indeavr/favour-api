@@ -75,7 +75,7 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<JobOfferDto>>> Get(
             [FromQuery] string userId,
-            [FromQuery] JobSearchQueryDto query)
+            [FromQuery] JobSearchQuery query)
         {
             var jobList = offerService.GetAllOffers();
             // Sort first
