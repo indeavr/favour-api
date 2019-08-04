@@ -141,8 +141,8 @@ namespace FavourAPI.Services
 
             var dto = this.mapper.Map<ConsumerDto>(consumerDb);
 
-            var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobs);
-            dto.CompletedJobs = completedJobs;
+            var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobOffers);
+            dto.CompletedJobOffers = completedJobs;
             if (withPhoto)
             {
                 var buffer = await this.blobService.GetImage(consumerDb.ProfilePhoto.Name.ToString(), consumerDb.ProfilePhoto.Size);
