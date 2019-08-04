@@ -17,7 +17,7 @@ namespace FavourAPI.Data.Models
 
         public DateTime Time { get; set; }
 
-        public virtual JobOffer JobOffer { get; set; }
+        public virtual ActiveJobOffer JobOffer { get; set; }
 
         public virtual Consumer Consumer { get; set; }
 

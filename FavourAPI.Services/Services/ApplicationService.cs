@@ -38,7 +38,7 @@ namespace FavourAPI.Services.Services
             {
                 State = state,
                 Consumer = consumer,
-                JobOffer = jobOffer,
+                JobOffer = jobOffer.ActiveState,
                 Message = message,
                 Time = time
             };
@@ -73,7 +73,7 @@ namespace FavourAPI.Services.Services
             var guidId = Guid.Parse(applicationId);
             var application = this.dbContext.Applications.Single(a => a.Id == guidId);
             var jobOffer = application.JobOffer;
-            if (jobOffer.ActiveState == null)
+            if (jobOffer == null)
             {
                 throw new InvalidJobOfferStateException("The confirmed job offer was not active");
             }
@@ -81,7 +81,7 @@ namespace FavourAPI.Services.Services
             await this.dbContext.OngoingJobOffers.AddAsync(new OngoingJobOffer()
             {
                 Consumer = application.Consumer,
-                JobOffer = jobOffer,
+                JobOffer = jobOffer.JobOffer,
             });
 
             await this.dbContext.SaveChangesAsync();
@@ -91,7 +91,7 @@ namespace FavourAPI.Services.Services
 
         public List<ApplicationDto> Get(string jobOfferId)
         {
-            var applicationsForJob = dbContext.JobOffers.FirstOrDefault(job => job.Id == Guid.Parse(jobOfferId));
+            var applicationsForJob = dbContext.ActiveJobOffers.FirstOrDefault(job => job.Id == Guid.Parse(jobOfferId));
 
             return applicationsForJob.Applications
                 .Select(application => this.mapper.Map<ApplicationDto>(application))
