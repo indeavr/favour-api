@@ -11,6 +11,8 @@ namespace FavourAPI.Dtos
 
         public ConsumerDto Consumer { get; set; }
 
+        public string Date { get; set; }
+
         public string ReviewForConsumer { get; set; }
 
         public string ReviewForProvider { get; set; }
