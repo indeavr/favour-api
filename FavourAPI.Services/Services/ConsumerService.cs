@@ -151,7 +151,7 @@ namespace FavourAPI.Services
             return dto;
         }
 
-        private List<CompletionResultDto> ReduceCompletedJobsInformation(List<CompletionResultDto> completionResults)
+        private List<CompletedJobOfferDto> ReduceCompletedJobsInformation(List<CompletedJobOfferDto> completionResults)
         {
             // to be used in future for reducing the amount of data being sent back to the frontend
             return completionResults;

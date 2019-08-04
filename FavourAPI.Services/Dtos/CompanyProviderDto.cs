@@ -24,8 +24,6 @@ namespace FavourAPI.Dtos
 
         public OfficeDto[] Offices { get; set; }
 
-        public JobOfferDto[] Offers { get; set; }
-
         public ActiveJobOfferDto[] ActiveJobOffers { get; set; }
 
         public OngoingJobOfferDto[] OngoingJobOffer { get; set; }

@@ -32,7 +32,7 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<OngoingJobOffer> OngoingJobOffers { get; set; }
 
-        public virtual ICollection<CompletedJobOffer> CompletedJobs { get; set; }
+        public virtual ICollection<CompletedJobOffer> CompletedJobOffers { get; set; }
 
         public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
 

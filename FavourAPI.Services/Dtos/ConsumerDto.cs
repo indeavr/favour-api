@@ -20,9 +20,9 @@ namespace FavourAPI.Dtos
 
         public List<string> Skills { get; set; }
 
-        public List<JobOfferDto> SavedJobOffers { get; set; }
+        public List<SavedJobOfferDto> SavedJobOffers { get; set; }
 
-        public List<CompletionResultDto> CompletedJobOffers { get; set; }
+        public List<CompletedJobOfferDto> CompletedJobOffers { get; set; }
 
         public List<OngoingJobOfferDto> OngoingJobOffers { get; set; }
 
