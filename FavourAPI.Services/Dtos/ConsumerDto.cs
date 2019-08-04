@@ -1,5 +1,6 @@
 ﻿using AutoMapper.Configuration.Annotations;
 using FavourAPI.Data.Models;
+using FavourAPI.Services.Dtos;
 using System.Collections.Generic;
 
 namespace FavourAPI.Dtos
@@ -18,15 +19,15 @@ namespace FavourAPI.Dtos
 
         public string Sex { get; set; }
 
-        public List<string> Skills { get; set; }
+        public string[] Skills { get; set; }
 
-        public List<SavedJobOfferDto> SavedJobOffers { get; set; }
+        public SavedJobOfferDto[] SavedJobOffers { get; set; }
 
-        public List<CompletedJobOfferDto> CompletedJobOffers { get; set; }
+        public CompletedJobOfferDto[] CompletedJobOffers { get; set; }
 
-        public List<OngoingJobOfferDto> OngoingJobOffers { get; set; }
+        public ConsumerOngoingOfferDto[] OngoingJobOffers { get; set; }
 
-        public List<ApplicationDto> Applications { get; set; }
+        public ApplicationDto[] Applications { get; set; }
 
         public string ProfilePhoto { get; set; }
 

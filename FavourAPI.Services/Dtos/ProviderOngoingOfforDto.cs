@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FavourAPI.Dtos
 {
-    public class OngoingJobOfferDto
+    public class ProviderOngoingOfferDto
     {
         public ConsumerDto[] Consumers { get; set; }
 

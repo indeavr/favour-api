@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FavourAPI.Services.Helpers.Result;
 
 namespace FavourAPI.Services.Services
 {
