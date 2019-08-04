@@ -96,6 +96,7 @@ namespace FavourAPI.Data
             modelBuilder.Entity<PositionSkill>().HasKey(ps => new { ps.SkillId, ps.PositionId });
             modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
             modelBuilder.Entity<SavedJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
+            modelBuilder.Entity<OngoingJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
             modelBuilder.Entity<JobOfferLocation>().HasKey(jol => new { jol.JobOfferId, jol.LocationId });
 
             // Setting autogenerating PK GUIDs 

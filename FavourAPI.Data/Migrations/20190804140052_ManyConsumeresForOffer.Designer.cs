@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190804140052_ManyConsumeresForOffer")]
+    partial class ManyConsumeresForOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +38,8 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("ActiveJobOfferId");
+
                     b.Property<Guid?>("ConsumerId");
 
                     b.Property<Guid?>("JobOfferId");
@@ -47,6 +51,8 @@ namespace FavourAPI.Data.Migrations
                     b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActiveJobOfferId");
 
                     b.HasIndex("ConsumerId");
 
@@ -331,47 +337,47 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("997163a9-52ab-4043-95ce-c81d3aa33c39"),
+                            Id = new Guid("36c26a60-a276-44d2-b7dc-74bdadc147af"),
                             Name = "Test industry 1"
                         },
                         new
                         {
-                            Id = new Guid("44ec62a0-8b22-4ba2-8763-1eed27524f9e"),
+                            Id = new Guid("d9c03e7c-0d7a-4f83-82bd-8b1fea577859"),
                             Name = "Test industry 2"
                         },
                         new
                         {
-                            Id = new Guid("45c228f4-669d-4523-9f2c-c87e60f8b899"),
+                            Id = new Guid("bb807399-d35c-4944-801d-d3a371a08d8e"),
                             Name = "Test industry 3"
                         },
                         new
                         {
-                            Id = new Guid("92cf3d59-eef9-4347-a845-5467701ee78a"),
+                            Id = new Guid("13b08251-8304-43b4-9345-b6af35122b00"),
                             Name = "Test industry 4"
                         },
                         new
                         {
-                            Id = new Guid("219efd7a-bbad-4d53-b83f-6594450e105e"),
+                            Id = new Guid("e44d1159-ee89-494a-8658-411b2cfe0ea6"),
                             Name = "Test industry 5"
                         },
                         new
                         {
-                            Id = new Guid("3cbf2543-e45a-4466-b6e2-4dffd27605e2"),
+                            Id = new Guid("b06b1408-e7cd-4d6f-9bd8-c632ebfcebd7"),
                             Name = "Test industry 6"
                         },
                         new
                         {
-                            Id = new Guid("015abf17-3be9-4d6b-a70d-f67cb3ddcc8a"),
+                            Id = new Guid("149768a4-c6e8-4eb3-b939-38f35cf3c5ba"),
                             Name = "Test industry 7"
                         },
                         new
                         {
-                            Id = new Guid("a182aa6f-8e8a-44a3-af3c-4db69ef15a70"),
+                            Id = new Guid("10786b67-1bf7-4462-bcd6-763cb7531a34"),
                             Name = "Test industry 8"
                         },
                         new
                         {
-                            Id = new Guid("c57365fe-27bf-4f59-84a4-c6c2ccecc31c"),
+                            Id = new Guid("7178aea7-60e6-4877-8bbf-5ca88bf030e5"),
                             Name = "Test industry 9"
                         });
                 });
@@ -698,37 +704,37 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("19032a8e-00bc-4a18-ac99-dc5edb18a4e0"),
+                            Id = new Guid("f26695a4-34f2-42fa-bfca-ef80b1526f14"),
                             Name = "Test position 1"
                         },
                         new
                         {
-                            Id = new Guid("32418dae-8137-4f12-aef7-d21edbf5579d"),
+                            Id = new Guid("0b43d3eb-c943-462e-8922-2e7c3ad224a3"),
                             Name = "Test position 2"
                         },
                         new
                         {
-                            Id = new Guid("9b972c59-144e-4184-9023-ac4cfd9ae2f9"),
+                            Id = new Guid("fbf77dd7-c056-448d-a103-a39c88b2a935"),
                             Name = "Test position 3"
                         },
                         new
                         {
-                            Id = new Guid("bac34a9f-9145-4b81-8858-c41d4329c505"),
+                            Id = new Guid("754c1a2f-834f-44c7-8af7-de3c6be86c7d"),
                             Name = "Test position 4"
                         },
                         new
                         {
-                            Id = new Guid("34c02830-49d0-4423-b2a5-5f623356f93e"),
+                            Id = new Guid("c3ee903a-3a5a-4ea2-9389-04ca3a2ad1d1"),
                             Name = "Test position 5"
                         },
                         new
                         {
-                            Id = new Guid("3cafc1ad-9812-4a31-9cf4-3ac06b8ed53f"),
+                            Id = new Guid("50a0e256-62ef-4691-a14b-37e4ff790967"),
                             Name = "Test position 6"
                         },
                         new
                         {
-                            Id = new Guid("84cbcc7b-83eb-4966-b903-64941c45bff7"),
+                            Id = new Guid("1fb6e675-5474-4b5c-9584-513f81861b5d"),
                             Name = "Test position 7"
                         });
                 });
@@ -903,11 +909,15 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Application", b =>
                 {
+                    b.HasOne("FavourAPI.Data.Models.ActiveJobOffer")
+                        .WithMany("Applications")
+                        .HasForeignKey("ActiveJobOfferId");
+
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
                         .WithMany("Applications")
                         .HasForeignKey("ConsumerId");
 
-                    b.HasOne("FavourAPI.Data.Models.ActiveJobOffer", "JobOffer")
+                    b.HasOne("FavourAPI.Data.Models.JobOffer", "JobOffer")
                         .WithMany("Applications")
                         .HasForeignKey("JobOfferId");
 

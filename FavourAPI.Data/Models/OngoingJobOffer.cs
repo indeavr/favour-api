@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -7,12 +8,18 @@ namespace FavourAPI.Data.Models
 {
     public class OngoingJobOffer
     {
-        [ForeignKey("JobOffer")]
+        [Key]
         [Column(TypeName = "uniqueidentifier")]
-        public Guid Id { get; set; }
+        public Guid ConsumerId { get; set; }
+
+        public virtual Consumer Consumer { get; set; }
+
+        [Key]
+        [Column(TypeName = "uniqueidentifier")]
+        public Guid JobOfferId { get; set; }
 
         public virtual JobOffer JobOffer { get; set; }
 
-        public virtual ConsumerDto Consumer { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -26,8 +26,6 @@ namespace FavourAPI.Data.Models
 
         public double Money { get; set; }
 
-        public virtual ICollection<Application> Applications { get; set; }
-
         public virtual ICollection<Skill> RequiredSkills { get; set; }
 
         public virtual CompletionResult Result { get; set; }
@@ -40,6 +38,6 @@ namespace FavourAPI.Data.Models
 
         public virtual CompletedJobOffer CompletedState { get; set; }
 
-        public virtual OngoingJobOffer OngoingState { get; set; }
+        public virtual ICollection<OngoingJobOffer> OngoingState { get; set; }
     }
 }

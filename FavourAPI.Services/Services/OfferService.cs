@@ -58,7 +58,7 @@ namespace FavourAPI.Services
             Guid guidJobOfferId = Guid.Parse(jobOfferId);
 
             var consumer = this.dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
-            var jobOffer = this.dbContext.JobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
+            var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
             application.Consumer = consumer;
             application.State = new ApplicationStateDb()
