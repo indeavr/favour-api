@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FavourAPI.Services.Dtos
 {
-    class ActiveJobOfferDto
+    public class ActiveJobOfferDto
     {
         public string Id { get; set; }
 
@@ -15,7 +15,5 @@ namespace FavourAPI.Services.Dtos
 
         public List<ApplicationDto> Applications { get; set; }
     }
-
-
 }
 

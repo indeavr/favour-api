@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FavourAPI.Services.Dtos;
+using System;
 
 namespace FavourAPI.Dtos
 {
@@ -12,6 +13,6 @@ namespace FavourAPI.Dtos
 
         public ConsumerDto Consumer { get; set; }
 
-        public JobOfferDto JobOffer { get; set; }
+        public ActiveJobOfferDto JobOffer { get; set; }
     }
 }
