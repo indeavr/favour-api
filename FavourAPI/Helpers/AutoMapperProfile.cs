@@ -21,7 +21,7 @@ namespace FavourAPI.Helpers
                 .ForMember(db => db.ProfilePhoto, opt => opt.Ignore())
                 .ForMember(dto => dto.ActiveJobOffers, opt => opt.MapFrom(db => db.Offers.Where(o => o.ActiveState != null).Select(o => o.ActiveState).ToArray()))
                 .ForMember(dto => dto.CompletedJobOffers, opt => opt.MapFrom(db => db.Offers.Where(o => o.CompletedState != null).Select(o => o.CompletedState).ToArray()))
-                .ForMember(dto => dto.OngoingJobOffer, opt => opt.MapFrom(db => db.Offers
+                .ForMember(dto => dto.OngoingJobOffers, opt => opt.MapFrom(db => db.Offers
                 .Where(o => o.OngoingState != null && o.OngoingState.Count > 0)
                 .Select(o => o.OngoingState)
                 .ToArray()));

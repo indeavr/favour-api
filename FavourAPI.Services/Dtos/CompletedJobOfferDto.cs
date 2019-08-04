@@ -11,6 +11,6 @@ namespace FavourAPI.Dtos
 
         public JobOfferDto JobOffer { get; set; }
 
-        public List<CompletionResultDto> Result { get; set; }
+        public List<CompletionResultDto> Results { get; set; }
     }
 }

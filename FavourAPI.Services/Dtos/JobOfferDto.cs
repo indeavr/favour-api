@@ -25,7 +25,5 @@ namespace FavourAPI.Dtos
         public CompanyProviderDto Provider { get; set; }
 
         public List<SkillDto> RequiredSkills { get; set; }
-
-        public List<ApplicationDto> Applications { get; set; }
     }
 }

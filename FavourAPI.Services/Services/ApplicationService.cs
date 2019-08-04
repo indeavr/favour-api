@@ -38,7 +38,7 @@ namespace FavourAPI.Services.Services
             {
                 State = state,
                 Consumer = consumer,
-                JobOffer = jobOffer.ActiveState,
+                ActiveJobOffer = jobOffer.ActiveState,
                 Message = message,
                 Time = time
             };
@@ -72,7 +72,7 @@ namespace FavourAPI.Services.Services
         {
             var guidId = Guid.Parse(applicationId);
             var application = this.dbContext.Applications.Single(a => a.Id == guidId);
-            var jobOffer = application.JobOffer;
+            var jobOffer = application.ActiveJobOffer;
             if (jobOffer == null)
             {
                 throw new InvalidJobOfferStateException("The confirmed job offer was not active");

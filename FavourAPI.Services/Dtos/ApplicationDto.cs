@@ -12,6 +12,6 @@ namespace FavourAPI.Dtos
 
         public ConsumerDto Consumer { get; set; }
 
-        public ActiveJobOfferDto JobOffer { get; set; }
+        public ActiveJobOfferDto ActiveJobOffer { get; set; }
     }
 }
