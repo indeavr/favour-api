@@ -61,9 +61,9 @@ namespace FavourAPI.Helpers
                 .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
                 .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name)))
                 .ForMember(cdto => cdto.ProfilePhoto, opt => opt.Ignore())
-                .ForMember(cdto => cdto.OngoingJobOffers, opt => opt.Ignore())
-                .ForMember(cdto => cdto.SavedJobOffers, opt => opt.Ignore())
-                .ForMember(cdto => cdto.CompletedJobOffers, opt => opt.Ignore());
+                .ForMember(cdto => cdto.OngoingJobOffers, opt => opt.MapFrom(db => db.Id))
+                .ForMember(cdto => cdto.SavedJobOffers, opt => opt.MapFrom(db => db.Id))
+                .ForMember(cdto => cdto.CompletedJobOffers, opt => opt.MapFrom(db => db.Id));
 
             Func<ConsumerDto, Consumer, object> transformSex = (cdto, _) =>
               {
