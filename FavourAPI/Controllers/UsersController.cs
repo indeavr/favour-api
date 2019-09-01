@@ -15,6 +15,7 @@ using System.Security.Claims;
 using FavourAPI.Data.Models;
 using FavourAPI.Services;
 using FavourAPI.Services.Helpers.Exceptions;
+using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,18 +26,20 @@ namespace FavourAPI.Controllers
     [Route("[controller]")]
     public class UsersController : Controller
     {
+        private readonly UserManager<User> userManager;
         private readonly IUserService userService;
         private readonly IMapper mapper;
         private readonly AppSettings appSettings;
 
-        public UsersController([FromServices] IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)
+        public UsersController(UserManager<User> userManager, [FromServices] IUserService userService, IMapper mapper,
+            IOptions<AppSettings> appSettings)
         {
+            this.userManager = userManager;
             this.userService = userService;
             this.mapper = mapper;
             this.appSettings = appSettings.Value;
         }
 
-        // GET: api/<controller>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
         {
@@ -47,17 +50,6 @@ namespace FavourAPI.Controllers
             //return new string[] { "value1", "value2" };
         }
 
-        //// PUT api/<controller>/5
-        //[HttpPut]
-        //public string Put(int id, [FromBody]UserDto value)
-        //{
-        //    this.userService.Add(new User(value.Email, value.Password));
-        //    var result = this.userService.Authenticate(value.Email, value.Password);
-
-        //    return result.Token;
-        //}
-
-
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] UserDto userDto)
@@ -65,7 +57,7 @@ namespace FavourAPI.Controllers
             UserDto user;
             try
             {
-                user = this.userService.Authenticate(userDto.Email, userDto.Password);
+                //user = this.userService.Authenticate(userDto.Email, userDto.Password);
             }
             catch (EmailAppException ex)
             {
@@ -111,11 +103,30 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserDto user)
+        public async Task<IActionResult> Register([FromBody] UserDto userDto)
         {
-            var result = await this.userService.Create(user.Email, user.Password);
+            var user = new User() { Email = userDto.Email, UserName = userDto.Email };
+            var result = await this.userManager.CreateAsync(user, userDto.Password);
+            if (result.Succeeded)
+            {
+                var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.Page(
+                    "/Account/ConfirmEmail",
+                    pageHandler: null,
+                    values: new { userId = user.Id, code = code },
+                    protocol: Request.Scheme
+                    );
 
-            return this.FromResult(result);
+                await _emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
+                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(returnUrl);
+            }
+
+            //var result = await this.userService.Create(user.Email, user.Password);
+
+            return Ok();
         }
 
         [HttpGet("refresh")]
@@ -159,11 +170,12 @@ namespace FavourAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UserDto userDto)
+        public async Task<IActionResult> Update(string id, [FromBody] UserDto userDto)
         {
             // map dto to entity and set id
             var user = this.mapper.Map<User>(userDto);
-            user.Id = id;
+            var idGuid = Guid.Parse(id);
+            user.Id = idGuid;
 
             try
             {

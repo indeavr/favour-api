@@ -37,25 +37,25 @@ namespace FavourAPI.Services
 
         public UserDto Authenticate(string email, string password)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                throw new EmailAppException("Email is required in order to authenticate");
+            //if (string.IsNullOrWhiteSpace(email))
+            //    throw new EmailAppException("Email is required in order to authenticate");
 
-            if (string.IsNullOrWhiteSpace(password))
-                throw new PasswordAppException("Password is required in order to authenticate");
+            //if (string.IsNullOrWhiteSpace(password))
+            //    throw new PasswordAppException("Password is required in order to authenticate");
 
-            var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
+            //var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
 
             // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
-            if (user == null)
-                throw new EmailAppException($"There is no user with such email ({email})");
+            //if (user == null)
+                //throw new EmailAppException($"There is no user with such email ({email})");
 
             // check if password is correct
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                throw new PasswordAppException("Wrong password");
+            //if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            //    throw new PasswordAppException("Wrong password");
 
             // authentication successful
-            return mapper.Map<UserDto>(user);
+            return mapper.Map<UserDto>(null);
         }
 
         public IEnumerable<User> GetAll()
@@ -72,11 +72,11 @@ namespace FavourAPI.Services
 
         public async Task<Result<object>> Create(string email, string password)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                return new InvalidResult<object>("Email is required !");
+            //if (string.IsNullOrWhiteSpace(email))
+            //    return new InvalidResult<object>("Email is required !");
 
-            if (string.IsNullOrWhiteSpace(password))
-                return new InvalidResult<object>("Password is required!");
+            //if (string.IsNullOrWhiteSpace(password))
+            //    return new InvalidResult<object>("Password is required!");
 
             // Password validations
             // int passMinLen = 8;
@@ -97,56 +97,56 @@ namespace FavourAPI.Services
             //    return new InvalidResult<object>($"Email ({email}) is already taken!");
 
             // Password hashing
-            byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            //byte[] passwordHash, passwordSalt;
+            //CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            User user = new User()
-            {
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                PermissionMy = new PermissionMy(),
-                Email = email
-            };
+            //User user = new User()
+            //{
+            //    PasswordHash = passwordHash,
+            //    PasswordSalt = passwordSalt,
+            //    PermissionMy = new PermissionMy(),
+            //    Email = email
+            //};
 
 
             //user.PermissionMy = new PermissionMy();
-            //dbContext.PermissionMys.Add(new PermissionMy() { User = user });
+            ////dbContext.PermissionMys.Add(new PermissionMy() { User = user });
 
-            this.dbContext.Users.Add(user);
-            await this.dbContext.SaveChangesAsync();
+            //this.dbContext.Users.Add(user);
+            //await this.dbContext.SaveChangesAsync();
 
             return new OkResult<object>(new { });
         }
 
         public async Task Update(User userParam, string password = null)
         {
-            var user = this.dbContext.Users.Find(userParam.Id);
+            //var user = this.dbContext.Users.Find(userParam.Id);
 
-            if (user == null)
-                throw new AppException("User not found");
+            //if (user == null)
+            //    throw new AppException("User not found");
 
-            if (userParam.Email != user.Email)
-            {
-                // username has changed so check if the new username is already taken
-                if (this.dbContext.Users.Any(x => x.Email == userParam.Email))
-                    throw new AppException("Username " + userParam.Email + " is already taken");
-            }
+            //if (userParam.Email != user.Email)
+            //{
+            //    // username has changed so check if the new username is already taken
+            //    if (this.dbContext.Users.Any(x => x.Email == userParam.Email))
+            //        throw new AppException("Username " + userParam.Email + " is already taken");
+            //}
 
-            // update user properties
-            user.Email = userParam.Email;
+            //// update user properties
+            //user.Email = userParam.Email;
 
-            // update password if it was entered
-            if (!string.IsNullOrWhiteSpace(password))
-            {
-                byte[] passwordHash, passwordSalt;
-                CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            //// update password if it was entered
+            //if (!string.IsNullOrWhiteSpace(password))
+            //{
+            //    byte[] passwordHash, passwordSalt;
+            //    CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-                user.PasswordHash = passwordHash;
-                user.PasswordSalt = passwordSalt;
-            }
+            //    user.PasswordHash = passwordHash;
+            //    user.PasswordSalt = passwordSalt;
+            //}
 
-            this.dbContext.Users.Update(user);
-            await this.dbContext.SaveChangesAsync();
+            //this.dbContext.Users.Update(user);
+            //await this.dbContext.SaveChangesAsync();
         }
 
         public async Task Delete(string userId)
@@ -162,8 +162,8 @@ namespace FavourAPI.Services
 
         public async Task UpdatePermissions(string userId, Action<PermissionMy> updater)
         {
-            Guid guidUserId = Guid.Parse(userId);
-            var permission = this.dbContext.PermissionMys.Single(p => p.Id == guidUserId);
+            var userIdGuid = Guid.Parse(userId);
+            var permission = this.dbContext.PermissionMys.Single(p => p.Id == userIdGuid);
 
             updater.Invoke(permission);
 

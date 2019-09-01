@@ -24,6 +24,9 @@ using FavourAPI.Data;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Services;
 using Newtonsoft.Json;
+using FavourAPI.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 
 namespace FavourAPI
 {
@@ -41,7 +44,7 @@ namespace FavourAPI
         {
             services.AddCors();
             services.AddMvc()
-                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling= ReferenceLoopHandling.Ignore)
+                .AddJsonOptions(jo => jo.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 
@@ -89,6 +92,43 @@ namespace FavourAPI
             });
 
             // configure DI for application services
+            services.AddDefaultIdentity<User>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<WorkFavourDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 2;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+            });
+
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    // Cookie settings
+            //    options.Cookie.HttpOnly = true;
+            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+            //    options.LoginPath = "/Identity/Account/Login";
+            //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            //    options.SlidingExpiration = true;
+            //});
+
+            // Data Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyProviderService, CompanyProviderService>();
             services.AddScoped<IPersonProviderService, PersonProviderService>();
