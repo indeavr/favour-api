@@ -132,6 +132,7 @@ namespace FavourAPI.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpPost("confirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {

@@ -29,12 +29,12 @@ namespace FavourAPI
             var envApiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
         
             var client = new SendGridClient(envApiKey);
-            var from = new EmailAddress("team@workfavour.com", "Alexander Kissiov");
+            var from = new EmailAddress("team@workfavour.com", "Team Workfavour");
             var to = new EmailAddress(email);
             var plainTextContent = message;
             var htmlContent = message;
 
-            var msg = MailHelper.CreateSingleEmail(from, to, "adsadas", "adsadasdsa","dasadsada");
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
 
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
