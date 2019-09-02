@@ -16,6 +16,8 @@ using FavourAPI.Data.Models;
 using FavourAPI.Services;
 using FavourAPI.Services.Helpers.Exceptions;
 using Microsoft.AspNetCore.Identity;
+using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,14 +29,16 @@ namespace FavourAPI.Controllers
     public class UsersController : Controller
     {
         private readonly UserManager<User> userManager;
+        private readonly IEmailSender emailSender;
         private readonly IUserService userService;
         private readonly IMapper mapper;
         private readonly AppSettings appSettings;
 
-        public UsersController(UserManager<User> userManager, [FromServices] IUserService userService, IMapper mapper,
+        public UsersController(UserManager<User> userManager, IEmailSender emailSender, [FromServices] IUserService userService, IMapper mapper,
             IOptions<AppSettings> appSettings)
         {
             this.userManager = userManager;
+            this.emailSender = emailSender;
             this.userService = userService;
             this.mapper = mapper;
             this.appSettings = appSettings.Value;
@@ -57,7 +61,7 @@ namespace FavourAPI.Controllers
             UserDto user;
             try
             {
-                //user = this.userService.Authenticate(userDto.Email, userDto.Password);
+                user = this.userService.Authenticate(userDto.Email, userDto.Password);
             }
             catch (EmailAppException ex)
             {
@@ -109,22 +113,36 @@ namespace FavourAPI.Controllers
             var result = await this.userManager.CreateAsync(user, userDto.Password);
             if (result.Succeeded)
             {
-                var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url.Page(
-                    "/Account/ConfirmEmail",
-                    pageHandler: null,
-                    values: new { userId = user.Id, code = code },
-                    protocol: Request.Scheme
-                    );
+                string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                //string callbackUrl = Url.Page(
+                //    "/users/confirmEmail",
+                //    pageHandler: null,
+                //    values: new { userId = user.Id, code = code },
+                //    protocol: Request.Scheme
+                //    );
 
-                await _emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                string callbackUrl = $"http://localhost:44334/users/confirmEmail?userId={user.Id}&code={code}";
 
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return LocalRedirect(returnUrl);
+                await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
+                    $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
             }
 
             //var result = await this.userService.Create(user.Email, user.Password);
+
+            return Ok();
+        }
+
+        [HttpPost("confirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
+            {
+                ModelState.AddModelError("", "User Id and Code are required");
+                return BadRequest(ModelState);
+            }
+
+            var user = this.userService.GetById(userId);
+            IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
 
             return Ok();
         }

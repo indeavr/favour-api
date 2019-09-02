@@ -64,10 +64,10 @@ namespace FavourAPI.Services
             return this.dbContext.Users;
         }
 
-        public UserDto GetById(string userId)
+        public User GetById(string userId)
         {
             Guid guidUserId = Guid.Parse(userId);
-            return mapper.Map<UserDto>(this.dbContext.Users.Find(guidUserId));
+            return this.dbContext.Users.Find(guidUserId);
         }
 
         public async Task<Result<object>> Create(string email, string password)

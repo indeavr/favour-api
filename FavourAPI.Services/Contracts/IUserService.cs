@@ -13,7 +13,7 @@ namespace FavourAPI.Services
 
         IEnumerable<User> GetAll();
 
-        UserDto GetById(string id);
+        User GetById(string id);
 
         Task UpdatePermissions(string userId, Action<PermissionMy> updater);
 
