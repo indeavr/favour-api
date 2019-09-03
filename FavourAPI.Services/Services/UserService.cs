@@ -37,25 +37,25 @@ namespace FavourAPI.Services
 
         public UserDto Authenticate(string email, string password)
         {
-            //if (string.IsNullOrWhiteSpace(email))
-            //    throw new EmailAppException("Email is required in order to authenticate");
+            if (string.IsNullOrWhiteSpace(email))
+                throw new EmailAppException("Email is required in order to authenticate");
 
-            //if (string.IsNullOrWhiteSpace(password))
-            //    throw new PasswordAppException("Password is required in order to authenticate");
+            if (string.IsNullOrWhiteSpace(password))
+                throw new PasswordAppException("Password is required in order to authenticate");
 
-            //var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
+            var user = this.dbContext.Users.SingleOrDefault(x => x.Email == email);
 
             // Debug.WriteLine(this.dbContext.PermissionMys.SingleOrDefault(x => x.Id == user.Id).User.PermissionMy);
             // check if username exists
             //if (user == null)
-                //throw new EmailAppException($"There is no user with such email ({email})");
+            //throw new EmailAppException($"There is no user with such email ({email})");
 
             // check if password is correct
             //if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             //    throw new PasswordAppException("Wrong password");
 
             // authentication successful
-            return mapper.Map<UserDto>(null);
+            return mapper.Map<UserDto>(user);
         }
 
         public IEnumerable<User> GetAll()

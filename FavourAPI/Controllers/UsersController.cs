@@ -18,6 +18,7 @@ using FavourAPI.Services.Helpers.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Web;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -121,7 +122,7 @@ namespace FavourAPI.Controllers
                 //    protocol: Request.Scheme
                 //    );
 
-                string callbackUrl = $"http://localhost:44334/users/confirmEmail?userId={user.Id}&code={code}";
+                string callbackUrl = $"https://localhost:44334/users/confirmEmail?userId={HttpUtility.UrlEncode(user.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
 
                 await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
                     $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
@@ -141,6 +142,7 @@ namespace FavourAPI.Controllers
                 ModelState.AddModelError("", "User Id and Code are required");
                 return BadRequest(ModelState);
             }
+            //var parsedCode = 
 
             var user = this.userService.GetById(userId);
             IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
