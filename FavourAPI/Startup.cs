@@ -28,6 +28,13 @@ using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using GraphQL;
+using FavourAPI.GraphQL;
+using GraphQL.Http;
+using GraphQL.Types;
+using GraphQL.Server.Ui.Playground;
+using GraphQL.Server;
+using GraphQL.Server.Transports.AspNetCore;
 
 namespace FavourAPI
 {
@@ -57,6 +64,24 @@ namespace FavourAPI
             string domain = $"https://{Configuration["Auth0:Domain"]}";
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+
+            // GraphQL
+            services.AddSingleton<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
+
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<IDocumentWriter, DocumentWriter>();
+
+            services.AddSingleton<UserType>();
+            services.AddSingleton<FavourQuery>();
+
+            services.AddSingleton<ISchema, FavourSchema>();
+            services.AddGraphQL(_ =>
+            {
+                _.EnableMetrics = true;
+                _.ExposeExceptions = true;
+            })
+              .AddUserContextBuilder(httpContext => new GraphQLUserContext { User = httpContext.User });
 
             services.AddAuthentication(opt =>
             {
@@ -93,7 +118,7 @@ namespace FavourAPI
             });
 
             // configure DI for application services
-            services.AddDefaultIdentity<User>()
+            services.AddDefaultIdentity<Data.Models.User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<WorkFavourDbContext>();
 
@@ -173,15 +198,22 @@ namespace FavourAPI
                 app.UseHsts();
             }
 
-            app.UseCors(x => x
+            // add http for Schema at default url /graphql
+            app.UseGraphQL<ISchema>("/graphql");
 
+            // use graphql-playground at default url /ui/playground
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
+            {
+                Path = "/ui/playground"
+            });
+
+            app.UseCors(x => x
                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            // app.UseMiddleware<RequestResponseLoggingMiddleware>();
             app.UseMvc();
         }
     }
