@@ -58,10 +58,9 @@ namespace FavourAPI.Services
             return mapper.Map<UserDto>(user);
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserDto> GetAll()
         {
-            // return users without passwords
-            return this.dbContext.Users;
+            return this.dbContext.Users.Select(u => mapper.Map<UserDto>(u));
         }
 
         public UserDto GetById(string userId)

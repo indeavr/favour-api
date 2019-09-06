@@ -11,7 +11,7 @@ namespace FavourAPI.Services
     {
         UserDto Authenticate(string username, string password);
 
-        IEnumerable<User> GetAll();
+        IEnumerable<UserDto> GetAll();
 
         UserDto GetById(string id);
 
