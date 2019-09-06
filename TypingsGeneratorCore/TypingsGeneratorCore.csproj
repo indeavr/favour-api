@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Reference Include="Reinforced.Typings">
-      <HintPath>..\Typings\RtLib\Reinforced.Typings.dll</HintPath>
+      <HintPath>..\Typings\Reinforced.Typings.dll</HintPath>
     </Reference>
   </ItemGroup>
 
