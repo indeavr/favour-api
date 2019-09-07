@@ -9,7 +9,6 @@ using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
 using System.Threading.Tasks;
 using System.Text;
-using FavourAPI.Services.Dtos;
 using System.Collections.Generic;
 
 namespace FavourAPI.Services
@@ -119,10 +118,10 @@ namespace FavourAPI.Services
 
         public async Task SaveJobOffer(string userId, string jobOfferId)
         {
-            this.dbContext.ConsumerJobOffers.Add(new ConsumerJobOffer()
+            this.dbContext.SavedJobOffers.Add(new SavedJobOffer()
             {
                 JobOfferId = Guid.Parse(jobOfferId),
-                ConsumerId = Guid.Parse(userId)
+                ConsumerId = Guid.Parse(userId),
             });
 
             await this.dbContext.SaveChangesAsync();
@@ -141,8 +140,8 @@ namespace FavourAPI.Services
 
             var dto = this.mapper.Map<ConsumerDto>(consumerDb);
 
-            var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobs);
-            dto.CompletedJobs = completedJobs;
+            var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobOffers);
+            dto.CompletedJobOffers = completedJobs;
             if (withPhoto)
             {
                 var buffer = await this.blobService.GetImage(consumerDb.ProfilePhoto.Name.ToString(), consumerDb.ProfilePhoto.Size);
@@ -152,7 +151,7 @@ namespace FavourAPI.Services
             return dto;
         }
 
-        private List<CompletionResultDto> ReduceCompletedJobsInformation(List<CompletionResultDto> completionResults)
+        private string[] ReduceCompletedJobsInformation(string[] completionResults)
         {
             // to be used in future for reducing the amount of data being sent back to the frontend
             return completionResults;

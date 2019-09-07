@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FavourAPI.Services.Dtos
 {
-    public class JobSearchQueryDto
+    public class JobSearchQuery
     {
         [FromQuery(Name = "accessTime")]
         public long AcessTime { get; set; }
@@ -17,10 +17,10 @@ namespace FavourAPI.Services.Dtos
         [FromQuery(Name = "chunkSize")]
         public string ChunkSize { get; set; }
 
-        [FromQuery(Name ="keyword")]
+        [FromQuery(Name = "keyword")]
         public string Keyword { get; set; }
 
-        [FromQuery(Name = "location")]
+        [FromQuery(Name = "keyword")]
         public string Location { get; set; }
 
         [FromQuery(Name = "shifts")]

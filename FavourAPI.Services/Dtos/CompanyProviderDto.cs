@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿using FavourAPI.Services.Dtos;
+using System;
 namespace FavourAPI.Dtos
 {
     public class CompanyProviderDto
@@ -24,6 +24,10 @@ namespace FavourAPI.Dtos
 
         public OfficeDto[] Offices { get; set; }
 
-        public JobOfferDto[] Offers { get; set; }
+        public ActiveJobOfferDto[] ActiveJobOffers { get; set; }
+
+        public ProviderOngoingOfferDto[] OngoingJobOffers { get; set; }
+
+        public CompletedJobOfferDto[] CompletedJobOffers { get; set; }
     }
 }

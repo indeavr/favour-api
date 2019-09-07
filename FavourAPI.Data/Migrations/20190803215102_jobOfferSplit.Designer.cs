@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190803215102_jobOfferSplit")]
+    partial class jobOfferSplit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,6 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted");
-
                     b.HasKey("Id");
 
                     b.ToTable("ActiveJobOffers");
@@ -35,6 +35,8 @@ namespace FavourAPI.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("ActiveJobOfferId");
 
                     b.Property<Guid?>("ConsumerId");
 
@@ -47,6 +49,8 @@ namespace FavourAPI.Data.Migrations
                     b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActiveJobOfferId");
 
                     b.HasIndex("ConsumerId");
 
@@ -88,9 +92,13 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid?>("ConsumerId");
 
+                    b.Property<Guid?>("ResultId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ConsumerId");
+
+                    b.HasIndex("ResultId");
 
                     b.ToTable("CompletedJobOffers");
                 });
@@ -101,8 +109,6 @@ namespace FavourAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CompletedJobOfferId");
-
                     b.Property<Guid?>("ConsumerId");
 
                     b.Property<string>("ReviewForConsumer");
@@ -112,8 +118,6 @@ namespace FavourAPI.Data.Migrations
                     b.Property<string>("StateValue");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompletedJobOfferId");
 
                     b.HasIndex("ConsumerId");
 
@@ -331,47 +335,47 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("997163a9-52ab-4043-95ce-c81d3aa33c39"),
+                            Id = new Guid("da709213-0650-4806-9f53-1eab31bc8e95"),
                             Name = "Test industry 1"
                         },
                         new
                         {
-                            Id = new Guid("44ec62a0-8b22-4ba2-8763-1eed27524f9e"),
+                            Id = new Guid("217aeb85-dbb0-447a-b603-e83c9e7c4fd8"),
                             Name = "Test industry 2"
                         },
                         new
                         {
-                            Id = new Guid("45c228f4-669d-4523-9f2c-c87e60f8b899"),
+                            Id = new Guid("61c0b069-dbbb-4904-89a0-abcbc77d0c2d"),
                             Name = "Test industry 3"
                         },
                         new
                         {
-                            Id = new Guid("92cf3d59-eef9-4347-a845-5467701ee78a"),
+                            Id = new Guid("32f88f25-9cfa-43ea-bf82-c3dc556cb35a"),
                             Name = "Test industry 4"
                         },
                         new
                         {
-                            Id = new Guid("219efd7a-bbad-4d53-b83f-6594450e105e"),
+                            Id = new Guid("32d9844c-2a20-4301-acd2-d9267c1d56b9"),
                             Name = "Test industry 5"
                         },
                         new
                         {
-                            Id = new Guid("3cbf2543-e45a-4466-b6e2-4dffd27605e2"),
+                            Id = new Guid("c8c362a8-053d-4a7e-bd29-eaf641f041f8"),
                             Name = "Test industry 6"
                         },
                         new
                         {
-                            Id = new Guid("015abf17-3be9-4d6b-a70d-f67cb3ddcc8a"),
+                            Id = new Guid("543a04e7-0d27-48c7-9ffe-7b118f1e2367"),
                             Name = "Test industry 7"
                         },
                         new
                         {
-                            Id = new Guid("a182aa6f-8e8a-44a3-af3c-4db69ef15a70"),
+                            Id = new Guid("7eabe811-117e-4e5a-954b-47bab514b9e9"),
                             Name = "Test industry 8"
                         },
                         new
                         {
-                            Id = new Guid("c57365fe-27bf-4f59-84a4-c6c2ccecc31c"),
+                            Id = new Guid("353a8925-ae2a-41e2-8352-e1c8297badc8"),
                             Name = "Test industry 9"
                         });
                 });
@@ -514,17 +518,14 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.OngoingJobOffer", b =>
                 {
-                    b.Property<Guid>("ConsumerId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("JobOfferId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<Guid?>("ConsumerId");
 
-                    b.Property<bool>("IsDeleted");
+                    b.HasKey("Id");
 
-                    b.HasKey("ConsumerId", "JobOfferId");
-
-                    b.HasIndex("JobOfferId");
+                    b.HasIndex("ConsumerId");
 
                     b.ToTable("OngoingJobOffers");
                 });
@@ -698,37 +699,37 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("19032a8e-00bc-4a18-ac99-dc5edb18a4e0"),
+                            Id = new Guid("48adbd4a-5f8b-4592-9c3d-9632988ab656"),
                             Name = "Test position 1"
                         },
                         new
                         {
-                            Id = new Guid("32418dae-8137-4f12-aef7-d21edbf5579d"),
+                            Id = new Guid("352b8c3b-22d0-42de-bba9-33a3add5331d"),
                             Name = "Test position 2"
                         },
                         new
                         {
-                            Id = new Guid("9b972c59-144e-4184-9023-ac4cfd9ae2f9"),
+                            Id = new Guid("f9aba110-896f-4026-84cc-f8a8c71009b3"),
                             Name = "Test position 3"
                         },
                         new
                         {
-                            Id = new Guid("bac34a9f-9145-4b81-8858-c41d4329c505"),
+                            Id = new Guid("aa7256ec-2494-45c6-aa85-4c773ec4db33"),
                             Name = "Test position 4"
                         },
                         new
                         {
-                            Id = new Guid("34c02830-49d0-4423-b2a5-5f623356f93e"),
+                            Id = new Guid("8dfcd12d-9a97-4cfc-b492-5920e1571f74"),
                             Name = "Test position 5"
                         },
                         new
                         {
-                            Id = new Guid("3cafc1ad-9812-4a31-9cf4-3ac06b8ed53f"),
+                            Id = new Guid("aee6824e-147e-4787-8105-25728ae2fc0a"),
                             Name = "Test position 6"
                         },
                         new
                         {
-                            Id = new Guid("84cbcc7b-83eb-4966-b903-64941c45bff7"),
+                            Id = new Guid("b1b8f2dd-3949-454f-971f-2cd0c4739c91"),
                             Name = "Test position 7"
                         });
                 });
@@ -903,11 +904,15 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Application", b =>
                 {
+                    b.HasOne("FavourAPI.Data.Models.ActiveJobOffer")
+                        .WithMany("Applications")
+                        .HasForeignKey("ActiveJobOfferId");
+
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
                         .WithMany("Applications")
                         .HasForeignKey("ConsumerId");
 
-                    b.HasOne("FavourAPI.Data.Models.ActiveJobOffer", "JobOffer")
+                    b.HasOne("FavourAPI.Data.Models.JobOffer", "JobOffer")
                         .WithMany("Applications")
                         .HasForeignKey("JobOfferId");
 
@@ -938,14 +943,14 @@ namespace FavourAPI.Data.Migrations
                         .WithOne("CompletedState")
                         .HasForeignKey("FavourAPI.Data.Models.CompletedJobOffer", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FavourAPI.Data.Models.CompletionResult", "Result")
+                        .WithMany()
+                        .HasForeignKey("ResultId");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompletionResult", b =>
                 {
-                    b.HasOne("FavourAPI.Data.Models.CompletedJobOffer")
-                        .WithMany("Result")
-                        .HasForeignKey("CompletedJobOfferId");
-
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
                         .WithMany()
                         .HasForeignKey("ConsumerId");
@@ -1092,12 +1097,11 @@ namespace FavourAPI.Data.Migrations
                 {
                     b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
                         .WithMany("OngoingJobOffers")
-                        .HasForeignKey("ConsumerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ConsumerId");
 
                     b.HasOne("FavourAPI.Data.Models.JobOffer", "JobOffer")
-                        .WithMany("OngoingState")
-                        .HasForeignKey("JobOfferId")
+                        .WithOne("OngoingState")
+                        .HasForeignKey("FavourAPI.Data.Models.OngoingJobOffer", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

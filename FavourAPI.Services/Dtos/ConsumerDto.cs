@@ -19,13 +19,15 @@ namespace FavourAPI.Dtos
 
         public string Sex { get; set; }
 
-        public List<string> Skills { get; set; }
+        public string[] Skills { get; set; }
 
-        public List<JobOfferDto> SavedJobOffers { get; set; }
+        public string[] SavedJobOffers { get; set; }
 
-        public List<CompletionResultDto> CompletedJobs { get; set; }
+        public string[] CompletedJobOffers { get; set; }
 
-        public List<ApplicationDto> Applications { get; set; }
+        public string[] OngoingJobOffers { get; set; }
+
+        public ApplicationDto[] Applications { get; set; }
 
         public string ProfilePhoto { get; set; }
 

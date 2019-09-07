@@ -5,9 +5,7 @@ using FavourAPI.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using FavourAPI.Data.Models.Enums;
-using FavourAPI.Services.Dtos;
 
 namespace FavourAPI.Helpers
 {
@@ -19,7 +17,14 @@ namespace FavourAPI.Helpers
             CreateMap<UserDto, User>();
 
             CreateMap<CompanyProvider, CompanyProviderDto>()
-                .ForMember(db => db.ProfilePhoto, opt => opt.Ignore());
+             .ForMember(db => db.ProfilePhoto, opt => opt.Ignore())
+            .ForMember(dto => dto.ActiveJobOffers, opt => opt.MapFrom(db => db.Offers.Where(o => o.ActiveState != null).Select(o => o.ActiveState).ToArray()))
+            .ForMember(dto => dto.CompletedJobOffers, opt => opt.MapFrom(db => db.Offers.Where(o => o.CompletedState != null).Select(o => o.CompletedState).ToArray()))
+            .ForMember(dto => dto.OngoingJobOffers, opt => opt.MapFrom(db => db.Offers
+            .Where(o => o.OngoingState != null && o.OngoingState.Count > 0)
+            .Select(o => o.OngoingState)
+            .ToArray()));
+
             CreateMap<CompanyProviderDto, CompanyProvider>()
                 .ForMember(dto => dto.FoundedYear, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.FoundedYear)))
                 .ForMember(dto => dto.ProfilePhoto, opt => opt.Ignore());
@@ -48,7 +53,6 @@ namespace FavourAPI.Helpers
             CreateMap<IList<IndustryPosition>, PositionDto[]>().ConstructUsing((ips, rc) => ips.Select(ip => rc.Mapper.Map<PositionDto>(ip.Position)).ToArray());
             CreateMap<IList<PositionSkill>, SkillDto[]>().ConstructUsing((pss, rc) => pss.Select(ps => rc.Mapper.Map<SkillDto>(ps.Skill)).ToArray());
 
-
             CreateMap<CompletionResult, CompletionResultDto>();
             CreateMap<CompletionResultDto, CompletionResult>();
 
@@ -56,7 +60,10 @@ namespace FavourAPI.Helpers
                 .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number))
                 .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
                 .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name)))
-                .ForMember(cdto => cdto.ProfilePhoto, opt => opt.Ignore());
+                .ForMember(cdto => cdto.ProfilePhoto, opt => opt.Ignore())
+                .ForMember(cdto => cdto.OngoingJobOffers, opt => opt.MapFrom(db => db.Id))
+                .ForMember(cdto => cdto.SavedJobOffers, opt => opt.MapFrom(db => db.Id))
+                .ForMember(cdto => cdto.CompletedJobOffers, opt => opt.MapFrom(db => db.Id));
 
             Func<ConsumerDto, Consumer, object> transformSex = (cdto, _) =>
               {
@@ -68,17 +75,15 @@ namespace FavourAPI.Helpers
                 .ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }))
                 .ForMember(c => c.Sex, opt => opt.MapFrom(transformSex))
                 .ForMember(c => c.Skills, opt => opt.MapFrom(cdto => cdto.Skills.Select(s => new Skill() { Name = s })))
-                 .ForMember(c => c.ProfilePhoto, opt => opt.Ignore());
+                .ForMember(c => c.OngoingJobOffers, opt => opt.Ignore())
+                .ForMember(c => c.SavedJobOffers, opt => opt.Ignore())
+                .ForMember(c => c.CompletedJobOffers, opt => opt.Ignore())
+                .ForMember(c => c.Applications, opt => opt.Ignore())
+                .ForMember(c => c.ProfilePhoto, opt => opt.Ignore());
 
 
-            Func<JobOfferDto, JobOffer, object> transformJobState = (jobDto, _) =>
-            {
-                Enum.Parse<JobOfferState>(jobDto.State);
-                return new JobOfferStateDb() { Value = jobDto.State };
-            };
-
-            CreateMap<JobOffer, JobOfferDto>().ForMember(j => j.State, opt => opt.MapFrom(j => j.State.Value));
-            CreateMap<JobOfferDto, JobOffer>().ForMember(j => j.State, opt => opt.Ignore());
+            CreateMap<JobOffer, JobOfferDto>().ForMember(jo => jo.ProviderId, opt => opt.MapFrom(jo => jo.Provider.Id));
+            CreateMap<JobOfferDto, JobOffer>();
 
             CreateMap<PermissionMy, PermissionsMyDto>();
             CreateMap<PermissionsMyDto, PermissionMy>();
@@ -108,7 +113,7 @@ namespace FavourAPI.Helpers
             CreateMap<EducationDto, Education>();
 
             CreateMap<string, Position>().ConstructUsing(str => new Position() { Name = str });
-            CreateMap<Position, string>().ConstructUsing(pos=>pos.Name);
+            CreateMap<Position, string>().ConstructUsing(pos => pos.Name);
 
             CreateMap<Experience, ExperienceDto>();
             CreateMap<ExperienceDto, Experience>();
@@ -116,6 +121,39 @@ namespace FavourAPI.Helpers
             CreateMap<FieldOfStudy, FieldOfStudyDto>();
             CreateMap<FieldOfStudyDto, FieldOfStudy>();
 
+            CreateMap<OngoingJobOffer, ConsumerOngoingOfferDto>().ConstructUsing((ojo, contextResolver) =>
+            {
+                return new ConsumerOngoingOfferDto()
+                {
+                    JobOffer = contextResolver.Mapper.Map<JobOfferDto>(ojo.JobOffer),
+                    IsDeleted = ojo.IsDeleted
+                };
+            });
+
+            CreateMap<OngoingJobOffer[], ProviderOngoingOfferDto[]>().ConstructUsing((ojos, contextResolver) =>
+            {
+                var groups = ojos.GroupBy(ojo => ojo.JobOffer);
+
+                var result = new List<ProviderOngoingOfferDto>();
+                foreach (var group in groups)
+                {
+                    result.Add(new ProviderOngoingOfferDto()
+                    {
+                        Consumers = group.Select(g => contextResolver.Mapper.Map<ConsumerDto>(g.Consumer)).ToArray(),
+                        IsDeleted = group.Key.OngoingState.First().IsDeleted,
+                        JobOffer = contextResolver.Mapper.Map<JobOfferDto>(group.Key)
+                    });
+                }
+
+                return result.ToArray();
+            });
+
+
+            CreateMap<CompletedJobOfferDto, CompletedJobOffer>();
+            CreateMap<CompletedJobOffer, CompletedJobOfferDto>();
+
+            CreateMap<ActiveJobOffer, ActiveJobOfferDto>();
+            CreateMap<ActiveJobOfferDto, ActiveJobOffer>();
         }
     }
 }

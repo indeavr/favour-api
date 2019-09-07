@@ -34,7 +34,7 @@ namespace FavourAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            throw new Exception("gosho");
         }
 
         // POST api/values

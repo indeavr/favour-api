@@ -37,7 +37,7 @@ namespace FavourAPI.Services.Services
             {
                 State = state,
                 Consumer = consumer,
-                JobOffer = jobOffer,
+                ActiveJobOffer = jobOffer.ActiveState,
                 Message = message,
                 Time = time
             };
@@ -70,38 +70,31 @@ namespace FavourAPI.Services.Services
         public async Task<Result<object>> ConfirmJobOffer(string applicationId)
         {
             var guidId = Guid.Parse(applicationId);
-            var jobOffer = this.dbContext.Applications.Single(application => application.Id == guidId).JobOffer;
-            if (jobOffer.State.Value != nameof(JobOfferState.Active))
+            var application = this.dbContext.Applications.Single(a => a.Id == guidId);
+            var jobOffer = application.ActiveJobOffer;
+            if (jobOffer == null)
             {
-                throw new InvalidJobOfferStateException(jobOffer.State.Value, JobOfferState.Active);
+                throw new InvalidJobOfferStateException("The confirmed job offer was not active");
             }
-            return await ChangeJobOfferState(jobOffer, JobOfferState.Upcoming);
+
+            await this.dbContext.OngoingJobOffers.AddAsync(new OngoingJobOffer()
+            {
+                Consumer = application.Consumer,
+                JobOffer = jobOffer.JobOffer,
+            });
+
+            await this.dbContext.SaveChangesAsync();
+
+            return new OkResult<object>(null);
         }
 
         public List<ApplicationDto> Get(string jobOfferId)
         {
-            var applicationsForJob = dbContext.JobOffers.FirstOrDefault(job => job.Id == Guid.Parse(jobOfferId));
+            var applicationsForJob = dbContext.ActiveJobOffers.FirstOrDefault(job => job.Id == Guid.Parse(jobOfferId));
 
             return applicationsForJob.Applications
                 .Select(application => this.mapper.Map<ApplicationDto>(application))
                 .ToList();
-        }
-
-        private async Task<Result<object>> ChangeJobOfferState(JobOffer jobOffer, JobOfferState newState)
-        {
-            try
-            {
-                var newStateDb = this.dbContext.JobOfferStates.Single(jos => jos.Value == nameof(newState));
-                jobOffer.State = newStateDb;
-                this.dbContext.JobOffers.Update(jobOffer);
-                await this.dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                return new FavourAPI.Services.Helpers.Result.InvalidResult<object>(e.Message);
-            }
-
-            return new FavourAPI.Services.Helpers.Result.OkResult<object>(null);
         }
 
         private async Task<Result<object>> ChangeApplicationState(Application application, ApplicationState newState)
