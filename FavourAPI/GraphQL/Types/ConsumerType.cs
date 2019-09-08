@@ -11,10 +11,10 @@ namespace FavourAPI.GraphQL.Types
     {
         public ConsumerType()
         {
-            Field(c => c.Id);
+            Field(c => c.Id, type: typeof(IdGraphType)).Description("userId of the consumer");
             Field(c => c.FirstName);
             Field(c => c.LastName);
-            Field(c => c.User);
+            //Field(c => c.User);
             //Field(c => c.Skills);
             //Field(c => c.Experiences);
             //Field(c => c.Education);
