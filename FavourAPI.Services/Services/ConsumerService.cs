@@ -54,7 +54,7 @@ namespace FavourAPI.Services
 
             Guid guidUserId = Guid.Parse(userId);
             var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == guidUserId);
-            currentUser.PermissionMy.HasSufficientInfoConsumer = true;
+            //currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
             if (currentUser != null)
             {

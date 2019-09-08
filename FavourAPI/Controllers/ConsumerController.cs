@@ -37,6 +37,7 @@ namespace FavourAPI.Controllers
             return Ok(consumer);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
         {
