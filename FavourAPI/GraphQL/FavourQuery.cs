@@ -19,7 +19,7 @@ namespace FavourAPI.GraphQL
                 resolve: context => userRepo.Get(context.GetArgument<Guid>("id"))
             );
 
-            Field<UserType>(
+            Field<ConsumerType>(
                "consumer",
                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
                resolve: context => 
