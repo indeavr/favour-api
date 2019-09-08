@@ -24,8 +24,12 @@ namespace FavourAPI.GraphQL
                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
                resolve: context => 
                {
-                   var consumer = consumerService.GetById(context.GetArgument<string>("userId"));
-                   return consumer;
+                   var result = consumerService.GetById(context.GetArgument<string>("userId"), false);
+                   if (result.Exception != null)
+                   {
+                       return result.Exception;
+                   }
+                   return result.Result;
                }
            );
 
