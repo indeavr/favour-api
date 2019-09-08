@@ -29,16 +29,15 @@ namespace FavourAPI.Controllers
     [Route("[controller]")]
     public class UsersController : Controller
     {
-        private readonly UserManager<User> userManager;
         private readonly IEmailSender emailSender;
         private readonly IUserService userService;
         private readonly IMapper mapper;
         private readonly AppSettings appSettings;
 
-        public UsersController(UserManager<User> userManager, IEmailSender emailSender, [FromServices] IUserService userService, IMapper mapper,
+        public UsersController(IEmailSender emailSender, [FromServices] IUserService userService, IMapper mapper,
             IOptions<AppSettings> appSettings)
         {
-            this.userManager = userManager;
+            //this.userRepo = userManager;
             this.emailSender = emailSender;
             this.userService = userService;
             this.mapper = mapper;
@@ -110,25 +109,25 @@ namespace FavourAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserDto userDto)
         {
-            var user = new User() { Email = userDto.Email, UserName = userDto.Email };
-            var result = await this.userManager.CreateAsync(user, userDto.Password);
-            if (result.Succeeded)
-            {
-                string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                //string callbackUrl = Url.Page(
-                //    "/users/confirmEmail",
-                //    pageHandler: null,
-                //    values: new { userId = user.Id, code = code },
-                //    protocol: Request.Scheme
-                //    );
+            //var user = new User() { Email = userDto.Email, UserName = userDto.Email };
+            //var result = await this.userManager.CreateAsync(user, userDto.Password);
+            //if (result.Succeeded)
+            //{
+            //    string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+            //    //string callbackUrl = Url.Page(
+            //    //    "/users/confirmEmail",
+            //    //    pageHandler: null,
+            //    //    values: new { userId = user.Id, code = code },
+            //    //    protocol: Request.Scheme
+            //    //    );
 
-                string callbackUrl = $"https://localhost:44334/users/confirmEmail?userId={HttpUtility.UrlEncode(user.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
+            //    string callbackUrl = $"https://localhost:44334/users/confirmEmail?userId={HttpUtility.UrlEncode(user.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
 
-                await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
-            }
+            //    await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
+            //        $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
+            //}
 
-            //var result = await this.userService.Create(user.Email, user.Password);
+            ////var result = await this.userService.Create(user.Email, user.Password);
 
             return Ok();
         }
@@ -137,15 +136,15 @@ namespace FavourAPI.Controllers
         [HttpPost("confirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
-            {
-                ModelState.AddModelError("", "User Id and Code are required");
-                return BadRequest(ModelState);
-            }
-            //var parsedCode = 
+            //if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
+            //{
+            //    ModelState.AddModelError("", "User Id and Code are required");
+            //    return BadRequest(ModelState);
+            //}
+            ////var parsedCode = 
 
-            var user = this.userService.GetById(userId);
-            IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
+            //var user = this.userService.GetById(userId);
+            //IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
 
             return Ok();
         }

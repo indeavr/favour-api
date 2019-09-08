@@ -1,13 +1,12 @@
 ﻿using FavourAPI.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace FavourAPI
+namespace FavourAPI.Data
 {
     public class UserManager : AspNetUserManager<User>
     {
