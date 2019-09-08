@@ -15,7 +15,15 @@ namespace FavourAPI.GraphQL.Types
             Field(c => c.FirstName);
             Field(c => c.LastName);
             //Field(c => c.User);
-            //Field(c => c.Skills);
+            Field(
+                name: "Skills",
+                type: typeof(SkillType)
+            );
+            Field(
+                name: "DesiredPositions",
+                type: typeof(ListGraphType<PositionType>),
+                 resolve: context => context.Source.DesiredPositions
+            );
             //Field(c => c.Experiences);
             //Field(c => c.Education);
             //Field(c => c.Location);

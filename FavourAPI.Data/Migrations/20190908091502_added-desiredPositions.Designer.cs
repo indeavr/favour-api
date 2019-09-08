@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190908091502_added-desiredPositions")]
+    partial class addeddesiredPositions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1184,7 +1186,7 @@ namespace FavourAPI.Data.Migrations
                         .WithMany("TargetedPositions")
                         .HasForeignKey("CompanyProviderId");
 
-                    b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
+                    b.HasOne("FavourAPI.Data.Models.Consumer")
                         .WithMany("DesiredPositions")
                         .HasForeignKey("ConsumerId");
 

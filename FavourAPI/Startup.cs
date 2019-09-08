@@ -179,6 +179,8 @@ namespace FavourAPI
             services.AddScoped<JobOfferType>();
             services.AddScoped<ConsumerType>();
             services.AddScoped<CompanyProviderType>();
+            services.AddScoped<SkillType>();
+            services.AddScoped<PositionType>();
 
             services.AddScoped<FavourQuery>();
 
