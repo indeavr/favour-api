@@ -36,6 +36,7 @@ using GraphQL.Server.Ui.Playground;
 using GraphQL.Server;
 using GraphQL.Server.Transports.AspNetCore;
 using FavourAPI.Data.Repos;
+using FavourAPI.GraphQL.Types;
 
 namespace FavourAPI
 {
@@ -175,6 +176,9 @@ namespace FavourAPI
             services.AddScoped<IDocumentWriter, DocumentWriter>();
 
             services.AddScoped<UserType>();
+            services.AddScoped<JobOfferType>();
+            services.AddScoped<ConsumerType>();
+
             services.AddScoped<FavourQuery>();
 
             services.AddScoped<ISchema, FavourSchema>();

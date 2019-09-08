@@ -12,7 +12,10 @@ namespace FavourAPI.GraphQL.Types
         public JobOfferType()
         {
             Field(j => j.Title);
-            Field(j => j.Provider);
+            Field(
+                name: "Provider",
+                type: typeof(CompanyProviderType)
+            );
             Field(j => j.Money);
         }
     }
