@@ -21,6 +21,8 @@ namespace FavourAPI.Dtos
 
         public List<string> Skills { get; set; }
 
+        public List<string> DesiredPositions { get; set; }
+
         public List<JobOfferDto> SavedJobOffers { get; set; }
 
         public List<CompletionResultDto> CompletedJobs { get; set; }

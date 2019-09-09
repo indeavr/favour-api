@@ -37,6 +37,7 @@ using GraphQL.Server;
 using GraphQL.Server.Transports.AspNetCore;
 using FavourAPI.Data.Repos;
 using FavourAPI.GraphQL.Types;
+using FavourAPI.GraphQL.InputTypes;
 
 namespace FavourAPI
 {
@@ -183,6 +184,13 @@ namespace FavourAPI
             services.AddScoped<PositionType>();
 
             services.AddScoped<FavourQuery>();
+            services.AddScoped<FavourMutation>();
+
+            // Input Types
+            services.AddScoped<ConsumerInputType>();
+            services.AddScoped<LocationInputType>();
+            services.AddScoped<EducationInputType>();
+            services.AddScoped<ExperienceInputType>();
 
             services.AddScoped<ISchema, FavourSchema>();
             services.AddGraphQL(_ =>
