@@ -60,7 +60,7 @@ namespace FavourAPI.Services
 
         public IEnumerable<UserDto> GetAll()
         {
-            return this.dbContext.Users.Select(u => mapper.Map<UserDto>(u));
+            return this.dbContext.Users.ToArray().Select(u => mapper.Map<UserDto>(u));
         }
 
         public UserDto GetById(string userId)

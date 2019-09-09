@@ -1,8 +1,5 @@
 ﻿using FavourAPI.Dtos;
 using GraphQL.Types;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FavourAPI.Services.GraphQLTypes
 {
@@ -17,6 +14,13 @@ namespace FavourAPI.Services.GraphQLTypes
             Field(cp => cp.Bulstat);
             Field(cp => cp.FoundedYear);
             Field(cp => cp.Description);
+
+            Field<ListGraphType<IndustryType>>(nameof(CompanyProviderDto.Industries));
+            Field<ListGraphType<ActiveJobOfferType>>(nameof(CompanyProviderDto.ActiveJobOffers));
+            Field<ListGraphType<OngoingJobOfferType>>(nameof(CompanyProviderDto.OngoingJobOffers));
+            Field<ListGraphType<OfficeType>>(nameof(CompanyProviderDto.Offices));
+            Field<ListGraphType<PositionType>>(nameof(CompanyProviderDto.TargetedPositions));
+
         }
     }
 }

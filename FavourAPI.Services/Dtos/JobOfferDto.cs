@@ -22,7 +22,7 @@ namespace FavourAPI.Dtos
 
         public List<PeriodDto> Periods { get; set; }
 
-        public string ProviderId { get; set; }
+        public CompanyProviderDto Provider { get; set; }
 
         public List<SkillDto> RequiredSkills { get; set; }
     }

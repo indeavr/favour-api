@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FavourAPI.Dtos
+namespace FavourAPI.Services.Dtos
 {
-    public class ProviderOngoingOfferDto
+    public class OngoingJobOfferDto
     {
         public ConsumerDto[] Consumers { get; set; }
 

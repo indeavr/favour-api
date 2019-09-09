@@ -151,10 +151,17 @@ namespace FavourAPI.Services
             return dto;
         }
 
-        private string[] ReduceCompletedJobsInformation(string[] completionResults)
+        private CompletedJobOfferDto[] ReduceCompletedJobsInformation(CompletedJobOfferDto[] completionResults)
         {
             // to be used in future for reducing the amount of data being sent back to the frontend
             return completionResults;
+        }
+
+        public async Task<IEnumerable<ConsumerDto>> GetAll()
+        {
+            var consumers = await this.dbContext.Consumers.ToAsyncEnumerable().ToArray();
+
+            return consumers.Select(c => this.mapper.Map<ConsumerDto>(c));
         }
 
         // Only for admins

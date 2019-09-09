@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using FavourAPI.ApiModels;
-using FavourAPI.Data;
 using FavourAPI.Services;
 using FavourAPI.Services.GraphQLTypes;
 using GraphQL.Types;
@@ -9,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FavourAPI
+namespace FavourAPI.Queries
 {
-    public class FavourQuery : ObjectGraphType
+    public class UserQuery : ObjectGraphType
     {
-        public FavourQuery(IUserService userService, IMapper mapper)
+        public UserQuery(IUserService userService, IMapper mapper)
         {
             Field<ListGraphType<UserType>>("users", arguments: new QueryArguments(),
             resolve: context =>
@@ -26,10 +24,10 @@ namespace FavourAPI
                 Name = "id"
             }),
             resolve: context =>
-             {
-                 var userId = context.GetArgument<string>("id");
-                 return userService.GetById(userId);
-             });
+            {
+                var userId = context.GetArgument<string>("id");
+                return userService.GetById(userId);
+            });
         }
     }
 }

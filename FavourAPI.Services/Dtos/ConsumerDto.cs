@@ -21,11 +21,11 @@ namespace FavourAPI.Dtos
 
         public string[] Skills { get; set; }
 
-        public string[] SavedJobOffers { get; set; }
+        public SavedJobOfferDto[] SavedJobOffers { get; set; }
 
-        public string[] CompletedJobOffers { get; set; }
+        public CompletedJobOfferDto[] CompletedJobOffers { get; set; }
 
-        public string[] OngoingJobOffers { get; set; }
+        public OngoingJobOfferDto[] OngoingJobOffers { get; set; }
 
         public ApplicationDto[] Applications { get; set; }
 

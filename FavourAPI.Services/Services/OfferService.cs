@@ -79,5 +79,13 @@ namespace FavourAPI.Services
 
             return offers.Select(o => mapper.Map<JobOfferDto>(o)).ToList();
         }
+
+        public async Task<JobOfferDto> GetById(string jobId)
+        {
+            var idAsGuid = Guid.Parse(jobId);
+            var jobOfferDb = await this.dbContext.JobOffers.FindAsync(jobId);
+
+            return this.mapper.Map<JobOfferDto>(jobOfferDb);
+        }
     }
 }

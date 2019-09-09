@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Text;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
+using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
@@ -136,6 +137,12 @@ namespace FavourAPI.Services
             }
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<CompanyProviderDto>> GetAll()
+        {
+            var allProviders = await this.dbContext.CompanyProviders.ToAsyncEnumerable().ToArray();
+            return allProviders.Select(cp => mapper.Map<CompanyProviderDto>(cp));
         }
     }
 }
