@@ -5,10 +5,10 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace FavourAPI
+namespace FavourAPI.Services.Services
 {
     public class EmailSender : IEmailSender
     {
@@ -27,14 +27,14 @@ namespace FavourAPI
         public Task Execute(string apiKey, string subject, string message, string email)
         {
             var envApiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
-        
+
             var client = new SendGridClient(envApiKey);
             var from = new EmailAddress("team@workfavour.com", "Team Workfavour");
             var to = new EmailAddress(email);
             var plainTextContent = message;
             var htmlContent = message;
 
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent,htmlContent);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html

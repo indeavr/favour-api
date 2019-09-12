@@ -1,4 +1,4 @@
-﻿using FavourAPI.Services.Dtos;
+﻿using FavourAPI.Dtos;
 using System;
 
 namespace FavourAPI.Dtos

@@ -12,6 +12,7 @@ namespace FavourAPI.GraphQL
         public FavourSchema(IDependencyResolver resolver) :base(resolver)
         {
             Query = resolver.Resolve<FavourQuery>();
+            Mutation = resolver.Resolve<FavourMutation>();
         }
     }
 }

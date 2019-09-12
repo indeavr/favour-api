@@ -37,15 +37,15 @@ namespace FavourAPI.Controllers
             return Ok(companyProvider);
         }
 
-        [HttpPut]
-        public async Task<ActionResult> AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
-        {
-            await this.companyProviderService.AddCompanyProvider(userId, companyProvider);
-            await this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
-            var companyProviderResult = await this.companyProviderService.GetProvider(userId, false);
+        //[HttpPut]
+        //public async Task<ActionResult> AddCompanyProvider([FromQuery] string userId, [FromBody] CompanyProviderDto companyProvider)
+        //{
+        //    await this.companyProviderService.AddCompanyProvider(userId, companyProvider);
+        //    await this.userService.UpdatePermissions(userId, (p) => p.HasSufficientInfoProvider = true);
+        //    var companyProviderResult = await this.companyProviderService.GetProvider(userId, false);
 
-            return Ok(companyProviderResult);
-        }
+        //    return Ok(companyProviderResult);
+        //}
 
         [HttpGet("office")]
         public async Task<ActionResult<OfficeDto>> GetOffices([FromQuery] string userId)

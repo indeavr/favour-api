@@ -1,4 +1,6 @@
-﻿using GraphQL.Types;
+﻿using FavourAPI.Data.Models;
+using FavourAPI.GraphQL.Types;
+using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
-    public class ConsumerInputType : InputObjectGraphType
+    public class ConsumerInputType : InputObjectGraphType<ConsumerType>
     {
         public ConsumerInputType()
         {
-            Name = "ConsumerInput";
+            Name = "Consumer";
 
-            Field<NonNullGraphType<StringGraphType>>("firstName");
+            Field<StringGraphType>("firstName");
 
-            Field<NonNullGraphType<StringGraphType>>("lastName");
+            Field<StringGraphType>("lastName");
 
-            Field<NonNullGraphType<StringGraphType>>("phoneNumber");
+            //Field<StringGraphType>("phoneNumber");
 
-            Field<NonNullGraphType<LocationInputType>>("location");
+            Field<LocationInputType>("location");
 
-            Field<NonNullGraphType<StringGraphType>>("sex");
+            //Field<StringGraphType>("sex");
 
             Field<ListGraphType<StringGraphType>>("skills");
 
@@ -34,31 +36,31 @@ namespace FavourAPI.GraphQL.InputTypes
         }
     }
 
-    public class LocationInputType : InputObjectGraphType
+    public class LocationInputType : InputObjectGraphType<Location>
     {
         public LocationInputType()
         {
-            Name = "LocationInput";
+            Name = "Location";
 
             Field<NonNullGraphType<StringGraphType>>("town");
         }
     }
 
-    public class ExperienceInputType : InputObjectGraphType
+    public class ExperienceInputType : InputObjectGraphType<Experience>
     {
         public ExperienceInputType()
         {
-            Name = "ExperienceInput";
+            Name = "Experience";
 
             Field<NonNullGraphType<StringGraphType>>("position");
         }
     }
 
-    public class EducationInputType : InputObjectGraphType
+    public class EducationInputType : InputObjectGraphType<Education>
     {
         public EducationInputType()
         {
-            Name = "EducationInput";
+            Name = "Education";
 
             Field<NonNullGraphType<StringGraphType>>("field");
         }

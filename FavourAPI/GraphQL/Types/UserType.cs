@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Data.Models;
 using FavourAPI.Data.Repos;
+using FavourAPI.Dtos;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.GraphQL
 {
-    public class UserType : ObjectGraphType<User>
+    public class UserType : ObjectGraphType<UserDto>
     {
         public UserType()
         {

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Text;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers;
-using FavourAPI.Services.Dtos;
 
 namespace FavourAPI.Services
 {

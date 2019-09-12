@@ -1,7 +1,6 @@
 ﻿using FavourAPI.Dtos;
 using FavourAPI.Services;
 using FavourAPI.Services.Contracts;
-using FavourAPI.Services.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

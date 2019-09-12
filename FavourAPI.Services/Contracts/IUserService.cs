@@ -1,5 +1,5 @@
-﻿using FavourAPI.ApiModels;
-using FavourAPI.Data.Models;
+﻿using FavourAPI.Data.Models;
+using FavourAPI.Dtos;
 using FavourAPI.Services.Helpers.Result;
 using System;
 using System.Collections.Generic;
@@ -9,18 +9,18 @@ namespace FavourAPI.Services
 {
     public interface IUserService
     {
-        UserDto Authenticate(string username, string password);
+        Task<UserDto> Create(string email, string password);
 
-        IEnumerable<User> GetAll();
+        Task<UserDto> Login(string username, string password);
 
-        User GetById(string id);
+        //IEnumerable<User> GetAll();
 
-        Task UpdatePermissions(string userId, Action<PermissionMy> updater);
+        //User GetById(string id);
 
-        Task<Result<object>> Create(string email, string password);
+        //Task UpdatePermissions(string userId, Action<PermissionMy> updater);
 
-        Task Update(User user, string password = null);
+        //Task Update(User user, string password = null);
 
-        Task Delete(string id);
+        //Task Delete(string id);
     }
 }

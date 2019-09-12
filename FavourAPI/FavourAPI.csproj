@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\GraphQLController.cs" />
+    <Compile Remove="EmailSender.cs" />
     <Compile Remove="GraphQL\First.cs" />
     <Compile Remove="GraphQL\GraphQLMiddleware.cs" />
     <Compile Remove="GraphQL\GraphQLSettings.cs" />
@@ -30,7 +31,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-    <PackageReference Include="SendGrid" Version="9.12.0" />
   </ItemGroup>
 
   <ItemGroup>

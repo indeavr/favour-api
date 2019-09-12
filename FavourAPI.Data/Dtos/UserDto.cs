@@ -1,13 +1,15 @@
 ﻿using FavourAPI.Dtos;
 using System;
 
-namespace FavourAPI.ApiModels
+namespace FavourAPI.Dtos
 {
     public class UserDto
     {
         public string Id { get; set; }
 
         public string Email { get; set; }
+
+        public bool EmailConfirmed { get; set; }
 
         public string Password { get; set; }
 

@@ -5,13 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+    <Compile Remove="Services\UserManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FavourAPI.Data\FavourAPI.Data.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.2.0" />
+
+    <PackageReference Include="SendGrid" Version="9.12.0" />
   </ItemGroup>
 
     <ItemGroup>

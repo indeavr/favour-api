@@ -11,7 +11,8 @@ namespace FavourAPI.GraphQL.Types
     {
         public CompanyProviderType()
         {
-
+            Field(c => c.Id, type: typeof(IdGraphType)).Description("userId of the company");
+            Field(c => c.Name);
         }
     }
 }

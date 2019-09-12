@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FavourAPI.Services.Dtos
+namespace FavourAPI.Dtos
 {
     public class LocationDto
     {

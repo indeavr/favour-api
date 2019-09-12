@@ -3,6 +3,7 @@ using FavourAPI.GraphQL.InputTypes;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Services;
 using GraphQL.Types;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,17 @@ namespace FavourAPI.GraphQL
             Field<ConsumerType>(
                 "createConsumer",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name= "userId"},
-                    new QueryArgument<NonNullGraphType<ConsumerInputType>> { Name= "consumer"}
+                    new QueryArgument<NonNullGraphType<ConsumerInputType>> { Name = "consumer" },
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" }
                 ),
                 resolve: context =>
                 {
                     var userId = context.GetArgument<string>("userId");
-                    var consumer = context.GetArgument<Consumer>("consumer");
+                    var consumerArg = context.Arguments["consumer"];
+                    var consumer = consumerArg != null
+                        ? JToken.FromObject(consumerArg).ToObject<Consumer>()
+                        : null;
+
                     var newConsumer = consumerService.AddConsumer(userId, consumer);
                     return newConsumer;
                 }
