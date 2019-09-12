@@ -68,39 +68,39 @@ namespace FavourAPI
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
-            //services.AddAuthentication(opt =>
-            //{
-            //    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddJwtBearer(x =>
-            //{
-            //    x.Events = new JwtBearerEvents
-            //    {
-            //        OnTokenValidated = context =>
-            //        {
-            //            var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-            //            var userId = context.Principal.Identity.Name;
-            //            var user = userService.GetById(userId);
-            //            if (user == null)
-            //            {
-            //                // return unauthorized if user no longer exists
-            //                context.Fail("Unauthorized");
-            //            }
-            //            return Task.CompletedTask;
-            //        }
-            //    };
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false
-            //    };
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        var userRepo = context.HttpContext.RequestServices.GetRequiredService<IUserRepo>();
+                        var userId = context.Principal.Identity.Name;
+                        var user = userRepo.GetById(userId);
+                        if (user == null)
+                        {
+                            // return unauthorized if user no longer exists
+                            context.Fail("Unauthorized");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
 
-            //});
+            });
 
             // configure DI for application services
             services.AddDefaultIdentity<User>()
@@ -232,6 +232,11 @@ namespace FavourAPI
                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
+            // must be before it needs to be used
+            app.UseAuthentication();
+
+
             // add http for Schema at default url /graphql
             app.UseGraphQL<ISchema>("/graphql");
 
@@ -246,11 +251,10 @@ namespace FavourAPI
                .AllowAnyMethod()
                .AllowAnyHeader());
 
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
             app.UseMvc();
         }
     }
+
 
     public class RequestResponseLoggingMiddleware
     {

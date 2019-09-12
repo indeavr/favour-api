@@ -7,7 +7,9 @@ namespace FavourAPI.Data.Repos
 {
     public interface IUserRepo
     {
-        Task<UserDto> Get(Guid id);
+        Task<UserDto> GetById(Guid id);
+
+        Task<UserDto> GetById(string id);
 
         Task<UserDto> Create(string email, string password);
 

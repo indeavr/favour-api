@@ -22,9 +22,15 @@ namespace FavourAPI.Data.Repos
             this.userManager = userManager;
         }
 
-        public async Task<UserDto> Get(Guid id)
+        public async Task<UserDto> GetById(Guid id)
         {
             var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            return mapper.Map<UserDto>(user);
+        }
+
+        public async Task<UserDto> GetById(string id)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
             return mapper.Map<UserDto>(user);
         }
 
