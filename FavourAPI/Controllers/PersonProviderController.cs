@@ -19,11 +19,11 @@ namespace FavourAPI.Controllers
             this.personProviderService = pps;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<PersonProviderDto>> GetCompanyProvider([FromQuery] string userId)
-        {
-            return Ok(this.personProviderService.GetPersonProvider(userId));
-        }
+        //[HttpGet]
+        //public async Task<ActionResult<PersonProviderDto>> GetCompanyProvider([FromQuery] string userId)
+        //{
+        //    return Ok(this.personProviderService.GetPersonProvider(userId));
+        //}
 
         [HttpPut]
         public async Task<ActionResult> AddPersonPrvider([FromQuery] string userId, [FromBody] PersonProviderDto personProvider)

@@ -18,11 +18,22 @@ using Newtonsoft.Json;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
-using FavourAPI.Services.GraphQLTypes;
 using FavourAPI.Schemas;
 using FavourAPI.Mutations;
 using FavourAPI.Queries;
 using FavourAPI.Services.GraphQLInputTypes;
+using FavourAPI.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using FavourAPI.GraphQL;
+using GraphQL.Http;
+using GraphQL.Types;
+using FavourAPI.Data.Repos;
+using FavourAPI.GraphQL.Types;
+using FavourAPI.GraphQL.InputTypes;
+using System;
+using FavourAPI.Data.Repos.Interfacces;
 
 namespace FavourAPI
 {
@@ -65,9 +76,9 @@ namespace FavourAPI
                 {
                     OnTokenValidated = context =>
                     {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var userRepo = context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
                         var userId = context.Principal.Identity.Name;
-                        var user = userService.GetById(userId);
+                        var user = userRepo.GetById(userId);
                         if (user == null)
                         {
                             // return unauthorized if user no longer exists
@@ -89,6 +100,53 @@ namespace FavourAPI
             });
 
             // configure DI for application services
+            services.AddDefaultIdentity<User>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<WorkFavourDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 2;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+
+                options.SignIn.RequireConfirmedEmail = true;
+            });
+
+            // requires
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            // using WebPWrecover.Services;
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    // Cookie settings
+            //    options.Cookie.HttpOnly = true;
+            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+            //    options.LoginPath = "/Identity/Account/Login";
+            //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            //    options.SlidingExpiration = true;
+            //});
+
+
+            // Data Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyProviderService, CompanyProviderService>();
             services.AddScoped<IPersonProviderService, PersonProviderService>();
@@ -103,7 +161,7 @@ namespace FavourAPI
             services.AddScoped<IBlobService, BlobService>();
 
             // types
-            services.AddScoped<UserType>();
+            services.AddScoped<GraphQL.UserType>();
             services.AddScoped<CompanyProviderType>();
             services.AddScoped<ConsumerType>();
             services.AddScoped<OfficeType>();
@@ -145,6 +203,39 @@ namespace FavourAPI
                 .UseSqlServer(connection)
                 .EnableSensitiveDataLogging()
             );
+
+            // GraphQL
+            services.AddScoped<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
+
+            services.AddScoped<IDocumentExecuter, DocumentExecuter>();
+            services.AddScoped<IDocumentWriter, DocumentWriter>();
+
+            services.AddScoped<UserType>();
+            services.AddScoped<JobOfferType>();
+            services.AddScoped<ConsumerType>();
+            services.AddScoped<CompanyProviderType>();
+            services.AddScoped<SkillType>();
+            services.AddScoped<PositionType>();
+
+            services.AddScoped<FavourQuery>();
+            services.AddScoped<FavourMutation>();
+
+            // Input Types
+            services.AddScoped<ConsumerInputType>();
+            services.AddScoped<LocationInputType>();
+            services.AddScoped<EducationInputType>();
+            services.AddScoped<ExperienceInputType>();
+
+            services.AddScoped<ISchema, FavourSchema>();
+            services.AddGraphQL(_ =>
+            {
+                _.EnableMetrics = true;
+                _.ExposeExceptions = true;
+            })
+              .AddUserContextBuilder(httpContext => new GraphQLUserContext(httpContext) { User = httpContext.User });
+
+            // Repos
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -160,8 +251,21 @@ namespace FavourAPI
                 app.UseHsts();
             }
 
-            app.UseCors(x => x
+            app.UseHttpsRedirection();
+            // must be before it needs to be used
+            app.UseAuthentication();
 
+
+            // add http for Schema at default url /graphql
+            app.UseGraphQL<ISchema>("/graphql");
+
+            // use graphql-playground at default url /ui/playground
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
+            {
+                Path = "/ui/playground"
+            });
+
+            app.UseCors(x => x
                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader());

@@ -26,6 +26,50 @@ namespace FavourAPI.Services
             this.blobService = blobService;
         }
 
+        public async Task<Consumer> AddConsumer(string userId, Consumer consumer)
+        {
+            //var currentUserInfo = this.dbContext.Consumers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
+
+            // TODO Check if positions and skills are correct
+
+            //var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
+            //var correctPositions = this.dbContext.Positions.Where(s => dbConsumer.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
+
+            //if (!string.IsNullOrEmpty(consumerData.ProfilePhoto))
+            //{
+            //    var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = consumerData.ProfilePhoto.Length };
+            //    profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, consumerData.ProfilePhoto, profilePhoto.ContentType);
+            //    dbConsumer.ProfilePhoto = profilePhoto;
+            //}
+
+            //dbConsumer.Sex = correctSexDb;
+            //dbConsumer.Skills = correctSkills;
+            //dbConsumer.DesiredPositions = correctPositions;
+            //dbConsumer.Id = Guid.Parse(userId);
+
+            //var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
+            //if (phoneNumberDb != null)
+            //{
+            //    dbConsumer.PhoneNumber = phoneNumberDb;
+            //}
+
+            Guid guidUserId = Guid.Parse(userId);
+            var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == guidUserId);
+            //currentUser.PermissionMy.HasSufficientInfoConsumer = true;
+
+            //if (currentUser != null)
+            //{
+            //    this.dbContext.Users.Update(currentUser);
+            //}
+
+            this.dbContext.Consumers.Add(consumer);
+
+
+            await dbContext.SaveChangesAsync();
+
+            return consumer;
+        }
+
         // Add for now
         public async Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
         {
@@ -33,6 +77,7 @@ namespace FavourAPI.Services
             var dbConsumer = mapper.Map<Consumer>(consumerData);
             var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
+            var correctPositions = this.dbContext.Positions.Where(s => dbConsumer.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
 
             if (!string.IsNullOrEmpty(consumerData.ProfilePhoto))
             {
@@ -43,6 +88,7 @@ namespace FavourAPI.Services
 
             dbConsumer.Sex = correctSexDb;
             dbConsumer.Skills = correctSkills;
+            dbConsumer.DesiredPositions = correctPositions;
             dbConsumer.Id = Guid.Parse(userId);
 
             var phoneNumberDb = this.dbContext.PhoneNumbers.FirstOrDefault(number => number.Label == consumerData.PhoneNumber);
@@ -53,7 +99,7 @@ namespace FavourAPI.Services
 
             Guid guidUserId = Guid.Parse(userId);
             var currentUser = this.dbContext.Users.SingleOrDefault(u => u.Id == guidUserId);
-            currentUser.PermissionMy.HasSufficientInfoConsumer = true;
+            //currentUser.PermissionMy.HasSufficientInfoConsumer = true;
 
             if (currentUser != null)
             {
@@ -89,7 +135,7 @@ namespace FavourAPI.Services
             //return CheckForLoginProceedPermission(dbConsumer);
         }
 
-        public async Task<ConsumerDto> GetById(string userId)
+        public async Task<Consumer> GetById(string userId)
         {
             return await this.GetById(userId, true);
         }
@@ -127,7 +173,7 @@ namespace FavourAPI.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ConsumerDto> GetById(string userId, bool withPhoto)
+        public async Task<Consumer> GetById(string userId, bool withPhoto)
         {
             Guid guidUserId = Guid.Parse(userId);
             var consumerDb = dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
@@ -148,7 +194,7 @@ namespace FavourAPI.Services
                 dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             }
 
-            return dto;
+            return consumerDb;
         }
 
         private CompletedJobOfferDto[] ReduceCompletedJobsInformation(CompletedJobOfferDto[] completionResults)

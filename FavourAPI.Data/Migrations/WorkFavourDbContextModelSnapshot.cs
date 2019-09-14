@@ -384,7 +384,11 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("IndustryId1");
+
                     b.HasKey("IndustryId", "PositionId");
+
+                    b.HasIndex("IndustryId1");
 
                     b.HasIndex("PositionId");
 
@@ -683,6 +687,8 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid?>("CompanyProviderId");
 
+                    b.Property<Guid?>("ConsumerId");
+
                     b.Property<Guid?>("FieldOfStudyId");
 
                     b.Property<string>("Name");
@@ -690,6 +696,8 @@ namespace FavourAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyProviderId");
+
+                    b.HasIndex("ConsumerId");
 
                     b.HasIndex("FieldOfStudyId");
 
@@ -823,28 +831,6 @@ namespace FavourAPI.Data.Migrations
                     b.HasIndex("JobOfferId");
 
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Name = "Test skill 1"
-                        },
-                        new
-                        {
-                            Name = "Test skill 2"
-                        },
-                        new
-                        {
-                            Name = "Test skill 3"
-                        },
-                        new
-                        {
-                            Name = "Test skill 4"
-                        },
-                        new
-                        {
-                            Name = "Test skill 5"
-                        });
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Subscription", b =>
@@ -875,22 +861,165 @@ namespace FavourAPI.Data.Migrations
             modelBuilder.Entity("FavourAPI.Data.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email");
+                    b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Password");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
 
-                    b.Property<byte[]>("PasswordHash");
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
 
-                    b.Property<byte[]>("PasswordSalt");
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
 
                     b.Property<string>("Token");
 
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<Guid>("RoleId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderDisplayName");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId");
+
+                    b.Property<Guid>("RoleId");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId");
+
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.ActiveJobOffer", b =>
@@ -1023,8 +1152,7 @@ namespace FavourAPI.Data.Migrations
                 {
                     b.HasOne("FavourAPI.Data.Models.Industry", "Industry")
                         .WithMany("IndustryPositions")
-                        .HasForeignKey("IndustryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("IndustryId1");
 
                     b.HasOne("FavourAPI.Data.Models.Position", "Position")
                         .WithMany("IndustryPositions")
@@ -1175,6 +1303,10 @@ namespace FavourAPI.Data.Migrations
                         .WithMany("TargetedPositions")
                         .HasForeignKey("CompanyProviderId");
 
+                    b.HasOne("FavourAPI.Data.Models.Consumer", "Consumer")
+                        .WithMany("DesiredPositions")
+                        .HasForeignKey("ConsumerId");
+
                     b.HasOne("FavourAPI.Data.Models.FieldOfStudy")
                         .WithMany("Positions")
                         .HasForeignKey("FieldOfStudyId");
@@ -1232,6 +1364,51 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.User", "User")
                         .WithMany("Subscriptions")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("FavourAPI.Data.Models.User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("FavourAPI.Data.Models.User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FavourAPI.Data.Models.User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("FavourAPI.Data.Models.User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

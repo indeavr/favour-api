@@ -1,5 +1,5 @@
-﻿using FavourAPI.Services;
-using FavourAPI.Services.GraphQLTypes;
+﻿using FavourAPI.GraphQL.Types;
+using FavourAPI.Services;
 using GraphQL.Types;
 
 namespace FavourAPI.Queries

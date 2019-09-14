@@ -9,10 +9,46 @@
     <PackageReference Include="GraphQL" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+    <Compile Remove="Dtos\ActiveJobOfferDto.cs" />
+    <Compile Remove="Dtos\CompletedJobOfferDto.cs" />
+    <Compile Remove="Dtos\JobSearchQuery.cs" />
+    <Compile Remove="Dtos\OngoingJobOfferDto.cs" />
+    <Compile Remove="Dtos\SavedJobOfferDto.cs" />
+    <Compile Remove="Services\UserManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Dtos\ActiveJobOfferDto.cs" />
+    <None Include="Dtos\CompletedJobOfferDto.cs" />
+    <None Include="Dtos\JobSearchQuery.cs" />
+    <None Include="Dtos\OngoingJobOfferDto.cs" />
+    <None Include="Dtos\SavedJobOfferDto.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FavourAPI.Data\FavourAPI.Data.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.2.0" />
+
+    <PackageReference Include="SendGrid" Version="9.12.0" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore">
+      <HintPath>..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.identity.entityframeworkcore\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Identity.Stores">
+      <HintPath>..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.identity.stores\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Identity.Stores.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

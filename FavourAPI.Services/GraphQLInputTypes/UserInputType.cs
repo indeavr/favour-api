@@ -1,4 +1,4 @@
-﻿using FavourAPI.ApiModels;
+﻿using FavourAPI.Dtos;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;

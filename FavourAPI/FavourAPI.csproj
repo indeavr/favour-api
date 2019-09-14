@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\GraphQLController.cs" />
+    <Compile Remove="EmailSender.cs" />
+    <Compile Remove="GraphQL\First.cs" />
+    <Compile Remove="GraphQL\GraphQLMiddleware.cs" />
+    <Compile Remove="GraphQL\GraphQLSettings.cs" />
+    <Compile Remove="GraphQL\User.cs" />
     <Compile Remove="IJobOfferService.cs" />
   </ItemGroup>
 
@@ -24,7 +30,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>

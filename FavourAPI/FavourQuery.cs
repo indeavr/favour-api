@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using FavourAPI.ApiModels;
 using FavourAPI.Data;
+using FavourAPI.GraphQL;
 using FavourAPI.Services;
-using FavourAPI.Services.GraphQLTypes;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;

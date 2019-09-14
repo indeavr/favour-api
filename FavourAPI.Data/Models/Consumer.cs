@@ -24,6 +24,8 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Skill> Skills { get; set; }
 
+        public virtual ICollection<Position> DesiredPositions { get; set; }
+
         public virtual ICollection<Application> Applications { get; set; }
 
         public virtual User User { get; set; }

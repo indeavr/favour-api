@@ -1,7 +1,7 @@
-﻿using FavourAPI.ApiModels;
+﻿using FavourAPI.Dtos;
+using FavourAPI.GraphQL;
 using FavourAPI.Services;
 using FavourAPI.Services.GraphQLInputTypes;
-using FavourAPI.Services.GraphQLTypes;
 using GraphQL.Types;
 
 namespace FavourAPI.Mutations

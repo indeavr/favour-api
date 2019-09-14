@@ -2,11 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using FavourAPI.Data.Models;
 using System;
-using System.Linq;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace FavourAPI.Data
 {
-    public class WorkFavourDbContext : DbContext
+    public class WorkFavourDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public WorkFavourDbContext(DbContextOptions<WorkFavourDbContext> options)
             : base(options)
@@ -87,8 +88,14 @@ namespace FavourAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Configuring one-to-one relation
-            modelBuilder.Entity<User>().HasOne<CompanyProvider>(u => u.CompanyProvider).WithOne(cp => cp.User).HasForeignKey<CompanyProvider>(cp => cp.Id);
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.CompanyProvider)
+                .WithOne(cp => cp.User)
+                .HasForeignKey<CompanyProvider>(cp => cp.Id);
+
             modelBuilder.Entity<Permission>().HasIndex(p => new { p.UserId, p.PermissionNameId }).IsUnique();
 
             // Configuring the many-to-many realtions

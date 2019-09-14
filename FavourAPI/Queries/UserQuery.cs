@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
+using FavourAPI.GraphQL;
 using FavourAPI.Services;
-using FavourAPI.Services.GraphQLTypes;
 using GraphQL.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.Queries
 {
