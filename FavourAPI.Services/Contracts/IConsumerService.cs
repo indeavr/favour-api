@@ -2,6 +2,7 @@
 using FavourAPI.Data.Models;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
@@ -12,6 +13,8 @@ namespace FavourAPI.Services
         Task<ConsumerDto> GetById(string userId);
 
         Task<ConsumerDto> GetById(string userId, bool withPhoto);
+
+        Task<IEnumerable<ConsumerDto>> GetAll();
 
         bool CheckForLoginProceedPermission(Consumer consumer);
 

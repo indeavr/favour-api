@@ -1,8 +1,5 @@
 ﻿using FavourAPI.Dtos;
 using GraphQL.Types;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FavourAPI.Services.GraphQLTypes
 {
@@ -15,9 +12,7 @@ namespace FavourAPI.Services.GraphQLTypes
             Field<LocationType>(nameof(OfficeDto.Location));
             Field<ListGraphType<IndustryType>>(nameof(OfficeDto.Industries));
             Field<ListGraphType<EmailType>>(nameof(OfficeDto.Emails));
-            Field<ListGraphType<PhoneNumerType>>(nameof(OfficeDto.PhoneNumbers));
-
+            Field<ListGraphType<PhoneNumberType>>(nameof(OfficeDto.PhoneNumbers));
         }
-
     }
 }

@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Http;
 using FavourAPI.Helpers;
 using System.Text;
 using FavourAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using AutoMapper;
-using System.IO;
-using Microsoft.AspNetCore.Http.Internal;
 using FavourAPI.Data;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Services;
@@ -27,8 +18,11 @@ using Newtonsoft.Json;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
-using GraphQL.Types;
 using FavourAPI.Services.GraphQLTypes;
+using FavourAPI.Schemas;
+using FavourAPI.Mutations;
+using FavourAPI.Queries;
+using FavourAPI.Services.GraphQLInputTypes;
 
 namespace FavourAPI
 {
@@ -107,20 +101,42 @@ namespace FavourAPI
             services.AddScoped<IApplicationService, ApplicationService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<IBlobService, BlobService>();
+
+            // types
             services.AddScoped<UserType>();
             services.AddScoped<CompanyProviderType>();
+            services.AddScoped<ConsumerType>();
+            services.AddScoped<OfficeType>();
+            services.AddScoped<SkillType>();
+            services.AddScoped<IndustryType>();
+            services.AddScoped<JobOfferType>();
+            services.AddScoped<PositionType>();
+            services.AddScoped<LocationType>();
+            services.AddScoped<EmailType>();
+            services.AddScoped<OngoingJobOfferType>();
+            services.AddScoped<SavedJobOfferType>();
+            services.AddScoped<CompletedJobOfferType>();
+            services.AddScoped<CompletionResultType>();
+            services.AddScoped<PeriodType>();
+            services.AddScoped<ApplicationType>();
+            services.AddScoped<ActiveJobOfferType>();
+            services.AddScoped<PhoneNumberType>();
 
+            //input types
+            services.AddScoped<UserInputType>();
 
-            foreach (var type in GetGraphQlTypes())
-            {
-                services.AddScoped(type);
-            }
+            // schemas
+            services.AddScoped<UserSchema>();
+
+            // mutations
+            services.AddScoped<UserMutation>();
+
+            // queries
+            services.AddScoped<UserQuery>();
 
             services.AddScoped<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
-            services.AddScoped<FavourSchema>();
 
             services.AddGraphQL(x => x.ExposeExceptions = true).AddGraphTypes(ServiceLifetime.Scoped);
-
 
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
@@ -129,18 +145,6 @@ namespace FavourAPI
                 .UseSqlServer(connection)
                 .EnableSensitiveDataLogging()
             );
-        }
-
-
-
-
-        static IEnumerable<Type> GetGraphQlTypes()
-        {
-            return typeof(Startup).Assembly
-                .GetTypes()
-                .Where(x => !x.IsAbstract &&
-                            (typeof(IObjectGraphType).IsAssignableFrom(x) ||
-                             typeof(IInputObjectGraphType).IsAssignableFrom(x)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
