@@ -1,68 +1,31 @@
-﻿using FavourAPI.Data.Models;
+﻿using FavourAPI.Dtos;
 using FavourAPI.GraphQL.Types;
 using GraphQL.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
-    public class ConsumerInputType : InputObjectGraphType<ConsumerType>
+    public class ConsumerInputType : InputObjectGraphType<ConsumerDto>
     {
         public ConsumerInputType()
         {
             Name = "Consumer";
 
-            Field<StringGraphType>("firstName");
+            Field(c => c.Id);
+            Field(c => c.FirstName);
+            Field(c => c.LastName);
+            Field(c => c.ProfilePhoto);
+            Field(c => c.Sex);
+            Field(c => c.PhoneNumber);
 
-            Field<StringGraphType>("lastName");
-
-            //Field<StringGraphType>("phoneNumber");
-
-            Field<LocationInputType>("location");
-
-            //Field<StringGraphType>("sex");
-
-            Field<ListGraphType<StringGraphType>>("skills");
-
-            Field<ListGraphType<StringGraphType>>("desiredPositions");
-
-            Field<StringGraphType>("profilePhoto");
-
-            Field<ListGraphType<ExperienceInputType>>("experiences");
-
-            Field<ListGraphType<EducationInputType>>("educations");
-        }
-    }
-
-    public class LocationInputType : InputObjectGraphType<Location>
-    {
-        public LocationInputType()
-        {
-            Name = "Location";
-
-            Field<NonNullGraphType<StringGraphType>>("town");
-        }
-    }
-
-    public class ExperienceInputType : InputObjectGraphType<Experience>
-    {
-        public ExperienceInputType()
-        {
-            Name = "Experience";
-
-            Field<NonNullGraphType<StringGraphType>>("position");
-        }
-    }
-
-    public class EducationInputType : InputObjectGraphType<Education>
-    {
-        public EducationInputType()
-        {
-            Name = "Education";
-
-            Field<NonNullGraphType<StringGraphType>>("field");
+            Field<ListGraphType<StringGraphType>>(nameof(ConsumerDto.Skills));
+            Field<LocationInputType>(nameof(ConsumerDto.Location));
+            Field<ListGraphType<ExperienceInputType>>(nameof(ConsumerDto.Experiences));
+            Field<ListGraphType<EducationInputType>>(nameof(ConsumerDto.Educations));
+            Field<ListGraphType<StringGraphType>>(nameof(ConsumerDto.DesiredPositions));
+            Field<ListGraphType<ApplicationInputType>>(nameof(ConsumerDto.Applications));
+            Field<ListGraphType<CompletedJobOfferInputType>>(nameof(ConsumerDto.CompletedJobOffers));
+            Field<ListGraphType<SavedJobOfferInputType>>(nameof(ConsumerDto.SavedJobOffers));
+            Field<ListGraphType<OngoingJobOfferInputType>>(nameof(ConsumerDto.OngoingJobOffers));
         }
     }
 }

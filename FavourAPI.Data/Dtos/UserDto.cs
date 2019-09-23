@@ -17,6 +17,8 @@ namespace FavourAPI.Dtos
 
         public CompanyProviderDto CompanyProvider { get; set; }
 
+        public ConsumerDto Consumer { get; set; }
+
         public PermissionsMyDto PermissionMy { get; set; }
     }
 }

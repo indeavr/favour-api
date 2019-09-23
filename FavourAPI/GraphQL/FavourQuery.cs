@@ -1,4 +1,4 @@
-﻿using FavourAPI.Data.Repos.Interfacces;
+﻿using FavourAPI.Data.Repositories;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Services;
 using GraphQL.Types;
@@ -8,7 +8,13 @@ namespace FavourAPI.GraphQL
 {
     public class FavourQuery : ObjectGraphType
     {
-        public FavourQuery(IUserRepository userRepo, IOfferService offerService, IConsumerService consumerService)
+        public FavourQuery(IUserRepository userRepo,
+            IOfferService offerService,
+            IConsumerService consumerService,
+            ICompanyProviderRepository companyProviderRepository,
+            IExperienceRepository experienceRepository,
+            IPositionRepository positionRepository,
+            ISkillRepository skillRepository)
         {
             Field<UserType>(
                 "user",
@@ -16,19 +22,25 @@ namespace FavourAPI.GraphQL
                 resolve: context => userRepo.GetById(context.GetArgument<Guid>("id"))
             );
 
-            Field<ConsumerType>(
+            FieldAsync<ConsumerType>(
                "consumer",
                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
-               resolve: context => 
-               {
-                   var result = consumerService.GetById(context.GetArgument<string>("userId"), false);
-                   if (result.Exception != null)
-                   {
-                       return result.Exception;
-                   }
-                   return result.Result;
-               }
+               resolve: async context =>
+              {
+                  var result = await consumerService.GetById(context.GetArgument<string>("userId"), true);
+                  return result;
+              }
            );
+
+            FieldAsync<CompanyProviderType>(
+                "companyProvider",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType>() { Name = "id" }),
+                resolve: async context =>
+                {
+                    var providerId = context.GetArgument<string>("id");
+
+                    return await companyProviderRepository.GetById(providerId);
+                });
 
             Field<JobOfferType>(
                 "jobOffer",
@@ -43,6 +55,34 @@ namespace FavourAPI.GraphQL
                     return offerService.GetAllOffers();
                 }
             );
+
+            FieldAsync<ListGraphType<ExperienceType>>(
+                "experiences",
+                resolve: async context =>
+                {
+                    return await experienceRepository.GetAll();
+                });
+
+            FieldAsync<ListGraphType<PositionType>>(
+                "positions",
+                resolve: async context =>
+                {
+                    return await positionRepository.GetAll();
+                });
+
+            FieldAsync<ListGraphType<SkillType>>(
+                "skills",
+                resolve: async context =>
+                {
+                    return await skillRepository.GetAll();
+                });
+
+            FieldAsync<ListGraphType<IndustryType>>(
+                "industries",
+                resolve: async context =>
+                {
+                    return await industryRepository.GetAll();
+                });
         }
     }
 }

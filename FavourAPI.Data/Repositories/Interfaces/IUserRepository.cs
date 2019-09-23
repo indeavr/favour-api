@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace FavourAPI.Data.Repos.Interfacces
+namespace FavourAPI.Data.Repositories
 {
     public interface IUserRepository : IRepository<UserDto>
     {

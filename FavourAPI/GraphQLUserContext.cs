@@ -1,5 +1,4 @@
-﻿using FavourAPI.Data.Repos;
-using FavourAPI.Data.Repos.Interfacces;
+﻿using FavourAPI.Data.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;

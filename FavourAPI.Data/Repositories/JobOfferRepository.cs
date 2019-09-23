@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FavourAPI.Data.Repos.Interfacces;
 using FavourAPI.Dtos;
 
-namespace FavourAPI.Data.Repos
+namespace FavourAPI.Data.Repositories
 {
     public class JobOfferRepository : IJobOfferRepository
     {

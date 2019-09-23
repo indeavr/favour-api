@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FavourAPI.Data.Repos.Interfacces
+namespace FavourAPI.Data.Repositories
 {
     public interface IRepository<T>
     {

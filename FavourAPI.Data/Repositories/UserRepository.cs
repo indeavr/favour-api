@@ -5,22 +5,18 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
-using FavourAPI.Data.Repos.Interfacces;
 using System.Collections.Generic;
 
-namespace FavourAPI.Data.Repos
+namespace FavourAPI.Data.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly WorkFavourDbContext dbContext;
-        private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
 
         public UserRepository(WorkFavourDbContext workFavourDbContext, UserManager<User> userManager, IMapper mapper)
+            : base(workFavourDbContext, mapper)
         {
-            this.dbContext = workFavourDbContext;
             this.userManager = userManager;
-            this.mapper = mapper;
         }
 
         public async Task<UserDto> GetById(Guid id)
@@ -49,7 +45,12 @@ namespace FavourAPI.Data.Repos
 
             var user = await this.userManager.CreateAsync(newUser, password);
 
-            return this.mapper.Map<UserDto>(user);
+            foreach (var err in user.Errors)
+            {
+                throw new Exception(err.Description);
+            }
+
+            return this.mapper.Map<UserDto>(newUser);
         }
 
         public async Task<UserDto> Login(string email, string password)

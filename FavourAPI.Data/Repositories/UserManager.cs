@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FavourAPI.Data.Repos
+namespace FavourAPI.Data.Repositories
 {
     public class UserManager : AspNetUserManager<User>
     {

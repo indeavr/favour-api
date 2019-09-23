@@ -58,11 +58,13 @@ namespace FavourAPI.Helpers
             CreateMap<Consumer, ConsumerDto>()
                 .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number))
                 .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
-                .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name)))
+                .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name).ToArray()))
                 .ForMember(cdto => cdto.ProfilePhoto, opt => opt.Ignore())
+                // must be fixed
                 //.ForMember(cdto => cdto.OngoingJobOffers, opt => opt.MapFrom(db => db.OngoingJobOffers.ToArray()))
-                .ForMember(cdto => cdto.SavedJobOffers, opt => opt.MapFrom(db => db.Id))
-                .ForMember(cdto => cdto.CompletedJobOffers, opt => opt.MapFrom(db => db.Id));
+                .ForMember(cdto => cdto.SavedJobOffers, opt => opt.Ignore())
+                .ForMember(cdto => cdto.Applications, opt => opt.Ignore())
+                .ForMember(cdto => cdto.CompletedJobOffers, opt => opt.Ignore()).PreserveReferences();
 
             Func<ConsumerDto, Consumer, object> transformSex = (cdto, _) =>
               {
@@ -73,6 +75,7 @@ namespace FavourAPI.Helpers
             CreateMap<ConsumerDto, Consumer>()
                 .ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }))
                 .ForMember(c => c.Sex, opt => opt.MapFrom(transformSex))
+                .ForMember(c => c.ProfilePhoto, opt => opt.Ignore())
                 .ForMember(c => c.Skills, opt => opt.MapFrom(cdto => cdto.Skills.Select(s => new Skill() { Name = s })))
                 .PreserveReferences();
 

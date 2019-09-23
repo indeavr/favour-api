@@ -1,21 +1,10 @@
 ﻿using AutoMapper;
-using FavourAPI.Data;
 using FavourAPI.Data.Models;
-using FavourAPI.Data.Repos;
-using FavourAPI.Data.Repos.Interfacces;
+using FavourAPI.Data.Repositories;
 using FavourAPI.Dtos;
-using FavourAPI.Services.Contracts;
-using FavourAPI.Services.Helpers;
-using FavourAPI.Services.Helpers.Exceptions;
-using FavourAPI.Services.Helpers.Result;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -41,7 +30,7 @@ namespace FavourAPI.Services
 
             string code = await this.userRepo.GenerateEmailConfirmationTokenAsync(email);
 
-            string callbackUrl = $"https://localhost:44334/users/confirmEmail?userId={HttpUtility.UrlEncode(userDto.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
+            string callbackUrl = $"https://127.0.0.1:44334/users/confirmEmail?userId={HttpUtility.UrlEncode(userDto.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
 
             await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
                     $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");

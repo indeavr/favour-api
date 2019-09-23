@@ -8,13 +8,13 @@ namespace FavourAPI.Services
 {
     public interface IConsumerService
     {
-        Task<Consumer> AddConsumer(string userId, Consumer consumer);
+        Task<ConsumerDto> AddConsumer(string userId, ConsumerDto consumer);
 
         Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData);
 
-        Task<Consumer> GetById(string userId);
+        Task<ConsumerDto> GetById(string userId);
 
-        Task<Consumer> GetById(string userId, bool withPhoto);
+        Task<ConsumerDto> GetById(string userId, bool withPhoto);
 
         Task<IEnumerable<ConsumerDto>> GetAll();
 

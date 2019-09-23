@@ -18,7 +18,6 @@ using Newtonsoft.Json;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
-using FavourAPI.Schemas;
 using FavourAPI.Mutations;
 using FavourAPI.Queries;
 using FavourAPI.Services.GraphQLInputTypes;
@@ -29,11 +28,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using FavourAPI.GraphQL;
 using GraphQL.Http;
 using GraphQL.Types;
-using FavourAPI.Data.Repos;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.GraphQL.InputTypes;
 using System;
-using FavourAPI.Data.Repos.Interfacces;
+using FavourAPI.Data.Repositories;
 
 namespace FavourAPI
 {
@@ -145,6 +143,12 @@ namespace FavourAPI
             //    options.SlidingExpiration = true;
             //});
 
+            // Repositories
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICompanyProviderRepository, CompanyProviderRepository>();
+            services.AddScoped<IExperienceRepository, ExperienceRepository>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
 
             // Data Services
             services.AddScoped<IUserService, UserService>();
@@ -161,7 +165,7 @@ namespace FavourAPI
             services.AddScoped<IBlobService, BlobService>();
 
             // types
-            services.AddScoped<GraphQL.UserType>();
+            services.AddScoped<UserType>();
             services.AddScoped<CompanyProviderType>();
             services.AddScoped<ConsumerType>();
             services.AddScoped<OfficeType>();
@@ -180,11 +184,28 @@ namespace FavourAPI
             services.AddScoped<ActiveJobOfferType>();
             services.AddScoped<PhoneNumberType>();
 
-            //input types
+            // Input Types
             services.AddScoped<UserInputType>();
+            services.AddScoped<ConsumerInputType>();
+            services.AddScoped<LocationInputType>();
+            services.AddScoped<EducationInputType>();
+            services.AddScoped<ExperienceInputType>();
+            services.AddScoped<IndustryInputType>();
+            services.AddScoped<CompanyProviderInputType>();
+            services.AddScoped<PhoneNumberInputType>();
+            services.AddScoped<EmailInputType>();
+            services.AddScoped<SkillInputType>();
+            services.AddScoped<JobOfferInputType>();
+            services.AddScoped<ActiveJobOfferInputType>();
+            services.AddScoped<OngoingJobOfferInputType>();
+            services.AddScoped<SavedJobOfferInputType>();
+            services.AddScoped<CompletedJobOfferInputType>();
+            services.AddScoped<PeriodInputType>();
+            services.AddScoped<CompletedJobOfferInputType>();
+            services.AddScoped<CompletionResultInputType>();
 
             // schemas
-            services.AddScoped<UserSchema>();
+            services.AddScoped<ISchema, FavourSchema>();
 
             // mutations
             services.AddScoped<UserMutation>();
@@ -205,37 +226,8 @@ namespace FavourAPI
             );
 
             // GraphQL
-            services.AddScoped<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
-
             services.AddScoped<IDocumentExecuter, DocumentExecuter>();
             services.AddScoped<IDocumentWriter, DocumentWriter>();
-
-            services.AddScoped<UserType>();
-            services.AddScoped<JobOfferType>();
-            services.AddScoped<ConsumerType>();
-            services.AddScoped<CompanyProviderType>();
-            services.AddScoped<SkillType>();
-            services.AddScoped<PositionType>();
-
-            services.AddScoped<FavourQuery>();
-            services.AddScoped<FavourMutation>();
-
-            // Input Types
-            services.AddScoped<ConsumerInputType>();
-            services.AddScoped<LocationInputType>();
-            services.AddScoped<EducationInputType>();
-            services.AddScoped<ExperienceInputType>();
-
-            services.AddScoped<ISchema, FavourSchema>();
-            services.AddGraphQL(_ =>
-            {
-                _.EnableMetrics = true;
-                _.ExposeExceptions = true;
-            })
-              .AddUserContextBuilder(httpContext => new GraphQLUserContext(httpContext) { User = httpContext.User });
-
-            // Repos
-            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -256,14 +248,14 @@ namespace FavourAPI
             app.UseAuthentication();
 
 
-            // add http for Schema at default url /graphql
-            app.UseGraphQL<ISchema>("/graphql");
+            //// add http for Schema at default url /graphql
+            //app.UseGraphQL<ISchema>("/graphql");
 
-            // use graphql-playground at default url /ui/playground
-            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
-            {
-                Path = "/ui/playground"
-            });
+            //// use graphql-playground at default url /ui/playground
+            //app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
+            //{
+            //    Path = "/ui/playground"
+            //});
 
             app.UseCors(x => x
                .AllowAnyOrigin()
@@ -273,7 +265,7 @@ namespace FavourAPI
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
-            app.UseGraphQL<FavourSchema>();
+            app.UseGraphQL<ISchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
 
             // app.UseMiddleware<RequestResponseLoggingMiddleware>();
