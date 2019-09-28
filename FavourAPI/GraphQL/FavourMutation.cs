@@ -21,7 +21,7 @@ namespace FavourAPI.GraphQL
     public class FavourMutation : ObjectGraphType<object>
     {
         public FavourMutation(IUserService userService, IOptions<AppSettings> appSettings, IConsumerService consumerService,
-            ICompanyProviderService companyProviderService)
+            ICompanyProviderService companyProviderService, IOfferService offerService)
         {
             Name = "Mutation";
 
@@ -132,7 +132,23 @@ namespace FavourAPI.GraphQL
                   };
                   return authDto;
               }
+
+
           );
+
+            FieldAsync<JobOfferType>(
+               "createJob",
+               arguments: new QueryArguments(
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                   new QueryArgument<NonNullGraphType<JobOfferInputType>> { Name = "jobOffer" }),
+               resolve: async context =>
+               {
+                   var userId = context.GetArgument<string>("userId");
+                   var job = context.GetArgument<JobOfferInputType>("jobOffer");
+                   var jobDto = JToken.FromObject(job).ToObject<JobOfferDto>();
+
+                   return await offerService.AddJobOffer(userId, jobDto);
+               });
         }
     }
 }

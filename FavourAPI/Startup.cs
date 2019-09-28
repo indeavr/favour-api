@@ -149,6 +149,7 @@ namespace FavourAPI
             services.AddScoped<IExperienceRepository, ExperienceRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<IIndustryRepository, IndustryRepository>();
 
             // Data Services
             services.AddScoped<IUserService, UserService>();
