@@ -10,8 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +27,69 @@ namespace FavourAPI.GraphQL
             ICompanyProviderService companyProviderService, IOfferService offerService)
         {
             Name = "Mutation";
+
+            FieldAsync<AuthPayload>(
+                "sendVerificationCode",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "phoneNumber" },
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "recapchaToken" }
+                ),
+                resolve: async context =>
+                {
+                    string phoneNumber = context.GetArgument<string>("phoneNumber");
+                    string recapchaToken = context.GetArgument<string>("recapchaToken");
+
+                    HttpClient client = new HttpClient();
+
+                    var values = new Dictionary<string, string>
+                    {
+                        { "phoneNumber", phoneNumber },
+                        { "recapchaToken", recapchaToken }
+                    };
+
+                    var content = new FormUrlEncodedContent(values);
+
+                    var apiKey = "AIzaSyDSKG4GcWm6dd_wQ-DLoNQqwvYq6KSkH-w";
+
+                    var response = await client.PostAsync($"https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key={apiKey}", content);
+
+                    var responseString = await response.Content.ReadAsStringAsync();
+
+                    return new AuthPayload();
+                }
+            );
+
+            FieldAsync<AuthPayload>(
+               "verifyPhoneNumber",
+               arguments: new QueryArguments(
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "code" }
+               ),
+               resolve: async context =>
+               {
+                   string code = context.GetArgument<string>("code");
+
+                   // get the previously saved sessionInfo by userId 
+                   var sessionToken = "bullshit";
+
+                   HttpClient client = new HttpClient();
+
+                   var values = new Dictionary<string, string>
+                   {
+                        { "code", code },
+                        { "sessionInfo", sessionToken }
+                   };
+
+                   var content = new FormUrlEncodedContent(values);
+
+                   var apiKey = "AIzaSyDSKG4GcWm6dd_wQ-DLoNQqwvYq6KSkH-w";
+
+                   var response = await client.PostAsync($"https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPhoneNumber?key={apiKey}", content);
+
+                   var responseString = await response.Content.ReadAsStringAsync();
+
+                   return new AuthPayload();
+               }
+           );
 
             FieldAsync<ConsumerType>(
                 "createConsumer",
