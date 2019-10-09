@@ -23,12 +23,14 @@ namespace FavourAPI.GraphQL
 {
     public class FavourMutation : ObjectGraphType<object>
     {
+        private string dummyCurrentSession;
+
         public FavourMutation(IUserService userService, IOptions<AppSettings> appSettings, IConsumerService consumerService,
             ICompanyProviderService companyProviderService, IOfferService offerService)
         {
             Name = "Mutation";
 
-            FieldAsync<AuthPayload>(
+            FieldAsync<StringGraphType>(
                 "sendVerificationCode",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "phoneNumber" },
@@ -54,12 +56,13 @@ namespace FavourAPI.GraphQL
                     var response = await client.PostAsync($"https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key={apiKey}", content);
 
                     var responseString = await response.Content.ReadAsStringAsync();
-
-                    return new AuthPayload();
+                    dummyCurrentSession = responseString;
+                    return "success";
                 }
             );
+            
 
-            FieldAsync<AuthPayload>(
+            FieldAsync<StringGraphType>(
                "verifyPhoneNumber",
                arguments: new QueryArguments(
                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "code" }
@@ -69,7 +72,7 @@ namespace FavourAPI.GraphQL
                    string code = context.GetArgument<string>("code");
 
                    // get the previously saved sessionInfo by userId 
-                   var sessionToken = "bullshit";
+                   var sessionToken = dummyCurrentSession;
 
                    HttpClient client = new HttpClient();
 
@@ -87,7 +90,7 @@ namespace FavourAPI.GraphQL
 
                    var responseString = await response.Content.ReadAsStringAsync();
 
-                   return new AuthPayload();
+                   return "success";
                }
            );
 

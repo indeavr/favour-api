@@ -32,7 +32,6 @@ using FavourAPI.GraphQL.Types;
 using FavourAPI.GraphQL.InputTypes;
 using System;
 using FavourAPI.Data.Repositories;
-using FavourAPI.Data.Repositories.Interfaces;
 
 namespace FavourAPI
 {

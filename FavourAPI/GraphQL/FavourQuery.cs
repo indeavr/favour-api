@@ -1,5 +1,4 @@
 ﻿using FavourAPI.Data.Repositories;
-using FavourAPI.Data.Repositories.Interfaces;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Services;
 using GraphQL.Types;
