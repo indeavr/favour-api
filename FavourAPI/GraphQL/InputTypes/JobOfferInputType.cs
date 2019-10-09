@@ -9,7 +9,7 @@ namespace FavourAPI.GraphQL.InputTypes
         {
             Name = "JobOffer";
 
-            Field(jo => jo.Id);
+            Field<StringGraphType>(nameof(JobOfferDto.Id));
             Field(jo => jo.Money);
             Field(jo => jo.Location);
             Field(jo => jo.State);

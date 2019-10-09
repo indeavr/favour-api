@@ -16,7 +16,8 @@ namespace FavourAPI.GraphQL
             IExperienceRepository experienceRepository,
             IPositionRepository positionRepository,
             ISkillRepository skillRepository,
-            IIndustryRepository industryRepository)
+            IIndustryRepository industryRepository
+            )
         {
             Field<UserType>(
                 "user",
