@@ -32,6 +32,7 @@ using FavourAPI.GraphQL.Types;
 using FavourAPI.GraphQL.InputTypes;
 using System;
 using FavourAPI.Data.Repositories;
+using FavourAPI.Data.Repositories.Interfaces;
 
 namespace FavourAPI
 {
@@ -149,6 +150,7 @@ namespace FavourAPI
             services.AddScoped<IExperienceRepository, ExperienceRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<IIndustryRepository, IndustryRepository>();
 
             // Data Services
             services.AddScoped<IUserService, UserService>();

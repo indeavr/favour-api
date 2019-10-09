@@ -1,4 +1,5 @@
 ﻿using FavourAPI.Data.Repositories;
+using FavourAPI.Data.Repositories.Interfaces;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Services;
 using GraphQL.Types;
@@ -14,7 +15,8 @@ namespace FavourAPI.GraphQL
             ICompanyProviderRepository companyProviderRepository,
             IExperienceRepository experienceRepository,
             IPositionRepository positionRepository,
-            ISkillRepository skillRepository)
+            ISkillRepository skillRepository,
+            IIndustryRepository industryRepository)
         {
             Field<UserType>(
                 "user",

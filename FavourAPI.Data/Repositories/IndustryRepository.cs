@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using FavourAPI.Dtos;
+using FavourAPI.Data.Repositories.Interfaces;
 
 namespace FavourAPI.Data.Repositories
 {
