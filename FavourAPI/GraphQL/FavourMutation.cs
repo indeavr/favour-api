@@ -60,7 +60,7 @@ namespace FavourAPI.GraphQL
                     return "success";
                 }
             );
-            
+
 
             FieldAsync<StringGraphType>(
                "verifyPhoneNumber",
@@ -127,6 +127,40 @@ namespace FavourAPI.GraphQL
 
                     return newProvider;
                 });
+
+            FieldAsync<StringGraphType>(
+               "sendResetPasswordEmail",
+               arguments: new QueryArguments(
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "email" }
+               ),
+               resolve: async context =>
+               {
+                   var email = context.GetArgument<string>("email");
+
+                   await userService.SendResetPasswordEmail(email);
+
+                   return "belisima";
+               }
+           );
+
+            FieldAsync<StringGraphType>(
+              "resetPassword",
+              arguments: new QueryArguments(
+                  new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                  new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "code" },
+                  new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "password" }
+              ),
+              resolve: async context =>
+              {
+                  var userId = context.GetArgument<string>("userId");
+                  var code = context.GetArgument<string>("code");
+                  var password = context.GetArgument<string>("password");
+
+                  await userService.ResetPassword(userId, code, password);
+
+                  return "belisima";
+              }
+          );
 
             FieldAsync<AuthPayload>(
                "register",

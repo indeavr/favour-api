@@ -43,12 +43,29 @@ namespace FavourAPI.Services
             throw new NotImplementedException();
             //return this.userRepo.get.Users.ToArray().Select(u => mapper.Map<UserDto>(u));
         }
-        
+
         public async Task<UserDto> Login(string email, string password)
         {
             var userDto = await this.userRepo.Login(email, password);
 
             return userDto;
+        }
+
+        public async Task SendResetPasswordEmail(string email)
+        {
+            var userDto = await this.userRepo.GetByEmail(email);
+
+            var code = await this.userRepo.GeneratePasswordResetTokenAsync(email);
+
+            string callbackUrl = $"https://localhost:3000/join/login/resetPassword?userId={HttpUtility.UrlEncode(userDto.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
+
+            await emailSender.SendEmailAsync(userDto.Email, "Workfavour Password Reset",
+                 $"Please reset your password by <a href='{callbackUrl}'>clicking here</a>.");
+        }
+
+        public async Task ResetPassword(string userId, string code, string password)
+        {
+            var user = await this.userRepo.ChangePassword(userId, code, password);
         }
 
         //private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

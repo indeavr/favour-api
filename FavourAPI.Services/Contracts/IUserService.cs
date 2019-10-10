@@ -12,8 +12,12 @@ namespace FavourAPI.Services
         Task<UserDto> Create(string email, string password);
 
         IEnumerable<UserDto> GetAll();
-        
-        Task<UserDto> Login(string username, string password);
+
+        Task<UserDto> Login(string email, string password);
+
+        Task SendResetPasswordEmail(string email);
+
+        Task ResetPassword(string userId, string code, string password);
 
         //IEnumerable<User> GetAll();
 

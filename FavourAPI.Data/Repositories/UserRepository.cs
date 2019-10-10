@@ -31,6 +31,13 @@ namespace FavourAPI.Data.Repositories
             return this.mapper.Map<UserDto>(user);
         }
 
+        public async Task<UserDto> GetByEmail(string email)
+        {
+            var user = await this.userManager.FindByEmailAsync(email);
+
+            return this.mapper.Map<UserDto>(user);
+        }
+
         public async Task<string> GenerateEmailConfirmationTokenAsync(string email)
         {
             var user = await this.userManager.FindByEmailAsync(email);
@@ -70,6 +77,32 @@ namespace FavourAPI.Data.Repositories
         public Task<IEnumerable<UserDto>> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(string email)
+        {
+            var user = await this.userManager.FindByNameAsync(email);
+            var token = await this.userManager.GeneratePasswordResetTokenAsync(user);
+
+            return token;
+        }
+
+        public async Task<UserDto> ChangePassword(string userId, string token, string newPassword)
+        {
+            var user = await this.userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                throw new Exception("No user with this is");
+            }
+
+            //var isTokenValid = await this.userManager.VerifyUserTokenAsync(user, this.userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", token);
+            //if (isTokenValid)
+            //{
+            await this.userManager.ResetPasswordAsync(user, token, newPassword);
+            //}
+
+            return this.mapper.Map<UserDto>(user);
         }
     }
 }
