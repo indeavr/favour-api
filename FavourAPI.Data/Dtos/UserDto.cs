@@ -11,6 +11,8 @@ namespace FavourAPI.Dtos
 
         public bool EmailConfirmed { get; set; }
 
+        public bool PhoneConfirmed { get; set; }
+
         public string Password { get; set; }
 
         public PersonProviderDto PersonProvider { get; set; }

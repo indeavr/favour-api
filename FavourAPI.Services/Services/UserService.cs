@@ -68,6 +68,21 @@ namespace FavourAPI.Services
             var user = await this.userRepo.ChangePassword(userId, code, password);
         }
 
+        public async Task SavePhoneVerificationSession(string userId, string sessionInfo)
+        {
+            await this.userRepo.SavePhoneVerificationSession(userId, sessionInfo);
+        }
+
+        public async Task<string> GetPhoneVerificationSession(string userId)
+        {
+            return await this.userRepo.GetPhoneVerificationSession(userId);
+        }
+
+        public async Task PhoneConfirmed(string userId)
+        {
+            await this.userRepo.PhoneConfirmed(userId);
+        }
+
         //private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         //{
         //    if (password == null) throw new ArgumentNullException("password");

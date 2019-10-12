@@ -29,6 +29,10 @@ namespace FavourAPI.Data.Models
 
         public string Token { get; set; }
 
+        public string PhoneVerificationSession { get; set; }
+
+        public string PhoneVerified { get; set; }
+
         public virtual Consumer Consumer { get; set; }
 
         public virtual PersonProvider PersonProvider { get; set; }

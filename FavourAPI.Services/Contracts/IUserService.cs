@@ -19,6 +19,12 @@ namespace FavourAPI.Services
 
         Task ResetPassword(string userId, string code, string password);
 
+        Task SavePhoneVerificationSession(string userId, string sessionInfo);
+
+        Task<string> GetPhoneVerificationSession(string userId);
+
+        Task PhoneConfirmed(string userId);
+
         //IEnumerable<User> GetAll();
 
         User GetById(string id);

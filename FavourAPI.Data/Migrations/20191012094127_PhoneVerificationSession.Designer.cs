@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191012094127_PhoneVerificationSession")]
+    partial class PhoneVerificationSession
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -331,47 +333,47 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e28e3822-6952-495c-baf7-618eec97f776"),
+                            Id = new Guid("094b9642-317e-46de-88c3-282d47b3a929"),
                             Name = "Test industry 1"
                         },
                         new
                         {
-                            Id = new Guid("12ca432e-af3a-49c7-bc2e-cd6f61ae5694"),
+                            Id = new Guid("7a56ae6b-614a-4b67-912f-56a2ec377e02"),
                             Name = "Test industry 2"
                         },
                         new
                         {
-                            Id = new Guid("4f7d2fc5-1be8-4316-9f99-d24766bed1c6"),
+                            Id = new Guid("7880c437-d06d-4230-ad6d-0466c600cba5"),
                             Name = "Test industry 3"
                         },
                         new
                         {
-                            Id = new Guid("27eea4dd-ec56-4f7b-9d75-8dacde4df532"),
+                            Id = new Guid("cdefe7c8-1c4c-49c3-8bf1-1cbf3c34aa7e"),
                             Name = "Test industry 4"
                         },
                         new
                         {
-                            Id = new Guid("3222cc30-0f8b-4264-9d9b-040ecdea8b6e"),
+                            Id = new Guid("5ddffae3-3112-42fd-923f-5f8946cc4001"),
                             Name = "Test industry 5"
                         },
                         new
                         {
-                            Id = new Guid("adfa62ad-a201-44d6-b315-a2e13b27f0f9"),
+                            Id = new Guid("c51e3c97-7b43-46b3-9a2a-f35fa5f6c5bc"),
                             Name = "Test industry 6"
                         },
                         new
                         {
-                            Id = new Guid("6fc0db2f-f80a-4c38-b1b5-ae16574d9d84"),
+                            Id = new Guid("0100850d-838b-482e-b373-b6486b0638d2"),
                             Name = "Test industry 7"
                         },
                         new
                         {
-                            Id = new Guid("69e5cce5-704f-4b2b-a8bc-dc7d3b77b67e"),
+                            Id = new Guid("c4792e18-ea29-4232-8363-1f6d9e5ee97f"),
                             Name = "Test industry 8"
                         },
                         new
                         {
-                            Id = new Guid("2b87ad48-5299-4ab1-94c9-5698551c9f56"),
+                            Id = new Guid("6cad9664-376c-4e45-8962-08b41fa9490a"),
                             Name = "Test industry 9"
                         });
                 });
@@ -702,37 +704,37 @@ namespace FavourAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e36b55d6-0790-45ac-940e-b6647a11cfc4"),
+                            Id = new Guid("46e52d31-0c35-4cd7-be27-e4a25ade20d4"),
                             Name = "Test position 1"
                         },
                         new
                         {
-                            Id = new Guid("193fac19-7659-4425-a0e8-845e055964ca"),
+                            Id = new Guid("00024788-08b6-4562-a3fd-1d7e147f2bf3"),
                             Name = "Test position 2"
                         },
                         new
                         {
-                            Id = new Guid("0f149d0d-8134-473b-b2f1-6a5e3a5c5cf7"),
+                            Id = new Guid("f93216a1-390d-41b4-9957-ebe92efceede"),
                             Name = "Test position 3"
                         },
                         new
                         {
-                            Id = new Guid("931abee7-6944-4ef2-b614-3bc94a44589b"),
+                            Id = new Guid("4e8ec70b-40f4-48fa-94c7-e81262c62b20"),
                             Name = "Test position 4"
                         },
                         new
                         {
-                            Id = new Guid("61140fbc-7355-4b3d-95f0-9fef8551a3b3"),
+                            Id = new Guid("e5d70cb4-c0d4-482b-b7ae-41230c98c046"),
                             Name = "Test position 5"
                         },
                         new
                         {
-                            Id = new Guid("7b5258b6-aa60-46d1-86d6-99ccddb7dc0e"),
+                            Id = new Guid("101a6618-f8c9-425c-81c6-cdda3efc8172"),
                             Name = "Test position 6"
                         },
                         new
                         {
-                            Id = new Guid("7094f8e5-c506-4892-abf1-927d1ffc80cf"),
+                            Id = new Guid("f560f43c-b18f-4551-8909-e8c9a8d54248"),
                             Name = "Test position 7"
                         });
                 });
@@ -908,8 +910,6 @@ namespace FavourAPI.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("PhoneVerificationSession");
-
-                    b.Property<string>("PhoneVerified");
 
                     b.Property<string>("SecurityStamp");
 

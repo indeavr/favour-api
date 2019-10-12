@@ -7,6 +7,7 @@ using FavourAPI.Services;
 using GraphQL.Types;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,14 @@ namespace FavourAPI.GraphQL
                 "sendVerificationCode",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "phoneNumber" },
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "recapchaToken" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "recapchaToken" },
+                    new QueryArgument<StringGraphType> { Name = "userId" }
                 ),
                 resolve: async context =>
                 {
                     string phoneNumber = context.GetArgument<string>("phoneNumber");
                     string recapchaToken = context.GetArgument<string>("recapchaToken");
+                    string userId = context.GetArgument<string>("userId");
 
                     HttpClient client = new HttpClient();
 
@@ -50,13 +53,15 @@ namespace FavourAPI.GraphQL
                     };
 
                     var content = new FormUrlEncodedContent(values);
-
                     var apiKey = "AIzaSyDSKG4GcWm6dd_wQ-DLoNQqwvYq6KSkH-w";
-
                     var response = await client.PostAsync($"https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key={apiKey}", content);
 
                     var responseString = await response.Content.ReadAsStringAsync();
-                    dummyCurrentSession = responseString;
+                    JObject json = JObject.Parse(responseString);
+                    string sessionInfo = json["sessionInfo"].Value<string>();
+
+                    await userService.SavePhoneVerificationSession(userId, sessionInfo);
+
                     return "success";
                 }
             );
@@ -65,32 +70,37 @@ namespace FavourAPI.GraphQL
             FieldAsync<StringGraphType>(
                "verifyPhoneNumber",
                arguments: new QueryArguments(
-                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "code" }
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "code" },
+                   new QueryArgument<StringGraphType> { Name = "userId" }
                ),
                resolve: async context =>
                {
                    string code = context.GetArgument<string>("code");
+                   string userId = context.GetArgument<string>("userId");
 
-                   // get the previously saved sessionInfo by userId 
-                   var sessionToken = dummyCurrentSession;
-
-                   HttpClient client = new HttpClient();
+                   var sessionToken = await userService.GetPhoneVerificationSession(userId);
 
                    var values = new Dictionary<string, string>
                    {
                         { "code", code },
                         { "sessionInfo", sessionToken }
                    };
-
                    var content = new FormUrlEncodedContent(values);
 
                    var apiKey = "AIzaSyDSKG4GcWm6dd_wQ-DLoNQqwvYq6KSkH-w";
 
+                   HttpClient client = new HttpClient();
                    var response = await client.PostAsync($"https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPhoneNumber?key={apiKey}", content);
 
                    var responseString = await response.Content.ReadAsStringAsync();
 
-                   return "success";
+                   if ((int)response.StatusCode == 200)
+                   {
+                       await userService.PhoneConfirmed(userId);
+                       return "success";
+                   }
+
+                   return "failed";
                }
            );
 

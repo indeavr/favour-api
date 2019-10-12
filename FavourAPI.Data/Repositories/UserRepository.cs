@@ -21,13 +21,13 @@ namespace FavourAPI.Data.Repositories
 
         public async Task<UserDto> GetById(Guid id)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await GetByIdDb(id);
             return this.mapper.Map<UserDto>(user);
         }
 
         public async Task<UserDto> GetById(string id)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
+            var user = await GetByIdDb(id);
             return this.mapper.Map<UserDto>(user);
         }
 
@@ -103,6 +103,50 @@ namespace FavourAPI.Data.Repositories
             //}
 
             return this.mapper.Map<UserDto>(user);
+        }
+
+        public async Task SavePhoneVerificationSession(string userId, string sessionInfo)
+        {
+            await UpdateUser(userId, (user) =>
+            {
+                user.PhoneVerificationSession = sessionInfo;
+            });
+        }
+
+        public async Task<string> GetPhoneVerificationSession(string userId)
+        {
+            var user = await GetByIdDb(userId);
+
+            return user.PhoneVerificationSession;
+        }
+
+        public async Task PhoneConfirmed(string userId)
+        {
+            await UpdateUser(userId, (user) =>
+            {
+                user.PhoneNumberConfirmed = true;
+            });
+        }
+
+        private async Task<User> GetByIdDb(Guid id)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            return user;
+        }
+
+        private async Task<User> GetByIdDb(string id)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
+            return user;
+        }
+
+        private async Task UpdateUser(string userId, Action<User> updateAction)
+        {
+            var user = await GetByIdDb(userId);
+
+            updateAction(user);
+
+            await this.userManager.UpdateAsync(user);
         }
     }
 }

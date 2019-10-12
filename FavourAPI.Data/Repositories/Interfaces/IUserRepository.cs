@@ -1,4 +1,5 @@
-﻿using FavourAPI.Dtos;
+﻿using FavourAPI.Data.Models;
+using FavourAPI.Dtos;
 using System;
 using System.Threading.Tasks;
 
@@ -21,5 +22,11 @@ namespace FavourAPI.Data.Repositories
         Task<string> GeneratePasswordResetTokenAsync(string email);
 
         Task<UserDto> ChangePassword(string userId, string code, string password);
+
+        Task SavePhoneVerificationSession(string userId, string sessionInfo);
+
+        Task<string> GetPhoneVerificationSession(string userId);
+
+        Task PhoneConfirmed(string userId);
     }
 }
