@@ -262,15 +262,6 @@ namespace FavourAPI
             services.AddScoped<IDocumentWriter, DocumentWriter>();
         }
 
-        public static T Deserialize<T>(Stream s)
-        {
-            using (var reader = new StreamReader(s))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ser.Deserialize<T>(jsonReader);
-            }
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
