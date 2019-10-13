@@ -24,10 +24,11 @@ namespace FavourAPI.GraphQL
 {
     public class FavourMutation : ObjectGraphType<object>
     {
-        private string dummyCurrentSession;
-
-        public FavourMutation(IUserService userService, IOptions<AppSettings> appSettings, IConsumerService consumerService,
-            ICompanyProviderService companyProviderService, IOfferService offerService)
+        public FavourMutation(IUserService userService,
+            IOptions<AppSettings> appSettings,
+            IConsumerService consumerService,
+            ICompanyProviderService companyProviderService,
+            IOfferService offerService)
         {
             Name = "Mutation";
 
@@ -38,11 +39,14 @@ namespace FavourAPI.GraphQL
                     new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "recapchaToken" },
                     new QueryArgument<StringGraphType> { Name = "userId" }
                 ),
-                resolve: async context =>
+                resolve: async (context) =>
                 {
+                    var graphUserContext = (GraphQLUserContext)context.UserContext;
+
                     string phoneNumber = context.GetArgument<string>("phoneNumber");
                     string recapchaToken = context.GetArgument<string>("recapchaToken");
-                    string userId = context.GetArgument<string>("userId");
+
+                    string userId = graphUserContext.UserId;
 
                     HttpClient client = new HttpClient();
 
@@ -75,15 +79,18 @@ namespace FavourAPI.GraphQL
                ),
                resolve: async context =>
                {
+                   var graphUserContext = (GraphQLUserContext)context.UserContext;
+
                    string code = context.GetArgument<string>("code");
-                   string userId = context.GetArgument<string>("userId");
+                   string userId = graphUserContext.UserId;
 
                    var sessionToken = await userService.GetPhoneVerificationSession(userId);
 
                    var values = new Dictionary<string, string>
                    {
                         { "code", code },
-                        { "sessionInfo", sessionToken }
+                        { "phoneNumber", "+359888888888" },
+                        { "sessionInfo", sessionToken },
                    };
                    var content = new FormUrlEncodedContent(values);
 
@@ -204,7 +211,8 @@ namespace FavourAPI.GraphQL
                    {
                        Token = tokenString,
                        UserId = user.Id,
-                       EmailConfirmed = user.EmailConfirmed
+                       EmailConfirmed = user.EmailConfirmed,
+                       PhoneConfirmed = user.PhoneConfirmed
                    };
                    return authDto;
                }
@@ -241,7 +249,8 @@ namespace FavourAPI.GraphQL
                   {
                       Token = tokenString,
                       UserId = user.Id,
-                      EmailConfirmed = user.EmailConfirmed
+                      EmailConfirmed = user.EmailConfirmed,
+                      PhoneConfirmed = user.PhoneConfirmed
                   };
                   return authDto;
               }

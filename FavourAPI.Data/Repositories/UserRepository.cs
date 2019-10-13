@@ -136,6 +136,10 @@ namespace FavourAPI.Data.Repositories
 
         private async Task<User> GetByIdDb(string id)
         {
+            if (id == null)
+            {
+                return null;
+            }
             var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
             return user;
         }

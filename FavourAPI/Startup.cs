@@ -32,6 +32,12 @@ using FavourAPI.GraphQL.Types;
 using FavourAPI.GraphQL.InputTypes;
 using System;
 using FavourAPI.Data.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using GraphQL.Validation;
+using GraphQL.Server.Transports.AspNetCore.Common;
+using System.IO;
+using System.Linq;
 
 namespace FavourAPI
 {
@@ -216,7 +222,32 @@ namespace FavourAPI
 
             services.AddScoped<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
 
-            services.AddGraphQL(x => x.ExposeExceptions = true).AddGraphTypes(ServiceLifetime.Scoped);
+            // extension method defined in this project
+            //services.AddGraphQLAuth((_, s) =>
+            //{
+            //    _.AddPolicy("AdminPolicy", p => p.RequireClaim("role", "Admin"));
+            //});
+
+            services.AddGraphQL(x => x.ExposeExceptions = true)
+                .AddUserContextBuilder(context =>
+                {
+                    string auth = context.Request.Headers["Authorization"];
+                    string token = null;
+                    if (auth != null && auth.ToString().Contains("Bearer "))
+                    {
+                        token = auth.ToString().Skip(6).ToString();
+                    }
+
+                    string userId = context.Request.Headers["UserId"];
+
+                    return new GraphQLUserContext(context) {
+                        Token = token,
+                        UserId = userId,
+                        User = context.User
+                    };
+
+                })
+                .AddGraphTypes(ServiceLifetime.Scoped);
 
             var connection = this.Configuration.GetConnectionString("DefaultConnection");
 
@@ -229,6 +260,15 @@ namespace FavourAPI
             // GraphQL
             services.AddScoped<IDocumentExecuter, DocumentExecuter>();
             services.AddScoped<IDocumentWriter, DocumentWriter>();
+        }
+
+        public static T Deserialize<T>(Stream s)
+        {
+            using (var reader = new StreamReader(s))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                return ser.Deserialize<T>(jsonReader);
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,9 @@ namespace FavourAPI
     {
         public ClaimsPrincipal User { get; set; }
 
+        public string Token { get; set; }
+        public string UserId { get; set; }
+
         public IServiceProvider RequestServices { get; }
         public IUserRepository UserRepo { get; }
 
