@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FavourAPI.Data.Models.Enums;
+using FavourAPI.Data.Dtos;
 
 namespace FavourAPI.Helpers
 {
@@ -153,6 +154,9 @@ namespace FavourAPI.Helpers
 
             CreateMap<ActiveJobOffer, ActiveJobOfferDto>().PreserveReferences();
             CreateMap<ActiveJobOfferDto, ActiveJobOffer>().PreserveReferences();
+
+            CreateMap<University, UniversityDto>().PreserveReferences();
+            CreateMap<UniversityDto, University>().PreserveReferences();
         }
     }
 }

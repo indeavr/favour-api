@@ -86,6 +86,8 @@ namespace FavourAPI.Data
 
         public DbSet<SavedJobOffer> SavedJobOffers { get; set; }
 
+        public DbSet<University> Universities { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

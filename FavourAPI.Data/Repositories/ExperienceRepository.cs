@@ -6,15 +6,10 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Data.Repositories
 {
-    public class ExperienceRepository : IExperienceRepository
+    public class ExperienceRepository : BaseRepository, IExperienceRepository
     {
-        private readonly WorkFavourDbContext dbContext;
-        private readonly IMapper mapper;
-
-        public ExperienceRepository(WorkFavourDbContext dbContext, IMapper mapper)
-        {
-            this.dbContext = dbContext;
-        }
+        public ExperienceRepository(WorkFavourDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        { }
         public async Task<IEnumerable<ExperienceDto>> GetAll()
         {
             var allExperiences = await this.dbContext.Experiences.ToAsyncEnumerable().ToArray();

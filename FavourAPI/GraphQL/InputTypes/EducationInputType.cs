@@ -1,17 +1,20 @@
-﻿using GraphQL.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FavourAPI.Dtos;
+using GraphQL.Types;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
-    public class EducationInputType : ObjectGraphType
+    public class EducationInputType : InputObjectGraphType<EducationDto>
     {
         public EducationInputType()
         {
             Name = "Education";
-            Field<NonNullGraphType<StringGraphType>>("field");
+
+            Field(e => e.Id);
+
+            Field<FieldOfStudyInputType>(nameof(EducationDto.Field));
+            Field<DateTimeGraphType>(nameof(EducationDto.Start));
+            Field<DateTimeGraphType>(nameof(EducationDto.End));
+            Field<UniversityInputType>(nameof(EducationDto.University));
         }
     }
 }

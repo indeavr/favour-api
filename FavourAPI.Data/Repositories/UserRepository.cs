@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FavourAPI.Data.Repositories
 {

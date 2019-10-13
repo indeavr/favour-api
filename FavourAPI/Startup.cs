@@ -184,6 +184,7 @@ namespace FavourAPI
             services.AddScoped<ApplicationType>();
             services.AddScoped<ActiveJobOfferType>();
             services.AddScoped<PhoneNumberType>();
+            services.AddScoped<UniversityType>();
 
             // Input Types
             services.AddScoped<UserInputType>();
@@ -204,6 +205,7 @@ namespace FavourAPI
             services.AddScoped<PeriodInputType>();
             services.AddScoped<CompletedJobOfferInputType>();
             services.AddScoped<CompletionResultInputType>();
+            services.AddScoped<UniversityInputType>();
 
             // schemas
             services.AddScoped<ISchema, FavourSchema>();

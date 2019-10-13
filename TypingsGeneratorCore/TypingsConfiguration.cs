@@ -4,6 +4,7 @@ using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,16 +15,14 @@ namespace TypingsGenerator
     {
         public static void Configure(ConfigurationBuilder builder)
         {
+            Debugger.Launch();
             builder.Global((config) => config.UseModules());
-            //var dataAssemblyPath = Path.GetFullPath("E:\\Projects\\favourapi\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.Data.dll");
-            //var dataAssembly = Assembly.LoadFrom(dataAssemblyPath);
             builder.Substitute(typeof(DateTime), new RtSimpleTypeName("Date"));
-            var servicesAssemblyPath = Path.GetFullPath("..\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.Services.dll");
-            var servicesAssembly = Assembly.LoadFile(servicesAssemblyPath);
-            var types = GetTypesToCopy(servicesAssembly, "FavourAPI.Dtos", "Include");
-            //var webAssemblyPath = Path.GetFullPath("E:\\Projects\\favourapi\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.dll");
-            //var webAssembly = Assembly.LoadFrom(webAssemblyPath);
-
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            //var graphQl = Assembly.UnsafeLoadFrom("C:\\Users\\sveto\\.nuget\\packages\\graphql\\2.4.0");
+            var servicesAssemblyPath = Path.GetFullPath("..\\FavourAPI\\bin\\Debug\\netcoreapp2.2\\FavourAPI.dll");
+            var servicesAssembly = Assembly.UnsafeLoadFrom(servicesAssemblyPath);
+            var types = GetTypesToCopy(servicesAssembly, "FavourAPI.GraphQL.InputTypes.Gosho", "Include");
 
             for (int i = 0; i < types.Length; i++)
             {
@@ -50,6 +49,14 @@ namespace TypingsGenerator
             // GenerateCustomClass(dynamicTypes, builder);
         }
 
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            // Debugger.Launch();
+
+            return Assembly.UnsafeLoadFrom("C:\\Users\\sveto\\.nuget\\packages\\graphql\\2.4.0\\lib\\netstandard2.0\\GraphQL.dll");
+
+        }
+
         private static void GenerateCustomClass(Type[] dynamicTypes, ConfigurationBuilder builder)
         {
             var customClass = dynamicTypes.FirstOrDefault(dt => dt.Name == "CustomClass");
@@ -66,8 +73,8 @@ namespace TypingsGenerator
             // var ta = assembly.Modules.SelectMany(m => m.Types);
             return
               assembly.ExportedTypes
-                      .Where(t => (t.Namespace != null && t.Namespace.Contains(nameSpace)) ||
-                      t.CustomAttributes.FirstOrDefault(a => a.AttributeType.Name == includeAttributeName) != null)
+                      .Where(t => (t.Namespace != null && t.Namespace == (nameSpace)) 
+                      )
                       .OrderBy((t) => t.Name).ToArray();
         }
 
