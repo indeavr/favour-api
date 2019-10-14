@@ -16,6 +16,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,15 +50,22 @@ namespace FavourAPI.GraphQL
                     string userId = graphUserContext.UserId;
 
                     HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri("https://localhost:3000");
+                    client.DefaultRequestHeaders.Add("Origin", "https://localhost:3000");
+                    client.DefaultRequestHeaders.Referrer = new Uri("https://localhost:3000/confirmNumber");
 
-                    var values = new Dictionary<string, string>
-                    {
-                        { "phoneNumber", phoneNumber },
-                        { "recapchaToken", recapchaToken }
-                    };
+                    client.DefaultRequestHeaders.Add("DNT", "1");
+                    client.DefaultRequestHeaders.Add("X-Client-Version", "Chrome/JsCore/7.2.0/FirebaseCore-web");
+                    client.DefaultRequestHeaders.Add("Sec-Fetch-Mode", "cors");
 
-                    var content = new FormUrlEncodedContent(values);
-                    var apiKey = "AIzaSyDSKG4GcWm6dd_wQ-DLoNQqwvYq6KSkH-w";
+                    var jobject = new JObject();
+                    jobject.Add("phoneNumber", new JValue(phoneNumber));
+                    jobject.Add("recaptchaToken", new JValue(recapchaToken));
+
+                    var content = new StringContent(jobject.ToString(), Encoding.UTF8, "application/json");
+                    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    var apiKey = "AIzaSyDvGTpiP9LXmd6KaCQ88jJ0gm9q5bN4j1k";
                     var response = await client.PostAsync($"https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key={apiKey}", content);
 
                     var responseString = await response.Content.ReadAsStringAsync();
