@@ -83,7 +83,8 @@ namespace FavourAPI.GraphQL
                 "industries",
                 resolve: async context =>
                 {
-                    return await industryRepository.GetAll();
+                    var industriesWithPositions = await industryRepository.GetAll();
+                    return industriesWithPositions;
                 });
         }
     }

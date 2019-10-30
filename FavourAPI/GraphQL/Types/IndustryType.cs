@@ -11,7 +11,8 @@ namespace FavourAPI.GraphQL.Types
         public IndustryType()
         {
             Field(i => i.Name);
-            Field<PositionType>(nameof(IndustryDto.Positions));
+            Field<IntGraphType>(nameof(IndustryDto.Order));
+            Field<ListGraphType<PositionType>>(nameof(IndustryDto.Positions));
         }
     }
 }

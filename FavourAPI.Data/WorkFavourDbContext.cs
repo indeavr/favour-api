@@ -147,29 +147,29 @@ namespace FavourAPI.Data
                 new SexDb() { Value = nameof(Sex.Male) },
                 new SexDb() { Value = nameof(Sex.Female) });
 
-            modelBuilder.Entity<Position>().HasData(new Position() { Id = Guid.NewGuid(), Name = "Test position 1" },
-                new Position() { Id = Guid.NewGuid(), Name = "Test position 2" },
-                new Position() { Id = Guid.NewGuid(), Name = "Test position 3" },
-                new Position() { Id = Guid.NewGuid(), Name = "Test position 4" },
-                new Position() { Id = Guid.NewGuid(), Name = "Test position 5" },
-                new Position() { Id = Guid.NewGuid(), Name = "Test position 6" },
-                new Position() { Id = Guid.NewGuid(), Name = "Test position 7" });
+            //modelBuilder.Entity<Position>().HasData(new Position() { Id = Guid.NewGuid(), Name = "Test position 1" },
+            //    new Position() { Id = Guid.NewGuid(), Name = "Test position 2" },
+            //    new Position() { Id = Guid.NewGuid(), Name = "Test position 3" },
+            //    new Position() { Id = Guid.NewGuid(), Name = "Test position 4" },
+            //    new Position() { Id = Guid.NewGuid(), Name = "Test position 5" },
+            //    new Position() { Id = Guid.NewGuid(), Name = "Test position 6" },
+            //    new Position() { Id = Guid.NewGuid(), Name = "Test position 7" });
 
-            modelBuilder.Entity<Industry>().HasData(new Industry() { Id = Guid.NewGuid(), Name = "Test industry 1" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 2" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 3" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 4" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 5" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 6" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 7" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 8" },
-                new Industry() { Id = Guid.NewGuid(), Name = "Test industry 9" });
+            //modelBuilder.Entity<Industry>().HasData(new Industry() { Id = Guid.NewGuid(), Name = "Test industry 1" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 2" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 3" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 4" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 5" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 6" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 7" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 8" },
+            //    new Industry() { Id = Guid.NewGuid(), Name = "Test industry 9" });
 
-            modelBuilder.Entity<Skill>().HasData(new Skill() { Name = "Test skill 1" },
-                new Skill() { Name = "Test skill 2" },
-                new Skill() { Name = "Test skill 3" },
-                new Skill() { Name = "Test skill 4" },
-                new Skill() { Name = "Test skill 5" });
+            //modelBuilder.Entity<Skill>().HasData(new Skill() { Name = "Test skill 1" },
+            //    new Skill() { Name = "Test skill 2" },
+            //    new Skill() { Name = "Test skill 3" },
+            //    new Skill() { Name = "Test skill 4" },
+            //    new Skill() { Name = "Test skill 5" });
 
             /* Hack
             * In indexMagic 5 migration we make the time posted column a clustedred index
