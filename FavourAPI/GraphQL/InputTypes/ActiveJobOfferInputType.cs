@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Dtos;
 using GraphQL.Types;
+using System.Security.Claims;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
@@ -13,5 +14,10 @@ namespace FavourAPI.GraphQL.InputTypes
             Field<ListGraphType<ApplicationInputType>>(nameof(ActiveJobOfferDto.Applications));
             Field<JobOfferInputType>(nameof(ActiveJobOfferDto.JobOffer));
         }
+    }
+
+    public class Gosho: ClaimsPrincipal
+    {
+      
     }
 }

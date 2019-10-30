@@ -32,8 +32,8 @@ namespace FavourAPI.Services
 
             string callbackUrl = $"https://127.0.0.1:44334/users/confirmEmail?userId={HttpUtility.UrlEncode(userDto.Id.ToString())}&code={HttpUtility.UrlEncode(code)}";
 
-            await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
+            //await emailSender.SendEmailAsync(userDto.Email, "Confirm your email",
+            //        $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
 
             return userDto;
         }

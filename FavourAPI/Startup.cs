@@ -107,7 +107,9 @@ namespace FavourAPI
             services.AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<WorkFavourDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddUserManager<UserManager>();
+
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -240,7 +242,8 @@ namespace FavourAPI
 
                     string userId = context.Request.Headers["UserId"];
 
-                    return new GraphQLUserContext(context) {
+                    return new GraphQLUserContext(context)
+                    {
                         Token = token,
                         UserId = userId,
                         User = context.User
@@ -255,7 +258,7 @@ namespace FavourAPI
                 .UseLazyLoadingProxies()
                 .UseSqlServer(connection)
                 .EnableSensitiveDataLogging()
-            );
+            , ServiceLifetime.Transient);
 
             // GraphQL
             services.AddScoped<IDocumentExecuter, DocumentExecuter>();
