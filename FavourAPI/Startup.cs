@@ -33,11 +33,12 @@ using FavourAPI.GraphQL.InputTypes;
 using System;
 using FavourAPI.Data.Repositories;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
 using GraphQL.Validation;
 using GraphQL.Server.Transports.AspNetCore.Common;
 using System.IO;
 using System.Linq;
+using GraphQL.Authorization;
+using FavourAPI.Data.Factories;
 
 namespace FavourAPI
 {
@@ -159,6 +160,9 @@ namespace FavourAPI
             services.AddScoped<ISkillRepository, SkillRepository>();
             services.AddScoped<IIndustryRepository, IndustryRepository>();
 
+            // Factories
+            services.AddScoped<IClaimsFactory, ClaimsFactory>();
+
             // Data Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyProviderService, CompanyProviderService>();
@@ -224,12 +228,7 @@ namespace FavourAPI
 
             services.AddScoped<IDependencyResolver>(x => new FuncDependencyResolver(x.GetRequiredService));
 
-            // extension method defined in this project
-            //services.AddGraphQLAuth((_, s) =>
-            //{
-            //    _.AddPolicy("AdminPolicy", p => p.RequireClaim("role", "Admin"));
-            //});
-
+            this.AddGraphQLAuth(services);
             services.AddGraphQL(x => x.ExposeExceptions = true)
                 .AddUserContextBuilder(context =>
                 {
@@ -300,11 +299,38 @@ namespace FavourAPI
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
+            var settings = new GraphQLSettings
+            {
+                BuildUserContext = ctx =>
+                {
+                    return Task.FromResult(new GraphQLUserContext(ctx) as object);
+                }
+            };
+
+            var rules = app.ApplicationServices.GetServices<IValidationRule>();
+            settings.ValidationRules.AddRange(rules);
+
             app.UseGraphQL<ISchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
-
             // app.UseMiddleware<RequestResponseLoggingMiddleware>();
             app.UseMvc();
+        }
+
+        public void AddGraphQLAuth(IServiceCollection services)
+        {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IAuthorizationEvaluator, AuthorizationEvaluator>();
+            services.AddTransient<IValidationRule, AuthorizationValidationRule>();
+
+            services.AddSingleton(s =>
+            {
+                var authSettings = new AuthorizationSettings();
+
+                authSettings.AddPolicy("UserPolicy", _ => _.RequireClaim("role", "User", "Admin"));
+                authSettings.AddPolicy("AdminPolicy", _ => _.RequireClaim("role", "Admin"));
+
+                return authSettings;
+            });
         }
     }
 

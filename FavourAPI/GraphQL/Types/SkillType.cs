@@ -3,6 +3,7 @@ using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using GraphQL.Authorization;
 
 namespace FavourAPI.GraphQL.Types
 {
@@ -10,6 +11,7 @@ namespace FavourAPI.GraphQL.Types
     {
         public SkillType()
         {
+            this.AuthorizeWith("UserPolicy");
             Field(s => s.Name);
         }
     }

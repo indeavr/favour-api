@@ -6,17 +6,22 @@ using System;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
 using System.Collections.Generic;
+using FavourAPI.Data.Factories;
 
 namespace FavourAPI.Data.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly UserManager<User> userManager;
+        private readonly IClaimsFactory claimsFactory;
 
-        public UserRepository(WorkFavourDbContext workFavourDbContext, UserManager<User> userManager, IMapper mapper)
+        public UserRepository(WorkFavourDbContext workFavourDbContext,
+            UserManager<User> userManager,
+            IMapper mapper, IClaimsFactory claimsFactory)
             : base(workFavourDbContext, mapper)
         {
             this.userManager = userManager;
+            this.claimsFactory = claimsFactory;
         }
 
         public async Task<UserDto> GetById(Guid id)
@@ -65,6 +70,8 @@ namespace FavourAPI.Data.Repositories
             var user = await this.userManager.FindByEmailAsync(email);
 
             bool valid = await this.userManager.CheckPasswordAsync(user, password);
+
+            await this.userManager.AddClaimAsync(user, this.claimsFactory.CreateAuthenticatedClaim());
 
             if (!valid)
             {

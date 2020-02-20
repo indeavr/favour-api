@@ -2,6 +2,7 @@
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Services;
 using GraphQL.Types;
+using GraphQL.Authorization;
 using System;
 
 namespace FavourAPI.GraphQL
@@ -76,6 +77,7 @@ namespace FavourAPI.GraphQL
                 "skills",
                 resolve: async context =>
                 {
+                    this.AuthorizeWith("UserPolicy");
                     return await skillRepository.GetAll();
                 });
 
