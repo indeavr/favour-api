@@ -28,5 +28,7 @@ namespace FavourAPI.Data.Repositories
         Task<string> GetPhoneVerificationSession(string userId);
 
         Task PhoneConfirmed(string userId);
+
+        Task<UserDto> LoginWithGoogle(string serverToken);
     }
 }
