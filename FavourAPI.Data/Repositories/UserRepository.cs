@@ -6,17 +6,23 @@ using System;
 using System.Threading.Tasks;
 using FavourAPI.Dtos;
 using System.Collections.Generic;
+using FavourAPI.Data.Factories;
+using Google.Apis.Auth;
 
 namespace FavourAPI.Data.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly UserManager<User> userManager;
+        private readonly IClaimsFactory claimsFactory;
 
-        public UserRepository(WorkFavourDbContext workFavourDbContext, UserManager<User> userManager, IMapper mapper)
+        public UserRepository(WorkFavourDbContext workFavourDbContext,
+            UserManager<User> userManager,
+            IMapper mapper, IClaimsFactory claimsFactory)
             : base(workFavourDbContext, mapper)
         {
             this.userManager = userManager;
+            this.claimsFactory = claimsFactory;
         }
 
         public async Task<UserDto> GetById(Guid id)
@@ -66,9 +72,34 @@ namespace FavourAPI.Data.Repositories
 
             bool valid = await this.userManager.CheckPasswordAsync(user, password);
 
+            await this.userManager.AddClaimAsync(user, this.claimsFactory.CreateAuthenticatedClaim());
+
             if (!valid)
             {
 
+            }
+
+            return this.mapper.Map<UserDto>(user);
+        }
+
+        public async Task<UserDto> LoginWithGoogle(string email, string serverToken)
+        {
+            var authPayload = await GoogleJsonWebSignature.ValidateAsync(serverToken);
+            var user = await this.userManager.FindByEmailAsync(authPayload.Email);
+
+            if (user == null)
+            {
+                var newUser = await this.userManager.CreateAsync(new User()
+                {
+                    Email = authPayload.Email,
+                    UserName = authPayload.Name
+                });
+
+                foreach (var err in newUser.Errors)
+                {
+                    throw new Exception(err.Description);
+                }
+                return this.mapper.Map<UserDto>(newUser);
             }
 
             return this.mapper.Map<UserDto>(user);

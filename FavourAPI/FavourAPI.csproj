@@ -12,7 +12,6 @@
     <Compile Remove="EmailSender.cs" />
     <Compile Remove="GraphQL\First.cs" />
     <Compile Remove="GraphQL\GraphQLMiddleware.cs" />
-    <Compile Remove="GraphQL\GraphQLSettings.cs" />
     <Compile Remove="GraphQL\User.cs" />
     <Compile Remove="IJobOfferService.cs" />
   </ItemGroup>
@@ -34,16 +33,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\authorization\src\GraphQL.Authorization\GraphQL.Authorization.csproj" />
     <ProjectReference Include="..\FavourAPI.Data\FavourAPI.Data.csproj" />
     <ProjectReference Include="..\FavourAPI.Services\FavourAPI.Services.csproj" />
   </ItemGroup>
+
 
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="rem dotnet &quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; AssemblyPath=&quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; TargetFile=&quot;$(ProjectDir)..\..\work-favour-web\src\services\apiTypes.ts&quot;  RtPath=&quot;$(ProjectDir)..\Typings\RtCLI\rtcli.dll&quot;" />
+    <Exec Command="rem dotnet &quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; AssemblyPath=&quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; TargetFile=&quot;$(ProjectDir)..\..\work-favour-web\src\services\apiTypes.ts&quot;  RtPath=&quot;$(ProjectDir)..\Typings\RtCLI\rtcli.dll&quot;&#xD;&#xA;" />
   </Target>
 
 </Project>

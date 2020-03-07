@@ -15,6 +15,8 @@ namespace FavourAPI.Services
 
         Task<UserDto> Login(string email, string password);
 
+        Task<UserDto> LoginWithGoogle(string serverToken);
+
         Task SendResetPasswordEmail(string email);
 
         Task ResetPassword(string userId, string code, string password);

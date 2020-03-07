@@ -51,6 +51,13 @@ namespace FavourAPI.Services
             return userDto;
         }
 
+        public async Task<UserDto> LoginWithGoogle(string serverToken)
+        {
+            var userDto = await this.userRepo.LoginWithGoogle(serverToken);
+
+            return userDto;
+        }
+
         public async Task SendResetPasswordEmail(string email)
         {
             var userDto = await this.userRepo.GetByEmail(email);
