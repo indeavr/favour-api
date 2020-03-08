@@ -8,9 +8,9 @@ namespace FavourAPI.GraphQL.InputTypes
         public OfficeInputType()
         {
             Field(o => o.Name);
-            Field<ListGraphType<EmailInputType>>(nameof(OfficeDto.Emails));
-            Field<LocationInputType>(nameof(OfficeDto.Location));
-            Field<ListGraphType<PhoneNumberInputType>>(nameof(OfficeDto.PhoneNumbers));
+            //Field<ListGraphType<EmailInputType>>(nameof(OfficeDto.Emails));
+            //Field<LocationInputType>(nameof(OfficeDto.Location));
+            //Field<ListGraphType<PhoneNumberInputType>>(nameof(OfficeDto.PhoneNumbers));
         }
     }
 }

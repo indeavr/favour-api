@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FavourAPI.Data.Models.Enums;
+using FavourAPI.Data.Dtos.Favour;
 
 namespace FavourAPI.Helpers
 {
@@ -81,7 +82,10 @@ namespace FavourAPI.Helpers
 
 
             CreateMap<JobOffer, JobOfferDto>().PreserveReferences();
-            CreateMap<JobOfferDto, JobOffer>().PreserveReferences();
+            CreateMap<JobOfferDto, JobOffer>().PreserveReferences(); 
+            
+            CreateMap<Favour, FavourDto>().PreserveReferences();
+            CreateMap<FavourDto, Favour>().PreserveReferences();
 
             CreateMap<PermissionMy, PermissionsMyDto>().PreserveReferences();
             CreateMap<PermissionsMyDto, PermissionMy>().PreserveReferences();
@@ -153,6 +157,9 @@ namespace FavourAPI.Helpers
 
             CreateMap<ActiveJobOffer, ActiveJobOfferDto>().PreserveReferences();
             CreateMap<ActiveJobOfferDto, ActiveJobOffer>().PreserveReferences();
+
+            CreateMap<ActiveFavour, ActiveFavourDto>().PreserveReferences();
+            CreateMap<ActiveFavourDto, ActiveFavour>().PreserveReferences();
         }
     }
 }
