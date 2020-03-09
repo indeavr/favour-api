@@ -82,7 +82,7 @@ namespace FavourAPI.Data.Repositories
             return this.mapper.Map<UserDto>(user);
         }
 
-        public async Task<UserDto> LoginWithGoogle(string email, string serverToken)
+        public async Task<UserDto> LoginWithGoogle(string serverToken)
         {
             var authPayload = await GoogleJsonWebSignature.ValidateAsync(serverToken);
             var user = await this.userManager.FindByEmailAsync(authPayload.Email);

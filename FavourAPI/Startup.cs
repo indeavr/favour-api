@@ -169,6 +169,7 @@ namespace FavourAPI
             services.AddScoped<IPersonProviderService, PersonProviderService>();
             services.AddScoped<IConsumerService, ConsumerService>();
             services.AddScoped<IOfferService, OfferService>();
+            services.AddScoped<IFavourService, FavourService>();
             services.AddScoped<IOfficeService, OfficeService>();
             services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IPositionService, PositionService>();
@@ -184,9 +185,10 @@ namespace FavourAPI
             services.AddScoped<OfficeType>();
             services.AddScoped<SkillType>();
             services.AddScoped<IndustryType>();
-            services.AddScoped<JobOfferType>();
-            services.AddScoped<PositionType>();
             services.AddScoped<LocationType>();
+            services.AddScoped<JobOfferType>();
+            services.AddScoped<FavourType>();
+            services.AddScoped<PositionType>();
             services.AddScoped<EmailType>();
             services.AddScoped<OngoingJobOfferType>();
             services.AddScoped<SavedJobOfferType>();
@@ -209,6 +211,7 @@ namespace FavourAPI
             services.AddScoped<EmailInputType>();
             services.AddScoped<SkillInputType>();
             services.AddScoped<JobOfferInputType>();
+            services.AddScoped<FavourInputType>();
             services.AddScoped<ActiveJobOfferInputType>();
             services.AddScoped<OngoingJobOfferInputType>();
             services.AddScoped<SavedJobOfferInputType>();

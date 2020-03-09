@@ -36,6 +36,8 @@ namespace FavourAPI.Data
 
         public DbSet<JobOffer> JobOffers { get; set; }
 
+        public DbSet<Favour> Favours { get; set; }
+
         public DbSet<JobPhoto> JobPhotos { get; set; }
 
         public DbSet<Application> Applications { get; set; }
@@ -79,6 +81,8 @@ namespace FavourAPI.Data
         public DbSet<FieldOfStudy> FieldsOfStudy { get; set; }
 
         public DbSet<ActiveJobOffer> ActiveJobOffers { get; set; }
+
+        public DbSet<ActiveFavour> ActiveFavours { get; set; }
 
         public DbSet<OngoingJobOffer> OngoingJobOffers { get; set; }
 

@@ -25,5 +25,7 @@ namespace FavourAPI.Data.Models
         public virtual ICollection<Email> Emails { get; set; }
 
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
+
+        public virtual ICollection<Favour> Favours { get; set; }
     }
 }

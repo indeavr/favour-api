@@ -13,10 +13,10 @@ namespace FavourAPI.GraphQL.InputTypes
             Field(n => n.Name);
             Field(n => n.Bulstat);
             Field(n => n.Description);
-            Field<ListGraphType<OfficeInputType>>(nameof(CompanyProviderDto.Offices));
-            //Field<LocationInputType>(nameof(CompanyProviderDto.Lo));
+            //Field<ListGraphType<OfficeInputType>>(nameof(CompanyProviderDto.Offices));
+            ////Field<LocationInputType>(nameof(CompanyProviderDto.Lo));
 
-            Field<ListGraphType<IndustryInputType>>(nameof(CompanyProviderDto.Industries));
+            //Field<ListGraphType<IndustryInputType>>(nameof(CompanyProviderDto.Industries));
         }
     }
 }

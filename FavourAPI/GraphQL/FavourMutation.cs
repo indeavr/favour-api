@@ -1,9 +1,11 @@
-﻿using FavourAPI.Data.Models;
+﻿using FavourAPI.Data.Dtos.Favour;
+using FavourAPI.Data.Models;
 using FavourAPI.Dtos;
 using FavourAPI.GraphQL.InputTypes;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Helpers;
 using FavourAPI.Services;
+using FavourAPI.Services.Contracts;
 using GraphQL.Types;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +30,9 @@ namespace FavourAPI.GraphQL
             IOptions<AppSettings> appSettings,
             IConsumerService consumerService,
             ICompanyProviderService companyProviderService,
-            IOfferService offerService)
+            IOfferService offerService,
+            IFavourService favourService
+            )
         {
             Name = "Mutation";
 
@@ -314,6 +318,22 @@ namespace FavourAPI.GraphQL
 
                    return await offerService.AddJobOffer(userId, jobDto);
                });
+
+            FieldAsync<StringGraphType>(
+             "createFavour",
+             arguments: new QueryArguments(
+                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                 new QueryArgument<NonNullGraphType<FavourInputType>> { Name = "favour" }),
+             resolve: async context =>
+             {
+                 var userId = context.GetArgument<string>("userId");
+                 var favour = context.Arguments["favour"];
+                 var favourDto = JToken.FromObject(favour).ToObject<FavourDto>();
+
+                 var success = await favourService.AddFavour(userId, favourDto);
+
+                 return "success";
+             });
         }
     }
 }

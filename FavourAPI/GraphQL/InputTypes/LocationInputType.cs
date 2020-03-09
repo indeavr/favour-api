@@ -1,4 +1,5 @@
-﻿using FavourAPI.GraphQL.Types;
+﻿using FavourAPI.Dtos;
+using FavourAPI.GraphQL.Types;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;
@@ -7,19 +8,28 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
-    public class LocationInputType: InputObjectGraphType<LocationType>
+    public class LocationInputType : InputObjectGraphType<LocationDto>
     {
         public LocationInputType()
         {
             Name = "LocationInput";
 
-            Field<NonNullGraphType<StringGraphType>>("town");
+            //Field<NonNullGraphType<StringGraphType>>("town");
 
-            Field<NonNullGraphType<StringGraphType>>("country");
+            //Field<NonNullGraphType<StringGraphType>>("country");
 
-            Field<NonNullGraphType<StringGraphType>>("street");
+            //Field<NonNullGraphType<StringGraphType>>("adress");
 
-            Field<NonNullGraphType<StringGraphType>>("zip");
+            //Field<NonNullGraphType<StringGraphType>>("latitude");
+
+            //Field<NonNullGraphType<StringGraphType>>("longitude");
+
+            Field(l => l.Id);
+            Field(l => l.Country);
+            Field(l => l.Address);
+            Field(l => l.Town);
+            Field(l => l.Latitude);
+            Field(l => l.Longitude);
         }
     }
 }

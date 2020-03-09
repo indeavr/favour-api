@@ -1,6 +1,7 @@
 ﻿using FavourAPI.Data.Repositories;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Services;
+using FavourAPI.Services.Contracts;
 using GraphQL.Types;
 using GraphQL.Authorization;
 using System;
@@ -11,6 +12,7 @@ namespace FavourAPI.GraphQL
     {
         public FavourQuery(IUserRepository userRepo,
             IOfferService offerService,
+            IFavourService favourService,
             IConsumerService consumerService,
             ICompanyProviderRepository companyProviderRepository,
             IExperienceRepository experienceRepository,
@@ -56,6 +58,20 @@ namespace FavourAPI.GraphQL
                         return offerService.GetAllOffers();
                     }
                     return offerService.GetAllOffers();
+                }
+            );
+            
+            Field<ListGraphType<FavourType>>(
+                "favours",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "id" }),
+                resolve: context =>
+                {
+                    var favourId = context.GetArgument<Guid>("id");
+                    if (favourId == null)
+                    {
+                        return favourService.GetAllFavours();
+                    }
+                    return favourService.GetAllFavours();
                 }
             );
 

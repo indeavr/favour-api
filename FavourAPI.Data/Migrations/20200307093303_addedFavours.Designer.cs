@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200307093303_addedFavours")]
+    partial class addedFavours
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -309,8 +311,6 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<Guid?>("LocationId");
-
                     b.Property<double>("Money");
 
                     b.Property<Guid?>("PersonProviderId");
@@ -326,8 +326,6 @@ namespace FavourAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompletedStateId");
-
-                    b.HasIndex("LocationId");
 
                     b.HasIndex("PersonProviderId");
 
@@ -434,7 +432,11 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid>("LocationId");
 
+                    b.Property<Guid?>("FavourId");
+
                     b.HasKey("JobOfferId", "LocationId");
+
+                    b.HasIndex("FavourId");
 
                     b.HasIndex("LocationId");
 
@@ -469,8 +471,6 @@ namespace FavourAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address");
-
                     b.Property<string>("Country");
 
                     b.Property<string>("CustomInfo");
@@ -480,6 +480,8 @@ namespace FavourAPI.Data.Migrations
                     b.Property<double?>("Longitude");
 
                     b.Property<string>("Region");
+
+                    b.Property<string>("StreetAddress");
 
                     b.Property<string>("Town");
 
@@ -1154,10 +1156,6 @@ namespace FavourAPI.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CompletedStateId");
 
-                    b.HasOne("FavourAPI.Data.Models.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
-
                     b.HasOne("FavourAPI.Data.Models.PersonProvider")
                         .WithMany("Favours")
                         .HasForeignKey("PersonProviderId");
@@ -1204,6 +1202,10 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.JobOfferLocation", b =>
                 {
+                    b.HasOne("FavourAPI.Data.Models.Favour")
+                        .WithMany("Locations")
+                        .HasForeignKey("FavourId");
+
                     b.HasOne("FavourAPI.Data.Models.JobOffer", "JobOffer")
                         .WithMany("Locations")
                         .HasForeignKey("JobOfferId")
