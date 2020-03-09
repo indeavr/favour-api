@@ -13,7 +13,7 @@ namespace FavourAPI.Data.Dtos.Favour
 
         public string Description { get; set; }
 
-        public string Location { get; set; }
+        public LocationDto Location { get; set; }
 
         public double Money { get; set; }
 

@@ -11,13 +11,13 @@ namespace FavourAPI.GraphQL.Types
     {
         public FavourType()
         {
-            Name = "Favour";
+            Name = "FavourType";
 
             Field(jo => jo.Id);
-            Field(jo => jo.Location);
             Field(jo => jo.Money);
             Field(jo => jo.Title);
             Field(jo => jo.Description);
+            Field(f => f.Location, type: typeof(LocationType));
             //Field<DateTimeGraphType>(nameof(FavourDto.TimePosted));
             //Field<ListGraphType<PeriodType>>(nameof(FavourDto.Periods));
             //Field<ListGraphType<SkillType>>(nameof(FavourDto.RequiredSkills));

@@ -16,9 +16,11 @@ namespace FavourAPI.Data.Models
 
         public string Description { get; set; }
 
+        public virtual Location Location { get; set; }
+
         public virtual ICollection<Period> Periods { get; set; }
 
-        public virtual ICollection<JobOfferLocation> Locations { get; set; }
+        //public virtual ICollection<JobOfferLocation> Locations { get; set; }
 
         public DateTime TimePosted { get; set; }
 

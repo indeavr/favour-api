@@ -181,10 +181,10 @@ namespace FavourAPI
             services.AddScoped<OfficeType>();
             services.AddScoped<SkillType>();
             services.AddScoped<IndustryType>();
+            services.AddScoped<LocationType>();
             services.AddScoped<JobOfferType>();
             services.AddScoped<FavourType>();
             services.AddScoped<PositionType>();
-            services.AddScoped<LocationType>();
             services.AddScoped<EmailType>();
             services.AddScoped<OngoingJobOfferType>();
             services.AddScoped<SavedJobOfferType>();

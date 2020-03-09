@@ -17,14 +17,14 @@ namespace FavourAPI.Data.Models
         // Neighborhood/Province/Region
         public string Region { get; set; }
 
-        public string StreetAddress { get; set; }
+        public string Address { get; set; }
 
         public string ZipCode { get; set; }
 
         public string CustomInfo { get; set; }
 
-        public double? Latitude { get; set; }
+        public string Latitude { get; set; }
 
-        public double? Longitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

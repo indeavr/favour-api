@@ -8,8 +8,11 @@ namespace FavourAPI.GraphQL.Types
         public LocationType()
         {
             Field(l => l.Country);
-            Field(l => l.StreetAddress);
+            Field(l => l.Address);
             Field(l => l.Town);
+            Field(l => l.Latitude);
+            Field(l => l.Longitude);
+            Field(l => l.Id);
             Field(l => l.ZipCode);
         }
     }
