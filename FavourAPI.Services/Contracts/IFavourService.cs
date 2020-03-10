@@ -15,6 +15,6 @@ namespace FavourAPI.Services.Contracts
 
         List<FavourDto> GetAllFavours();
 
-        Task AddApplication(string consumerId, string favourId, ApplicationDto application);
+        Task AddApplication(string providerId, string favourId, ApplicationDto application);
     }
 }

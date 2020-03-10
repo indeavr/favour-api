@@ -12,7 +12,7 @@ namespace FavourAPI.Data.Models
         [Column(TypeName = "uniqueidentifier")]
         public Guid ConsumerId { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
+        public virtual Provider Consumer { get; set; }
 
         [Key]
         [Column(TypeName = "uniqueidentifier")]

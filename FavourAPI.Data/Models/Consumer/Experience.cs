@@ -22,6 +22,6 @@ namespace FavourAPI.Data.Models
 
         public bool CurrentlyWorking { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
+        public virtual Provider Consumer { get; set; }
     }
 }

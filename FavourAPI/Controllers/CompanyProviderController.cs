@@ -13,13 +13,13 @@ namespace FavourAPI.Controllers
     [ApiController]
     public class CompanyProviderController : ControllerBase
     {
-        private readonly ICompanyProviderService companyProviderService;
+        private readonly ICompanyConsumerService companyProviderService;
         private readonly IUserService userService;
         private readonly IOfficeService officeService;
         private readonly IIndustryService industryService;
 
         public CompanyProviderController(
-            [FromServices] ICompanyProviderService cps,
+            [FromServices] ICompanyConsumerService cps,
             [FromServices] IUserService userService,
             [FromServices] IOfficeService officeService,
             [FromServices] IIndustryService industryService)
@@ -31,9 +31,9 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CompanyProvider>> GetCompanyProvider([FromQuery] string userId, [FromQuery]bool withPhoto)
+        public async Task<ActionResult<CompanyConsumer>> GetCompanyProvider([FromQuery] string userId, [FromQuery]bool withPhoto)
         {
-            var companyProvider = await this.companyProviderService.GetProvider(userId, withPhoto);
+            var companyProvider = await this.companyProviderService.GetConsumer(userId, withPhoto);
             return Ok(companyProvider);
         }
 
@@ -69,13 +69,13 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet("viewTimes")]
-        public async Task<ActionResult<ProviderViewTimeDto>> GetViewTimes([FromQuery] string userId)
+        public async Task<ActionResult<ConsumerViewTimeDto>> GetViewTimes([FromQuery] string userId)
         {
             return Ok(this.companyProviderService.GetViewTime(userId));
         }
 
         [HttpPost("viewTimes")]
-        public async Task<ActionResult> AddOrUpdateViewTimes([FromQuery] string userId, [FromBody] ProviderViewTimeDto viewTimeDto)
+        public async Task<ActionResult> AddOrUpdateViewTimes([FromQuery] string userId, [FromBody] ConsumerViewTimeDto viewTimeDto)
         {
             await this.companyProviderService.AddOrUpdateViewTime(userId, viewTimeDto);
             return Ok();

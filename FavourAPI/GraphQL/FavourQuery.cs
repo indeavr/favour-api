@@ -12,8 +12,8 @@ namespace FavourAPI.GraphQL
         public FavourQuery(IUserRepository userRepo,
             IOfferService offerService,
             IFavourService favourService,
-            IConsumerService consumerService,
-            ICompanyProviderRepository companyProviderRepository,
+            IProviderService providerService,
+            ICompanyConsumerRepository companyConsumerepository,
             IExperienceRepository experienceRepository,
             IPositionRepository positionRepository,
             ISkillRepository skillRepository,
@@ -26,24 +26,24 @@ namespace FavourAPI.GraphQL
                 resolve: context => userRepo.GetById(context.GetArgument<Guid>("id"))
             );
 
-            FieldAsync<ConsumerType>(
-               "consumer",
+            FieldAsync<ProviderType>(
+               "provider",
                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
                resolve: async context =>
               {
-                  var result = await consumerService.GetById(context.GetArgument<string>("userId"), true);
+                  var result = await providerService.GetById(context.GetArgument<string>("userId"), true);
                   return result;
               }
            );
 
-            FieldAsync<CompanyProviderType>(
-                "companyProvider",
+            FieldAsync<CompanyConsumerType>(
+                "companyConsumer",
                 arguments: new QueryArguments(new QueryArgument<StringGraphType>() { Name = "id" }),
                 resolve: async context =>
                 {
                     var providerId = context.GetArgument<string>("id");
 
-                    return await companyProviderRepository.GetById(providerId);
+                    return await companyConsumerepository.GetById(providerId);
                 });
 
             Field<JobOfferType>(

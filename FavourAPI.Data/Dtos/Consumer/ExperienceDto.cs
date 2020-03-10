@@ -21,6 +21,6 @@ namespace FavourAPI.Dtos
 
         public bool CurrentlyWorking { get; set; }
 
-        public ConsumerDto Consumer { get; set; }
+        public ProviderDto Consumer { get; set; }
     }
 }

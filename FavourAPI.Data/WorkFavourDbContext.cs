@@ -16,9 +16,9 @@ namespace FavourAPI.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<PersonProvider> PersonProviders { get; set; }
+        public DbSet<PersonConsumer> PersonProviders { get; set; }
 
-        public DbSet<CompanyProvider> CompanyProviders { get; set; }
+        public DbSet<CompanyConsumer> CompanyProviders { get; set; }
 
         public DbSet<Office> Offices { get; set; }
 
@@ -32,7 +32,7 @@ namespace FavourAPI.Data
 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
 
-        public DbSet<Consumer> Consumers { get; set; }
+        public DbSet<Provider> Consumers { get; set; }
 
         public DbSet<JobOffer> JobOffers { get; set; }
 
@@ -96,9 +96,9 @@ namespace FavourAPI.Data
 
             // Configuring one-to-one relation
             modelBuilder.Entity<User>()
-                .HasOne(u => u.CompanyProvider)
+                .HasOne(u => u.CompanyConsumer)
                 .WithOne(cp => cp.User)
-                .HasForeignKey<CompanyProvider>(cp => cp.Id);
+                .HasForeignKey<CompanyConsumer>(cp => cp.Id);
 
             modelBuilder.Entity<Permission>().HasIndex(p => new { p.UserId, p.PermissionNameId }).IsUnique();
 
@@ -107,7 +107,7 @@ namespace FavourAPI.Data
             modelBuilder.Entity<PositionSkill>().HasKey(ps => new { ps.SkillId, ps.PositionId });
             modelBuilder.Entity<OfficeIndustry>().HasKey(ps => new { ps.IndustryId, ps.OfficeId });
             modelBuilder.Entity<SavedJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
-            modelBuilder.Entity<OngoingJobOffer>().HasKey(cjo => new { cjo.ConsumerId, cjo.JobOfferId });
+            modelBuilder.Entity<OngoingJobOffer>().HasKey(cjo => new { cjo.ProviderId, cjo.JobOfferId });
             modelBuilder.Entity<JobOfferLocation>().HasKey(jol => new { jol.JobOfferId, jol.LocationId });
 
             // Setting autogenerating PK GUIDs 

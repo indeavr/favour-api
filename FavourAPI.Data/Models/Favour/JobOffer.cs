@@ -22,7 +22,7 @@ namespace FavourAPI.Data.Models
 
         public DateTime TimePosted { get; set; }
 
-        public virtual CompanyProvider Provider { get; set; }
+        public virtual CompanyConsumer CompanyConsumer { get; set; }
 
         public double Money { get; set; }
 

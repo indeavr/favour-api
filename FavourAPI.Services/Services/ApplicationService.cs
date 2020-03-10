@@ -36,7 +36,7 @@ namespace FavourAPI.Services.Services
             var application = new Application()
             {
                 State = state,
-                Consumer = consumer,
+                Provider = consumer,
                 ActiveJobOffer = jobOffer.ActiveState,
                 Message = message,
                 Time = time
@@ -79,7 +79,7 @@ namespace FavourAPI.Services.Services
 
             await this.dbContext.OngoingJobOffers.AddAsync(new OngoingJobOffer()
             {
-                Consumer = application.Consumer,
+                Provider = application.Provider,
                 JobOffer = jobOffer.JobOffer,
             });
 

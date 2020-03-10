@@ -10,7 +10,7 @@ namespace FavourAPI.Dtos
 
         public string Message { get; set; }
 
-        public ConsumerDto Consumer { get; set; }
+        public ProviderDto Provider { get; set; }
 
         public ActiveJobOfferDto ActiveJobOffer { get; set; }
     }

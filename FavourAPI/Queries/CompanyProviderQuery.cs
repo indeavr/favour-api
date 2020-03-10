@@ -10,20 +10,20 @@ namespace FavourAPI.Queries
 {
     public class CompanyProviderQuery : ObjectGraphType
     {
-        public CompanyProviderQuery(ICompanyProviderService providerService)
+        public CompanyProviderQuery(ICompanyConsumerService providerService)
         {
-            Field<ListGraphType<CompanyProviderType>>("companyProviders", arguments: new QueryArguments(),
+            Field<ListGraphType<CompanyConsumerType>>("companyProviders", arguments: new QueryArguments(),
                 resolve: context =>
                 {
                     return providerService.GetAll();
                 });
 
-            Field<ObjectGraphType<CompanyProviderType>>("companyProvider", arguments: new QueryArguments(new QueryArgument<IdGraphType>() { Name = "id" }),
+            Field<ObjectGraphType<CompanyConsumerType>>("companyProvider", arguments: new QueryArguments(new QueryArgument<IdGraphType>() { Name = "id" }),
                 resolve: context =>
                 {
                     var userdId = context.GetArgument<string>("id");
 
-                    return providerService.GetProvider(userdId, true);
+                    return providerService.GetConsumer(userdId, true);
                 });
         }
     }

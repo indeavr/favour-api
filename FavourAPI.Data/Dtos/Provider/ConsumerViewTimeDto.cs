@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FavourAPI.Dtos
 {
-    public class ProviderViewTimeDto
+    public class ConsumerViewTimeDto
     {
         public string Id { get; set; }
 

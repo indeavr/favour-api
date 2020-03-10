@@ -12,7 +12,7 @@ namespace FavourAPI.GraphQL.InputTypes
             Field(cr => cr.ReviewForProvider);
             Field(cr => cr.State);
 
-            Field<ConsumerInputType>(nameof(CompletionResultDto.Consumer));
+            Field<ProviderInputType>(nameof(CompletionResultDto.Consumer));
             Field<DateTimeGraphType>(nameof(CompletionResultDto.Date));
         }
     }

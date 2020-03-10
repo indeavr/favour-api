@@ -13,8 +13,8 @@ namespace FavourAPI.Controllers
     [ApiController]
     public class PersonProviderController : ControllerBase
     {
-        private readonly IPersonProviderService personProviderService;
-        public PersonProviderController([FromServices] IPersonProviderService pps)
+        private readonly IPersonConsumerService personProviderService;
+        public PersonProviderController([FromServices] IPersonConsumerService pps)
         {
             this.personProviderService = pps;
         }
@@ -26,9 +26,9 @@ namespace FavourAPI.Controllers
         //}
 
         [HttpPut]
-        public async Task<ActionResult> AddPersonPrvider([FromQuery] string userId, [FromBody] PersonProviderDto personProvider)
+        public async Task<ActionResult> AddPersonPrvider([FromQuery] string userId, [FromBody] PersonConsumerDto personProvider)
         {
-            await this.personProviderService.AddPersonProvider(userId, personProvider);
+            await this.personProviderService.AddPersonConsumer(userId, personProvider);
             return Ok();
         }
     }

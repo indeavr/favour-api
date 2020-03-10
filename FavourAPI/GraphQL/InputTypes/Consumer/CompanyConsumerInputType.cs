@@ -4,11 +4,11 @@ using GraphQL.Types;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
-    public class CompanyProviderInputType : InputObjectGraphType<CompanyProviderDto>
+    public class CompanyConsumerInputType : InputObjectGraphType<CompanyConsumerDto>
     {
-        public CompanyProviderInputType()
+        public CompanyConsumerInputType()
         {
-            Name = "CompanyProviderInput";
+            Name = "CompanyConsumerInput";
 
             Field(n => n.Name);
             Field(n => n.Bulstat);

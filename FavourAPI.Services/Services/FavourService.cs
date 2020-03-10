@@ -65,7 +65,7 @@ namespace FavourAPI.Services.Services
             var consumer = this.dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
             var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
-            application.Consumer = consumer;
+            application.Provider = consumer;
             application.State = new ApplicationStateDb()
             {
                 Value = nameof(ApplicationState.Pending)

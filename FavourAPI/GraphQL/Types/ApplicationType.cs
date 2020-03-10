@@ -14,7 +14,7 @@ namespace FavourAPI.GraphQL.Types
             Field(a => a.Id);
             Field(a => a.Message);
             Field<DateTimeGraphType>(nameof(ApplicationDto.Time));
-            Field<ConsumerType>(nameof(ApplicationDto.Consumer));
+            Field<ProviderType>(nameof(ApplicationDto.Provider));
         }
     }
 }

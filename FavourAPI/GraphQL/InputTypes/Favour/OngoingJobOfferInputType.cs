@@ -9,7 +9,7 @@ namespace FavourAPI.GraphQL.InputTypes
         {
             Field(ojo => ojo.IsDeleted);
 
-            Field<ListGraphType<ConsumerInputType>>(nameof(OngoingJobOfferDto.Consumers));
+            Field<ListGraphType<ProviderInputType>>(nameof(OngoingJobOfferDto.Providers));
             Field<JobOfferInputType>(nameof(OngoingJobOfferDto.JobOffer));
         }
     }

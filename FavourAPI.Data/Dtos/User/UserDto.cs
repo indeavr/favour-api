@@ -15,11 +15,11 @@ namespace FavourAPI.Dtos
 
         public string Password { get; set; }
 
-        public PersonProviderDto PersonProvider { get; set; }
+        public PersonConsumerDto PersonConsumer { get; set; }
 
-        public CompanyProviderDto CompanyProvider { get; set; }
+        public CompanyConsumerDto CompanyConsumer { get; set; }
 
-        public ConsumerDto Consumer { get; set; }
+        public ProviderDto Provider { get; set; }
 
         public PermissionsMyDto PermissionMy { get; set; }
     }

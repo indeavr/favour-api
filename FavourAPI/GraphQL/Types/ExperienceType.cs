@@ -15,7 +15,7 @@ namespace FavourAPI.GraphQL.Types
 
             Field<DateTimeGraphType>(nameof(ExperienceDto.Start));
             Field<DateTimeGraphType>(nameof(ExperienceDto.End));
-            Field<ConsumerType>(nameof(ExperienceDto.Consumer));
+            Field<ProviderType>(nameof(ExperienceDto.Consumer));
         }
     }
 }

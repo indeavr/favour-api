@@ -7,8 +7,8 @@ namespace FavourAPI.GraphQL.InputTypes
     {
         public SavedJobOfferInputType()
         {
-            Field<ConsumerInputType>(nameof(SavedJobOfferDto.Consumer));
-            Field<ConsumerInputType>(nameof(SavedJobOfferDto.JobOffer));
+            Field<ProviderInputType>(nameof(SavedJobOfferDto.Consumer));
+            Field<ProviderInputType>(nameof(SavedJobOfferDto.JobOffer));
         }
     }
 }

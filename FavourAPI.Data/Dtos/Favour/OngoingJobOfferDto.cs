@@ -7,7 +7,7 @@ namespace FavourAPI.Dtos
 {
     public class OngoingJobOfferDto
     {
-        public ConsumerDto[] Consumers { get; set; }
+        public ProviderDto[] Providers { get; set; }
 
         public JobOfferDto JobOffer { get; set; }
 
