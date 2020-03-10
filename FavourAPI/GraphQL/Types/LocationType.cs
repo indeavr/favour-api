@@ -13,6 +13,7 @@ namespace FavourAPI.GraphQL.Types
             Field(l => l.Latitude);
             Field(l => l.Longitude);
             Field(l => l.Id);
+            Field(l => l.MapsId);
             Field(l => l.ZipCode);
         }
     }

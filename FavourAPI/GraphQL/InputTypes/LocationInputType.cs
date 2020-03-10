@@ -25,6 +25,7 @@ namespace FavourAPI.GraphQL.InputTypes
             //Field<NonNullGraphType<StringGraphType>>("longitude");
 
             Field(l => l.Id);
+            Field(l => l.MapsId);
             Field(l => l.Country);
             Field(l => l.Address);
             Field(l => l.Town);

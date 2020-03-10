@@ -82,8 +82,8 @@ namespace FavourAPI.Helpers
 
 
             CreateMap<JobOffer, JobOfferDto>().PreserveReferences();
-            CreateMap<JobOfferDto, JobOffer>().PreserveReferences(); 
-            
+            CreateMap<JobOfferDto, JobOffer>().PreserveReferences();
+
             CreateMap<Favour, FavourDto>().PreserveReferences();
             CreateMap<FavourDto, Favour>().PreserveReferences();
 
@@ -105,8 +105,12 @@ namespace FavourAPI.Helpers
             CreateMap<ApplicationDto, Application>().PreserveReferences();
             CreateMap<Application, ApplicationDto>().PreserveReferences();
 
-            CreateMap<LocationDto, Location>().PreserveReferences();
-            CreateMap<Location, LocationDto>().PreserveReferences();
+            CreateMap<LocationDto, Location>()
+                  //.ForMember(lDto => lDto.MapsId, opt => opt.MapFrom(l => l.Id))
+                .PreserveReferences();
+            CreateMap<Location, LocationDto>()
+                  //.ForMember(l => l.Id, opt => opt.MapFrom(l => l.MapsId))
+                .PreserveReferences();
 
             CreateMap<ProviderViewTime, ConsumerViewTimeDto>().PreserveReferences();
             CreateMap<ConsumerViewTimeDto, ProviderViewTime>().PreserveReferences();
