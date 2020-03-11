@@ -39,6 +39,8 @@ using System.IO;
 using System.Linq;
 using GraphQL.Authorization;
 using FavourAPI.Data.Factories;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 namespace FavourAPI
 {
@@ -265,6 +267,11 @@ namespace FavourAPI
             // GraphQL
             services.AddScoped<IDocumentExecuter, DocumentExecuter>();
             services.AddScoped<IDocumentWriter, DocumentWriter>();
+
+            FirebaseApp.Create(new AppOptions()
+            {
+                Credential = GoogleCredential.FromFile(@"E:\Projects\favourapi\all-favour-firebase-adminsdk-vph1x-3627b4c671.json"),
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

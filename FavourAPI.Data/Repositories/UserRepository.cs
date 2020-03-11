@@ -8,6 +8,9 @@ using FavourAPI.Dtos;
 using System.Collections.Generic;
 using FavourAPI.Data.Factories;
 using Google.Apis.Auth;
+using static Google.Apis.Auth.GoogleJsonWebSignature;
+using FirebaseAdmin;
+using FirebaseAdmin.Auth;
 
 namespace FavourAPI.Data.Repositories
 {
@@ -84,15 +87,17 @@ namespace FavourAPI.Data.Repositories
 
         public async Task<UserDto> LoginWithGoogle(string serverToken)
         {
-            var authPayload = await GoogleJsonWebSignature.ValidateAsync(serverToken);
-            var user = await this.userManager.FindByEmailAsync(authPayload.Email);
+            var validatedToken = await FirebaseAuth.DefaultInstance.VerifyIdTokenAsync(serverToken);
+            var googleUser = await FirebaseAuth.DefaultInstance.GetUserAsync(validatedToken.Uid);
+           // var authPayload = await GoogleJsonWebSignature.ValidateAsync(serverToken, forceGoogleCertRefresh: true);
+            var user = await this.userManager.FindByEmailAsync(googleUser.Email);
 
             if (user == null)
             {
                 var newUser = await this.userManager.CreateAsync(new User()
                 {
-                    Email = authPayload.Email,
-                    UserName = authPayload.Name
+                    Email = googleUser.Email,
+                    UserName = googleUser.DisplayName
                 });
 
                 foreach (var err in newUser.Errors)
