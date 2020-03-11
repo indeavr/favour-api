@@ -86,6 +86,9 @@ namespace FavourAPI.Helpers
 
             CreateMap<Favour, FavourDto>().PreserveReferences();
             CreateMap<FavourDto, Favour>().PreserveReferences();
+            
+            CreateMap<Offering, OfferingDto>().PreserveReferences();
+            CreateMap<OfferingDto, Offering>().PreserveReferences();
 
             CreateMap<PermissionMy, PermissionsMyDto>().PreserveReferences();
             CreateMap<PermissionsMyDto, PermissionMy>().PreserveReferences();

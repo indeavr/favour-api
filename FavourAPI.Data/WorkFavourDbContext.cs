@@ -38,6 +38,8 @@ namespace FavourAPI.Data
 
         public DbSet<Favour> Favours { get; set; }
 
+        public DbSet<Offering> Offerings { get; set; }
+
         public DbSet<JobPhoto> JobPhotos { get; set; }
 
         public DbSet<Application> Applications { get; set; }

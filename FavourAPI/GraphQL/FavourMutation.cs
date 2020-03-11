@@ -2,6 +2,7 @@
 using FavourAPI.Data.Models;
 using FavourAPI.Dtos;
 using FavourAPI.GraphQL.InputTypes;
+using FavourAPI.GraphQL.InputTypes.Favour;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Helpers;
 using FavourAPI.Services;
@@ -31,7 +32,8 @@ namespace FavourAPI.GraphQL
             IProviderService providerService,
             ICompanyConsumerService companyConsumerService,
             IOfferService offerService,
-            IFavourService favourService
+            IFavourService favourService,
+            IOfferingService offeringService
             )
         {
             Name = "Mutation";
@@ -295,6 +297,22 @@ namespace FavourAPI.GraphQL
                  var favourDto = JToken.FromObject(favour).ToObject<FavourDto>();
 
                  var success = await favourService.AddFavour(userId, favourDto);
+
+                 return "success";
+             });
+
+            FieldAsync<StringGraphType>(
+             "createOfferring",
+             arguments: new QueryArguments(
+                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                 new QueryArgument<NonNullGraphType<OfferingInputType>> { Name = "offering" }),
+             resolve: async context =>
+             {
+                 var userId = context.GetArgument<string>("userId");
+                 var offering = context.Arguments["offering"];
+                 var offeringDto = JToken.FromObject(offering).ToObject<OfferingDto>();
+
+                 var success = await offeringService.AddOffering(userId, offeringDto);
 
                  return "success";
              });

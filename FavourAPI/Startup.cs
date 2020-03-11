@@ -38,6 +38,7 @@ using GraphQL.Validation;
 using GraphQL.Server.Transports.AspNetCore.Common;
 using System.IO;
 using System.Linq;
+using FavourAPI.GraphQL.InputTypes.Favour;
 
 namespace FavourAPI
 {
@@ -166,6 +167,7 @@ namespace FavourAPI
             services.AddScoped<IProviderService, ConsumerService>();
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IFavourService, FavourService>();
+            services.AddScoped<IOfferingService, OfferingService>();
             services.AddScoped<IOfficeService, OfficeService>();
             services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IPositionService, PositionService>();
@@ -184,6 +186,7 @@ namespace FavourAPI
             services.AddScoped<LocationType>();
             services.AddScoped<JobOfferType>();
             services.AddScoped<FavourType>();
+            services.AddScoped<OfferingType>();
             services.AddScoped<PositionType>();
             services.AddScoped<EmailType>();
             services.AddScoped<OngoingJobOfferType>();
@@ -208,6 +211,7 @@ namespace FavourAPI
             services.AddScoped<SkillInputType>();
             services.AddScoped<JobOfferInputType>();
             services.AddScoped<FavourInputType>();
+            services.AddScoped<OfferingInputType>();
             services.AddScoped<ActiveJobOfferInputType>();
             services.AddScoped<OngoingJobOfferInputType>();
             services.AddScoped<SavedJobOfferInputType>();
