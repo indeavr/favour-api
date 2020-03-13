@@ -12,6 +12,6 @@ namespace FavourAPI.Data.Models
 
         public virtual IList<PositionSkill> PositionSkills { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
+        public virtual Provider Provider { get; set; } // TODO: make another model or add virtual prop for Consumer aswell
     }
 }

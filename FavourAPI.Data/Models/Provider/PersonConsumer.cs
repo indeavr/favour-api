@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FavourAPI.Data.Models
 {
-    public class PersonProvider
+    public class PersonConsumer
     {
         [ForeignKey("User")]
         [Column(TypeName = "uniqueidentifier")]

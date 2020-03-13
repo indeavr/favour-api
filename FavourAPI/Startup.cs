@@ -41,6 +41,7 @@ using GraphQL.Authorization;
 using FavourAPI.Data.Factories;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
+using FavourAPI.GraphQL.InputTypes.Favour;
 
 namespace FavourAPI
 {
@@ -156,7 +157,7 @@ namespace FavourAPI
 
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ICompanyProviderRepository, CompanyProviderRepository>();
+            services.AddScoped<ICompanyConsumerRepository, CompanyProviderRepository>();
             services.AddScoped<IExperienceRepository, ExperienceRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<ISkillRepository, SkillRepository>();
@@ -167,11 +168,12 @@ namespace FavourAPI
 
             // Data Services
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ICompanyProviderService, CompanyProviderService>();
-            services.AddScoped<IPersonProviderService, PersonProviderService>();
-            services.AddScoped<IConsumerService, ConsumerService>();
+            services.AddScoped<ICompanyConsumerService, CompanyProviderService>();
+            services.AddScoped<IPersonConsumerService, PersonProviderService>();
+            services.AddScoped<IProviderService, ConsumerService>();
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IFavourService, FavourService>();
+            services.AddScoped<IOfferingService, OfferingService>();
             services.AddScoped<IOfficeService, OfficeService>();
             services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IPositionService, PositionService>();
@@ -182,14 +184,15 @@ namespace FavourAPI
 
             // types
             services.AddScoped<UserType>();
-            services.AddScoped<CompanyProviderType>();
-            services.AddScoped<ConsumerType>();
+            services.AddScoped<CompanyConsumerType>();
+            services.AddScoped<ProviderType>();
             services.AddScoped<OfficeType>();
             services.AddScoped<SkillType>();
             services.AddScoped<IndustryType>();
             services.AddScoped<LocationType>();
             services.AddScoped<JobOfferType>();
             services.AddScoped<FavourType>();
+            services.AddScoped<OfferingType>();
             services.AddScoped<PositionType>();
             services.AddScoped<EmailType>();
             services.AddScoped<OngoingJobOfferType>();
@@ -203,17 +206,18 @@ namespace FavourAPI
 
             // Input Types
             services.AddScoped<UserInputType>();
-            services.AddScoped<ConsumerInputType>();
+            services.AddScoped<ProviderInputType>();
             services.AddScoped<LocationInputType>();
             services.AddScoped<EducationInputType>();
             services.AddScoped<ExperienceInputType>();
             services.AddScoped<IndustryInputType>();
-            services.AddScoped<CompanyProviderInputType>();
+            services.AddScoped<CompanyConsumerInputType>();
             services.AddScoped<PhoneNumberInputType>();
             services.AddScoped<EmailInputType>();
             services.AddScoped<SkillInputType>();
             services.AddScoped<JobOfferInputType>();
             services.AddScoped<FavourInputType>();
+            services.AddScoped<OfferingInputType>();
             services.AddScoped<ActiveJobOfferInputType>();
             services.AddScoped<OngoingJobOfferInputType>();
             services.AddScoped<SavedJobOfferInputType>();

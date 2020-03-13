@@ -23,7 +23,7 @@ namespace FavourAPI.Data.Dtos.Favour
 
         //public List<PeriodDto> Periods { get; set; }
 
-        //public PersonProviderDto Provider { get; set; }
+        public PersonConsumerDto Consumer { get; set; }
 
         //public List<SkillDto> RequiredSkills { get; set; }
     }

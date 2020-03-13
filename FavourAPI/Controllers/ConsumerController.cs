@@ -18,11 +18,11 @@ namespace FavourAPI.Controllers
     [ApiController]
     public class ConsumerController : ControllerBase
     {
-        private readonly IConsumerService consumerService;
+        private readonly IProviderService consumerService;
         private readonly ISkillService skillService;
         private readonly IPositionService positionService;
 
-        public ConsumerController([FromServices] IConsumerService service, [FromServices] ISkillService skillService, [FromServices] IPositionService positionService)
+        public ConsumerController([FromServices] IProviderService service, [FromServices] ISkillService skillService, [FromServices] IPositionService positionService)
         {
             this.consumerService = service;
             this.skillService = skillService;
@@ -30,7 +30,7 @@ namespace FavourAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ConsumerDto>> GetConsumer([FromQuery] string userId, [FromQuery] bool withPhoto)
+        public async Task<ActionResult<ProviderDto>> GetConsumer([FromQuery] string userId, [FromQuery] bool withPhoto)
         {
             var consumer = await this.consumerService.GetById(userId, withPhoto);
 
@@ -39,12 +39,12 @@ namespace FavourAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ConsumerDto consumer)
+        public async Task<ActionResult<bool>> AddConsumer([FromQuery] string userId, [FromBody] ProviderDto consumer)
         {
             try
             {
                 // bool canProceed = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
-                ConsumerDto newConsumer = await this.consumerService.AddOrUpdateConsumer(userId, consumer);
+                ProviderDto newConsumer = await this.consumerService.AddOrUpdateProvider(userId, consumer);
 
                 return Ok(newConsumer);
             }

@@ -38,7 +38,7 @@ namespace FavourAPI.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task AddOffice(CompanyProvider provider, OfficeDto office)
+        public async Task AddOffice(CompanyConsumer provider, OfficeDto office)
         {
             var officeEntity = mapper.Map<Office>(office);
             var officeIndustries = office.Industries.Select(i => new OfficeIndustry() { IndustryId = Guid.Parse(i.Id), Office = officeEntity });

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FavourAPI.Data.Models
 {
-    public class Favour
+    public class Offering
     {
         [Key]
         [Column(TypeName = "uniqueidentifier")]
@@ -24,22 +24,22 @@ namespace FavourAPI.Data.Models
 
         public DateTime TimePosted { get; set; }
 
-        public virtual CompanyProvider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         public double Money { get; set; }
 
-        public virtual ICollection<Skill> RequiredSkills { get; set; }
+        public virtual ICollection<Skill> Skills { get; set; }
 
-        public virtual CompletionResult Result { get; set; }
+        //public virtual CompletionResult Result { get; set; }
 
-        public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
+        //public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
 
-        public virtual ICollection<JobPhoto> Photos { get; set; }
+        //public virtual ICollection<JobPhoto> Photos { get; set; }
 
-        public virtual ActiveFavour ActiveState { get; set; }
+        //public virtual ActiveFavour ActiveState { get; set; }
 
-        public virtual CompletedJobOffer CompletedState { get; set; }
+        //public virtual CompletedJobOffer CompletedState { get; set; }
 
-        public virtual ICollection<OngoingJobOffer> OngoingState { get; set; }
+        //public virtual ICollection<OngoingJobOffer> OngoingState { get; set; }
     }
 }

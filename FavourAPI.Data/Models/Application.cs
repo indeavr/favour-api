@@ -19,7 +19,7 @@ namespace FavourAPI.Data.Models
 
         public virtual ActiveJobOffer ActiveJobOffer { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
+        public virtual Provider Provider { get; set; }
 
         public virtual ApplicationStateDb State { get; set; }
     }

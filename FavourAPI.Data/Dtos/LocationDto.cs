@@ -7,6 +7,9 @@ namespace FavourAPI.Dtos
     public class LocationDto
     {
         public string Id { get; set; }
+
+        public string MapsId { get; set; }
+
         public string Country { get; set; }
         public string Town { get; set; }
         public string Address { get; set; }

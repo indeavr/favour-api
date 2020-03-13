@@ -2,7 +2,7 @@
 using System;
 namespace FavourAPI.Dtos
 {
-    public class CompanyProviderDto
+    public class CompanyConsumerDto
     {
         public string Id { get; set; }
 

@@ -33,11 +33,11 @@ namespace FavourAPI.Data.Models
 
         public string PhoneVerified { get; set; }
 
-        public virtual Consumer Consumer { get; set; }
+        public virtual Provider Provider { get; set; }
 
-        public virtual PersonProvider PersonProvider { get; set; }
+        public virtual PersonConsumer PersonConsumer { get; set; }
 
-        public virtual CompanyProvider CompanyProvider { get; set; }
+        public virtual CompanyConsumer CompanyConsumer { get; set; }
 
         public virtual PermissionMy PermissionMy { get; set; }
 

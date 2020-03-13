@@ -19,7 +19,7 @@ namespace FavourAPI.GraphQL.InputTypes
             Field<ListGraphType<PeriodInputType>>(nameof(JobOfferDto.Periods));
             Field<ListGraphType<SkillInputType>>(nameof(JobOfferDto.RequiredSkills));
             Field<DateTimeGraphType>(nameof(JobOfferDto.TimePosted));
-            Field<CompanyProviderInputType>(nameof(JobOfferDto.Provider));
+            Field<CompanyConsumerInputType>(nameof(JobOfferDto.CompanyConsumer));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace FavourAPI.Data.Models.Enums
         [Key]
         public string Value { get; set; }
 
-        public virtual ICollection<Consumer> Consumers { get; set; }
+        public virtual ICollection<Provider> Consumers { get; set; }
 
         //public virtual ICollection<CompanyProvider> Providers { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace FavourAPI.Dtos
 {
-    public class PersonProviderDto
+    public class PersonConsumerDto
     {
         public string FirstName { get; set; }
 

@@ -22,7 +22,7 @@ namespace FavourAPI.Data.Models
 
         public virtual IList<OfficeIndustry> OfficeIndustries { get; set; }
 
-        public virtual CompanyProvider CompanyProvider { get; set; }
+        public virtual CompanyConsumer CompanyProvider { get; set; }
 
         [NotMapped]
         public ICollection<Industry> Industries { get; set; }

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
-    public class CompanyProviderService : ICompanyProviderService
+    public class CompanyProviderService : ICompanyConsumerService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
@@ -27,9 +27,9 @@ namespace FavourAPI.Services
             this.blobService = blobService;
         }
 
-        public async Task<CompanyProviderDto> AddCompanyProvider(string userId, CompanyProviderDto companyProvider)
+        public async Task<CompanyConsumerDto> AddCompanyConsumer(string userId, CompanyConsumerDto companyProvider)
         {
-            var dbModel = mapper.Map<CompanyProvider>(companyProvider);
+            var dbModel = mapper.Map<CompanyConsumer>(companyProvider);
             dbModel.Id = Guid.Parse(userId);
 
             if (!string.IsNullOrEmpty(companyProvider.ProfilePhoto))
@@ -66,14 +66,14 @@ namespace FavourAPI.Services
                 await this.officeService.AddIndustriesForOffice(office);
             }
 
-            return mapper.Map<CompanyProviderDto>(dbModel);
+            return mapper.Map<CompanyConsumerDto>(dbModel);
         }
 
-        public async Task<CompanyProviderDto> GetProvider(string userId, bool withPhoto)
+        public async Task<CompanyConsumerDto> GetConsumer(string userId, bool withPhoto)
         {
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
-            var providerDto = this.mapper.Map<CompanyProviderDto>(provider);
+            var providerDto = this.mapper.Map<CompanyConsumerDto>(provider);
             if (withPhoto)
             {
                 var buffer = await this.blobService.GetImage(provider.ProfilePhoto.Name.ToString(), provider.ProfilePhoto.Size);
@@ -105,16 +105,16 @@ namespace FavourAPI.Services
             return Encoding.UTF8.GetString(buffer);
         }
 
-        public ProviderViewTimeDto GetViewTime(string userId)
+        public ConsumerViewTimeDto GetViewTime(string userId)
         {
             var idAsGuid = Guid.Parse(userId);
 
             var viewTime = this.dbContext.ProviderViewTimes.SingleOrDefault(vt => vt.Id == idAsGuid);
 
-            return this.mapper.Map<ProviderViewTimeDto>(viewTime);
+            return this.mapper.Map<ConsumerViewTimeDto>(viewTime);
         }
 
-        public async Task AddOrUpdateViewTime(string userId, ProviderViewTimeDto viewTime)
+        public async Task AddOrUpdateViewTime(string userId, ConsumerViewTimeDto viewTime)
         {
             var idAsGuid = Guid.Parse(userId);
 
@@ -139,10 +139,10 @@ namespace FavourAPI.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<CompanyProviderDto>> GetAll()
+        public async Task<IEnumerable<CompanyConsumerDto>> GetAll()
         {
             var allProviders = await this.dbContext.CompanyProviders.ToAsyncEnumerable().ToArray();
-            return allProviders.Select(cp => mapper.Map<CompanyProviderDto>(cp));
+            return allProviders.Select(cp => mapper.Map<CompanyConsumerDto>(cp));
         }
     }
 }

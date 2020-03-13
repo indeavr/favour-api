@@ -13,7 +13,7 @@ namespace FavourAPI.GraphQL
             Field(u => u.PhoneConfirmed);
             Field(u => u.Id, type: typeof(IdGraphType)).Description("Id of the User");
 
-            Field<ConsumerType>(nameof(UserDto.Consumer));
+            Field<ProviderType>(nameof(UserDto.Provider));
         }
     }
 }

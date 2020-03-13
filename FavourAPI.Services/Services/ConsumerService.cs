@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
-    public class ConsumerService : IConsumerService
+    public class ConsumerService : IProviderService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
@@ -26,12 +26,12 @@ namespace FavourAPI.Services
             this.blobService = blobService;
         }
 
-        public async Task<ConsumerDto> AddConsumer(string userId, ConsumerDto consumerData)
+        public async Task<ProviderDto> AddProvider(string userId, ProviderDto consumerData)
         {
             //var currentUserInfo = this.dbContext.Consumers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
 
             // TODO Check if positions and skills are correct
-            var dbConsumer = this.mapper.Map<Consumer>(consumerData);
+            var dbConsumer = this.mapper.Map<Provider>(consumerData);
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
             var correctPositions = this.dbContext.Positions.Where(s => dbConsumer.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
             var correctSexDb = this.dbContext.Sexes.FirstOrDefault(s => s.Value == consumerData.Sex);
@@ -52,14 +52,14 @@ namespace FavourAPI.Services
 
             await dbContext.SaveChangesAsync();
 
-            return this.mapper.Map<ConsumerDto>(dbConsumer);
+            return this.mapper.Map<ProviderDto>(dbConsumer);
         }
 
         // Add for now
-        public async Task<ConsumerDto> AddOrUpdateConsumer(string userId, ConsumerDto consumerData)
+        public async Task<ProviderDto> AddOrUpdateProvider(string userId, ProviderDto consumerData)
         {
             var currentUserInfo = this.dbContext.Consumers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
-            var dbConsumer = mapper.Map<Consumer>(consumerData);
+            var dbConsumer = mapper.Map<Provider>(consumerData);
             var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
             var correctPositions = this.dbContext.Positions.Where(s => dbConsumer.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
@@ -116,11 +116,11 @@ namespace FavourAPI.Services
 
             await dbContext.SaveChangesAsync();
 
-            return this.mapper.Map<ConsumerDto>(dbConsumer);
+            return this.mapper.Map<ProviderDto>(dbConsumer);
             //return CheckForLoginProceedPermission(dbConsumer);
         }
 
-        public async Task<ConsumerDto> GetById(string userId)
+        public async Task<ProviderDto> GetById(string userId)
         {
             var consumer = await this.GetById(userId, true);
             return consumer;
@@ -143,7 +143,7 @@ namespace FavourAPI.Services
             return Encoding.UTF8.GetString(buffer);
         }
 
-        public bool CheckForLoginProceedPermission(Consumer consumer)
+        public bool CheckForLoginProceedPermission(Provider consumer)
         {
             return consumer.FirstName != null && consumer.LastName != null && consumer.PhoneNumber != null;
         }
@@ -159,7 +159,7 @@ namespace FavourAPI.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ConsumerDto> GetById(string userId, bool withPhoto)
+        public async Task<ProviderDto> GetById(string userId, bool withPhoto)
         {
             Guid guidUserId = Guid.Parse(userId);
             var consumerDb = dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
@@ -170,7 +170,7 @@ namespace FavourAPI.Services
                 return null;
             }
 
-            var dto = this.mapper.Map<ConsumerDto>(consumerDb);
+            var dto = this.mapper.Map<ProviderDto>(consumerDb);
 
             var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobOffers);
             dto.CompletedJobOffers = completedJobs;
@@ -189,11 +189,11 @@ namespace FavourAPI.Services
             return completionResults;
         }
 
-        public async Task<IEnumerable<ConsumerDto>> GetAll()
+        public async Task<IEnumerable<ProviderDto>> GetAll()
         {
             var consumers = await this.dbContext.Consumers.ToAsyncEnumerable().ToArray();
 
-            return consumers.Select(c => this.mapper.Map<ConsumerDto>(c));
+            return consumers.Select(c => this.mapper.Map<ProviderDto>(c));
         }
 
         // Only for admins

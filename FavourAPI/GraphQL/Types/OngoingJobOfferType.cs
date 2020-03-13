@@ -12,7 +12,7 @@ namespace FavourAPI.GraphQL.Types
         public OngoingJobOfferType()
         {
             Field<JobOfferType>(nameof(OngoingJobOfferDto.JobOffer));
-            Field<ListGraphType<ConsumerType>>(nameof(OngoingJobOfferDto.Consumers));
+            Field<ListGraphType<ProviderType>>(nameof(OngoingJobOfferDto.Providers));
         }
     }
 }

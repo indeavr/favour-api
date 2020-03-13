@@ -8,7 +8,7 @@ namespace FavourAPI.GraphQL.Types
         public SavedJobOfferType()
         {
             Field<JobOfferType>(nameof(SavedJobOfferDto.JobOffer));
-            Field<ConsumerType>(nameof(SavedJobOfferDto.Consumer));
+            Field<ProviderType>(nameof(SavedJobOfferDto.Consumer));
         }
     }
 }

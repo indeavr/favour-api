@@ -2,6 +2,7 @@
 using FavourAPI.Data.Models;
 using FavourAPI.Dtos;
 using FavourAPI.GraphQL.InputTypes;
+using FavourAPI.GraphQL.InputTypes.Favour;
 using FavourAPI.GraphQL.Types;
 using FavourAPI.Helpers;
 using FavourAPI.Services;
@@ -28,10 +29,11 @@ namespace FavourAPI.GraphQL
     {
         public FavourMutation(IUserService userService,
             IOptions<AppSettings> appSettings,
-            IConsumerService consumerService,
-            ICompanyProviderService companyProviderService,
+            IProviderService providerService,
+            ICompanyConsumerService companyConsumerService,
             IOfferService offerService,
-            IFavourService favourService
+            IFavourService favourService,
+            IOfferingService offeringService
             )
         {
             Name = "Mutation";
@@ -122,36 +124,36 @@ namespace FavourAPI.GraphQL
                }
            );
 
-            FieldAsync<ConsumerType>(
-                "createConsumer",
+            FieldAsync<ProviderType>(
+                "createProvider",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<ConsumerInputType>> { Name = "consumer" },
+                    new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" },
                     new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" }
                 ),
                 resolve: async context =>
                 {
                     var userId = context.GetArgument<string>("userId");
-                    var consumerArg = context.Arguments["consumer"];
-                    var consumer = consumerArg != null
-                        ? JToken.FromObject(consumerArg).ToObject<ConsumerDto>()
+                    var providerArg = context.Arguments["provider"];
+                    var provider = providerArg != null
+                        ? JToken.FromObject(providerArg).ToObject<ProviderDto>()
                         : null;
 
-                    var newConsumer = await consumerService.AddConsumer(userId, consumer);
-                    return newConsumer;
+                    var newProvider = await providerService.AddProvider(userId, provider);
+                    return newProvider;
                 }
             );
 
-            FieldAsync<CompanyProviderType>("createCompanyProvider", arguments: new QueryArguments(
+            FieldAsync<CompanyConsumerType>("createCompanyConsumer", arguments: new QueryArguments(
                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
-                new QueryArgument<NonNullGraphType<CompanyProviderInputType>> { Name = "companyProvider" }
+                new QueryArgument<NonNullGraphType<CompanyConsumerInputType>> { Name = "companyConsumer" }
                 ),
                 resolve: async context =>
                 {
                     var userId = context.GetArgument<string>("userId");
-                    var provider = context.GetArgument<CompanyProviderInputType>("companyProvider");
-                    var providerDto = JToken.FromObject(provider).ToObject<CompanyProviderDto>();
-                    var newProvider = await companyProviderService
-                    .AddCompanyProvider(userId, providerDto);
+                    var companyConsumer = context.GetArgument<CompanyConsumerInputType>("companyConsumer");
+                    var providerDto = JToken.FromObject(companyConsumer).ToObject<CompanyConsumerDto>();
+                    var newProvider = await companyConsumerService
+                    .AddCompanyConsumer(userId, providerDto);
 
                     return newProvider;
                 });
@@ -331,6 +333,22 @@ namespace FavourAPI.GraphQL
                  var favourDto = JToken.FromObject(favour).ToObject<FavourDto>();
 
                  var success = await favourService.AddFavour(userId, favourDto);
+
+                 return "success";
+             });
+
+            FieldAsync<StringGraphType>(
+             "createOfferring",
+             arguments: new QueryArguments(
+                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                 new QueryArgument<NonNullGraphType<OfferingInputType>> { Name = "offering" }),
+             resolve: async context =>
+             {
+                 var userId = context.GetArgument<string>("userId");
+                 var offering = context.Arguments["offering"];
+                 var offeringDto = JToken.FromObject(offering).ToObject<OfferingDto>();
+
+                 var success = await offeringService.AddOffering(userId, offeringDto);
 
                  return "success";
              });

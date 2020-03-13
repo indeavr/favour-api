@@ -13,8 +13,9 @@ namespace FavourAPI.GraphQL
         public FavourQuery(IUserRepository userRepo,
             IOfferService offerService,
             IFavourService favourService,
-            IConsumerService consumerService,
-            ICompanyProviderRepository companyProviderRepository,
+            IOfferingService offeringService,
+            IProviderService providerService,
+            ICompanyConsumerRepository companyConsumerepository,
             IExperienceRepository experienceRepository,
             IPositionRepository positionRepository,
             ISkillRepository skillRepository,
@@ -27,24 +28,24 @@ namespace FavourAPI.GraphQL
                 resolve: context => userRepo.GetById(context.GetArgument<Guid>("id"))
             );
 
-            FieldAsync<ConsumerType>(
-               "consumer",
+            FieldAsync<ProviderType>(
+               "provider",
                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
                resolve: async context =>
               {
-                  var result = await consumerService.GetById(context.GetArgument<string>("userId"), true);
+                  var result = await providerService.GetById(context.GetArgument<string>("userId"), true);
                   return result;
               }
            );
 
-            FieldAsync<CompanyProviderType>(
-                "companyProvider",
+            FieldAsync<CompanyConsumerType>(
+                "companyConsumer",
                 arguments: new QueryArguments(new QueryArgument<StringGraphType>() { Name = "id" }),
                 resolve: async context =>
                 {
                     var providerId = context.GetArgument<string>("id");
 
-                    return await companyProviderRepository.GetById(providerId);
+                    return await companyConsumerepository.GetById(providerId);
                 });
 
             Field<JobOfferType>(
@@ -60,7 +61,7 @@ namespace FavourAPI.GraphQL
                     return offerService.GetAllOffers();
                 }
             );
-            
+
             Field<ListGraphType<FavourType>>(
                 "favours",
                 arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "id" }),
@@ -72,6 +73,20 @@ namespace FavourAPI.GraphQL
                         return favourService.GetAllFavours();
                     }
                     return favourService.GetAllFavours();
+                }
+            );
+
+            Field<ListGraphType<OfferingType>>(
+                "offerings",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "id" }),
+                resolve: context =>
+                {
+                    var offeringId = context.GetArgument<Guid>("id");
+                    if (offeringId == null)
+                    {
+                        return offeringService.GetAllOfferings();
+                    }
+                    return offeringService.GetAllOfferings();
                 }
             );
 

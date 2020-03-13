@@ -10,7 +10,7 @@ namespace FavourAPI.Services
     {
         IEnumerable<OfficeDto> GetOffices();
 
-        Task AddOffice(CompanyProvider provider, OfficeDto office);
+        Task AddOffice(CompanyConsumer provider, OfficeDto office);
 
         Task AddOffice(string providerId, OfficeDto office);
 

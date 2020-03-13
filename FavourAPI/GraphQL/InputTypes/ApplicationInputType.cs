@@ -15,7 +15,7 @@ namespace FavourAPI.GraphQL.InputTypes
             Field(a => a.Message);
 
             Field<DateTimeGraphType>(nameof(ApplicationDto.Time));
-            Field<ConsumerInputType>(nameof(ApplicationDto.Consumer));
+            Field<ProviderInputType>(nameof(ApplicationDto.Provider));
             Field<ActiveJobOfferInputType>(nameof(ApplicationDto.ActiveJobOffer));
         }
     }

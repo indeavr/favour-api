@@ -3,10 +3,11 @@ using FavourAPI.Data.Models.Enums;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using FavourAPI.Data.Models;
 
 namespace FavourAPI.Data.Models
 {
-    public class Consumer
+    public class Provider
     {
         [ForeignKey("User")]
         [Column(TypeName = "uniqueidentifier")]
@@ -27,6 +28,8 @@ namespace FavourAPI.Data.Models
         public virtual ICollection<Position> DesiredPositions { get; set; }
 
         public virtual ICollection<Application> Applications { get; set; }
+
+        public virtual ICollection<Offering> Offerings { get; set; }
 
         public virtual User User { get; set; }
 

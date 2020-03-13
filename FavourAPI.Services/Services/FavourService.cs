@@ -27,6 +27,7 @@ namespace FavourAPI.Services.Services
         public async Task<FavourDto> AddFavour(string userId, FavourDto favourDto)
         {
             favourDto.Id = null;
+            favourDto.Location.Id = null;
             // Job Offer State is Ignored
             var favour = mapper.Map<Favour>(favourDto);
             Guid guidUserId = Guid.Parse(userId);
@@ -65,7 +66,7 @@ namespace FavourAPI.Services.Services
             var consumer = this.dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
             var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
-            application.Consumer = consumer;
+            application.Provider = consumer;
             application.State = new ApplicationStateDb()
             {
                 Value = nameof(ApplicationState.Pending)

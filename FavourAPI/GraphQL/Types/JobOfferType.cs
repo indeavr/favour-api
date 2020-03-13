@@ -18,7 +18,7 @@ namespace FavourAPI.GraphQL.Types
             Field<DateTimeGraphType>(nameof(JobOfferDto.TimePosted));
             Field<ListGraphType<PeriodType>>(nameof(JobOfferDto.Periods));
             Field<ListGraphType<SkillType>>(nameof(JobOfferDto.RequiredSkills));
-            Field<CompanyProviderType>(nameof(JobOfferDto.Provider));
+            Field<CompanyConsumerType>(nameof(JobOfferDto.CompanyConsumer));
         }
     }
 }

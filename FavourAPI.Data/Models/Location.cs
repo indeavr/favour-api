@@ -10,6 +10,8 @@ namespace FavourAPI.Data.Models
         [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
+        public string MapsId { get; set; }
+
         public string Country { get; set; }
 
         public string Town { get; set; }

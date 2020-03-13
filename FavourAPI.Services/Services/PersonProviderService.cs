@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
-    public class PersonProviderService : IPersonProviderService
+    public class PersonProviderService : IPersonConsumerService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
@@ -19,21 +19,21 @@ namespace FavourAPI.Services
             this.mapper = mapper;
         }
 
-        public async Task AddPersonProvider(string userId, PersonProviderDto personProvider)
+        public async Task AddPersonConsumer(string userId, PersonConsumerDto personProvider)
         {
-            var provider = this.mapper.Map<PersonProvider>(personProvider);
+            var provider = this.mapper.Map<PersonConsumer>(personProvider);
             provider.Id = Guid.Parse(userId);
 
             this.dbContext.PersonProviders.Add(provider);
             await this.dbContext.SaveChangesAsync();
         }
 
-        public PersonProviderDto GetPersonProvider(string userId)
+        public PersonConsumerDto GetPersonConsumer(string userId)
         {
             Guid guidUserId = Guid.Parse(userId);
             var provider = this.dbContext.PersonProviders.SingleOrDefault(pp => pp.Id == guidUserId);
 
-            return this.mapper.Map<PersonProviderDto>(provider);
+            return this.mapper.Map<PersonConsumerDto>(provider);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FavourAPI.Dtos
 {
-    public class ConsumerDto
+    public class ProviderDto
     {
         public string Id { get; set; }
 
