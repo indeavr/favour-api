@@ -274,7 +274,7 @@ namespace FavourAPI
 
             FirebaseApp.Create(new AppOptions()
             {
-                Credential = GoogleCredential.FromFile(@"E:\Projects\favourapi\all-favour-firebase-adminsdk-vph1x-3627b4c671.json"),
+                Credential = GoogleCredential.FromFile(@"C:\AllFavour\favourapi\all-favour-firebase-adminsdk-vph1x-3627b4c671.json"),
             });
         }
 

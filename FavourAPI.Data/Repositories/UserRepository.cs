@@ -79,7 +79,7 @@ namespace FavourAPI.Data.Repositories
 
             if (!valid)
             {
-
+                throw new Exception("No user");
             }
 
             return this.mapper.Map<UserDto>(user);
@@ -97,7 +97,7 @@ namespace FavourAPI.Data.Repositories
                 var newUser = await this.userManager.CreateAsync(new User()
                 {
                     Email = googleUser.Email,
-                    UserName = googleUser.DisplayName
+                    UserName = googleUser.Email
                 });
 
                 foreach (var err in newUser.Errors)
