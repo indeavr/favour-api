@@ -13,7 +13,7 @@ namespace FavourAPI.Data.Repositories
 
         Task<UserDto> GetByEmail(string email);
 
-        Task<UserDto> Create(string email, string password);
+        Task<UserDto> Create(string email, string password, string firstName, string lastName);
 
         Task<UserDto> Login(string email, string password);
 

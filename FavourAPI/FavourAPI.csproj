@@ -43,6 +43,11 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Mutations\" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="rem dotnet &quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; AssemblyPath=&quot;$(ProjectDir)..\Typings\TypingsGeneratorCore.dll&quot; TargetFile=&quot;$(ProjectDir)..\..\work-favour-web\src\services\apiTypes.ts&quot;  RtPath=&quot;$(ProjectDir)..\Typings\RtCLI\rtcli.dll&quot;&#xD;&#xA;" />
   </Target>

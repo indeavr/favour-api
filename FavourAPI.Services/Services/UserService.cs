@@ -24,9 +24,9 @@ namespace FavourAPI.Services
         }
 
 
-        public async Task<UserDto> Create(string email, string password)
+        public async Task<UserDto> Create(string email, string password, string firstName, string lastName)
         {
-            var userDto = await this.userRepo.Create(email, password);
+            var userDto = await this.userRepo.Create(email, password, firstName, lastName);
 
             string code = await this.userRepo.GenerateEmailConfirmationTokenAsync(email);
 

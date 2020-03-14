@@ -7,6 +7,7 @@ using FavourAPI.GraphQL.Types;
 using FavourAPI.Helpers;
 using FavourAPI.Services;
 using FavourAPI.Services.Contracts;
+using Firebase.Database;
 using GraphQL.Types;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +23,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FavourAPI.GraphQL
 {
@@ -196,14 +198,18 @@ namespace FavourAPI.GraphQL
                "register",
                arguments: new QueryArguments(
                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "email" },
-                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "password" }
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "password" },
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "firstName" },
+                   new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "lastName" }
                ),
                resolve: async context =>
                {
                    var email = context.GetArgument<string>("email");
                    var password = context.GetArgument<string>("password");
+                   var firstName = context.GetArgument<string>("firstName");
+                   var lastName = context.GetArgument<string>("lastName");
 
-                   var newUser = await userService.Create(email, password);
+                   var newUser = await userService.Create(email, password, firstName, lastName);
                    var user = await userService.Login(email, password);
 
                    var tokenHandler = new JwtSecurityTokenHandler();
@@ -225,7 +231,8 @@ namespace FavourAPI.GraphQL
                        Token = tokenString,
                        UserId = user.Id,
                        EmailConfirmed = user.EmailConfirmed,
-                       PhoneConfirmed = user.PhoneConfirmed
+                       PhoneConfirmed = user.PhoneConfirmed,
+                       FullName = user.FullName
                    };
                    return authDto;
                }
@@ -248,7 +255,7 @@ namespace FavourAPI.GraphQL
                   {
                       Subject = new ClaimsIdentity(new Claim[]
                       {
-                        new Claim(ClaimTypes.Name, user.Id)
+                         new Claim(ClaimTypes.Name, user.Id)
                       }),
                       Expires = DateTime.UtcNow.AddDays(7),
                       SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -261,7 +268,8 @@ namespace FavourAPI.GraphQL
                       Token = tokenString,
                       UserId = user.Id,
                       EmailConfirmed = user.EmailConfirmed,
-                      PhoneConfirmed = user.PhoneConfirmed
+                      PhoneConfirmed = user.PhoneConfirmed,
+                      FullName  = user.FullName
                   };
                   return authDto;
               }
@@ -299,12 +307,11 @@ namespace FavourAPI.GraphQL
                       Token = tokenString,
                       UserId = user.Id,
                       EmailConfirmed = user.EmailConfirmed,
-                      PhoneConfirmed = user.PhoneConfirmed
+                      PhoneConfirmed = user.PhoneConfirmed,
+                      FullName = user.FullName
                   };
                   return authDto;
               }
-
-
           );
 
             FieldAsync<JobOfferType>(

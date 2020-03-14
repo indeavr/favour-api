@@ -16,7 +16,7 @@ namespace FavourAPI.Mutations
                 {
                     var user = context.GetArgument<UserDto>("user");
 
-                    return userService.Create(user.Email, user.Password);
+                    return userService.Create(user.Email, user.Password, "", "");
                 });
         }
     }

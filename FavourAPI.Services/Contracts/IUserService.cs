@@ -9,7 +9,7 @@ namespace FavourAPI.Services
 {
     public interface IUserService
     {
-        Task<UserDto> Create(string email, string password);
+        Task<UserDto> Create(string email, string password, string firstName, string lastName);
 
         IEnumerable<UserDto> GetAll();
 

@@ -11,6 +11,8 @@ using Google.Apis.Auth;
 using static Google.Apis.Auth.GoogleJsonWebSignature;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
+using Newtonsoft.Json;
+using Firebase.Database;
 
 namespace FavourAPI.Data.Repositories
 {
@@ -55,9 +57,9 @@ namespace FavourAPI.Data.Repositories
             return token;
         }
 
-        public async Task<UserDto> Create(string email, string password)
+        public async Task<UserDto> Create(string email, string password, string firstName, string lastName)
         {
-            var newUser = new User() { Email = email, UserName = email };
+            var newUser = new User() { Email = email, UserName = email, FullName = $"{firstName} {lastName}" };
 
             var user = await this.userManager.CreateAsync(newUser, password);
 
@@ -66,7 +68,11 @@ namespace FavourAPI.Data.Repositories
                 throw new Exception(err.Description);
             }
 
-            return this.mapper.Map<UserDto>(newUser);
+            var userDto = this.mapper.Map<UserDto>(newUser);
+
+            this.CreateUserInFirebase(userDto);
+
+            return userDto;
         }
 
         public async Task<UserDto> Login(string email, string password)
@@ -89,7 +95,7 @@ namespace FavourAPI.Data.Repositories
         {
             var validatedToken = await FirebaseAuth.DefaultInstance.VerifyIdTokenAsync(serverToken);
             var googleUser = await FirebaseAuth.DefaultInstance.GetUserAsync(validatedToken.Uid);
-           // var authPayload = await GoogleJsonWebSignature.ValidateAsync(serverToken, forceGoogleCertRefresh: true);
+            // var authPayload = await GoogleJsonWebSignature.ValidateAsync(serverToken, forceGoogleCertRefresh: true);
             var user = await this.userManager.FindByEmailAsync(googleUser.Email);
 
             if (user == null)
@@ -97,14 +103,21 @@ namespace FavourAPI.Data.Repositories
                 var newUser = await this.userManager.CreateAsync(new User()
                 {
                     Email = googleUser.Email,
-                    UserName = googleUser.Email
+                    UserName = googleUser.Email,
+                    FullName = googleUser.DisplayName
                 });
 
                 foreach (var err in newUser.Errors)
                 {
                     throw new Exception(err.Description);
                 }
-                return this.mapper.Map<UserDto>(newUser);
+
+                var dbUser = await this.userManager.FindByEmailAsync(googleUser.Email);
+                var userDto = this.mapper.Map<UserDto>(dbUser);
+
+                this.CreateUserInFirebase(userDto);
+
+                return userDto;
             }
 
             return this.mapper.Map<UserDto>(user);
@@ -187,6 +200,27 @@ namespace FavourAPI.Data.Repositories
             updateAction(user);
 
             await this.userManager.UpdateAsync(user);
+        }
+
+        private async Task CreateUserInFirebase(UserDto user)
+        {
+            // TODO: make this env variable
+            var auth = "";
+            var firebaseClient = new FirebaseClient(
+                "https://all-favour.firebaseio.com/",
+                new FirebaseOptions
+                {
+                    AuthTokenAsyncFactory = () => Task.FromResult(auth)
+                });
+
+            var json = JsonConvert.SerializeObject(new
+            {
+                fullName = user.FullName
+            });
+
+            await firebaseClient
+                 .Child($"users/{user.Id}")
+                 .PutAsync(json);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace FavourAPI.GraphQL.InputTypes
             Field<NonNullGraphType<StringGraphType>>("token");
 
             Field<NonNullGraphType<StringGraphType>>("userId");
+
+            Field<NonNullGraphType<StringGraphType>>("fullName");
         }
     }
 }
