@@ -126,11 +126,11 @@ namespace FavourAPI.GraphQL
                }
            );
 
-            FieldAsync<ProviderType>(
+            FieldAsync<StringGraphType>(
                 "createProvider",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" },
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" }
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                    new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" }
                 ),
                 resolve: async context =>
                 {
@@ -141,7 +141,7 @@ namespace FavourAPI.GraphQL
                         : null;
 
                     var newProvider = await providerService.AddProvider(userId, provider);
-                    return newProvider;
+                    return "success";
                 }
             );
 

@@ -29,7 +29,7 @@ namespace FavourAPI.Services.Services
         {
             var userIdGuid = Guid.Parse(userId);
             var jobOfferIdGuid = Guid.Parse(jobOfferId);
-            var consumer = this.dbContext.Consumers.Single(c => c.Id == userIdGuid);
+            var consumer = this.dbContext.Providers.Single(c => c.Id == userIdGuid);
             var jobOffer = this.dbContext.JobOffers.Single(jo => jo.Id == jobOfferIdGuid);
             var state = this.dbContext.ApplicationStates.Single(a => a.Value == nameof(ApplicationState.Pending));
 

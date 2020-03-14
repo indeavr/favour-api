@@ -28,7 +28,7 @@ namespace FavourAPI.Services
             Guid guidUserId = Guid.Parse(userId);
             var position = dbContext.Positions.SingleOrDefault(p => p.Name == jobOfferDto.Title);
 
-            var provider = dbContext.CompanyProviders.SingleOrDefault(u => u.Id == guidUserId);
+            var provider = dbContext.CompanyConsumers.SingleOrDefault(u => u.Id == guidUserId);
 
             jobOffer.Title = position.Name;
             provider.Offers.Add(jobOffer);
@@ -57,7 +57,7 @@ namespace FavourAPI.Services
             Guid guidUserId = Guid.Parse(consumerId);
             Guid guidJobOfferId = Guid.Parse(jobOfferId);
 
-            var consumer = this.dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
+            var consumer = this.dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
             var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
             application.Provider = consumer;

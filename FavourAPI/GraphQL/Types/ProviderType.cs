@@ -14,8 +14,6 @@ namespace FavourAPI.GraphQL.Types
             Name = "Provider";
 
             Field(c => c.Id);
-            Field(c => c.FirstName);
-            Field(c => c.LastName);
             Field(c => c.PhoneNumber);
             Field(c => c.ProfilePhoto);
             Field(c => c.Sex);

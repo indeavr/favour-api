@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200314135351_user_first_last_name")]
+    partial class user_first_last_name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +96,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.HasIndex("ProfilePhotoName");
 
-                    b.ToTable("CompanyConsumers");
+                    b.ToTable("CompanyProviders");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompletedJobOffer", b =>
@@ -672,7 +674,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("PersonConsumers");
+                    b.ToTable("PersonProviders");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.PhoneNumber", b =>
@@ -769,7 +771,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.HasIndex("SexValue");
 
-                    b.ToTable("Providers");
+                    b.ToTable("Consumers");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.ProviderViewTime", b =>

@@ -48,7 +48,7 @@ namespace FavourAPI.Services
             dbConsumer.DesiredPositions = correctPositions;
             dbConsumer.Id = Guid.Parse(userId);
 
-            this.dbContext.Consumers.Add(dbConsumer);
+            this.dbContext.Providers.Add(dbConsumer);
 
             await dbContext.SaveChangesAsync();
 
@@ -58,7 +58,7 @@ namespace FavourAPI.Services
         // Add for now
         public async Task<ProviderDto> AddOrUpdateProvider(string userId, ProviderDto consumerData)
         {
-            var currentUserInfo = this.dbContext.Consumers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
+            var currentUserInfo = this.dbContext.Providers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
             var dbConsumer = mapper.Map<Provider>(consumerData);
             var correctSexDb = this.dbContext.Sexes.First(s => s.Value == dbConsumer.Sex.Value);
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
@@ -93,8 +93,8 @@ namespace FavourAPI.Services
 
             if (currentUserInfo != null)
             {
-                currentUserInfo.FirstName = dbConsumer.FirstName;
-                currentUserInfo.LastName = dbConsumer.LastName;
+                //currentUserInfo.FirstName = dbConsumer.FirstName;
+                //currentUserInfo.LastName = dbConsumer.LastName;
                 currentUserInfo.Location = dbConsumer.Location;
                 currentUserInfo.PhoneNumber = dbConsumer.PhoneNumber;
                 currentUserInfo.ProfilePhoto = dbConsumer.ProfilePhoto;
@@ -106,11 +106,11 @@ namespace FavourAPI.Services
                     .ToList();
                 currentUserInfo.Sex = dbConsumer.Sex;
 
-                this.dbContext.Consumers.Update(currentUserInfo);
+                this.dbContext.Providers.Update(currentUserInfo);
             }
             else
             {
-                this.dbContext.Consumers.Add(dbConsumer);
+                this.dbContext.Providers.Add(dbConsumer);
             }
 
 
@@ -131,7 +131,7 @@ namespace FavourAPI.Services
         public async Task<string> GetProfilePhoto(string userdId)
         {
             var idAsGuid = Guid.Parse(userdId);
-            var user = this.dbContext.Consumers.SingleOrDefault(u => u.Id == idAsGuid);
+            var user = this.dbContext.Providers.SingleOrDefault(u => u.Id == idAsGuid);
 
             if (user?.ProfilePhoto == null)
             {
@@ -143,9 +143,10 @@ namespace FavourAPI.Services
             return Encoding.UTF8.GetString(buffer);
         }
 
-        public bool CheckForLoginProceedPermission(Provider consumer)
+        public bool CheckForLoginProceedPermission(Provider provider)
         {
-            return consumer.FirstName != null && consumer.LastName != null && consumer.PhoneNumber != null;
+            // TODO: make it more buletproof
+            return provider.PhoneNumber != null && provider.Location != null;
         }
 
         public async Task SaveJobOffer(string userId, string jobOfferId)
@@ -162,7 +163,7 @@ namespace FavourAPI.Services
         public async Task<ProviderDto> GetById(string userId, bool withPhoto)
         {
             Guid guidUserId = Guid.Parse(userId);
-            var consumerDb = dbContext.Consumers.SingleOrDefault(c => c.Id == guidUserId);
+            var consumerDb = dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
 
             if (consumerDb == null)
             {
@@ -191,7 +192,7 @@ namespace FavourAPI.Services
 
         public async Task<IEnumerable<ProviderDto>> GetAll()
         {
-            var consumers = await this.dbContext.Consumers.ToAsyncEnumerable().ToArray();
+            var consumers = await this.dbContext.Providers.ToAsyncEnumerable().ToArray();
 
             return consumers.Select(c => this.mapper.Map<ProviderDto>(c));
         }

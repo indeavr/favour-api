@@ -20,7 +20,7 @@ namespace FavourAPI.Data.Repositories
         }
         public async Task<IEnumerable<CompanyConsumerDto>> GetAll()
         {
-            var allProviders = await this.dbContext.CompanyProviders.ToAsyncEnumerable().ToArray();
+            var allProviders = await this.dbContext.CompanyConsumers.ToAsyncEnumerable().ToArray();
 
             return allProviders.Select(ap => this.mapper.Map<CompanyConsumerDto>(ap));
         }
@@ -28,7 +28,7 @@ namespace FavourAPI.Data.Repositories
         public async Task<CompanyConsumerDto> GetById(string id)
         {
             var idAsGuid = Guid.Parse(id);
-            var provider = await this.dbContext.CompanyProviders.FindAsync(idAsGuid);
+            var provider = await this.dbContext.CompanyConsumers.FindAsync(idAsGuid);
 
             return this.mapper.Map<CompanyConsumerDto>(provider);
         }

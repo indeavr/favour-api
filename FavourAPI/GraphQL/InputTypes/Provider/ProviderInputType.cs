@@ -10,22 +10,20 @@ namespace FavourAPI.GraphQL.InputTypes
         {
             Name = "ProviderInput";
 
-            Field(c => c.Id);
-            Field(c => c.FirstName);
-            Field(c => c.LastName);
-            Field(c => c.ProfilePhoto);
+            //Field(c => c.ProfilePhoto);
             Field(c => c.Sex);
             Field(c => c.PhoneNumber);
+            Field(jo => jo.Location, nullable: false, type: typeof(NonNullGraphType<LocationInputType>));
 
-            Field<ListGraphType<StringGraphType>>(nameof(ProviderDto.Skills));
-            Field<LocationInputType>(nameof(ProviderDto.Location));
-            Field<ListGraphType<ExperienceInputType>>(nameof(ProviderDto.Experiences));
-            Field<ListGraphType<EducationInputType>>(nameof(ProviderDto.Educations));
-            Field<ListGraphType<StringGraphType>>(nameof(ProviderDto.DesiredPositions));
-            Field<ListGraphType<ApplicationInputType>>(nameof(ProviderDto.Applications));
-            Field<ListGraphType<CompletedJobOfferInputType>>(nameof(ProviderDto.CompletedJobOffers));
-            Field<ListGraphType<SavedJobOfferInputType>>(nameof(ProviderDto.SavedJobOffers));
-            Field<ListGraphType<OngoingJobOfferInputType>>(nameof(ProviderDto.OngoingJobOffers));
+
+            //Field<ListGraphType<StringGraphType>>(nameof(ProviderDto.Skills));
+            //Field<ListGraphType<ExperienceInputType>>(nameof(ProviderDto.Experiences));
+            //Field<ListGraphType<EducationInputType>>(nameof(ProviderDto.Educations));
+            //Field<ListGraphType<StringGraphType>>(nameof(ProviderDto.DesiredPositions));
+            //Field<ListGraphType<ApplicationInputType>>(nameof(ProviderDto.Applications));
+            //Field<ListGraphType<CompletedJobOfferInputType>>(nameof(ProviderDto.CompletedJobOffers));
+            //Field<ListGraphType<SavedJobOfferInputType>>(nameof(ProviderDto.SavedJobOffers));
+            //Field<ListGraphType<OngoingJobOfferInputType>>(nameof(ProviderDto.OngoingJobOffers));
         }
     }
 }
