@@ -4,14 +4,22 @@ using FavourAPI.Data.Models;
 using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace FavourAPI.Data
 {
-    public class WorkFavourDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+    public class WorkFavourDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IDesignTimeDbContextFactory<WorkFavourDbContext>
     {
         public WorkFavourDbContext(DbContextOptions<WorkFavourDbContext> options)
             : base(options)
         {
+        }
+
+        public WorkFavourDbContext()
+        {
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -91,6 +99,29 @@ namespace FavourAPI.Data
         public DbSet<CompletedJobOffer> CompletedJobOffers { get; set; }
 
         public DbSet<SavedJobOffer> SavedJobOffers { get; set; }
+
+        //public WorkFavourDbContext CreateDbContext(string[] args)
+        //{
+
+        //    var builder = new ConfigurationBuilder();
+
+        //    builder.
+        //  //.AddJsonFile("appsettings.json");
+
+        //    var connectionString = //configuration.GetConnectionString("DefaultConnection");
+
+        //    builder.UseSqlServer(connectionString);
+
+        //    return new WorkFavourDbContext(builder.Options);
+        //}
+
+        public WorkFavourDbContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<WorkFavourDbContext>();
+            optionsBuilder.UseSqlServer("Server=.;Database=WorkFavour;Trusted_Connection=True;ConnectRetryCount=10;");
+
+            return new WorkFavourDbContext(optionsBuilder.Options);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

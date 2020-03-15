@@ -19,6 +19,10 @@ namespace FavourAPI
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((host, builder) =>
+            {
+                builder.AddEnvironmentVariables("FavourAPI");
+            })
                 .UseStartup<Startup>();
     }
 }

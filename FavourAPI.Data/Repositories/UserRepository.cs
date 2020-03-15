@@ -13,6 +13,7 @@ using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using Newtonsoft.Json;
 using Firebase.Database;
+using Microsoft.Extensions.Configuration;
 
 namespace FavourAPI.Data.Repositories
 {
@@ -20,14 +21,16 @@ namespace FavourAPI.Data.Repositories
     {
         private readonly UserManager<User> userManager;
         private readonly IClaimsFactory claimsFactory;
+        private readonly IConfiguration configuration;
 
         public UserRepository(WorkFavourDbContext workFavourDbContext,
             UserManager<User> userManager,
-            IMapper mapper, IClaimsFactory claimsFactory)
+            IMapper mapper, IClaimsFactory claimsFactory, IConfiguration configuration)
             : base(workFavourDbContext, mapper)
         {
             this.userManager = userManager;
             this.claimsFactory = claimsFactory;
+            this.configuration = configuration;
         }
 
         public async Task<UserDto> GetById(Guid id)
@@ -205,7 +208,7 @@ namespace FavourAPI.Data.Repositories
         private async Task CreateUserInFirebase(UserDto user)
         {
             // TODO: make this env variable
-            var auth = "";
+            var auth = this.configuration.GetSection("FavourAPI_Firebase_Secret").Value;
             var firebaseClient = new FirebaseClient(
                 "https://all-favour.firebaseio.com/",
                 new FirebaseOptions
