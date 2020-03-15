@@ -21,6 +21,8 @@ namespace FavourAPI.Dtos
 
         public bool PhoneConfirmed { get; set; }
 
+        public string LastAccoutSide { get; set; }
+        
         public string Password { get; set; }
 
         public PersonConsumerDto PersonConsumer { get; set; }
@@ -29,6 +31,6 @@ namespace FavourAPI.Dtos
 
         public ProviderDto Provider { get; set; }
 
-        public PermissionsMyDto PermissionMy { get; set; }
+        public PermissionsMyDto Permissions { get; set; }
     }
 }

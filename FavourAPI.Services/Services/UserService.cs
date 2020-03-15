@@ -90,6 +90,12 @@ namespace FavourAPI.Services
             await this.userRepo.PhoneConfirmed(userId);
         }
 
+        public async Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue)
+        {
+            await this.userRepo.ChangePermissions(userId, persmissions, newValue);
+
+        }
+
         //private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         //{
         //    if (password == null) throw new ArgumentNullException("password");

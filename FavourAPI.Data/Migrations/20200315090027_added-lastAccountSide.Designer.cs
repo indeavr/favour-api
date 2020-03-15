@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200315090027_added-lastAccountSide")]
+    partial class addedlastAccountSide
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,23 +54,19 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid?>("ActiveJobOfferId");
 
-                    b.Property<DateTime>("ApplyTime");
-
                     b.Property<string>("Message");
-
-                    b.Property<Guid?>("PersonConsumerId");
 
                     b.Property<Guid?>("ProviderId");
 
                     b.Property<string>("StateValue");
+
+                    b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ActiveFavourId");
 
                     b.HasIndex("ActiveJobOfferId");
-
-                    b.HasIndex("PersonConsumerId");
 
                     b.HasIndex("ProviderId");
 
@@ -539,15 +537,11 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<Guid?>("PersonConsumerId");
-
                     b.HasKey("ProviderId", "JobOfferId");
 
                     b.HasAlternateKey("JobOfferId", "ProviderId");
 
                     b.HasIndex("FavourId");
-
-                    b.HasIndex("PersonConsumerId");
 
                     b.ToTable("OngoingJobOffers");
                 });
@@ -557,8 +551,6 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ApplicationId");
 
                     b.Property<DateTime>("EndDate");
 
@@ -575,8 +567,6 @@ namespace FavourAPI.Data.Migrations
                     b.Property<DateTime>("StartHour");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
 
                     b.HasIndex("FavourId");
 
@@ -834,13 +824,9 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("JobOfferId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ConsumerId1");
-
                     b.Property<Guid?>("FavourId");
 
                     b.HasKey("ConsumerId", "JobOfferId");
-
-                    b.HasIndex("ConsumerId1");
 
                     b.HasIndex("FavourId");
 
@@ -1102,11 +1088,7 @@ namespace FavourAPI.Data.Migrations
                         .WithMany("Applications")
                         .HasForeignKey("ActiveJobOfferId");
 
-                    b.HasOne("FavourAPI.Data.Models.PersonConsumer", "PersonConsumer")
-                        .WithMany()
-                        .HasForeignKey("PersonConsumerId");
-
-                    b.HasOne("FavourAPI.Data.Models.Provider")
+                    b.HasOne("FavourAPI.Data.Models.Provider", "Provider")
                         .WithMany("Applications")
                         .HasForeignKey("ProviderId");
 
@@ -1312,11 +1294,7 @@ namespace FavourAPI.Data.Migrations
                         .HasForeignKey("JobOfferId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FavourAPI.Data.Models.PersonConsumer", "PersonConsumer")
-                        .WithMany()
-                        .HasForeignKey("PersonConsumerId");
-
-                    b.HasOne("FavourAPI.Data.Models.Provider")
+                    b.HasOne("FavourAPI.Data.Models.Provider", "Provider")
                         .WithMany("OngoingJobOffers")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1324,10 +1302,6 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Period", b =>
                 {
-                    b.HasOne("FavourAPI.Data.Models.Application", "Application")
-                        .WithMany("Time")
-                        .HasForeignKey("ApplicationId");
-
                     b.HasOne("FavourAPI.Data.Models.Favour")
                         .WithMany("Periods")
                         .HasForeignKey("FavourId");
@@ -1336,7 +1310,7 @@ namespace FavourAPI.Data.Migrations
                         .WithMany("Periods")
                         .HasForeignKey("JobOfferId");
 
-                    b.HasOne("FavourAPI.Data.Models.Offering", "Offering")
+                    b.HasOne("FavourAPI.Data.Models.Offering")
                         .WithMany("Periods")
                         .HasForeignKey("OfferingId");
                 });
@@ -1464,7 +1438,8 @@ namespace FavourAPI.Data.Migrations
                 {
                     b.HasOne("FavourAPI.Data.Models.Provider", "Consumer")
                         .WithMany("SavedJobOffers")
-                        .HasForeignKey("ConsumerId1");
+                        .HasForeignKey("ConsumerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FavourAPI.Data.Models.Favour")
                         .WithMany("SavedJobOffers")

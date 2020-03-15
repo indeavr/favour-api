@@ -15,5 +15,9 @@ namespace FavourAPI.Dtos
         public bool PhoneConfirmed { get; set; }
 
         public string FullName { get; set; }
+
+        public string LastAccoutSide { get; set; }
+
+        public PermissionsMyDto Permissions { get; set; }
     }
 }

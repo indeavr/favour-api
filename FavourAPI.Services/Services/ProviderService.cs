@@ -13,46 +13,46 @@ using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
-    public class ConsumerService : IProviderService
+    public class ProviderService : IProviderService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
         private readonly IBlobService blobService;
 
-        public ConsumerService(WorkFavourDbContext dbContext, IMapper mapper, [FromServices]IBlobService blobService)
+        public ProviderService(WorkFavourDbContext dbContext, IMapper mapper, [FromServices]IBlobService blobService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
             this.blobService = blobService;
         }
 
-        public async Task<ProviderDto> AddProvider(string userId, ProviderDto consumerData)
+        public async Task<ProviderDto> AddProvider(string userId, ProviderDto providerData)
         {
             //var currentUserInfo = this.dbContext.Consumers.SingleOrDefault(u => u.Id == Guid.Parse(userId));
 
             // TODO Check if positions and skills are correct
-            var dbConsumer = this.mapper.Map<Provider>(consumerData);
-            var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
-            var correctPositions = this.dbContext.Positions.Where(s => dbConsumer.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
-            var correctSexDb = this.dbContext.Sexes.FirstOrDefault(s => s.Value == consumerData.Sex);
+            var dbProvider = this.mapper.Map<Provider>(providerData);
+            var correctSkills = this.dbContext.Skills.Where(s => dbProvider.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
+            var correctPositions = this.dbContext.Positions.Where(s => dbProvider.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
+            var correctSexDb = this.dbContext.Sexes.FirstOrDefault(s => s.Value == providerData.Sex);
 
-            if (!string.IsNullOrEmpty(consumerData.ProfilePhoto))
+            if (!string.IsNullOrEmpty(providerData.ProfilePhoto))
             {
-                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = consumerData.ProfilePhoto.Length };
-                profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, consumerData.ProfilePhoto, profilePhoto.ContentType);
-                dbConsumer.ProfilePhoto = profilePhoto;
+                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = providerData.ProfilePhoto.Length };
+                profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, providerData.ProfilePhoto, profilePhoto.ContentType);
+                dbProvider.ProfilePhoto = profilePhoto;
             }
 
-            dbConsumer.Sex = correctSexDb ?? this.dbContext.Sexes.First();
-            dbConsumer.Skills = correctSkills;
-            dbConsumer.DesiredPositions = correctPositions;
-            dbConsumer.Id = Guid.Parse(userId);
+            dbProvider.Sex = correctSexDb ?? this.dbContext.Sexes.First();
+            dbProvider.Skills = correctSkills;
+            dbProvider.DesiredPositions = correctPositions;
+            dbProvider.Id = Guid.Parse(userId);
 
-            this.dbContext.Providers.Add(dbConsumer);
+            this.dbContext.Providers.Add(dbProvider);
 
             await dbContext.SaveChangesAsync();
 
-            return this.mapper.Map<ProviderDto>(dbConsumer);
+            return this.mapper.Map<ProviderDto>(dbProvider);
         }
 
         // Add for now
@@ -163,22 +163,29 @@ namespace FavourAPI.Services
         public async Task<ProviderDto> GetById(string userId, bool withPhoto)
         {
             Guid guidUserId = Guid.Parse(userId);
-            var consumerDb = dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
+            var providerDb = dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
 
-            if (consumerDb == null)
+            if (providerDb == null)
             {
                 // Log this somewhere
                 return null;
             }
 
-            var dto = this.mapper.Map<ProviderDto>(consumerDb);
+            var dto = this.mapper.Map<ProviderDto>(providerDb);
 
             var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobOffers);
             dto.CompletedJobOffers = completedJobs;
-            if (withPhoto)
+            if (withPhoto && providerDb.ProfilePhoto != null)
             {
-                var buffer = await this.blobService.GetImage(consumerDb.ProfilePhoto.Name.ToString(), consumerDb.ProfilePhoto.Size);
-                dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+                try
+                {
+                    var buffer = await this.blobService.GetImage(providerDb.ProfilePhoto.Name.ToString(), providerDb.ProfilePhoto.Size);
+                    dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+                }
+                catch (NullReferenceException e)
+                {
+
+                }
             }
 
             return dto;

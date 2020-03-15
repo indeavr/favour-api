@@ -13,7 +13,9 @@ namespace FavourAPI.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<User, UserDto>().PreserveReferences();
+            CreateMap<User, UserDto>()
+                .ForMember(user => user.Permissions, opt => opt.MapFrom(db => db.PermissionMy))
+                .PreserveReferences();
             CreateMap<UserDto, User>().PreserveReferences();
 
             CreateMap<CompanyConsumer, CompanyConsumerDto>()
@@ -59,6 +61,8 @@ namespace FavourAPI.Helpers
             CreateMap<Provider, ProviderDto>()
                 .ForMember(cdto => cdto.PhoneNumber, opt => opt.MapFrom(c => c.PhoneNumber.Number))
                 .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
+                .ForMember(cdto => cdto.FirstName, opt => opt.MapFrom(c => c.User.FirstName))
+                .ForMember(cdto => cdto.LastName, opt => opt.MapFrom(c => c.User.LastName))
                 .ForMember(cdto => cdto.Skills, opt => opt.MapFrom(c => c.Skills.Select(s => s.Name).ToArray()))
                 .ForMember(cdto => cdto.ProfilePhoto, opt => opt.Ignore())
                 // must be fixed
@@ -86,7 +90,7 @@ namespace FavourAPI.Helpers
 
             CreateMap<Favour, FavourDto>().PreserveReferences();
             CreateMap<FavourDto, Favour>().PreserveReferences();
-            
+
             CreateMap<Offering, OfferingDto>().PreserveReferences();
             CreateMap<OfferingDto, Offering>().PreserveReferences();
 
@@ -109,10 +113,10 @@ namespace FavourAPI.Helpers
             CreateMap<Application, ApplicationDto>().PreserveReferences();
 
             CreateMap<LocationDto, Location>()
-                  //.ForMember(lDto => lDto.MapsId, opt => opt.MapFrom(l => l.Id))
+                //.ForMember(lDto => lDto.MapsId, opt => opt.MapFrom(l => l.Id))
                 .PreserveReferences();
             CreateMap<Location, LocationDto>()
-                  //.ForMember(l => l.Id, opt => opt.MapFrom(l => l.MapsId))
+                //.ForMember(l => l.Id, opt => opt.MapFrom(l => l.MapsId))
                 .PreserveReferences();
 
             CreateMap<ProviderViewTime, ConsumerViewTimeDto>().PreserveReferences();
@@ -149,7 +153,7 @@ namespace FavourAPI.Helpers
                 {
                     result.Add(new OngoingJobOfferDto()
                     {
-                        Providers = group.Select(g => contextResolver.Mapper.Map<ProviderDto>(g.Provider)).ToArray(),
+                        Providers = group.Select(g => contextResolver.Mapper.Map<ProviderDto>(g.PersonConsumer)).ToArray(),
                         IsDeleted = group.Key.OngoingState.First().IsDeleted,
                         JobOffer = contextResolver.Mapper.Map<JobOfferDto>(group.Key)
                     });

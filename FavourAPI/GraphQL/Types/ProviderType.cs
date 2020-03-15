@@ -11,17 +11,21 @@ namespace FavourAPI.GraphQL.Types
     {
         public ProviderType()
         {
-            Name = "Provider";
+            Name = "ProviderType";
 
             Field(c => c.Id);
+            Field(c => c.FirstName);
+            Field(c => c.LastName);
             Field(c => c.PhoneNumber);
-            Field(c => c.ProfilePhoto);
+            //Field(c => c.ProfilePhoto);
             Field(c => c.Sex);
 
-            Field<LocationType>(nameof(ProviderDto.Location));
-            Field<ListGraphType<StringGraphType>>(nameof(ProviderDto.Skills));
-            Field<ListGraphType<SavedJobOfferType>>(nameof(ProviderDto.SavedJobOffers));
-            Field<ListGraphType<OngoingJobOfferType>>(nameof(ProviderDto.OngoingJobOffers));
+            //Field<LocationType>(nameof(ProviderDto.Location));
+            Field(jo => jo.Location, nullable: false, type: typeof(NonNullGraphType<LocationType>));
+
+            //Field<ListGraphType<StringGraphType>>(nameof(ProviderDto.Skills));
+            //Field<ListGraphType<SavedJobOfferType>>(nameof(ProviderDto.SavedJobOffers));
+            //Field<ListGraphType<OngoingJobOfferType>>(nameof(ProviderDto.OngoingJobOffers));
         }
     }
 }

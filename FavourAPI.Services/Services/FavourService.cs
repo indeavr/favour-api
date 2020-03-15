@@ -63,10 +63,10 @@ namespace FavourAPI.Services.Services
             Guid guidUserId = Guid.Parse(consumerId);
             Guid guidJobOfferId = Guid.Parse(jobOfferId);
 
-            var consumer = this.dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
+            var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == guidUserId);
             var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
-            application.Provider = consumer;
+            application.PersonConsumer = consumer;
             application.State = new ApplicationStateDb()
             {
                 Value = nameof(ApplicationState.Pending)

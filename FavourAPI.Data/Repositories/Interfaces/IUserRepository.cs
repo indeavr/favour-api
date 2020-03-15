@@ -1,6 +1,7 @@
 ﻿using FavourAPI.Data.Models;
 using FavourAPI.Dtos;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FavourAPI.Data.Repositories
@@ -30,5 +31,7 @@ namespace FavourAPI.Data.Repositories
         Task PhoneConfirmed(string userId);
 
         Task<UserDto> LoginWithGoogle(string serverToken);
+
+        Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue);
     }
 }

@@ -11,14 +11,14 @@ namespace FavourAPI.GraphQL.Types
     {
         public OfferingType()
         {
-            Name = "Offering";
+            Name = "OfferingType";
 
             Field(of => of.Id);
             Field(of => of.Money);
             Field(of => of.Title);
             Field(of => of.Description);
-            Field(of => of.Location, type: typeof(LocationType));
-            Field(of => of.Provider, type: typeof(ProviderType));
+            Field(of => of.Location, type: typeof(NonNullGraphType<LocationType>));
+            Field(of => of.Provider, type: typeof(NonNullGraphType<ProviderType>));
 
             //Field<DateTimeGraphType>(nameof(FavourDto.TimePosted));
             //Field<ListGraphType<PeriodType>>(nameof(FavourDto.Periods));

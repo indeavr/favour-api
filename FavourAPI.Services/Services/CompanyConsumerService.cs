@@ -12,14 +12,14 @@ using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
-    public class CompanyProviderService : ICompanyConsumerService
+    public class CompanyConsumerService : ICompanyConsumerService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
         private readonly IOfficeService officeService;
         private readonly IBlobService blobService;
 
-        public CompanyProviderService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService, IBlobService blobService)
+        public CompanyConsumerService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService, IBlobService blobService)
         {
             this.mapper = mapper;
             this.officeService = officeService;

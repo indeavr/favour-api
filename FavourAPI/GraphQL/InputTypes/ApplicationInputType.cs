@@ -11,12 +11,11 @@ namespace FavourAPI.GraphQL.InputTypes
     {
         public ApplicationInputType()
         {
+            Name = "ApplicationInput";
+
             Field(a => a.Id);
             Field(a => a.Message);
-
-            Field<DateTimeGraphType>(nameof(ApplicationDto.Time));
-            Field<ProviderInputType>(nameof(ApplicationDto.Provider));
-            Field<ActiveJobOfferInputType>(nameof(ApplicationDto.ActiveJobOffer));
+            Field(a => a.Time, type: typeof(NonNullGraphType<ListGraphType<PeriodInputType>>));
         }
     }
 }

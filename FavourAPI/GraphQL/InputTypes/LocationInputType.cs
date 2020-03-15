@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FavourAPI.GraphQL.InputTypes
 {
     public class LocationInputType : InputObjectGraphType<LocationDto>
-    {
+    {   
         public LocationInputType()
         {
             Name = "LocationInput";

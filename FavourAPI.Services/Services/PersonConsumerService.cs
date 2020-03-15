@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
-    public class PersonProviderService : IPersonConsumerService
+    public class PersonConsumerService : IPersonConsumerService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
 
-        public PersonProviderService(WorkFavourDbContext dbContext, IMapper mapper)
+        public PersonConsumerService(WorkFavourDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;

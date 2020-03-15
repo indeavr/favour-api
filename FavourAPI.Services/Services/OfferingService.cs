@@ -33,7 +33,8 @@ namespace FavourAPI.Services.Services
             Guid guidUserId = Guid.Parse(userId);
             var position = dbContext.Positions.SingleOrDefault(p => p.Name == offeringDto.Title);
 
-            var provider = dbContext.PersonConsumers.SingleOrDefault(u => u.Id == guidUserId);
+            var provider = dbContext.Providers.SingleOrDefault(u => u.Id == guidUserId);
+            offering.Provider = provider;
 
             // TODO: remove comments
             //favour.Title = position.Name;
@@ -61,12 +62,12 @@ namespace FavourAPI.Services.Services
             var application = mapper.Map<Application>(applicationDto);
 
             Guid guidUserId = Guid.Parse(consumerId);
-            Guid guidJobOfferId = Guid.Parse(offeringId);
+            Guid guidOfferingId= Guid.Parse(offeringId);
 
-            var consumer = this.dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
-            var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
+            var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == guidUserId);
+            var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidOfferingId);
 
-            application.Provider = consumer;
+            application.PersonConsumer = consumer;
             application.State = new ApplicationStateDb()
             {
                 Value = nameof(ApplicationState.Pending)

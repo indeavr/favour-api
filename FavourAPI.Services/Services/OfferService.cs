@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
+
+    /** WARNING !!!!!!!!!!!!!!!!!!!!!!!!! DEPRECATED DO NOT USE*/
     public class OfferService : IOfferService
     {
         private readonly WorkFavourDbContext dbContext;
@@ -19,7 +21,7 @@ namespace FavourAPI.Services
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
-        }
+        }    /** WARNING !!!!!!!!!!!!!!!!!!!!!!!!! DEPRECATED DO NOT USE*/
 
         public async Task<JobOfferDto> AddJobOffer(string userId, JobOfferDto jobOfferDto)
         {
@@ -48,6 +50,7 @@ namespace FavourAPI.Services
             await this.dbContext.SaveChangesAsync();
 
             return this.mapper.Map<JobOfferDto>(jobOffer);
+            /** WARNING !!!!!!!!!!!!!!!!!!!!!!!!! DEPRECATED DO NOT USE*/
         }
 
         public async Task AddApplication(string consumerId, string jobOfferId, ApplicationDto applicationDto)
@@ -57,10 +60,10 @@ namespace FavourAPI.Services
             Guid guidUserId = Guid.Parse(consumerId);
             Guid guidJobOfferId = Guid.Parse(jobOfferId);
 
-            var consumer = this.dbContext.Providers.SingleOrDefault(c => c.Id == guidUserId);
+            var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == guidUserId);
             var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidJobOfferId);
 
-            application.Provider = consumer;
+            application.PersonConsumer = consumer;
             application.State = new ApplicationStateDb()
             {
                 Value = nameof(ApplicationState.Pending)
@@ -79,6 +82,7 @@ namespace FavourAPI.Services
 
             return offers.Select(o => mapper.Map<JobOfferDto>(o)).ToList();
         }
+        /** WARNING !!!!!!!!!!!!!!!!!!!!!!!!! DEPRECATED DO NOT USE*/
 
         public async Task<JobOfferDto> GetById(string jobId)
         {

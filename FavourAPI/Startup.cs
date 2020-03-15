@@ -168,9 +168,9 @@ namespace FavourAPI
 
             // Data Services
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ICompanyConsumerService, CompanyProviderService>();
-            services.AddScoped<IPersonConsumerService, PersonProviderService>();
-            services.AddScoped<IProviderService, ConsumerService>();
+            services.AddScoped<ICompanyConsumerService, CompanyConsumerService>();
+            services.AddScoped<IPersonConsumerService, PersonConsumerService>();
+            services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IOfferService, OfferService>();
             services.AddScoped<IFavourService, FavourService>();
             services.AddScoped<IOfferingService, OfferingService>();

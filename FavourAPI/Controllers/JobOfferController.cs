@@ -59,7 +59,7 @@ namespace FavourAPI.Controllers
         [HttpPut("apply")]
         public async Task<ActionResult> Apply([FromQuery] string userId, [FromQuery] string jobOfferId, [FromBody] ApplicationDto application)
         {
-            var result = await this.applicationService.Apply(userId, jobOfferId, application.Message, application.Time);
+            var result = await this.applicationService.Apply(userId, jobOfferId, application.Message, application.ApplyTime);
 
             return Ok(result);
         }
