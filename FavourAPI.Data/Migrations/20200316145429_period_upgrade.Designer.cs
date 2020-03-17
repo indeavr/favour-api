@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200316145429_period_upgrade")]
+    partial class period_upgrade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,8 +58,6 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<string>("Message");
 
-                    b.Property<Guid?>("OfferingId");
-
                     b.Property<Guid?>("PersonConsumerId");
 
                     b.Property<Guid?>("ProviderId");
@@ -69,8 +69,6 @@ namespace FavourAPI.Data.Migrations
                     b.HasIndex("ActiveFavourId");
 
                     b.HasIndex("ActiveJobOfferId");
-
-                    b.HasIndex("OfferingId");
 
                     b.HasIndex("PersonConsumerId");
 
@@ -842,9 +840,13 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("JobOfferId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ConsumerId1");
+
                     b.Property<Guid?>("FavourId");
 
                     b.HasKey("ConsumerId", "JobOfferId");
+
+                    b.HasIndex("ConsumerId1");
 
                     b.HasIndex("FavourId");
 
@@ -1105,10 +1107,6 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.ActiveJobOffer", "ActiveJobOffer")
                         .WithMany("Applications")
                         .HasForeignKey("ActiveJobOfferId");
-
-                    b.HasOne("FavourAPI.Data.Models.Offering", "Offering")
-                        .WithMany("Applications")
-                        .HasForeignKey("OfferingId");
 
                     b.HasOne("FavourAPI.Data.Models.PersonConsumer", "PersonConsumer")
                         .WithMany()
@@ -1472,8 +1470,7 @@ namespace FavourAPI.Data.Migrations
                 {
                     b.HasOne("FavourAPI.Data.Models.Provider", "Consumer")
                         .WithMany("SavedJobOffers")
-                        .HasForeignKey("ConsumerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ConsumerId1");
 
                     b.HasOne("FavourAPI.Data.Models.Favour")
                         .WithMany("SavedJobOffers")

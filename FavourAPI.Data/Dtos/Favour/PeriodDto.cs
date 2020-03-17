@@ -6,12 +6,16 @@ namespace FavourAPI.Dtos
     {
         public string Id { get; set; }
 
+        public DateTime StartTime { get; set; } // The aggregation of StartDate + StartHour
+
+        public DateTime EndTime { get; set; } // The aggregation of EndDate + EndHour
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
-        public DateTime StartHour { get; set; }
+        public TimeSpan StartHour { get; set; }
 
-        public DateTime EndHour { get; set; }
+        public TimeSpan EndHour { get; set; }
     }
 }

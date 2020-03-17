@@ -65,15 +65,15 @@ namespace FavourAPI.Services.Services
             Guid guidOfferingId= Guid.Parse(offeringId);
 
             var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == guidUserId);
-            var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidOfferingId);
+            Offering offering= this.dbContext.Offerings.SingleOrDefault(of => of.Id == guidOfferingId);
 
             application.PersonConsumer = consumer;
-            application.State = new ApplicationStateDb()
-            {
-                Value = nameof(ApplicationState.Pending)
-            };
+            //application.State = new ApplicationStateDb()
+            //{
+            //    Value = nameof(ApplicationState.Pending)
+            //}
 
-            jobOffer.Applications.Add(application);
+            offering.Applications.Add(application);
 
             await this.dbContext.SaveChangesAsync();
         }

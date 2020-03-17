@@ -28,6 +28,8 @@ namespace FavourAPI.Data.Models
 
         public double Money { get; set; }
 
+        public virtual ICollection<Application> Applications { get; set; }
+
         public virtual ICollection<Skill> Skills { get; set; }
 
         //public virtual CompletionResult Result { get; set; }

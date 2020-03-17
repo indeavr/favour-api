@@ -10,6 +10,7 @@ using FavourAPI.Services.Helpers;
 using System.Threading.Tasks;
 using System.Text;
 using System.Collections.Generic;
+using FavourAPI.Data.Dtos.Favour;
 
 namespace FavourAPI.Services
 {
@@ -199,10 +200,28 @@ namespace FavourAPI.Services
 
         public async Task<IEnumerable<ProviderDto>> GetAll()
         {
-            var consumers = await this.dbContext.Providers.ToAsyncEnumerable().ToArray();
+            var providers = await this.dbContext.Providers.ToAsyncEnumerable().ToArray();
 
-            return consumers.Select(c => this.mapper.Map<ProviderDto>(c));
+            return providers.Select(c => this.mapper.Map<ProviderDto>(c));
         }
+
+        public List<OfferingDto> GetAllOfferings(string providerId)
+        {
+            var provider = this.dbContext.Providers.SingleOrDefault(p => p.Id == Guid.Parse(providerId));
+
+            var offeringDtos = provider.Offerings.Select(of => this.mapper.Map<OfferingDto>(of)).ToList();
+
+            return offeringDtos;
+        }
+
+        //Task<ApplicationDto> GetAllApplications(string providerId)
+        //{
+        //    var provider = this.dbContext.Providers.SingleOrDefault(p => p.Id == Guid.Parse(providerId));
+
+        //    var offerings = provider.Offerings;
+
+        //    var applications = offerings.Select(of => of.Applications)
+        //}
 
         // Only for admins
         //public async Task<ConsumerDto> GetFull()

@@ -119,6 +119,26 @@ namespace FavourAPI.GraphQL
                     var industriesWithPositions = await industryRepository.GetAll();
                     return industriesWithPositions;
                 });
+
+            FieldAsync<ListGraphType<OfferingType>>(
+                "myOfferings",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
+                resolve: async context =>
+                {
+                    var providerId = context.GetArgument<string>("userId");
+                    var myOfferings = providerService.GetAllOfferings(providerId);
+                    return myOfferings;
+                });
+            
+            //FieldAsync<ListGraphType<ApplicationType>>(
+            //    "applicationsOfProvider",
+            //    arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
+            //    resolve: async context =>
+            //    {
+            //        var providerId = context.GetArgument<string>("userId");
+            //        var providerApplications = await providerService.GetAllApplications();
+            //        return providerApplications;
+            //    });
         }
     }
 }

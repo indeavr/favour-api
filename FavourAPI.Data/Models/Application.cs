@@ -25,5 +25,7 @@ namespace FavourAPI.Data.Models
         public virtual PersonConsumer PersonConsumer { get; set; }
 
         public virtual ApplicationStateDb State { get; set; }
+
+        public virtual Offering Offering { get; set; }
     }
 }
