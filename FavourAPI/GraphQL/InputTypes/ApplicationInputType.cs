@@ -13,7 +13,6 @@ namespace FavourAPI.GraphQL.InputTypes
         {
             Name = "ApplicationInput";
 
-            Field(a => a.Id);
             Field(a => a.Message);
             Field(a => a.Time, type: typeof(NonNullGraphType<ListGraphType<PeriodInputType>>));
         }

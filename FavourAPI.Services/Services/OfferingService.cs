@@ -3,8 +3,10 @@ using FavourAPI.Data;
 using FavourAPI.Data.Dtos.Favour;
 using FavourAPI.Data.Models;
 using FavourAPI.Data.Models.Enums;
+using FavourAPI.Data.Models.Offerings;
 using FavourAPI.Dtos;
 using FavourAPI.Services.Contracts;
+using FavourAPI.Services.Helpers.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,33 +62,73 @@ namespace FavourAPI.Services.Services
         public async Task AddApplication(string consumerId, string offeringId, ApplicationDto applicationDto)
         {
             var application = mapper.Map<Application>(applicationDto);
+            var state = await this.dbContext.ApplicationStates
+                .ToAsyncEnumerable()
+                .Single(a => a.Value == nameof(ApplicationState.Pending));
 
-            Guid guidUserId = Guid.Parse(consumerId);
-            Guid guidOfferingId= Guid.Parse(offeringId);
+            application.State = state;
+            application.ApplyTime = DateTime.Now;
 
-            var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == guidUserId);
-            var jobOffer = this.dbContext.ActiveJobOffers.SingleOrDefault(job => job.Id == guidOfferingId);
+            var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == Guid.Parse(consumerId));
+            ActiveOffering offering = await this.dbContext.ActiveOfferings
+                .ToAsyncEnumerable()
+                .SingleOrDefault(of => of.Id == Guid.Parse(offeringId));
 
             application.PersonConsumer = consumer;
-            application.State = new ApplicationStateDb()
-            {
-                Value = nameof(ApplicationState.Pending)
-            };
 
-            jobOffer.Applications.Add(application);
+            offering.Applications.Add(application);
 
             await this.dbContext.SaveChangesAsync();
         }
 
-        public List<OfferingDto> GetAllOfferings()
+        public async Task ConfirmApplication(string applicationId, List<PeriodDto> finalPeriodsDto)
         {
-            // TODO: must be Active in the future when we store them correctly
-            var offerings = dbContext.Offerings
+            var guidId = Guid.Parse(applicationId);
+            var application = await this.dbContext.Applications
+                .ToAsyncEnumerable()
+                .Single(a => a.Id == guidId);
+
+            var activeOffering = application.ActiveOffering;
+            if (activeOffering == null)
+            {
+                throw new InvalidJobOfferStateException("The confirmed job offer was not active");
+            }
+
+            var finalPeriods = finalPeriodsDto.Select((periodDto) => this.mapper.Map<Period>(periodDto));
+
+            await this.dbContext.OngoingOfferings.AddAsync(new OngoingOffering()
+            {
+                PersonConsumer = application.PersonConsumer,
+                Offering = activeOffering.Offering,
+                FinalPeriods = finalPeriods
+            });
+
+            await this.ChangeApplicationState(application, ApplicationState.Accepted);
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task Reject(string applicationId)
+        {
+            var guidId = Guid.Parse(applicationId);
+            var application = await this.dbContext.Applications.ToAsyncEnumerable().Single(a => a.Id == guidId);
+
+            await this.ChangeApplicationState(application, ApplicationState.Rejected);
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<OfferingDto>> GetAllActiveOfferings()
+        {
+            var activeOfferings = await this.dbContext.ActiveOfferings
+                .ToAsyncEnumerable()
                 .ToList();
 
-            // mahni neshta ot job modela- . inache se polzva samo DTO-to 
+            var offerings = activeOfferings
+                .Select((active) => mapper.Map<OfferingDto>(active.Offering))
+                .ToList();
 
-            return offerings.Select(o => mapper.Map<OfferingDto>(o)).ToList();
+            return offerings;
         }
 
         public async Task<OfferingDto> GetById(string offeringId)
@@ -95,6 +137,17 @@ namespace FavourAPI.Services.Services
             var offeringDb = await this.dbContext.Offerings.FindAsync(offeringId);
 
             return this.mapper.Map<OfferingDto>(offeringDb);
+        }
+
+        // Note that SaveChangesAsync isnt called !
+        private async Task ChangeApplicationState(Application application, ApplicationState newState)
+        {
+            var newStateDb = await this.dbContext.ApplicationStates
+                .ToAsyncEnumerable()
+                .Single(aps => aps.Value == newState.ToString());
+
+            application.State = newStateDb;
+            this.dbContext.Applications.Update(application);
         }
     }
 }

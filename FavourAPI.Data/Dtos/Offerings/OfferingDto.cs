@@ -21,6 +21,8 @@ namespace FavourAPI.Data.Dtos.Favour
 
         public ProviderDto Provider { get; set; }
 
+        public List<ApplicationDto> Applications { get; set; }
+
         //public DateTime TimePosted { get; set; }
 
         //public List<PeriodDto> Periods { get; set; }

@@ -3,6 +3,8 @@ using FavourAPI.Data.Models;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using FavourAPI.Data.Dtos.Favour;
+using FavourAPI.Data.Dtos.Offerings;
 
 namespace FavourAPI.Services
 {
@@ -23,5 +25,7 @@ namespace FavourAPI.Services
         Task SaveJobOffer(string userId, string jobOfferId);
 
         Task<string> GetProfilePhoto(string userId);
+
+        List<ActiveOfferingDto> GetAllActiveOfferings(string providerId);
     }
 }

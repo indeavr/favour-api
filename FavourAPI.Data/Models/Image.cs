@@ -8,7 +8,9 @@ namespace FavourAPI.Data.Models
     public class Image
     {
         [Key]
-        public Guid Name { get; set; }
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
 
         public int Size { get; set; }
 

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
+using FavourAPI.Data.Models.Offerings;
+
 namespace FavourAPI.Data
 {
     public class WorkFavourDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IDesignTimeDbContextFactory<WorkFavourDbContext>
@@ -48,6 +50,12 @@ namespace FavourAPI.Data
 
         public DbSet<Offering> Offerings { get; set; }
 
+        public DbSet<ActiveOffering> ActiveOfferings { get; set; }
+
+        public DbSet<OngoingOffering> OngoingOfferings { get; set; }
+
+        public DbSet<CompletedOffering> CompletedOfferings { get; set; }
+
         public DbSet<JobPhoto> JobPhotos { get; set; }
 
         public DbSet<Application> Applications { get; set; }
@@ -82,7 +90,7 @@ namespace FavourAPI.Data
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
+        public DbSet<ConsumerViewTime> ConsumerViewTime { get; set; }
 
         public DbSet<Experience> Experiences { get; set; }
 

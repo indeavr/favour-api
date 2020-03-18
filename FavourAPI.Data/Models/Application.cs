@@ -1,4 +1,5 @@
 ﻿using FavourAPI.Data.Models.Enums;
+using FavourAPI.Data.Models.Offerings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,5 +26,7 @@ namespace FavourAPI.Data.Models
         public virtual PersonConsumer PersonConsumer { get; set; }
 
         public virtual ApplicationStateDb State { get; set; }
+
+        public virtual ActiveOffering ActiveOffering { get; set; }
     }
 }

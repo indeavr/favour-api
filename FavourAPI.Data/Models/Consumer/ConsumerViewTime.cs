@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FavourAPI.Data.Models
 {
-    public class ProviderViewTime
+    public class ConsumerViewTime
     {
         [ForeignKey("User")]
         [Column(TypeName = "uniqueidentifier")]

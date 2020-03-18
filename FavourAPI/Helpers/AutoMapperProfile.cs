@@ -31,8 +31,19 @@ namespace FavourAPI.Helpers
                 .ForMember(dto => dto.FoundedYear, opt => opt.MapFrom(cpDto => new DateTime(TimeSpan.TicksPerMillisecond * cpDto.FoundedYear)))
                 .ForMember(dto => dto.ProfilePhoto, opt => opt.Ignore()).PreserveReferences();
 
-            CreateMap<PersonConsumer, PersonConsumerDto>().PreserveReferences();
-            CreateMap<PersonConsumerDto, PersonConsumer>().PreserveReferences();
+            Func<PersonConsumerDto, PersonConsumer, object> transformSexConsumer = (cdto, _) =>
+            {
+                Enum.Parse<Sex>(cdto.Sex);
+                return new SexDb() { Value = cdto.Sex };
+            };
+
+            CreateMap<PersonConsumer, PersonConsumerDto>()
+                .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
+                .PreserveReferences();
+
+            CreateMap<PersonConsumerDto, PersonConsumer>()
+                .ForMember(c => c.Sex, opt => opt.MapFrom(transformSexConsumer))
+                .PreserveReferences();
 
             CreateMap<OfficeDto, Office>().PreserveReferences();
             CreateMap<Office, OfficeDto>().PreserveReferences();
@@ -80,7 +91,7 @@ namespace FavourAPI.Helpers
             CreateMap<ProviderDto, Provider>()
                 .ForMember(c => c.PhoneNumber, opt => opt.MapFrom(cdto => new PhoneNumber() { Number = cdto.PhoneNumber }))
                 .ForMember(c => c.Sex, opt => opt.MapFrom(transformSex))
-                .ForMember(c => c.ProfilePhoto, opt => opt.Ignore())
+                //.ForMember(c => c.ProfilePhoto, opt => opt.Ignore())
                 .ForMember(c => c.Skills, opt => opt.MapFrom(cdto => cdto.Skills.Select(s => new Skill() { Name = s })))
                 .PreserveReferences();
 
@@ -119,8 +130,8 @@ namespace FavourAPI.Helpers
                 //.ForMember(l => l.Id, opt => opt.MapFrom(l => l.MapsId))
                 .PreserveReferences();
 
-            CreateMap<ProviderViewTime, ConsumerViewTimeDto>().PreserveReferences();
-            CreateMap<ConsumerViewTimeDto, ProviderViewTime>().PreserveReferences();
+            CreateMap<ConsumerViewTime, ConsumerViewTimeDto>().PreserveReferences();
+            CreateMap<ConsumerViewTimeDto, ConsumerViewTime>().PreserveReferences();
 
             CreateMap<Education, EducationDto>().PreserveReferences();
             CreateMap<EducationDto, Education>().PreserveReferences();

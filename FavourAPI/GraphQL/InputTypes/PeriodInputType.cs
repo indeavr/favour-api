@@ -8,10 +8,8 @@ namespace FavourAPI.GraphQL.InputTypes
         public PeriodInputType()
         {
             Name = "PeriodInput";
-            Field(a => a.StartHour, type: typeof(NonNullGraphType<DateTimeGraphType>));
-            Field(a => a.StartDate, type: typeof(NonNullGraphType<DateTimeGraphType>));
-            Field(a => a.EndHour, nullable: true, type: typeof(DateTimeGraphType));
-            Field(a => a.EndDate, nullable: true, type: typeof(DateTimeGraphType));
+            Field(a => a.StartTime, type: typeof(NonNullGraphType<DateTimeGraphType>));
+            Field(a => a.EndTime, type: typeof(NonNullGraphType<DateTimeGraphType>));
         }
     }
 }

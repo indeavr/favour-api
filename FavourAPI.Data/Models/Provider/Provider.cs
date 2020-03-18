@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using FavourAPI.Data.Models;
+using FavourAPI.Data.Models.Offerings;
 
 namespace FavourAPI.Data.Models
 {
@@ -23,25 +24,25 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Position> DesiredPositions { get; set; }
 
-        public virtual ICollection<Application> Applications { get; set; }
+        public virtual ICollection<Application> Applications { get; set; } // for favours
 
-        public virtual ICollection<Offering> Offerings { get; set; }
+        public virtual ICollection<ActiveOffering> ActiveOfferings { get; set; }
 
+        public virtual ICollection<OngoingOffering> OngoingOfferings { get; set; }
+
+        public virtual ICollection<CompletedOffering> CompletedOfferings { get; set; }
         public virtual User User { get; set; }
 
         public byte[] CV { get; set; }
 
-        public virtual ICollection<OngoingJobOffer> OngoingJobOffers { get; set; }
+        public virtual ICollection<Image> Photos { get; set; }
 
-        public virtual ICollection<CompletedJobOffer> CompletedJobOffers { get; set; }
+        //public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
 
-        public virtual ICollection<SavedJobOffer> SavedJobOffers { get; set; }
+        //public virtual ICollection<Experience> Experiences { get; set; }
 
-        public virtual ICollection<Experience> Experiences { get; set; }
+        //public virtual ICollection<Education> Education { get; set; }
 
-        public virtual ICollection<Education> Education { get; set; }
-
-        public virtual Image ProfilePhoto { get; set; }
 
     }
 }

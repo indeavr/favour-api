@@ -29,15 +29,15 @@ namespace FavourAPI.Data.Repositories
         private readonly UserManager<User> userManager;
         private readonly IClaimsFactory claimsFactory;
         private readonly IConfiguration configuration;
-        private readonly WorkFavourDbContext dbContext;
 
-        public UserRepository(WorkFavourDbContext workFavourDbContext,
+        public UserRepository(WorkFavourDbContext dbContext,
             UserManager<User> userManager,
-            IMapper mapper, IClaimsFactory claimsFactory, IConfiguration configuration)
-            : base(workFavourDbContext, mapper)
+            IMapper mapper,
+            IClaimsFactory claimsFactory,
+            IConfiguration configuration)
+            : base(dbContext, mapper)
         {
             this.userManager = userManager;
-            this.dbContext = workFavourDbContext;
             this.claimsFactory = claimsFactory;
             this.configuration = configuration;
         }

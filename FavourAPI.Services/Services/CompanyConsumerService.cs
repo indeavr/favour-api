@@ -34,8 +34,8 @@ namespace FavourAPI.Services
 
             if (!string.IsNullOrEmpty(companyProvider.ProfilePhoto))
             {
-                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = companyProvider.ProfilePhoto.Length };
-                var photoName = profilePhoto.Name.ToString();
+                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Id = Guid.NewGuid(), Size = companyProvider.ProfilePhoto.Length };
+                var photoName = profilePhoto.Id.ToString();
                 profilePhoto.Uri = await this.blobService.UploadImage(photoName, companyProvider.ProfilePhoto, profilePhoto.ContentType);
                 dbModel.ProfilePhoto = profilePhoto;
             }
@@ -69,14 +69,14 @@ namespace FavourAPI.Services
             return mapper.Map<CompanyConsumerDto>(dbModel);
         }
 
-        public async Task<CompanyConsumerDto> GetConsumer(string userId, bool withPhoto)
+        public async Task<CompanyConsumerDto> GetById(string userId, bool withPhoto = false)
         {
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyConsumers.SingleOrDefault(cp => cp.Id == userIdGuid);
             var providerDto = this.mapper.Map<CompanyConsumerDto>(provider);
             if (withPhoto)
             {
-                var buffer = await this.blobService.GetImage(provider.ProfilePhoto.Name.ToString(), provider.ProfilePhoto.Size);
+                var buffer = await this.blobService.GetImage(provider.ProfilePhoto.Id.ToString(), provider.ProfilePhoto.Size);
                 providerDto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             }
             if (providerDto != null)
@@ -100,7 +100,7 @@ namespace FavourAPI.Services
 
             var user = this.dbContext.CompanyConsumers.SingleOrDefault(u => u.Id == idAsGuid);
 
-            var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
+            var buffer = await this.blobService.GetImage(user.ProfilePhoto.Id.ToString(), user.ProfilePhoto.Size);
 
             return Encoding.UTF8.GetString(buffer);
         }
@@ -109,7 +109,7 @@ namespace FavourAPI.Services
         {
             var idAsGuid = Guid.Parse(userId);
 
-            var viewTime = this.dbContext.ProviderViewTimes.SingleOrDefault(vt => vt.Id == idAsGuid);
+            var viewTime = this.dbContext.ConsumerViewTime.SingleOrDefault(vt => vt.Id == idAsGuid);
 
             return this.mapper.Map<ConsumerViewTimeDto>(viewTime);
         }
@@ -118,7 +118,7 @@ namespace FavourAPI.Services
         {
             var idAsGuid = Guid.Parse(userId);
 
-            var currentViewTime = this.dbContext.ProviderViewTimes.FirstOrDefault(vt => vt.Id == idAsGuid);
+            var currentViewTime = this.dbContext.ConsumerViewTime.FirstOrDefault(vt => vt.Id == idAsGuid);
 
             if (currentViewTime != null)
             {
@@ -127,7 +127,7 @@ namespace FavourAPI.Services
             }
             else
             {
-                var newViewTime = new ProviderViewTime()
+                var newViewTime = new ConsumerViewTime()
                 {
                     Applications = viewTime.Applications,
                     OngoingJobOffers = viewTime.OngoingJobOffers

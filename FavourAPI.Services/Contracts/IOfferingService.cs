@@ -13,8 +13,12 @@ namespace FavourAPI.Services.Contracts
 
         Task<OfferingDto> GetById(string favourId);
 
-        List<OfferingDto> GetAllOfferings();
+        Task<List<OfferingDto>> GetAllActiveOfferings();
 
         Task AddApplication(string providerId, string favourId, ApplicationDto application);
+
+        Task ConfirmApplication(string applicationId, List<PeriodDto> finalPeriodsDto);
+
+        Task Reject(string applicationId);
     }
 }

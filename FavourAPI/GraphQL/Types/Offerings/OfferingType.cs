@@ -19,6 +19,7 @@ namespace FavourAPI.GraphQL.Types
             Field(of => of.Description);
             Field(of => of.Location, type: typeof(NonNullGraphType<LocationType>));
             Field(of => of.Provider, type: typeof(NonNullGraphType<ProviderType>));
+            Field(of => of.Applications, type: typeof(NonNullGraphType<ListGraphType<ApplicationType>>));
 
             //Field<DateTimeGraphType>(nameof(FavourDto.TimePosted));
             //Field<ListGraphType<PeriodType>>(nameof(FavourDto.Periods));

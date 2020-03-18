@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200318194533_fixes")]
+    partial class fixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,11 +98,11 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<int>("NumberOfEmployees");
 
-                    b.Property<Guid?>("ProfilePhotoId");
+                    b.Property<Guid?>("ProfilePhotoName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfilePhotoId");
+                    b.HasIndex("ProfilePhotoName");
 
                     b.ToTable("CompanyConsumers");
                 });
@@ -332,12 +334,10 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("FavourAPI.Data.Models.Image", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Name")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ContentType");
-
-                    b.Property<string>("Name");
 
                     b.Property<Guid?>("PersonConsumerId");
 
@@ -347,7 +347,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<string>("Uri");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.HasIndex("PersonConsumerId");
 
@@ -1087,9 +1087,11 @@ namespace FavourAPI.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
 
-                    b.Property<string>("ProviderKey");
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -1119,9 +1121,11 @@ namespace FavourAPI.Data.Migrations
                 {
                     b.Property<Guid>("UserId");
 
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Value");
 
@@ -1182,7 +1186,7 @@ namespace FavourAPI.Data.Migrations
 
                     b.HasOne("FavourAPI.Data.Models.Image", "ProfilePhoto")
                         .WithMany()
-                        .HasForeignKey("ProfilePhotoId");
+                        .HasForeignKey("ProfilePhotoName");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompletedJobOffer", b =>

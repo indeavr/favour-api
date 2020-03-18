@@ -9,7 +9,7 @@ namespace FavourAPI.Services
     {
         Task<IEnumerable<CompanyConsumerDto>> GetAll();
 
-        Task<CompanyConsumerDto> GetConsumer(string userId, bool withPhoto);
+        Task<CompanyConsumerDto> GetById(string userId, bool withPhoto = false);
 
         Task<CompanyConsumerDto> AddCompanyConsumer(string userId, CompanyConsumerDto companyConsumer);
 
