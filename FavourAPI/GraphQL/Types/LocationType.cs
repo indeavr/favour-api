@@ -7,6 +7,8 @@ namespace FavourAPI.GraphQL.Types
     {
         public LocationType()
         {
+            Name = "LocationType";
+
             Field(l => l.Country);
             Field(l => l.Address);
             Field(l => l.Town);

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.Services
 {
+    /** WARNING !!!!!!!!!!!!!!!!!!!!!!!!! DEPRECATED DO NOT USE*/
     public interface IOfferService
     {
         Task<JobOfferDto> AddJobOffer(string Guid, JobOfferDto jobOffer);

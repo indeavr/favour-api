@@ -29,17 +29,17 @@ namespace FavourAPI.Services.Services
         {
             var userIdGuid = Guid.Parse(userId);
             var jobOfferIdGuid = Guid.Parse(jobOfferId);
-            var consumer = this.dbContext.Consumers.Single(c => c.Id == userIdGuid);
+            var consumer = this.dbContext.PersonConsumers.Single(c => c.Id == userIdGuid);
             var jobOffer = this.dbContext.JobOffers.Single(jo => jo.Id == jobOfferIdGuid);
             var state = this.dbContext.ApplicationStates.Single(a => a.Value == nameof(ApplicationState.Pending));
 
             var application = new Application()
             {
                 State = state,
-                Provider = consumer,
+                PersonConsumer = consumer,
                 ActiveJobOffer = jobOffer.ActiveState,
                 Message = message,
-                Time = time
+                ApplyTime = time
             };
 
             this.dbContext.Applications.Add(application);
@@ -79,7 +79,7 @@ namespace FavourAPI.Services.Services
 
             await this.dbContext.OngoingJobOffers.AddAsync(new OngoingJobOffer()
             {
-                Provider = application.Provider,
+                PersonConsumer = application.PersonConsumer,
                 JobOffer = jobOffer.JobOffer,
             });
 

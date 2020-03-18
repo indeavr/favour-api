@@ -11,12 +11,18 @@ namespace FavourAPI.Dtos
 
         public string UserName { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public string FullName { get; set; }
 
         public bool EmailConfirmed { get; set; }
 
         public bool PhoneConfirmed { get; set; }
 
+        public string LastAccoutSide { get; set; }
+        
         public string Password { get; set; }
 
         public PersonConsumerDto PersonConsumer { get; set; }
@@ -25,6 +31,6 @@ namespace FavourAPI.Dtos
 
         public ProviderDto Provider { get; set; }
 
-        public PermissionsMyDto PermissionMy { get; set; }
+        public PermissionsMyDto Permissions { get; set; }
     }
 }

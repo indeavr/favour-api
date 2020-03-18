@@ -10,10 +10,14 @@ namespace FavourAPI.GraphQL.Types
     {
         public PeriodType()
         {
-            Field<DateGraphType>(nameof(PeriodDto.StartDate));
-            Field<DateGraphType>(nameof(PeriodDto.EndDate));
-            Field<DateTimeGraphType>(nameof(PeriodDto.StartHour));
-            Field<DateTimeGraphType>(nameof(PeriodDto.EndHour));
+            Field(a => a.StartTime, type: typeof(NonNullGraphType<DateTimeGraphType>));
+            Field(a => a.EndTime, type: typeof(NonNullGraphType<DateTimeGraphType>));
+
+            Field(a => a.StartHour, type: typeof(NonNullGraphType<DateTimeGraphType>));
+            Field(a => a.StartDate, type: typeof(NonNullGraphType<DateTimeGraphType>));
+
+            Field(a => a.EndHour, nullable: true, type: typeof(TimeSpanSecondsGraphType));
+            Field(a => a.EndDate, nullable: true, type: typeof(TimeSpanSecondsGraphType));
         }
     }
 }

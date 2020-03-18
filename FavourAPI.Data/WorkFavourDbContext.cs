@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
+using FavourAPI.Data.Models.Offerings;
+
 namespace FavourAPI.Data
 {
     public class WorkFavourDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IDesignTimeDbContextFactory<WorkFavourDbContext>
@@ -24,9 +26,9 @@ namespace FavourAPI.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<PersonConsumer> PersonProviders { get; set; }
+        public DbSet<PersonConsumer> PersonConsumers { get; set; }
 
-        public DbSet<CompanyConsumer> CompanyProviders { get; set; }
+        public DbSet<CompanyConsumer> CompanyConsumers { get; set; }
 
         public DbSet<Office> Offices { get; set; }
 
@@ -40,13 +42,19 @@ namespace FavourAPI.Data
 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
 
-        public DbSet<Provider> Consumers { get; set; }
+        public DbSet<Provider> Providers { get; set; }
 
         public DbSet<JobOffer> JobOffers { get; set; }
 
         public DbSet<Favour> Favours { get; set; }
 
         public DbSet<Offering> Offerings { get; set; }
+
+        public DbSet<ActiveOffering> ActiveOfferings { get; set; }
+
+        public DbSet<OngoingOffering> OngoingOfferings { get; set; }
+
+        public DbSet<CompletedOffering> CompletedOfferings { get; set; }
 
         public DbSet<JobPhoto> JobPhotos { get; set; }
 
@@ -82,7 +90,7 @@ namespace FavourAPI.Data
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
+        public DbSet<ConsumerViewTime> ConsumerViewTime { get; set; }
 
         public DbSet<Experience> Experiences { get; set; }
 

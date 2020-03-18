@@ -9,5 +9,9 @@ namespace FavourAPI.Dtos
         public string Label { get; set; }
 
         public string Number { get; set; }
+
+        public PersonConsumerDto PersonConsumer { get; set; }
+
+        public ProviderDto Provider { get; set; }
     }
 }

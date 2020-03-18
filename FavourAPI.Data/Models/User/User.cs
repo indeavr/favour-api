@@ -26,6 +26,9 @@ namespace FavourAPI.Data.Models
         //public byte[] PasswordHash { get; set; }
 
         //public byte[] PasswordSalt { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
 
         public string FullName { get; set; }
 
@@ -36,6 +39,8 @@ namespace FavourAPI.Data.Models
         public string PhoneVerified { get; set; }
 
         public virtual Provider Provider { get; set; }
+
+        public string LastAccoutSide { get; set; }
 
         public virtual PersonConsumer PersonConsumer { get; set; }
 

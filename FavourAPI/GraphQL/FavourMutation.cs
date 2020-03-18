@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Data.Dtos.Favour;
 using FavourAPI.Data.Models;
+using FavourAPI.Data.Repositories;
 using FavourAPI.Dtos;
 using FavourAPI.GraphQL.InputTypes;
 using FavourAPI.GraphQL.InputTypes.Favour;
@@ -33,6 +34,7 @@ namespace FavourAPI.GraphQL
             IOptions<AppSettings> appSettings,
             IProviderService providerService,
             ICompanyConsumerService companyConsumerService,
+            IPersonConsumerService personConsumerService,
             IOfferService offerService,
             IFavourService favourService,
             IOfferingService offeringService
@@ -126,25 +128,6 @@ namespace FavourAPI.GraphQL
                }
            );
 
-            FieldAsync<ProviderType>(
-                "createProvider",
-                arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" },
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" }
-                ),
-                resolve: async context =>
-                {
-                    var userId = context.GetArgument<string>("userId");
-                    var providerArg = context.Arguments["provider"];
-                    var provider = providerArg != null
-                        ? JToken.FromObject(providerArg).ToObject<ProviderDto>()
-                        : null;
-
-                    var newProvider = await providerService.AddProvider(userId, provider);
-                    return newProvider;
-                }
-            );
-
             FieldAsync<CompanyConsumerType>("createCompanyConsumer", arguments: new QueryArguments(
                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
                 new QueryArgument<NonNullGraphType<CompanyConsumerInputType>> { Name = "companyConsumer" }
@@ -232,7 +215,8 @@ namespace FavourAPI.GraphQL
                        UserId = user.Id,
                        EmailConfirmed = user.EmailConfirmed,
                        PhoneConfirmed = user.PhoneConfirmed,
-                       FullName = user.FullName
+                       FullName = user.FullName,
+                       Permissions = user.Permissions
                    };
                    return authDto;
                }
@@ -269,7 +253,8 @@ namespace FavourAPI.GraphQL
                       UserId = user.Id,
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
-                      FullName  = user.FullName
+                      FullName = user.FullName,
+                      Permissions = user.Permissions
                   };
                   return authDto;
               }
@@ -308,7 +293,8 @@ namespace FavourAPI.GraphQL
                       UserId = user.Id,
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
-                      FullName = user.FullName
+                      FullName = user.FullName,
+                      Permissions = user.Permissions
                   };
                   return authDto;
               }
@@ -359,6 +345,73 @@ namespace FavourAPI.GraphQL
 
                  return "success";
              });
+
+            FieldAsync<StringGraphType>(
+            "createProvider",
+             arguments: new QueryArguments(
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" }
+            ),
+            resolve: async context =>
+            {
+                var userId = context.GetArgument<string>("userId");
+                var providerArg = context.Arguments["provider"];
+                var provider = providerArg != null
+                    ? JToken.FromObject(providerArg).ToObject<ProviderDto>()
+                    : null;
+
+                var newProvider = await providerService.AddProvider(userId, provider);
+                await userService.ChangePermissions(
+                    userId,
+                    new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoProvider, PermissionTypes.SideChosen },
+                    true
+                );
+                return "success";
+            });
+
+           FieldAsync<StringGraphType>(
+           "createPersonConsumer",
+            arguments: new QueryArguments(
+               new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+               new QueryArgument<NonNullGraphType<PersonConsumerInputType>> { Name = "personConsumer" }
+           ),
+           resolve: async context =>
+           {
+               var userId = context.GetArgument<string>("userId");
+               var consumerArg = context.Arguments["personConsumer"];
+               var consumer = consumerArg != null
+                   ? JToken.FromObject(consumerArg).ToObject<PersonConsumerDto>()
+                   : null;
+
+               var newConsumer = await personConsumerService.AddPersonConsumer(userId, consumer);
+               await userService.ChangePermissions(
+                   userId,
+                   new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoConsumer, PermissionTypes.SideChosen },
+                   true
+               );
+               return "success";
+           });
+
+            FieldAsync<BooleanGraphType>(
+            "applyForOffering",
+             arguments: new QueryArguments(
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "offeringId" },
+                new QueryArgument<NonNullGraphType<ApplicationInputType>> { Name = "application" }
+            ),
+            resolve: async context =>
+            {
+                var userId = context.GetArgument<string>("userId");
+                var offeringId = context.GetArgument<string>("offeringId");
+                var applicationArg = context.Arguments["application"];
+                var application = applicationArg != null
+                    ? JToken.FromObject(applicationArg).ToObject<ApplicationDto>()
+                    : null;
+
+                await offeringService.AddApplication(userId, offeringId, application);
+
+                return true;
+            });
         }
     }
 }
