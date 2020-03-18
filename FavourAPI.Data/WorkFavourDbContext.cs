@@ -4,6 +4,7 @@ using FavourAPI.Data.Models;
 using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using FavourAPI.Data.Models.Offerings;
 
 namespace FavourAPI.Data
 {
@@ -40,6 +41,12 @@ namespace FavourAPI.Data
 
         public DbSet<Offering> Offerings { get; set; }
 
+        public DbSet<ActiveOffering> ActiveOfferings { get; set; }
+
+        public DbSet<OngoingOffering> OngoingOfferings { get; set; }
+
+        public DbSet<CompletedOffering> CompletedOfferings { get; set; }
+
         public DbSet<JobPhoto> JobPhotos { get; set; }
 
         public DbSet<Application> Applications { get; set; }
@@ -74,7 +81,7 @@ namespace FavourAPI.Data
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<ProviderViewTime> ProviderViewTimes { get; set; }
+        public DbSet<ConsumerViewTime> ConsumerViewTime { get; set; }
 
         public DbSet<Experience> Experiences { get; set; }
 

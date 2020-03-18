@@ -69,7 +69,7 @@ namespace FavourAPI.Services
             return mapper.Map<CompanyConsumerDto>(dbModel);
         }
 
-        public async Task<CompanyConsumerDto> GetConsumer(string userId, bool withPhoto)
+        public async Task<CompanyConsumerDto> GetById(string userId, bool withPhoto = false)
         {
             Guid userIdGuid = Guid.Parse(userId);
             var provider = this.dbContext.CompanyConsumers.SingleOrDefault(cp => cp.Id == userIdGuid);
@@ -109,7 +109,7 @@ namespace FavourAPI.Services
         {
             var idAsGuid = Guid.Parse(userId);
 
-            var viewTime = this.dbContext.ProviderViewTimes.SingleOrDefault(vt => vt.Id == idAsGuid);
+            var viewTime = this.dbContext.ConsumerViewTime.SingleOrDefault(vt => vt.Id == idAsGuid);
 
             return this.mapper.Map<ConsumerViewTimeDto>(viewTime);
         }
@@ -118,7 +118,7 @@ namespace FavourAPI.Services
         {
             var idAsGuid = Guid.Parse(userId);
 
-            var currentViewTime = this.dbContext.ProviderViewTimes.FirstOrDefault(vt => vt.Id == idAsGuid);
+            var currentViewTime = this.dbContext.ConsumerViewTime.FirstOrDefault(vt => vt.Id == idAsGuid);
 
             if (currentViewTime != null)
             {
@@ -127,7 +127,7 @@ namespace FavourAPI.Services
             }
             else
             {
-                var newViewTime = new ProviderViewTime()
+                var newViewTime = new ConsumerViewTime()
                 {
                     Applications = viewTime.Applications,
                     OngoingJobOffers = viewTime.OngoingJobOffers

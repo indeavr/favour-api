@@ -23,7 +23,7 @@ namespace FavourAPI.Queries
                 {
                     var userdId = context.GetArgument<string>("id");
 
-                    return providerService.GetConsumer(userdId, true);
+                    return providerService.GetById(userdId, true);
                 });
         }
     }

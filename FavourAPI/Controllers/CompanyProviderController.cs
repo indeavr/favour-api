@@ -33,7 +33,7 @@ namespace FavourAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<CompanyConsumer>> GetCompanyProvider([FromQuery] string userId, [FromQuery]bool withPhoto)
         {
-            var companyProvider = await this.companyProviderService.GetConsumer(userId, withPhoto);
+            var companyProvider = await this.companyProviderService.GetById(userId, withPhoto);
             return Ok(companyProvider);
         }
 

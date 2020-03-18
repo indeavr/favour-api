@@ -34,6 +34,7 @@ namespace FavourAPI.GraphQL
             IOptions<AppSettings> appSettings,
             IProviderService providerService,
             ICompanyConsumerService companyConsumerService,
+            IPersonConsumerService personConsumerService,
             IOfferService offerService,
             IFavourService favourService,
             IOfferingService offeringService
@@ -367,6 +368,29 @@ namespace FavourAPI.GraphQL
                 );
                 return "success";
             });
+
+           FieldAsync<StringGraphType>(
+           "createPersonConsumer",
+            arguments: new QueryArguments(
+               new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+               new QueryArgument<NonNullGraphType<PersonConsumerInputType>> { Name = "personConsumer" }
+           ),
+           resolve: async context =>
+           {
+               var userId = context.GetArgument<string>("userId");
+               var consumerArg = context.Arguments["personConsumer"];
+               var consumer = consumerArg != null
+                   ? JToken.FromObject(consumerArg).ToObject<PersonConsumerDto>()
+                   : null;
+
+               var newConsumer = await personConsumerService.AddPersonConsumer(userId, consumer);
+               await userService.ChangePermissions(
+                   userId,
+                   new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoConsumer, PermissionTypes.SideChosen },
+                   true
+               );
+               return "success";
+           });
 
             FieldAsync<BooleanGraphType>(
             "applyForOffering",

@@ -4,14 +4,16 @@ using FavourAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavourAPI.Data.Migrations
 {
     [DbContext(typeof(WorkFavourDbContext))]
-    partial class WorkFavourDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200318193928_added_person_consumer")]
+    partial class added_person_consumer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,7 +112,11 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ProviderId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProviderId");
 
                     b.ToTable("CompletedJobOffers");
                 });
@@ -539,11 +545,7 @@ namespace FavourAPI.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ProviderId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProviderId");
 
                     b.ToTable("CompletedOfferings");
                 });
@@ -557,13 +559,9 @@ namespace FavourAPI.Data.Migrations
 
                     b.Property<Guid?>("PersonConsumerId");
 
-                    b.Property<Guid?>("ProviderId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PersonConsumerId");
-
-                    b.HasIndex("ProviderId");
 
                     b.ToTable("OngoingOfferings");
                 });
@@ -1193,6 +1191,10 @@ namespace FavourAPI.Data.Migrations
                         .WithOne("CompletedState")
                         .HasForeignKey("FavourAPI.Data.Models.CompletedJobOffer", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FavourAPI.Data.Models.Provider")
+                        .WithMany("CompletedJobOffers")
+                        .HasForeignKey("ProviderId");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.CompletionResult", b =>
@@ -1369,10 +1371,6 @@ namespace FavourAPI.Data.Migrations
                         .WithMany("CompletedStates")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("FavourAPI.Data.Models.Provider")
-                        .WithMany("CompletedOfferings")
-                        .HasForeignKey("ProviderId");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Offerings.OngoingOffering", b =>
@@ -1385,10 +1383,6 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.PersonConsumer", "PersonConsumer")
                         .WithMany("OngoingOfferings")
                         .HasForeignKey("PersonConsumerId");
-
-                    b.HasOne("FavourAPI.Data.Models.Provider")
-                        .WithMany("OngoingOfferings")
-                        .HasForeignKey("ProviderId");
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Office", b =>
@@ -1429,6 +1423,11 @@ namespace FavourAPI.Data.Migrations
                     b.HasOne("FavourAPI.Data.Models.PersonConsumer", "PersonConsumer")
                         .WithMany()
                         .HasForeignKey("PersonConsumerId");
+
+                    b.HasOne("FavourAPI.Data.Models.Provider")
+                        .WithMany("OngoingJobOffers")
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FavourAPI.Data.Models.Period", b =>

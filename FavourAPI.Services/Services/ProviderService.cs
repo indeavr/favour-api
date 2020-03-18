@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Text;
 using System.Collections.Generic;
 using FavourAPI.Data.Dtos.Favour;
+using FavourAPI.Data.Dtos.Offerings;
+using FavourAPI.Data.Models.Offerings;
 
 namespace FavourAPI.Services
 {
@@ -37,17 +39,21 @@ namespace FavourAPI.Services
             var correctPositions = this.dbContext.Positions.Where(s => dbProvider.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
             var correctSexDb = this.dbContext.Sexes.FirstOrDefault(s => s.Value == providerData.Sex);
 
-            if (!string.IsNullOrEmpty(providerData.ProfilePhoto))
-            {
-                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = providerData.ProfilePhoto.Length };
-                profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, providerData.ProfilePhoto, profilePhoto.ContentType);
-                dbProvider.ProfilePhoto = profilePhoto;
-            }
+            // TODO
+            //if (!string.IsNullOrEmpty(providerData.ProfilePhoto))
+            //{
+            //    var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = providerData.ProfilePhoto.Length };
+            //    profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, providerData.ProfilePhoto, profilePhoto.ContentType);
+            //    dbProvider.ProfilePhoto = profilePhoto;
+            //}
 
             dbProvider.Sex = correctSexDb ?? this.dbContext.Sexes.First();
             dbProvider.Skills = correctSkills;
             dbProvider.DesiredPositions = correctPositions;
             dbProvider.Id = Guid.Parse(userId);
+            dbProvider.ActiveOfferings = new List<ActiveOffering>();
+            dbProvider.OngoingOfferings = new List<OngoingOffering>();
+            dbProvider.CompletedOfferings = new List<CompletedOffering>();
 
             this.dbContext.Providers.Add(dbProvider);
 
@@ -65,12 +71,13 @@ namespace FavourAPI.Services
             var correctSkills = this.dbContext.Skills.Where(s => dbConsumer.Skills.Any(dbcS => dbcS.Name == s.Name)).ToArray();
             var correctPositions = this.dbContext.Positions.Where(s => dbConsumer.DesiredPositions.Any(dbcP => dbcP.Name == s.Name)).ToArray();
 
-            if (!string.IsNullOrEmpty(consumerData.ProfilePhoto))
-            {
-                var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = consumerData.ProfilePhoto.Length };
-                profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, consumerData.ProfilePhoto, profilePhoto.ContentType);
-                dbConsumer.ProfilePhoto = profilePhoto;
-            }
+            // TODO
+            //if (!string.IsNullOrEmpty(consumerData.ProfilePhoto))
+            //{
+            //    var profilePhoto = new Image() { ContentType = ContentTypes.JPG_IMAGE, Name = Guid.NewGuid(), Size = consumerData.ProfilePhoto.Length };
+            //    profilePhoto.Uri = await this.blobService.UploadImage(profilePhoto.Name, consumerData.ProfilePhoto, profilePhoto.ContentType);
+            //    dbConsumer.ProfilePhoto = profilePhoto;
+            //}
 
             dbConsumer.Sex = correctSexDb;
             dbConsumer.Skills = correctSkills;
@@ -98,13 +105,14 @@ namespace FavourAPI.Services
                 //currentUserInfo.LastName = dbConsumer.LastName;
                 currentUserInfo.Location = dbConsumer.Location;
                 currentUserInfo.PhoneNumber = dbConsumer.PhoneNumber;
-                currentUserInfo.ProfilePhoto = dbConsumer.ProfilePhoto;
+                // TODO
+                //currentUserInfo.ProfilePhoto = dbConsumer.ProfilePhoto;
                 currentUserInfo.Sex = dbConsumer.Sex;
                 currentUserInfo.Skills.Where(s => dbConsumer.Skills.Any(s1 => s1.Name == s.Name));
-                currentUserInfo.Experiences = currentUserInfo.Experiences.Where(e => dbConsumer.Experiences.Any(e1 => e.Start == e1.Start && e.End == e1.End))
-                    .Concat(dbConsumer.Experiences)
-                    .Distinct()
-                    .ToList();
+                //currentUserInfo.Experiences = currentUserInfo.Experiences.Where(e => dbConsumer.Experiences.Any(e1 => e.Start == e1.Start && e.End == e1.End))
+                //    .Concat(dbConsumer.Experiences)
+                //    .Distinct()
+                //    .ToList();
                 currentUserInfo.Sex = dbConsumer.Sex;
 
                 this.dbContext.Providers.Update(currentUserInfo);
@@ -131,17 +139,19 @@ namespace FavourAPI.Services
 
         public async Task<string> GetProfilePhoto(string userdId)
         {
-            var idAsGuid = Guid.Parse(userdId);
-            var user = this.dbContext.Providers.SingleOrDefault(u => u.Id == idAsGuid);
+            //var idAsGuid = Guid.Parse(userdId);
+            //var user = this.dbContext.Providers.SingleOrDefault(u => u.Id == idAsGuid);
 
-            if (user?.ProfilePhoto == null)
-            {
-                return null;
-            }
+            //if (user?.ProfilePhoto == null)
+            //{
+            //    return null;
+            //}
 
-            var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
+            //var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
 
-            return Encoding.UTF8.GetString(buffer);
+            //return Encoding.UTF8.GetString(buffer);
+
+            return "#Svetlio";
         }
 
         public bool CheckForLoginProceedPermission(Provider provider)
@@ -176,18 +186,20 @@ namespace FavourAPI.Services
 
             var completedJobs = ReduceCompletedJobsInformation(dto.CompletedJobOffers);
             dto.CompletedJobOffers = completedJobs;
-            if (withPhoto && providerDb.ProfilePhoto != null)
-            {
-                try
-                {
-                    var buffer = await this.blobService.GetImage(providerDb.ProfilePhoto.Name.ToString(), providerDb.ProfilePhoto.Size);
-                    dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
-                }
-                catch (NullReferenceException e)
-                {
 
-                }
-            }
+            // TODO
+            //if (withPhoto && providerDb.ProfilePhoto != null)
+            //{
+            //    try
+            //    {
+            //        var buffer = await this.blobService.GetImage(providerDb.ProfilePhoto.Name.ToString(), providerDb.ProfilePhoto.Size);
+            //        dto.ProfilePhoto = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+            //    }
+            //    catch (NullReferenceException e)
+            //    {
+
+            //    }
+            //}
 
             return dto;
         }
@@ -205,11 +217,16 @@ namespace FavourAPI.Services
             return providers.Select(c => this.mapper.Map<ProviderDto>(c));
         }
 
-        public List<OfferingDto> GetAllOfferings(string providerId)
+        public List<ActiveOfferingDto> GetAllActiveOfferings(string providerId)
         {
             var provider = this.dbContext.Providers.SingleOrDefault(p => p.Id == Guid.Parse(providerId));
 
-            var offeringDtos = provider.Offerings.Select(of => this.mapper.Map<OfferingDto>(of)).ToList();
+            if (provider == null)
+            {
+                // TODO
+            }
+
+            var offeringDtos = provider.ActiveOfferings.Select(of => this.mapper.Map<ActiveOfferingDto>(of)).ToList();
 
             return offeringDtos;
         }
