@@ -17,11 +17,19 @@ using Microsoft.Extensions.Configuration;
 
 namespace FavourAPI.Data.Repositories
 {
+    public enum PermissionTypes
+    {
+        HasSufficientInfoProvider,
+        HasSufficientInfoConsumer,
+        SideChosen,
+    }
+
     public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly UserManager<User> userManager;
         private readonly IClaimsFactory claimsFactory;
         private readonly IConfiguration configuration;
+        private readonly WorkFavourDbContext dbContext;
 
         public UserRepository(WorkFavourDbContext workFavourDbContext,
             UserManager<User> userManager,
@@ -29,6 +37,7 @@ namespace FavourAPI.Data.Repositories
             : base(workFavourDbContext, mapper)
         {
             this.userManager = userManager;
+            this.dbContext = workFavourDbContext;
             this.claimsFactory = claimsFactory;
             this.configuration = configuration;
         }
@@ -62,9 +71,29 @@ namespace FavourAPI.Data.Repositories
 
         public async Task<UserDto> Create(string email, string password, string firstName, string lastName)
         {
-            var newUser = new User() { Email = email, UserName = email, FullName = $"{firstName} {lastName}" };
+            var permissionsMy = new PermissionMy()
+            {
+                SideChosen = false,
+                HasSufficientInfoProvider = false,
+                HasSufficientInfoConsumer = false,
+                CanApplyConsumer = true,
+            };
 
-            var user = await this.userManager.CreateAsync(newUser, password);
+            this.dbContext.PermissionMys.Add(permissionsMy);
+
+            var newUser = new User()
+            {
+                Email = email,
+                UserName = email,
+                FullName = $"{firstName} {lastName}",
+                FirstName = firstName,
+                LastName = lastName,
+                PermissionMy = permissionsMy
+            };
+
+            var user = password == null
+                ? await this.userManager.CreateAsync(newUser)
+                : await this.userManager.CreateAsync(newUser, password);
 
             foreach (var err in user.Errors)
             {
@@ -103,24 +132,16 @@ namespace FavourAPI.Data.Repositories
 
             if (user == null)
             {
-                var newUser = await this.userManager.CreateAsync(new User()
-                {
-                    Email = googleUser.Email,
-                    UserName = googleUser.Email,
-                    FullName = googleUser.DisplayName
-                });
+                string[] names = googleUser.DisplayName.Split(" ");
 
-                foreach (var err in newUser.Errors)
-                {
-                    throw new Exception(err.Description);
-                }
+                UserDto newUser = await this.Create(
+                    googleUser.Email,
+                    null,
+                    names[0],
+                    names.Length > 1 ? names[1] : ""
+                );
 
-                var dbUser = await this.userManager.FindByEmailAsync(googleUser.Email);
-                var userDto = this.mapper.Map<UserDto>(dbUser);
-
-                this.CreateUserInFirebase(userDto);
-
-                return userDto;
+                return newUser;
             }
 
             return this.mapper.Map<UserDto>(user);
@@ -180,6 +201,28 @@ namespace FavourAPI.Data.Repositories
             });
         }
 
+        public async Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue)
+        {
+            await UpdateUser(userId, (user) =>
+            {
+                foreach (var persmission in persmissions)
+                {
+                    switch (persmission)
+                    {
+                        case PermissionTypes.HasSufficientInfoConsumer:
+                            user.PermissionMy.HasSufficientInfoConsumer = newValue;
+                            break;
+                        case PermissionTypes.HasSufficientInfoProvider:
+                            user.PermissionMy.HasSufficientInfoProvider = newValue;
+                            break;
+                        case PermissionTypes.SideChosen:
+                            user.PermissionMy.SideChosen = newValue;
+                            break;
+                    }
+                }
+            });
+        }
+
         private async Task<User> GetByIdDb(Guid id)
         {
             var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -192,7 +235,7 @@ namespace FavourAPI.Data.Repositories
             {
                 return null;
             }
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
+            var user = await this.userManager.FindByIdAsync(id);
             return user;
         }
 

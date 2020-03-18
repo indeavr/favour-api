@@ -30,10 +30,10 @@ namespace FavourAPI.Services
             // this.dbContext.OfficeIndustries.AddRange(officeIndustries);
 
             Guid guidProvinceId = Guid.Parse(providerId);
-            var companyProvider = this.dbContext.CompanyProviders.Single(cp => cp.Id == guidProvinceId);
+            var companyProvider = this.dbContext.CompanyConsumers.Single(cp => cp.Id == guidProvinceId);
             companyProvider.Offices.Add(officeEntity);
 
-            this.dbContext.CompanyProviders.Update(companyProvider);
+            this.dbContext.CompanyConsumers.Update(companyProvider);
 
             await this.dbContext.SaveChangesAsync();
         }

@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Data.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,11 +16,13 @@ namespace FavourAPI.Data.Models
 
         public string Message { get; set; }
 
-        public DateTime Time { get; set; }
+        public virtual List<Period> Time { get; set; }
+
+        public DateTime ApplyTime { get; set; }
 
         public virtual ActiveJobOffer ActiveJobOffer { get; set; }
 
-        public virtual Provider Provider { get; set; }
+        public virtual PersonConsumer PersonConsumer { get; set; }
 
         public virtual ApplicationStateDb State { get; set; }
     }

@@ -12,14 +12,14 @@ using System.Collections.Generic;
 
 namespace FavourAPI.Services
 {
-    public class CompanyProviderService : ICompanyConsumerService
+    public class CompanyConsumerService : ICompanyConsumerService
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
         private readonly IOfficeService officeService;
         private readonly IBlobService blobService;
 
-        public CompanyProviderService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService, IBlobService blobService)
+        public CompanyConsumerService(WorkFavourDbContext dbContext, IMapper mapper, IOfficeService officeService, IBlobService blobService)
         {
             this.mapper = mapper;
             this.officeService = officeService;
@@ -39,7 +39,7 @@ namespace FavourAPI.Services
                 profilePhoto.Uri = await this.blobService.UploadImage(photoName, companyProvider.ProfilePhoto, profilePhoto.ContentType);
                 dbModel.ProfilePhoto = profilePhoto;
             }
-            var dbModelInDb = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == dbModel.Id);
+            var dbModelInDb = this.dbContext.CompanyConsumers.SingleOrDefault(cp => cp.Id == dbModel.Id);
 
             if (dbModelInDb != null)
             {
@@ -51,11 +51,11 @@ namespace FavourAPI.Services
                 dbModelInDb.Bulstat = dbModel.Bulstat ?? dbModelInDb.Bulstat;
                 dbModelInDb.Industries.Where(i => dbModel.Industries.Any(dbMI => dbMI.Name == i.Name));
 
-                this.dbContext.CompanyProviders.Update(dbModelInDb);
+                this.dbContext.CompanyConsumers.Update(dbModelInDb);
             }
             else
             {
-                this.dbContext.CompanyProviders.Add(dbModel);
+                this.dbContext.CompanyConsumers.Add(dbModel);
             }
 
             await this.dbContext.SaveChangesAsync();
@@ -72,7 +72,7 @@ namespace FavourAPI.Services
         public async Task<CompanyConsumerDto> GetConsumer(string userId, bool withPhoto)
         {
             Guid userIdGuid = Guid.Parse(userId);
-            var provider = this.dbContext.CompanyProviders.SingleOrDefault(cp => cp.Id == userIdGuid);
+            var provider = this.dbContext.CompanyConsumers.SingleOrDefault(cp => cp.Id == userIdGuid);
             var providerDto = this.mapper.Map<CompanyConsumerDto>(provider);
             if (withPhoto)
             {
@@ -98,7 +98,7 @@ namespace FavourAPI.Services
         {
             var idAsGuid = Guid.Parse(userdId);
 
-            var user = this.dbContext.CompanyProviders.SingleOrDefault(u => u.Id == idAsGuid);
+            var user = this.dbContext.CompanyConsumers.SingleOrDefault(u => u.Id == idAsGuid);
 
             var buffer = await this.blobService.GetImage(user.ProfilePhoto.Name.ToString(), user.ProfilePhoto.Size);
 
@@ -141,7 +141,7 @@ namespace FavourAPI.Services
 
         public async Task<IEnumerable<CompanyConsumerDto>> GetAll()
         {
-            var allProviders = await this.dbContext.CompanyProviders.ToAsyncEnumerable().ToArray();
+            var allProviders = await this.dbContext.CompanyConsumers.ToAsyncEnumerable().ToArray();
             return allProviders.Select(cp => mapper.Map<CompanyConsumerDto>(cp));
         }
     }

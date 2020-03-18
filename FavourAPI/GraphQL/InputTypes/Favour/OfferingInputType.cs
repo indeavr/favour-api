@@ -13,7 +13,6 @@ namespace FavourAPI.GraphQL.InputTypes.Favour
         {
             Name = "OfferingInput";
 
-            Field(f => f.Id);
             Field(f => f.Title);
             Field(f => f.Description);
             Field(f => f.Money);

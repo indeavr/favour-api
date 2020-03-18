@@ -13,10 +13,6 @@ namespace FavourAPI.Data.Models
         [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
         public virtual Location Location { get; set; }
 
         public virtual PhoneNumber PhoneNumber { get; set; }

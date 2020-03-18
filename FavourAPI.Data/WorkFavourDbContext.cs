@@ -24,9 +24,9 @@ namespace FavourAPI.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<PersonConsumer> PersonProviders { get; set; }
+        public DbSet<PersonConsumer> PersonConsumers { get; set; }
 
-        public DbSet<CompanyConsumer> CompanyProviders { get; set; }
+        public DbSet<CompanyConsumer> CompanyConsumers { get; set; }
 
         public DbSet<Office> Offices { get; set; }
 
@@ -40,7 +40,7 @@ namespace FavourAPI.Data
 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
 
-        public DbSet<Provider> Consumers { get; set; }
+        public DbSet<Provider> Providers { get; set; }
 
         public DbSet<JobOffer> JobOffers { get; set; }
 

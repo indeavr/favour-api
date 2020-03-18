@@ -9,6 +9,8 @@ namespace FavourAPI.Data.Models
         [Column(TypeName = "uniqueidentifier")]
         public Guid Id { get; set; }
 
+        public bool SideChosen { get; set; }
+
         public bool HasSufficientInfoConsumer { get; set; }
 
         public bool HasSufficientInfoProvider { get; set; }

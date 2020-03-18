@@ -1,5 +1,6 @@
 ﻿using FavourAPI.Data.Dtos.Favour;
 using FavourAPI.Data.Models;
+using FavourAPI.Data.Repositories;
 using FavourAPI.Dtos;
 using FavourAPI.GraphQL.InputTypes;
 using FavourAPI.GraphQL.InputTypes.Favour;
@@ -8,6 +9,7 @@ using FavourAPI.Helpers;
 using FavourAPI.Services;
 using FavourAPI.Services.Contracts;
 using Firebase.Database;
+using GraphQL;
 using GraphQL.Types;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -126,25 +128,6 @@ namespace FavourAPI.GraphQL
                }
            );
 
-            FieldAsync<ProviderType>(
-                "createProvider",
-                arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" },
-                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" }
-                ),
-                resolve: async context =>
-                {
-                    var userId = context.GetArgument<string>("userId");
-                    var providerArg = context.Arguments["provider"];
-                    var provider = providerArg != null
-                        ? JToken.FromObject(providerArg).ToObject<ProviderDto>()
-                        : null;
-
-                    var newProvider = await providerService.AddProvider(userId, provider);
-                    return newProvider;
-                }
-            );
-
             FieldAsync<CompanyConsumerType>("createCompanyConsumer", arguments: new QueryArguments(
                 new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
                 new QueryArgument<NonNullGraphType<CompanyConsumerInputType>> { Name = "companyConsumer" }
@@ -204,37 +187,48 @@ namespace FavourAPI.GraphQL
                ),
                resolve: async context =>
                {
-                   var email = context.GetArgument<string>("email");
-                   var password = context.GetArgument<string>("password");
-                   var firstName = context.GetArgument<string>("firstName");
-                   var lastName = context.GetArgument<string>("lastName");
-
-                   var newUser = await userService.Create(email, password, firstName, lastName);
-                   var user = await userService.Login(email, password);
-
-                   var tokenHandler = new JwtSecurityTokenHandler();
-                   var key = Encoding.ASCII.GetBytes(appSettings.Value.Secret);
-                   var tokenDescriptor = new SecurityTokenDescriptor
+                   try
                    {
-                       Subject = new ClaimsIdentity(new Claim[]
+                       var email = context.GetArgument<string>("email");
+                       var password = context.GetArgument<string>("password");
+                       var firstName = context.GetArgument<string>("firstName");
+                       var lastName = context.GetArgument<string>("lastName");
+
+                       var newUser = await userService.Create(email, password, firstName, lastName);
+                       var user = await userService.Login(email, password);
+
+                       var tokenHandler = new JwtSecurityTokenHandler();
+                       var key = Encoding.ASCII.GetBytes(appSettings.Value.Secret);
+                       var tokenDescriptor = new SecurityTokenDescriptor
                        {
+                           Subject = new ClaimsIdentity(new Claim[]
+                           {
                     new Claim(ClaimTypes.Name, user.Id)
-                       }),
-                       Expires = DateTime.UtcNow.AddDays(7),
-                       SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                   };
-                   var token = tokenHandler.CreateToken(tokenDescriptor);
-                   var tokenString = tokenHandler.WriteToken(token);
+                           }),
+                           Expires = DateTime.UtcNow.AddDays(7),
+                           SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                       };
+                       var token = tokenHandler.CreateToken(tokenDescriptor);
+                       var tokenString = tokenHandler.WriteToken(token);
 
-                   var authDto = new AuthDto()
+                       var authDto = new AuthDto()
+                       {
+                           Token = tokenString,
+                           UserId = user.Id,
+                           EmailConfirmed = user.EmailConfirmed,
+                           PhoneConfirmed = user.PhoneConfirmed,
+                           FullName = user.FullName,
+                           Permissions = user.Permissions
+                       };
+                       return authDto;
+                   }
+                   catch (Exception e)
                    {
-                       Token = tokenString,
-                       UserId = user.Id,
-                       EmailConfirmed = user.EmailConfirmed,
-                       PhoneConfirmed = user.PhoneConfirmed,
-                       FullName = user.FullName
-                   };
-                   return authDto;
+                       context.Errors.Add(new ExecutionError(e.Message));
+
+                       throw e;
+                   }
+
                }
            );
 
@@ -269,7 +263,8 @@ namespace FavourAPI.GraphQL
                       UserId = user.Id,
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
-                      FullName  = user.FullName
+                      FullName = user.FullName,
+                      Permissions = user.Permissions
                   };
                   return authDto;
               }
@@ -308,7 +303,8 @@ namespace FavourAPI.GraphQL
                       UserId = user.Id,
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
-                      FullName = user.FullName
+                      FullName = user.FullName,
+                      Permissions = user.Permissions
                   };
                   return authDto;
               }
@@ -359,6 +355,50 @@ namespace FavourAPI.GraphQL
 
                  return "success";
              });
+
+            FieldAsync<StringGraphType>(
+            "createProvider",
+             arguments: new QueryArguments(
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                new QueryArgument<NonNullGraphType<ProviderInputType>> { Name = "provider" }
+            ),
+            resolve: async context =>
+            {
+                var userId = context.GetArgument<string>("userId");
+                var providerArg = context.Arguments["provider"];
+                var provider = providerArg != null
+                    ? JToken.FromObject(providerArg).ToObject<ProviderDto>()
+                    : null;
+
+                var newProvider = await providerService.AddProvider(userId, provider);
+                await userService.ChangePermissions(
+                    userId,
+                    new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoProvider, PermissionTypes.SideChosen },
+                    true
+                );
+                return "success";
+            });
+
+            FieldAsync<BooleanGraphType>(
+            "applyForOffering",
+             arguments: new QueryArguments(
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "offeringId" },
+                new QueryArgument<NonNullGraphType<ApplicationInputType>> { Name = "application" }
+            ),
+            resolve: async context =>
+            {
+                var userId = context.GetArgument<string>("userId");
+                var offeringId = context.GetArgument<string>("offeringId");
+                var applicationArg = context.Arguments["application"];
+                var application = applicationArg != null
+                    ? JToken.FromObject(applicationArg).ToObject<ApplicationDto>()
+                    : null;
+
+                await offeringService.AddApplication(userId, offeringId, application);
+
+                return true;
+            });
         }
     }
 }

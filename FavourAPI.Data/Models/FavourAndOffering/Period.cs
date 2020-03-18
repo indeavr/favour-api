@@ -20,5 +20,9 @@ namespace FavourAPI.Data.Models
         public DateTime EndHour { get; set; }
 
         public virtual JobOffer JobOffer { get; set; }
+
+        public virtual Offering Offering { get; set; }
+
+        public virtual Application Application { get; set; }
     }
 }

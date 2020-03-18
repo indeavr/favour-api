@@ -1,4 +1,5 @@
 ﻿using FavourAPI.Data.Models;
+using FavourAPI.Data.Repositories;
 using FavourAPI.Dtos;
 using FavourAPI.Services.Helpers.Result;
 using System;
@@ -30,6 +31,8 @@ namespace FavourAPI.Services
         //IEnumerable<User> GetAll();
 
         User GetById(string id);
+
+        Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue);
 
         //Task UpdatePermissions(string userId, Action<PermissionMy> updater);
 

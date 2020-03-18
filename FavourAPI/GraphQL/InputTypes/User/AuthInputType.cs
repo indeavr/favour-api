@@ -1,4 +1,5 @@
 ﻿using FavourAPI.Dtos;
+using FavourAPI.GraphQL.Types;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FavourAPI.GraphQL.InputTypes
 {
-    public class AuthPayload : ObjectGraphType<AuthDto>
+    public class AuthPayload : ObjectGraphType<AuthDto> // TODO: this is not an Input Type
     {
         public AuthPayload()
         {
@@ -18,6 +19,10 @@ namespace FavourAPI.GraphQL.InputTypes
             Field<NonNullGraphType<StringGraphType>>("userId");
 
             Field<NonNullGraphType<StringGraphType>>("fullName");
+
+            Field<NonNullGraphType<StringGraphType>>("lastAccoutSide");
+
+            Field(jo => jo.Permissions, nullable: false, type: typeof(NonNullGraphType<PermissionsType>));
         }
     }
 }

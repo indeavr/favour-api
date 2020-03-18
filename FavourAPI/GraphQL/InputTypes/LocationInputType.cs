@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FavourAPI.GraphQL.InputTypes
 {
     public class LocationInputType : InputObjectGraphType<LocationDto>
-    {
+    {   
         public LocationInputType()
         {
             Name = "LocationInput";
@@ -24,7 +24,6 @@ namespace FavourAPI.GraphQL.InputTypes
 
             //Field<NonNullGraphType<StringGraphType>>("longitude");
 
-            Field(l => l.Id);
             Field(l => l.MapsId);
             Field(l => l.Country);
             Field(l => l.Address);
