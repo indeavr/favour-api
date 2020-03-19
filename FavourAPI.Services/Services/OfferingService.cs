@@ -47,12 +47,13 @@ namespace FavourAPI.Services.Services
 
             await this.dbContext.SaveChangesAsync();
 
-            //await this.dbContext.ActiveFavours.AddAsync(new ActiveFavour()
-            //{
-            //    Off = offering,
-            //    Id = offering.Id,
-            //    Applications = new List<Application>()
-            //});
+            await this.dbContext.ActiveOfferings.AddAsync(new ActiveOffering()
+            {
+                Offering = offering,
+                Id = offering.Id,
+                IsDeleted = false,
+                Applications = new List<Application>()
+            });
 
             await this.dbContext.SaveChangesAsync();
 

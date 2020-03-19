@@ -26,11 +26,8 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Application> Applications { get; set; } // for favours
 
-        public virtual ICollection<ActiveOffering> ActiveOfferings { get; set; }
+        public virtual ICollection<Offering> Offerings { get; set; }
 
-        public virtual ICollection<OngoingOffering> OngoingOfferings { get; set; }
-
-        public virtual ICollection<CompletedOffering> CompletedOfferings { get; set; }
         public virtual User User { get; set; }
 
         public byte[] CV { get; set; }

@@ -12,7 +12,7 @@ namespace FavourAPI.GraphQL.Types
         public ActiveOfferingType()
         {
             Field(ajo => ajo.Id);
-            Field(jo => jo.Applications, nullable: true, type: typeof(ListGraphType<ApplicationType>));
+            Field(jo => jo.Applications, nullable: false, type: typeof(NonNullGraphType<ListGraphType<ApplicationType>>));
             Field(jo => jo.Offering, nullable: false, type: typeof(NonNullGraphType<OfferingType>));
         }
     }

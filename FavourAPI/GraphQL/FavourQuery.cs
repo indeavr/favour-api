@@ -134,13 +134,13 @@ namespace FavourAPI.GraphQL
                     return industriesWithPositions;
                 });
 
-            FieldAsync<ListGraphType<OfferingType>>(
+            FieldAsync<ListGraphType<ActiveOfferingType>>(
                 "myActiveOfferings",
                 arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "userId" }),
                 resolve: async context =>
                 {
                     var providerId = context.GetArgument<string>("userId");
-                    List<ActiveOfferingDto> myActiveOfferings = providerService.GetAllActiveOfferings(providerId);
+                    List<ActiveOfferingDto> myActiveOfferings = await providerService.GetAllActiveOfferings(providerId);
 
                     return myActiveOfferings;
                 });

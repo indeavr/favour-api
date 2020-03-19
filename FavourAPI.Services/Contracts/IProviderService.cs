@@ -26,6 +26,6 @@ namespace FavourAPI.Services
 
         Task<string> GetProfilePhoto(string userId);
 
-        List<ActiveOfferingDto> GetAllActiveOfferings(string providerId);
+        Task<List<ActiveOfferingDto>> GetAllActiveOfferings(string providerId);
     }
 }

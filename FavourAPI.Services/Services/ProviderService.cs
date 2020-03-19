@@ -51,9 +51,6 @@ namespace FavourAPI.Services
             dbProvider.Skills = correctSkills;
             dbProvider.DesiredPositions = correctPositions;
             dbProvider.Id = Guid.Parse(userId);
-            dbProvider.ActiveOfferings = new List<ActiveOffering>();
-            dbProvider.OngoingOfferings = new List<OngoingOffering>();
-            dbProvider.CompletedOfferings = new List<CompletedOffering>();
 
             this.dbContext.Providers.Add(dbProvider);
 
@@ -154,6 +151,7 @@ namespace FavourAPI.Services
             return "#Svetlio";
         }
 
+        // DEPRECATED --> use properties on the use instead !
         public bool CheckForLoginProceedPermission(Provider provider)
         {
             // TODO: make it more buletproof
@@ -217,16 +215,20 @@ namespace FavourAPI.Services
             return providers.Select(c => this.mapper.Map<ProviderDto>(c));
         }
 
-        public List<ActiveOfferingDto> GetAllActiveOfferings(string providerId)
+        public async Task<List<ActiveOfferingDto>> GetAllActiveOfferings(string providerId)
         {
-            var provider = this.dbContext.Providers.SingleOrDefault(p => p.Id == Guid.Parse(providerId));
+            var provider = await this.dbContext.Providers
+                .ToAsyncEnumerable()
+                .SingleOrDefault(p => p.Id == Guid.Parse(providerId));
 
             if (provider == null)
             {
                 // TODO
             }
 
-            var offeringDtos = provider?.ActiveOfferings?.Select(of => this.mapper.Map<ActiveOfferingDto>(of)).ToList();
+            var offeringDtos = await provider?.Offerings.ToAsyncEnumerable()
+                .Where(of => of.ActiveState != null)
+                .Select(of => this.mapper.Map<ActiveOfferingDto>(of.ActiveState)).ToList();
 
             return offeringDtos;
         }
