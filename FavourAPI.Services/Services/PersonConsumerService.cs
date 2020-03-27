@@ -33,7 +33,11 @@ namespace FavourAPI.Services
             var dbModel = mapper.Map<PersonConsumer>(personProvider);
             dbModel.Id = Guid.Parse(userId);
 
-            if (personProvider.Photos.Count != 0)
+            var correctSexDb = this.dbContext.Sexes.FirstOrDefault(s => s.Value == personProvider.Sex);
+            dbModel.Sex = correctSexDb ?? this.dbContext.Sexes.First();
+
+
+            if (personProvider.Photos!=null && personProvider.Photos.Count != 0)
             {
                 foreach (var photoStr in personProvider.Photos)
                 {

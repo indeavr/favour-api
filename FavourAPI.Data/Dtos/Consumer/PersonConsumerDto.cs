@@ -18,7 +18,7 @@ namespace FavourAPI.Dtos
 
         public List<ImageDto> Photos { get; set; }
 
-        public List<PhoneNumberDto> PhoneNumbers { get; set; }
+        public string PhoneNumber { get; set; } // TODO: we have a type PhoneNumbers
 
         public List<ApplicationDto> Applications { get; set; }
 

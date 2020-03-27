@@ -14,8 +14,8 @@ namespace FavourAPI.GraphQL.InputTypes
             Name = "PersonConsumerInput";
 
             Field(c => c.Description);
-            Field(c => c.Photos, nullable: true, type: typeof(NonNullGraphType<LocationInputType>));
-            Field(c => c.PhoneNumbers, nullable: true, type: typeof(NonNullGraphType<ListGraphType<StringGraphType>>));
+            Field(c => c.Sex);
+            Field(c => c.PhoneNumber, nullable: true, type: typeof(NonNullGraphType<StringGraphType>));
         }
     }
 }

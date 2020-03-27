@@ -20,7 +20,7 @@ namespace FavourAPI.Data.Models
 
         public virtual ICollection<Image> Photos { get; set; }
 
-        public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
+        public string PhoneNumber { get; set; } // v2 make it class PhoneNumber and list
 
         public virtual User User { get; set; }
 
