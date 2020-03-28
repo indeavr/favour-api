@@ -223,6 +223,14 @@ namespace FavourAPI.Data.Repositories
             });
         }
 
+        public async Task SetLastLoginSide(string userId, string side)
+        {
+            await UpdateUser(userId, (user) =>
+            {
+                user.LastAccountSide = side;
+            });
+        }
+
         private async Task<User> GetByIdDb(Guid id)
         {
             var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -268,5 +276,6 @@ namespace FavourAPI.Data.Repositories
                  .Child($"users/{user.Id}")
                  .PutAsync(json);
         }
+
     }
 }

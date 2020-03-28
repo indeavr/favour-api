@@ -39,6 +39,8 @@ namespace FavourAPI.Helpers
 
             CreateMap<PersonConsumer, PersonConsumerDto>()
                 .ForMember(cdto => cdto.Sex, opt => opt.MapFrom(c => c.Sex.Value))
+                .ForMember(cdto => cdto.FirstName, opt => opt.MapFrom(c => c.User.FirstName))
+                .ForMember(cdto => cdto.LastName, opt => opt.MapFrom(c => c.User.LastName))
                 .PreserveReferences();
 
             CreateMap<PersonConsumerDto, PersonConsumer>()

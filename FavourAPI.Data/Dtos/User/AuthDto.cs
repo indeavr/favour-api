@@ -16,7 +16,7 @@ namespace FavourAPI.Dtos
 
         public string FullName { get; set; }
 
-        public string LastAccoutSide { get; set; }
+        public string LastAccountSide { get; set; }
 
         public PermissionsMyDto Permissions { get; set; }
     }

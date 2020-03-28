@@ -37,7 +37,7 @@ namespace FavourAPI.Services
             dbModel.Sex = correctSexDb ?? this.dbContext.Sexes.First();
 
 
-            if (personProvider.Photos!=null && personProvider.Photos.Count != 0)
+            if (personProvider.Photos != null && personProvider.Photos.Count != 0)
             {
                 foreach (var photoStr in personProvider.Photos)
                 {

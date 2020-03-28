@@ -34,6 +34,8 @@ namespace FavourAPI.Services
 
         Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue);
 
+        Task SetLastLoginSide(string userId, string side);
+
         //Task UpdatePermissions(string userId, Action<PermissionMy> updater);
 
         //Task Update(User user, string password = null);

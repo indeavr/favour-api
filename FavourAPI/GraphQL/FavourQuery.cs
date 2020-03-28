@@ -7,6 +7,7 @@ using GraphQL.Authorization;
 using System;
 using FavourAPI.Data.Dtos.Offerings;
 using System.Collections.Generic;
+using FavourAPI.Dtos;
 
 namespace FavourAPI.GraphQL
 {
@@ -51,14 +52,16 @@ namespace FavourAPI.GraphQL
                     return await companyConsumerepository.GetById(providerId);
                 });
 
-            FieldAsync<CompanyConsumerType>(
+            FieldAsync<PersonConsumerType>(
              "personConsumer",
              arguments: new QueryArguments(new QueryArgument<StringGraphType>() { Name = "id" }),
              resolve: async context =>
              {
                  var consumerId = context.GetArgument<string>("id");
 
-                 return await personConsumerService.GetById(consumerId);
+                 PersonConsumerDto consumer = await personConsumerService.GetById(consumerId);
+
+                 return consumer;
              });
 
             Field<JobOfferType>(

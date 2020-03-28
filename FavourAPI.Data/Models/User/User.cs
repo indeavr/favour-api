@@ -40,7 +40,8 @@ namespace FavourAPI.Data.Models
 
         public virtual Provider Provider { get; set; }
 
-        public string LastAccoutSide { get; set; }
+        public string LastAccountSide { get; set; }
+
 
         public virtual PersonConsumer PersonConsumer { get; set; }
 

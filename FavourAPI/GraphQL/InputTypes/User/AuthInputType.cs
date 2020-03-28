@@ -20,7 +20,7 @@ namespace FavourAPI.GraphQL.InputTypes
 
             Field<NonNullGraphType<StringGraphType>>("fullName");
 
-            Field<NonNullGraphType<StringGraphType>>("lastAccoutSide");
+            Field<StringGraphType>("lastAccountSide");
 
             Field(jo => jo.Permissions, nullable: false, type: typeof(NonNullGraphType<PermissionsType>));
         }

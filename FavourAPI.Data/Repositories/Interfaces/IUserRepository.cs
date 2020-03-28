@@ -33,5 +33,8 @@ namespace FavourAPI.Data.Repositories
         Task<UserDto> LoginWithGoogle(string serverToken);
 
         Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue);
+
+        Task SetLastLoginSide(string userId, string side);
+
     }
 }

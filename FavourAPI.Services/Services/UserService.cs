@@ -96,6 +96,12 @@ namespace FavourAPI.Services
 
         }
 
+        public async Task SetLastLoginSide(string userId, string side)
+        {
+            await this.userRepo.SetLastLoginSide(userId, side);
+        }
+
+
         //private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         //{
         //    if (password == null) throw new ArgumentNullException("password");

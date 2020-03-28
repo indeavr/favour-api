@@ -219,7 +219,8 @@ namespace FavourAPI.GraphQL
                            EmailConfirmed = user.EmailConfirmed,
                            PhoneConfirmed = user.PhoneConfirmed,
                            FullName = user.FullName,
-                           Permissions = user.Permissions
+                           Permissions = user.Permissions,
+                           LastAccountSide = user.LastAccountSide
                        };
                        return authDto;
                    }
@@ -242,7 +243,7 @@ namespace FavourAPI.GraphQL
               {
                   var serverToken = context.GetArgument<string>("serverToken");
 
-                  var user = await userService.LoginWithGoogle(serverToken);
+                  UserDto user = await userService.LoginWithGoogle(serverToken);
 
                   var tokenHandler = new JwtSecurityTokenHandler();
                   var key = Encoding.ASCII.GetBytes(appSettings.Value.Secret);
@@ -265,7 +266,8 @@ namespace FavourAPI.GraphQL
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
                       FullName = user.FullName,
-                      Permissions = user.Permissions
+                      Permissions = user.Permissions,
+                      LastAccountSide = user.LastAccountSide
                   };
                   return authDto;
               }
@@ -305,7 +307,8 @@ namespace FavourAPI.GraphQL
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
                       FullName = user.FullName,
-                      Permissions = user.Permissions
+                      Permissions = user.Permissions,
+                      LastAccountSide = user.LastAccountSide
                   };
                   return authDto;
               }
@@ -377,31 +380,36 @@ namespace FavourAPI.GraphQL
                     new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoProvider, PermissionTypes.SideChosen },
                     true
                 );
+                await userService.SetLastLoginSide(userId, "provider");
+
                 return "success";
             });
 
-           FieldAsync<StringGraphType>(
-           "createPersonConsumer",
-            arguments: new QueryArguments(
-               new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
-               new QueryArgument<NonNullGraphType<PersonConsumerInputType>> { Name = "personConsumer" }
-           ),
-           resolve: async context =>
-           {
-               var userId = context.GetArgument<string>("userId");
-               var consumerArg = context.Arguments["personConsumer"];
-               var consumer = consumerArg != null
-                   ? JToken.FromObject(consumerArg).ToObject<PersonConsumerDto>()
-                   : null;
+            FieldAsync<StringGraphType>(
+            "createPersonConsumer",
+             arguments: new QueryArguments(
+                new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "userId" },
+                new QueryArgument<NonNullGraphType<PersonConsumerInputType>> { Name = "personConsumer" }
+            ),
+            resolve: async context =>
+            {
+                var userId = context.GetArgument<string>("userId");
+                var consumerArg = context.Arguments["personConsumer"];
+                var consumer = consumerArg != null
+                    ? JToken.FromObject(consumerArg).ToObject<PersonConsumerDto>()
+                    : null;
 
-               var newConsumer = await personConsumerService.AddPersonConsumer(userId, consumer);
-               await userService.ChangePermissions(
-                   userId,
-                   new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoConsumer, PermissionTypes.SideChosen },
-                   true
-               );
-               return "success";
-           });
+                var newConsumer = await personConsumerService.AddPersonConsumer(userId, consumer);
+                await userService.ChangePermissions(
+                    userId,
+                    new List<PermissionTypes>() { PermissionTypes.HasSufficientInfoConsumer, PermissionTypes.SideChosen },
+                    true
+                );
+
+                await userService.SetLastLoginSide(userId, "consumer");
+
+                return "success";
+            });
 
             FieldAsync<BooleanGraphType>(
             "applyForOffering",
