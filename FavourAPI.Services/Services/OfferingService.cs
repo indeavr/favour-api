@@ -5,8 +5,10 @@ using FavourAPI.Data.Models;
 using FavourAPI.Data.Models.Enums;
 using FavourAPI.Data.Models.Offerings;
 using FavourAPI.Dtos;
+using FavourAPI.Helpers;
 using FavourAPI.Services.Contracts;
 using FavourAPI.Services.Helpers.Exceptions;
+using FirebaseAdmin.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +21,13 @@ namespace FavourAPI.Services.Services
     {
         private readonly WorkFavourDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly INotificationManager notificationManager;
 
-        public OfferingService(WorkFavourDbContext dbContext, IMapper mapper)
+        public OfferingService(WorkFavourDbContext dbContext, IMapper mapper, INotificationManager notificationManager)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.notificationManager = notificationManager;
         }
 
         public async Task<OfferingDto> AddOffering(string userId, OfferingDto offeringDto)
@@ -71,15 +75,28 @@ namespace FavourAPI.Services.Services
             application.ApplyTime = DateTime.Now;
 
             var consumer = this.dbContext.PersonConsumers.SingleOrDefault(c => c.Id == Guid.Parse(consumerId));
-            ActiveOffering offering = await this.dbContext.ActiveOfferings
+            ActiveOffering activeOffering = await this.dbContext.ActiveOfferings
                 .ToAsyncEnumerable()
                 .SingleOrDefault(of => of.Id == Guid.Parse(offeringId));
 
             application.PersonConsumer = consumer;
 
-            offering.Applications.Add(application);
+            activeOffering.Applications.Add(application);
 
             await this.dbContext.SaveChangesAsync();
+
+            // See documentation on defining a message payload.
+            var message = new Message()
+            {
+                Notification = new Notification()
+                {
+                    Title = "You have 1 new application",
+                    Body = $"{consumer.User.FirstName} applyed for {activeOffering.Offering.Title}"
+                },
+                Token = "e5k3QUlZ0ac:APA91bHdBRyV7Px6XYYlmXu-bf1H2T4Vr5JoLwqNCwxFRUXpPIvGYyG-SeBkbbaQOK_LtwDnAHviAWS4EYK7CzsY_y9md6ofb1rNFRa_WIeY2Q2ADajOe1GoXwx9EPfsNHZ6eEMWYiFP",
+            };
+
+            this.notificationManager.SendNotification("", message);
         }
 
         public async Task ConfirmApplication(string applicationId, List<PeriodDto> finalPeriodsDto)

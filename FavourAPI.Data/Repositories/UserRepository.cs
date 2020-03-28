@@ -272,6 +272,7 @@ namespace FavourAPI.Data.Repositories
                 fullName = user.FullName
             });
 
+                
             await firebaseClient
                  .Child($"users/{user.Id}")
                  .PutAsync(json);

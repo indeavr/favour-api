@@ -15,7 +15,7 @@ namespace FavourAPI.Services.Contracts
 
         Task<List<OfferingDto>> GetAllActiveOfferings();
 
-        Task AddApplication(string providerId, string favourId, ApplicationDto application);
+        Task AddApplication(string providerId, string offeringId, ApplicationDto application);
 
         Task ConfirmApplication(string applicationId, List<PeriodDto> finalPeriodsDto);
 

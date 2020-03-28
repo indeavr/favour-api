@@ -9,6 +9,7 @@ using FavourAPI.Helpers;
 using FavourAPI.Services;
 using FavourAPI.Services.Contracts;
 using Firebase.Database;
+using FirebaseAdmin.Messaging;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.Extensions.Options;
@@ -38,7 +39,8 @@ namespace FavourAPI.GraphQL
             IPersonConsumerService personConsumerService,
             IOfferService offerService,
             IFavourService favourService,
-            IOfferingService offeringService
+            IOfferingService offeringService,
+            INotificationManager notificationManager
             )
         {
             Name = "Mutation";
@@ -428,6 +430,7 @@ namespace FavourAPI.GraphQL
                     : null;
 
                 await offeringService.AddApplication(userId, offeringId, application);
+
 
                 return true;
             });
