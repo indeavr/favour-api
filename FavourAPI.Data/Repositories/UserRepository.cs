@@ -69,7 +69,7 @@ namespace FavourAPI.Data.Repositories
             return token;
         }
 
-        public async Task<UserDto> Create(string email, string password, string firstName, string lastName)
+        public async Task<UserDto> Create(string email, string password, string firstName, string lastName, string firebaseId)
         {
             var permissionsMy = new PermissionMy()
             {
@@ -81,8 +81,12 @@ namespace FavourAPI.Data.Repositories
 
             this.dbContext.PermissionMys.Add(permissionsMy);
 
+            Guid id = Guid.NewGuid();
+
             var newUser = new User()
             {
+                Id = id,
+                FirebaseId = firebaseId == null ? id.ToString() : firebaseId,
                 Email = email,
                 UserName = email,
                 FullName = $"{firstName} {lastName}",
@@ -95,14 +99,24 @@ namespace FavourAPI.Data.Repositories
                 ? await this.userManager.CreateAsync(newUser)
                 : await this.userManager.CreateAsync(newUser, password);
 
+            //await this.UpdateUser(newUser.Id.ToString(), (u) =>
+            //{
+            //    // not null only when google login
+            //    if (firebaseId == null)
+            //    {
+            //        firebaseId = u.Id.ToString();
+            //    }
+            //    u.FirebaseId = firebaseId;
+            //});
+
             foreach (var err in user.Errors)
             {
                 throw new Exception(err.Description);
             }
 
-            var userDto = this.mapper.Map<UserDto>(newUser);
+            await this.CreateUserInFirebaseDatabase(newUser);
 
-            this.CreateUserInFirebase(userDto);
+            var userDto = this.mapper.Map<UserDto>(newUser);
 
             return userDto;
         }
@@ -138,7 +152,8 @@ namespace FavourAPI.Data.Repositories
                     googleUser.Email,
                     null,
                     names[0],
-                    names.Length > 1 ? names[1] : ""
+                    names.Length > 1 ? names[1] : "",
+                    googleUser.Uid
                 );
 
                 return newUser;
@@ -256,9 +271,28 @@ namespace FavourAPI.Data.Repositories
             await this.userManager.UpdateAsync(user);
         }
 
-        private async Task CreateUserInFirebase(UserDto user)
+        //private async Task<string> CreateFirebaseUser(User user, string password)
+        //{
+        //    UserRecordArgs args = new UserRecordArgs()
+        //    {
+        //        Email = user.Email,
+        //        EmailVerified = false,
+        //        //PhoneNumber = ,
+        //        Password = password,
+        //        DisplayName = user.FullName,
+        //        //PhotoUrl = "http://www.example.com/12345678/photo.png",
+        //        Disabled = false,
+        //    };
+        //    UserRecord userRecord = await FirebaseAuth.DefaultInstance.CreateUserAsync(args);
+
+        //    // See the UserRecord reference doc for the contents of userRecord.
+        //    Console.WriteLine($"Successfully created new user: {userRecord.Uid}");
+
+        //    return userRecord.Uid;
+        //}
+
+        private async Task CreateUserInFirebaseDatabase(User user)
         {
-            // TODO: make this env variable
             var auth = this.configuration.GetSection("FavourAPI_Firebase_Secret").Value;
             var firebaseClient = new FirebaseClient(
                 "https://all-favour.firebaseio.com/",
@@ -272,9 +306,9 @@ namespace FavourAPI.Data.Repositories
                 fullName = user.FullName
             });
 
-                
+
             await firebaseClient
-                 .Child($"users/{user.Id}")
+                 .Child($"users/{user.FirebaseId}")
                  .PutAsync(json);
         }
 

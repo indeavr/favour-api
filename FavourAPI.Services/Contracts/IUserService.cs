@@ -30,7 +30,9 @@ namespace FavourAPI.Services
 
         //IEnumerable<User> GetAll();
 
-        User GetById(string id);
+        Task<UserDto> GetById(string id);
+
+        Task<UserDto> GetByEmail(string email);
 
         Task ChangePermissions(string userId, List<PermissionTypes> persmissions, bool newValue);
 

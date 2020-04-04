@@ -102,6 +102,30 @@ namespace FavourAPI.Services
         }
 
 
+        private static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<UserDto> GetById(string id)
+        {
+            return await this.userRepo.GetById(id);
+        }
+
+        public async Task<UserDto> GetByEmail(string email)
+        {
+            return await this.userRepo.GetByEmail(email);
+        }
+
+
         //private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         //{
         //    if (password == null) throw new ArgumentNullException("password");
@@ -132,24 +156,6 @@ namespace FavourAPI.Services
 
         //    return true;
         //}
-
-        private static bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public User GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
 
         //public async Task Add(User user)
         //{

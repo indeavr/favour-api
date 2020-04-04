@@ -8,7 +8,11 @@ namespace FavourAPI.Dtos
     {
         public string Token { get; set; }
 
+        public string FirebaseToken { get; set; }
+
         public string UserId { get; set; }
+
+        public string FirebaseId { get; set; }
 
         public bool EmailConfirmed { get; set; }
 

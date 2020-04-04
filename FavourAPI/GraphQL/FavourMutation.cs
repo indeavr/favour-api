@@ -9,6 +9,7 @@ using FavourAPI.Helpers;
 using FavourAPI.Services;
 using FavourAPI.Services.Contracts;
 using Firebase.Database;
+using FirebaseAdmin.Auth;
 using FirebaseAdmin.Messaging;
 using GraphQL;
 using GraphQL.Types;
@@ -206,7 +207,7 @@ namespace FavourAPI.GraphQL
                        {
                            Subject = new ClaimsIdentity(new Claim[]
                            {
-                    new Claim(ClaimTypes.Name, user.Id)
+                               new Claim(ClaimTypes.Name, user.Id)
                            }),
                            Expires = DateTime.UtcNow.AddDays(7),
                            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -214,10 +215,15 @@ namespace FavourAPI.GraphQL
                        var token = tokenHandler.CreateToken(tokenDescriptor);
                        var tokenString = tokenHandler.WriteToken(token);
 
+                       string firebaseToken = await FirebaseAuth.DefaultInstance
+                                                                .CreateCustomTokenAsync(user.Id);
+
                        var authDto = new AuthDto()
                        {
                            Token = tokenString,
+                           FirebaseToken = firebaseToken,
                            UserId = user.Id,
+                           FirebaseId = user.FirebaseId,
                            EmailConfirmed = user.EmailConfirmed,
                            PhoneConfirmed = user.PhoneConfirmed,
                            FullName = user.FullName,
@@ -264,7 +270,9 @@ namespace FavourAPI.GraphQL
                   var authDto = new AuthDto()
                   {
                       Token = tokenString,
+                      FirebaseToken = serverToken,
                       UserId = user.Id,
+                      FirebaseId = user.FirebaseId,
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
                       FullName = user.FullName,
@@ -294,7 +302,7 @@ namespace FavourAPI.GraphQL
                   {
                       Subject = new ClaimsIdentity(new Claim[]
                       {
-                    new Claim(ClaimTypes.Name, user.Id)
+                          new Claim(ClaimTypes.Name, user.Id)
                       }),
                       Expires = DateTime.UtcNow.AddDays(7),
                       SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -302,10 +310,15 @@ namespace FavourAPI.GraphQL
                   var token = tokenHandler.CreateToken(tokenDescriptor);
                   var tokenString = tokenHandler.WriteToken(token);
 
+                  string firebaseToken = await FirebaseAuth.DefaultInstance
+                                                             .CreateCustomTokenAsync(user.Id);
+
                   var authDto = new AuthDto()
                   {
                       Token = tokenString,
+                      FirebaseToken = firebaseToken,
                       UserId = user.Id,
+                      FirebaseId = user.FirebaseId,
                       EmailConfirmed = user.EmailConfirmed,
                       PhoneConfirmed = user.PhoneConfirmed,
                       FullName = user.FullName,

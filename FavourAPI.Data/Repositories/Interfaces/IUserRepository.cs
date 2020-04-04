@@ -14,7 +14,7 @@ namespace FavourAPI.Data.Repositories
 
         Task<UserDto> GetByEmail(string email);
 
-        Task<UserDto> Create(string email, string password, string firstName, string lastName);
+        Task<UserDto> Create(string email, string password, string firstName, string lastName, string firebaseId = null);
 
         Task<UserDto> Login(string email, string password);
 

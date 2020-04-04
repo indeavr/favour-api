@@ -12,11 +12,15 @@ namespace FavourAPI.GraphQL.InputTypes
     {
         public AuthPayload()
         {
-            Name = "auth";
+            Name = "AuthPayloadType";
 
             Field<NonNullGraphType<StringGraphType>>("token");
 
+            Field<NonNullGraphType<StringGraphType>>("firebaseToken");
+
             Field<NonNullGraphType<StringGraphType>>("userId");
+
+            Field<NonNullGraphType<StringGraphType>>("firebaseId");
 
             Field<NonNullGraphType<StringGraphType>>("fullName");
 
