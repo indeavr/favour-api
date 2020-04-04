@@ -293,12 +293,12 @@ namespace FavourAPI.Data.Repositories
 
         private async Task CreateUserInFirebaseDatabase(User user)
         {
-            var auth = this.configuration.GetSection("FavourAPI_Firebase_Secret").Value;
+            var secret = this.configuration.GetSection("FavourAPI_Firebase_Secret").Value;
             var firebaseClient = new FirebaseClient(
                 "https://all-favour.firebaseio.com/",
                 new FirebaseOptions
                 {
-                    AuthTokenAsyncFactory = () => Task.FromResult(auth)
+                    AuthTokenAsyncFactory = () => Task.FromResult(secret)
                 });
 
             var json = JsonConvert.SerializeObject(new

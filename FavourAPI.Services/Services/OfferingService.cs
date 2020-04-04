@@ -86,17 +86,20 @@ namespace FavourAPI.Services.Services
             await this.dbContext.SaveChangesAsync();
 
             // See documentation on defining a message payload.
-            var message = new Message()
+            var notification = new Notification()
             {
-                Notification = new Notification()
-                {
-                    Title = "You have 1 new application",
-                    Body = $"{consumer.User.FirstName} applyed for {activeOffering.Offering.Title}"
-                },
-                Token = "e5k3QUlZ0ac:APA91bHdBRyV7Px6XYYlmXu-bf1H2T4Vr5JoLwqNCwxFRUXpPIvGYyG-SeBkbbaQOK_LtwDnAHviAWS4EYK7CzsY_y9md6ofb1rNFRa_WIeY2Q2ADajOe1GoXwx9EPfsNHZ6eEMWYiFP",
+                Title = "You have 1 new application",
+                Body = $"{consumer.User.FirstName} applyed for {activeOffering.Offering.Title}"
             };
 
-            this.notificationManager.SendNotification("", message);
+            var data = new Dictionary<string, string>()
+            {
+
+            };
+
+            string firebaseId = activeOffering.Offering.Provider.User.FirebaseId;
+
+            await this.notificationManager.SendNotification(notification, data, firebaseId);
         }
 
         public async Task ConfirmApplication(string applicationId, List<PeriodDto> finalPeriodsDto)

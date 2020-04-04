@@ -9,6 +9,6 @@ namespace FavourAPI.Helpers
 {
     public interface INotificationManager
     {
-        Task SendNotification(string target, Message message);
+        Task SendNotification(Notification notification, IReadOnlyDictionary<string, string> data, string firebaseUserId);
     }
 }
